@@ -345,4 +345,106 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial NativeBool IsCursorOnScreen();
+    
+    /// <summary>
+    /// Set background color (framebuffer clear color)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void ClearBackground(Color color);
+    
+    /// <summary>
+    /// Setup canvas (framebuffer) to start drawing
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void BeginDrawing();
+    
+    /// <summary>
+    /// End canvas drawing and swap buffers (double buffering)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void EndDrawing();
+    
+    /// <summary>
+    /// Begin 2D mode with custom camera (2D)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void BeginMode2D(Camera2D camera);
+    
+    /// <summary>
+    /// Ends 2D mode with custom camera
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void EndMode2D();
+    
+    /// <summary>
+    /// Begin 3D mode with custom camera (3D)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void BeginMode3D(Camera3D camera);
+    
+    /// <summary>
+    /// Ends 3D mode and returns to default 2D orthographic mode
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void EndMode3D();
+    
+    /// <summary>
+    /// Begin drawing to render texture
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void BeginTextureMode(RenderTexture target);
+    
+    /// <summary>
+    /// Ends drawing to render texture
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void EndTextureMode();
+    
+    /// <summary>
+    /// Begin custom shader drawing
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void BeginShaderMode(Shader shader);
+    
+    /// <summary>
+    /// End custom shader drawing (use default shader)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void EndShaderMode();
+    
+    /// <summary>
+    /// Begin blending mode (alpha, additive, multiplied, subtract, custom)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void BeginBlendMode(BlendMode mode);
+    
+    /// <summary>
+    /// End blending mode (reset to default: alpha blending)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void EndBlendMode();
+    
+    /// <summary>
+    /// Begin scissor mode (define screen area for following drawing)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void BeginScissorMode(int x, int y, int width, int height);
+    
+    /// <summary>
+    /// End scissor mode
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void EndScissorMode();
+    
+    /// <summary>
+    /// Begin stereo rendering (requires VR simulator)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void BeginVrStereoMode(VrStereoConfig config);
+    
+    /// <summary>
+    /// End stereo rendering (requires VR simulator)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void EndVrStereoMode();
 }
