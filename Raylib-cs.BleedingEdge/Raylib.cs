@@ -687,4 +687,34 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial void MemFree(void* ptr);
+    
+    /// <summary>
+    /// Set custom trace log
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetTraceLogCallback(TraceLogCallback callback);
+    
+    /// <summary>
+    /// Set custom file binary data loader
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetLoadFileDataCallback(LoadFileDataCallback callback);
+    
+    /// <summary>
+    /// Set custom file binary data saver
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetSaveFileDataCallback(SaveFileDataCallback callback);
+    
+    /// <summary>
+    /// Set custom file text data loader
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetLoadFileTextCallback(LoadFileTextCallback callback);
+    
+    /// <summary>
+    /// Set custom file text data saver
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetSaveFileTextCallback(SaveFileTextCallback callback);
 }
