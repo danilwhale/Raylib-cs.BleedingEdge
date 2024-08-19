@@ -5,11 +5,8 @@ on:
   pull_request:
     branches: ['*']
 jobs:
-  natives-linux:
+  natives-linux-x64:
     runs-on: ubuntu-latest
-    strategy: 
-      matrix:
-        name: ['x64', 'arm64']
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -37,18 +34,13 @@ jobs:
             libwayland-dev \
             libxkbcommon-dev
       
-      - name: Install ARM64 cross-compiler
-        if: ${{ matrix.name == 'arm64' }}
-        shell: bash
-        run: sudo apt-get install g++-aarch64-linux-gnu
-      
       - name: Compile native
-        run: dotnet build Raylib-cs.BleedingEdge.Native -c Release /p:BuildArch=${{ matrix.name }}
+        run: dotnet build Raylib-cs.BleedingEdge.Native -c Release
       
       - name: Upload native
         uses: actions/upload-artifact@v4
         with:
-          name: linux-${{ matrix.name }}
+          name: linux-x64
           path: Raylib-cs.BleedingEdge.Native/bin/Release/libraylib.so
           if-no-files-found: 'error'
   natives-osx:
@@ -116,19 +108,13 @@ jobs:
   pack-runtimes:
     runs-on: ubuntu-latest
     needs:
-      - natives-linux
+      - natives-linux-x64
       - natives-osx
       - natives-windows
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download linux-arm64 native
-        uses: actions/download-artifact@v4
-        with:
-          name: linux-arm64
-          path: Raylib-cs.BleedingEdge.Runtimes/runtimes/linux-arm64/native
-      
       - name: Download linux-x64 native
         uses: actions/download-artifact@v4
         with:

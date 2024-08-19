@@ -10,8 +10,6 @@
     <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
         <LibExtension>so</LibExtension>
         <LibPrefix>lib</LibPrefix>
-        <LibArch Condition="'$(BuildArch)' == ''">x64</LibArch>
-        <LibArch Condition="'$(BuildArch)' != ''">$(BuildArch)</LibArch>
     </PropertyGroup>
 
     <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
@@ -27,10 +25,6 @@
         <LibArch Condition="'$(BuildArch)' == ''">x64</LibArch>
         <LibArch Condition="'$(BuildArch)' != ''">$(BuildArch)</LibArch>
     </PropertyGroup>
-    
-    <ItemGroup Condition="$([MSBuild]::IsOSPlatform('Linux')) AND '$(LibArch)' == 'arm64'">
-        <LibBuildArgs Include="-D CMAKE_CXX_COMPILER=aarch64-linux-gnu-g++"/>
-    </ItemGroup>
     
     <ItemGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
         <LibBuildArgs Include="-D CMAKE_OSX_ARCHITECTURES=$(BuildArch)"/>
