@@ -8,7 +8,7 @@ namespace Raylib_cs.BleedingEdge.Enums;
 /// By default all flags are set to 0
 /// </remarks>
 [Flags]
-public enum ConfigFlags
+public enum ConfigFlags : uint
 {
     /// <summary>
     /// Set to try enabling V-Sync on GPU
