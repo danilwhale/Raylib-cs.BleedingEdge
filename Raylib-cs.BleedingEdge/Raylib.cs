@@ -615,4 +615,28 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial void WaitTime(double seconds);
+    
+    /// <summary>
+    /// Set the seed for the random number generator
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetRandomSeed(uint seed);
+    
+    /// <summary>
+    /// Get a random value between min and max (both included)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial int GetRandomValue(int min, int max);
+    
+    /// <summary>
+    /// Load random values sequence, no values repeated
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial int* LoadRandomSequence(uint count, int min, int max);
+    
+    /// <summary>
+    /// Unload random values sequence
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void UnloadRandomSequence(int* sequence);
 }
