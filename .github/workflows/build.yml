@@ -31,7 +31,8 @@ jobs:
             libglu1-mesa-dev \
             libxcursor-dev \
             libxinerama-dev \
-            libwayland-dev
+            libwayland-dev \
+            libxkbcommon-dev
       
       - name: Compile native
         run: dotnet build Raylib-cs.BleedingEdge.Native -c Release
