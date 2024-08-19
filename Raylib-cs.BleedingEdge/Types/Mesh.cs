@@ -6,17 +6,17 @@ namespace Raylib_cs.BleedingEdge.Types;
 /// Mesh, vertex data and vao/vbo
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct Mesh
+public struct Mesh(int vertexCount, int triangleCount)
 {
     /// <summary>
     /// Number of vertices stored in arrays
     /// </summary>
-    public int VertexCount;
+    public int VertexCount = vertexCount;
 
     /// <summary>
     /// Number of triangles stored (indexed or not)
     /// </summary>
-    public int TriangleCount;
+    public int TriangleCount = triangleCount;
 
     /// <summary>
     /// Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
