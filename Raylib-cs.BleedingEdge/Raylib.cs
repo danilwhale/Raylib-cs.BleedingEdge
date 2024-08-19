@@ -459,4 +459,64 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial void UnloadVrStereoConfig(VrStereoConfig config);
+    
+    /// <summary>
+    /// Load shader from files and bind default locations
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial Shader LoadShader(sbyte* vsFileName, sbyte* fsFileName);
+    
+    /// <summary>
+    /// Load shader from code strings and bind default locations
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial Shader LoadShaderFromMemory(sbyte* vsCode, sbyte* fsCode);
+    
+    /// <summary>
+    /// Check if a shader is ready
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsShaderReady(Shader shader);
+    
+    /// <summary>
+    /// Get shader uniform location
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial int GetShaderLocation(Shader shader, sbyte* uniformName);
+    
+    /// <summary>
+    /// Get shader attribute location
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial int GetShaderLocationAttrib(Shader shader, sbyte* attribName);
+    
+    /// <summary>
+    /// Set shader uniform value
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetShaderValue(Shader shader, int locIndex, void* value, ShaderUniformDataType uniformType);
+    
+    /// <summary>
+    /// Set shader uniform value vector
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetShaderValueV(Shader shader, int locIndex, void* value, ShaderUniformDataType uniformType, int count);
+    
+    /// <summary>
+    /// Set shader uniform value (matrix 4x4)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetShaderValueMatrix(Shader shader, int locIndex, Matrix4x4 mat);
+    
+    /// <summary>
+    /// Set shader uniform value for texture (sampler2d)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetShaderValueTexture(Shader shader, int locIndex, Texture texture);
+    
+    /// <summary>
+    /// Unload shader from GPU memory (VRAM)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void UnloadShader(Shader shader);
 }
