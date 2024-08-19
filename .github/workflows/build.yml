@@ -51,6 +51,11 @@ jobs:
     strategy: 
       matrix:
         name: ['arm64', 'x64']
+        include:
+          - name: 'arm64'
+            arch: 'arm64'
+          - name: 'x64'
+            arch: 'x86_64'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -63,7 +68,7 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Compile native
-        run: dotnet build Raylib-cs.BleedingEdge.Native -c Release /p:BuildArch=${{ matrix.name }}
+        run: dotnet build Raylib-cs.BleedingEdge.Native -c Release /p:BuildArch=${{ matrix.arch }}
 
       - name: Upload native
         uses: actions/upload-artifact@v4
