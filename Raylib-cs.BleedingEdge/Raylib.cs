@@ -597,4 +597,22 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial int GetFPS();
+    
+    /// <summary>
+    /// Swap back buffer with front buffer (screen drawing)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SwapScreenBuffer();
+    
+    /// <summary>
+    /// Register all input events
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void PollInputEvents();
+    
+    /// <summary>
+    /// Wait for some time (halt program execution)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void WaitTime(double seconds);
 }
