@@ -519,4 +519,58 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial void UnloadShader(Shader shader);
+
+    /// <summary>
+    /// Get a ray trace from screen position (i.e mouse)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void GetMouseRay(Vector2 position, Camera3D camera);
+    
+    /// <summary>
+    /// Get a ray trace from screen position (i.e mouse)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial Ray GetScreenToWorldRay(Vector2 position, Camera3D camera);
+    
+    /// <summary>
+    /// Get a ray trace from screen position (i.e mouse) in a viewport
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial Ray GetScreenToWorldRayEx(Vector2 position, Camera3D camera, int width, int height);
+    
+    /// <summary>
+    /// Get the screen space position for a 3d world space position
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial Vector2 GetWorldToScreen(Vector3 position, Camera3D camera);
+    
+    /// <summary>
+    /// Get size position for a 3d world space position
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial Vector2 GetWorldToScreenEx(Vector3 position, Camera3D camera, int width, int height);
+    
+    /// <summary>
+    /// Get the screen space position for a 2d camera world space position
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial Vector2 GetWorldToScreen2D(Vector2 position, Camera2D camera);
+    
+    /// <summary>
+    /// Get the world space position for a 2d camera screen space position
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial Vector2 GetScreenToWorld2D(Vector2 position, Camera2D camera);
+    
+    /// <summary>
+    /// Get camera transform matrix (view matrix)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial Matrix4x4 GetCameraMatrix(Camera3D camera);
+    
+    /// <summary>
+    /// Get camera 2d transform matrix
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial Matrix4x4 GetCameraMatrix2D(Camera2D camera);
 }
