@@ -657,4 +657,34 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial void OpenURL(sbyte* url);
+    
+    /// <summary>
+    /// Show trace log messages (TraceLogLevel.Debug, TraceLogLevel.Info, TraceLogLevel.Warning, TraceLogLevel.Error...)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void TraceLog(TraceLogLevel logLevel, sbyte* text);
+    
+    /// <summary>
+    /// Set the current threshold (minimum) log level
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetTraceLogLevel(TraceLogLevel logLevel);
+    
+    /// <summary>
+    /// Internal memory allocator
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void* MemAlloc(uint size);
+    
+    /// <summary>
+    /// Internal memory reallocator
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void* MemRealloc(void* ptr, uint size);
+    
+    /// <summary>
+    /// Internal memory free
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void MemFree(void* ptr);
 }
