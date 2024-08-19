@@ -37,6 +37,11 @@ jobs:
             libwayland-dev \
             libxkbcommon-dev
       
+      - name: Install ARM64 cross-compiler
+        if: ${{ matrix.name == 'arm64' }}
+        shell: bash
+        run: sudo apt-get install g++-aarch64-linux-gnu
+      
       - name: Compile native
         run: dotnet build Raylib-cs.BleedingEdge.Native -c Release /p:BuildArch=${{ matrix.name }}
       

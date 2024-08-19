@@ -28,6 +28,10 @@
         <LibArch Condition="'$(BuildArch)' != ''">$(BuildArch)</LibArch>
     </PropertyGroup>
     
+    <ItemGroup Condition="$([MSBuild]::IsOSPlatform('Linux')) AND '$(LibArch)' == 'arm64'">
+        <LibBuildArgs Include="-D CMAKE_CXX_COMPILER=aarch64-linux-gnu-g++"/>
+    </ItemGroup>
+    
     <ItemGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
         <LibBuildArgs Include="-D CMAKE_OSX_ARCHITECTURES=$(BuildArch)"/>
     </ItemGroup>
