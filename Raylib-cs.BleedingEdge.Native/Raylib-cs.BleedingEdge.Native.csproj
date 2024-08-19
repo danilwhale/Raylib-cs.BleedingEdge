@@ -10,17 +10,31 @@
     <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
         <LibExtension>so</LibExtension>
         <LibPrefix>lib</LibPrefix>
+        <LibArch Condition="'$(BuildArch)' == ''">x64</LibArch>
+        <LibArch Condition="'$(BuildArch)' != ''">$(BuildArch)</LibArch>
     </PropertyGroup>
 
     <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
         <LibExtension>dylib</LibExtension>
         <LibPrefix>lib</LibPrefix>
+        <LibArch Condition="'$(BuildArch)' == ''">arm64</LibArch>
+        <LibArch Condition="'$(BuildArch)' != ''">$(BuildArch)</LibArch>
     </PropertyGroup>
 
     <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
         <LibExtension>dll</LibExtension>
         <LibPrefix>$(Configuration)/</LibPrefix>
+        <LibArch Condition="'$(BuildArch)' == ''">x64</LibArch>
+        <LibArch Condition="'$(BuildArch)' != ''">$(BuildArch)</LibArch>
     </PropertyGroup>
+    
+    <ItemGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+        <LibBuildArgs Include="-D CMAKE_OSX_ARCHITECTURES=$(BuildArch)"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+        <LibBuildArgs Include="-A $(BuildArch)"/>
+    </ItemGroup>
     
     <!-- configure build -->
     <ItemGroup>
