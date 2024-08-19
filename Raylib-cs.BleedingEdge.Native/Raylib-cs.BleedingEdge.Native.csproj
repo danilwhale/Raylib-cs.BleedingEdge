@@ -1,0 +1,45 @@
+﻿<!-- most of code taken from https://github.com/chrisdill/raylib-cs/blob/master/Raylib-cs.Native/Raylib-cs.Native.csproj -->
+
+<Project Sdk="Microsoft.NET.Sdk" InitialTargets="BuildLib">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+        <LibExtension>so</LibExtension>
+        <LibPrefix>lib</LibPrefix>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+        <LibExtension>dylib</LibExtension>
+        <LibPrefix>lib</LibPrefix>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+        <LibExtension>dll</LibExtension>
+        <LibPrefix>$(Configuration)/</LibPrefix>
+    </PropertyGroup>
+    
+    <!-- configure build -->
+    <ItemGroup>
+        <Content
+            Include="$(BaseIntermediateOutputPath)native/raylib/$(LibPrefix)raylib.$(LibExtension)"
+            Link="%(Filename)%(Extension)"
+            CopyToOutputDirectory="PreserveNewest"
+            Condition="Exists('$(BaseIntermediateOutputPath)native/raylib/$(LibPrefix)raylib.$(LibExtension)')"/>
+        
+        <LibBuildArgs Include="-B $(BaseIntermediateOutputPath)native"/>
+        <LibBuildArgs Include="-S ../raylib" />
+        <LibBuildArgs Include="-D CMAKE_BUILD_TYPE=$(Configuration)" />
+        <LibBuildArgs Include="-D BUILD_SHARED_LIBS=ON" />
+        <LibBuildArgs Include="-D BUILD_EXAMPLES=OFF" />
+    </ItemGroup>
+    
+    <!-- build -->
+    <Target Name="BuildLib" Condition="$(SkipLocalBuild) != true">
+        <Exec Command="cmake @(LibBuildArgs, ' ')" Condition="!Exists('$(BaseIntermediateOutputPath)native/CMakeCache.txt')"/>
+        <Exec Command="cmake --build $(BaseIntermediateOutputPath)native --config $(Configuration)"/>
+    </Target>
+</Project>

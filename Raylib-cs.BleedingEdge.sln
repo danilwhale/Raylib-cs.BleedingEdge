@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raylib-cs.BleedingEdge", "Raylib-cs.BleedingEdge\Raylib-cs.BleedingEdge.csproj", "{2773A47F-077B-48CB-85CC-82CB1854561C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raylib-cs.BleedingEdge.Native", "Raylib-cs.BleedingEdge.Native\Raylib-cs.BleedingEdge.Native.csproj", "{B2CB9257-9994-4B6D-9A84-F700B61D3905}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2773A47F-077B-48CB-85CC-82CB1854561C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2773A47F-077B-48CB-85CC-82CB1854561C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2773A47F-077B-48CB-85CC-82CB1854561C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2773A47F-077B-48CB-85CC-82CB1854561C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2CB9257-9994-4B6D-9A84-F700B61D3905}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2CB9257-9994-4B6D-9A84-F700B61D3905}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2CB9257-9994-4B6D-9A84-F700B61D3905}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2CB9257-9994-4B6D-9A84-F700B61D3905}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
