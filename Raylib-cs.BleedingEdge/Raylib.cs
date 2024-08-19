@@ -309,4 +309,40 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial void DisableEventWaiting();
+    
+    /// <summary>
+    /// Shows cursor
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void ShowCursor();
+    
+    /// <summary>
+    /// Hides cursor
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void HideCursor();
+    
+    /// <summary>
+    /// Check if cursor is not visible
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsCursorHidden();
+    
+    /// <summary>
+    /// Enables cursor (unlock cursor)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void EnableCursor();
+    
+    /// <summary>
+    /// Disables cursor (lock cursor)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void DisableCursor();
+    
+    /// <summary>
+    /// Check if cursor is on the screen
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsCursorOnScreen();
 }
