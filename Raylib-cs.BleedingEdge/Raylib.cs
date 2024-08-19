@@ -573,4 +573,28 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial Matrix4x4 GetCameraMatrix2D(Camera2D camera);
+    
+    /// <summary>
+    /// Set target FPS (maximum)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetTargetFPS(int fps);
+    
+    /// <summary>
+    /// Get time in seconds for last frame drawn (delta time)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial float GetFrameTime();
+    
+    /// <summary>
+    /// Get elapsed time in seconds since InitWindow()
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial double GetTime();
+    
+    /// <summary>
+    /// Get current FPS
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial int GetFPS();
 }
