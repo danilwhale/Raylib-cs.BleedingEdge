@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raylib-cs.BleedingEdge", "R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raylib-cs.BleedingEdge.Native", "Raylib-cs.BleedingEdge.Native\Raylib-cs.BleedingEdge.Native.csproj", "{B2CB9257-9994-4B6D-9A84-F700B61D3905}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raylib-cs.BleedingEdge.Runtimes", "Raylib-cs.BleedingEdge.Runtimes\Raylib-cs.BleedingEdge.Runtimes.csproj", "{47630076-859A-4D3F-AB18-222AA08BFDAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{B2CB9257-9994-4B6D-9A84-F700B61D3905}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2CB9257-9994-4B6D-9A84-F700B61D3905}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2CB9257-9994-4B6D-9A84-F700B61D3905}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47630076-859A-4D3F-AB18-222AA08BFDAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47630076-859A-4D3F-AB18-222AA08BFDAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47630076-859A-4D3F-AB18-222AA08BFDAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47630076-859A-4D3F-AB18-222AA08BFDAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,162 @@
+name: build.yml
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['*']
+jobs:
+  natives-linux-x64:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      
+      - name: Setup compile dependencies
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install \
+            libasound2-dev \
+            libx11-dev \
+            libxrandr-dev \
+            libxi-dev \
+            libgl1-mesa-dev \
+            libglu1-mesa-dev \
+            libxcursor-dev \
+            libxinerama-dev
+      
+      - name: Compile native
+        run: dotnet build Raylib-cs.BleedingEdge.Native -c Release
+      
+      - name: Upload native
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-x64
+          path: Raylib-cs.BleedingEdge.Native/bin/Release/libraylib.so
+          if-no-files-found: 'error'
+  natives-osx:
+    runs-on: macos-latest
+    strategy: 
+      matrix:
+        name: ['arm64', 'x64']
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Compile native
+        run: dotnet build Raylib-cs.BleedingEdge.Native -c Release
+
+      - name: Upload native
+        uses: actions/upload-artifact@v4
+        with:
+          name: osx-${{ matrix.name }}
+          path: Raylib-cs.BleedingEdge.Native/bin/Release/libraylib.dylib
+          if-no-files-found: 'error'
+  
+  natives-windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        name: ['x86', 'x64']
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Compile native
+        run: dotnet build Raylib-cs.BleedingEdge.Native -c Release
+
+      - name: Upload native
+        uses: actions/upload-artifact@v4
+        with:
+          name: win-${{ matrix.name }}
+          path: Raylib-cs.BleedingEdge.Native/bin/Release/raylib.dll
+          if-no-files-found: 'error'
+  
+  publish-runtimes:
+    runs-on: ubuntu-latest
+    needs:
+      - natives-linux-x64
+      - natives-osx
+      - natives-windows
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Download linux-x64 native
+        uses: actions/download-artifact@v4
+        with:
+          name: linux-x64
+          path: Raylib-cs.BleedingEdge.Runtimes/runtimes/linux-x64/native
+
+      - name: Download osx-arm64 native
+        uses: actions/download-artifact@v4
+        with:
+          name: osx-arm64
+          path: Raylib-cs.BleedingEdge.Runtimes/runtimes/osx-arm64/native
+
+      - name: Download osx-x64 native
+        uses: actions/download-artifact@v4
+        with:
+          name: osx-x64
+          path: Raylib-cs.BleedingEdge.Runtimes/runtimes/osx-x64/native
+
+      - name: Download win-x86 native
+        uses: actions/download-artifact@v4
+        with:
+          name: win-x86
+          path: Raylib-cs.BleedingEdge.Runtimes/runtimes/win-x86/native
+
+      - name: Download win-x64 native
+        uses: actions/download-artifact@v4
+        with:
+          name: win-x64
+          path: Raylib-cs.BleedingEdge.Runtimes/runtimes/win-x64/native
+      
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      
+      - name: Create NuGet package
+        run: dotnet pack Raylib-cs.BleedingEdge.Runtimes -o nuget
+      
+      - name: Upload NuGet package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Raylib-cs.BleedingEdge.Runtimes
+          path: nuget/*
+  
+  build-binding:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      
+      - name: Create NuGet package
+        run: dotnet pack Raylib-cs.BleedingEdge -o nuget
+      
+      - name: Upload NuGet package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Raylib-cs.BleedingEdge
+          path: nuget/*
