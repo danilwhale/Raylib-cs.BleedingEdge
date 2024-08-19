@@ -447,4 +447,16 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial void EndVrStereoMode();
+    
+    /// <summary>
+    /// Load VR stereo config for VR simulator device parameters
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial VrStereoConfig LoadVrStereoConfig(VrDeviceInfo device);
+    
+    /// <summary>
+    /// Unload VR stereo config
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void UnloadVrStereoConfig(VrStereoConfig config);
 }
