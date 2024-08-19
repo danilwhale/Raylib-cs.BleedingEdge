@@ -639,4 +639,22 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial void UnloadRandomSequence(int* sequence);
+    
+    /// <summary>
+    /// Takes a screenshot of current screen (filename extension defines format)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void TakeScreenshot(sbyte* fileName);
+    
+    /// <summary>
+    /// Setup init configuration flags (view ConfigFlags)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetConfigFlags(ConfigFlags flags);
+    
+    /// <summary>
+    /// Open URL with default system browser (if available)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void OpenURL(sbyte* url);
 }
