@@ -1964,4 +1964,95 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Rectangle GetCollisionRec(Rectangle rec1, Rectangle rec2);
+
+    /// <summary>
+    /// Load image from file into CPU memory (RAM)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image LoadImage(sbyte* fileName);
+
+    /// <summary>
+    /// Load image from RAW file data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image LoadImageRaw(sbyte* fileName, int width, int height, PixelFormat format, int headerSize);
+
+    /// <summary>
+    /// Load image from SVG file data or string with specified size
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image LoadImageSvg(sbyte* fileNameOrString, int width, int height);
+
+    /// <summary>
+    /// Load image sequence from file (frames appended to image.data)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image LoadImageAnim(sbyte* fileName, int* frames);
+
+    /// <summary>
+    /// Load image sequence from memory buffer
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image LoadImageAnimFromMemory(sbyte* fileType, byte* fileData, int dataSize, int* frames);
+
+    /// <summary>
+    /// Load image from memory buffer, fileType refers to extension: i.e. '.png'
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image LoadImageFromMemory(sbyte* fileType, byte* fileData, int dataSize);
+
+    /// <summary>
+    /// Load image from GPU texture data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image LoadImageFromTexture(Texture texture);
+
+    /// <summary>
+    /// Load image from screen buffer and (screenshot)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image LoadImageFromScreen();
+
+    /// <summary>
+    /// Check if an image is ready
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsImageReady(Image image);
+
+    /// <summary>
+    /// Unload image from CPU memory (RAM)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadImage(Image image);
+
+    /// <summary>
+    /// Export image data to file, returns true on success
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool ExportImage(Image image, sbyte* fileName);
+
+    /// <summary>
+    /// Export image to memory buffer
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial byte* ExportImageToMemory(Image image, sbyte* fileType, int* fileSize);
+
+    /// <summary>
+    /// Export image as code file defining an array of bytes, returns true on success
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool ExportImageAsCode(Image image, sbyte* fileName);
 }
