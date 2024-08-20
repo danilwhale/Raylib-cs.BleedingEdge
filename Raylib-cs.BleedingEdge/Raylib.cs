@@ -1073,4 +1073,88 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial void SetGamepadVibration(int gamepad, float leftMotor, float rightMotor);
+    
+    /// <summary>
+    /// Check if a mouse button has been pressed once
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsMouseButtonPressed(MouseButton button);
+    
+    /// <summary>
+    /// Check if a mouse button is being pressed
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsMouseButtonDown(MouseButton button);
+    
+    /// <summary>
+    /// Check if a mouse button has been released once
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsMouseButtonReleased(MouseButton button);
+    
+    /// <summary>
+    /// Check if a mouse button is NOT being pressed
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsMouseButtonUp(MouseButton button);
+    
+    /// <summary>
+    /// Get mouse position X
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial int GetMouseX();
+    
+    /// <summary>
+    /// Get mouse position Y
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial int GetMouseY();
+    
+    /// <summary>
+    /// Get mouse position XY
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial Vector2 GetMousePosition();
+    
+    /// <summary>
+    /// Get mouse delta between frames
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial Vector2 GetMouseDelta();
+    
+    /// <summary>
+    /// Set mouse position XY
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetMousePosition(int x, int y);
+    
+    /// <summary>
+    /// Set mouse offset
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetMouseOffset(int offsetX, int offsetY);
+    
+    /// <summary>
+    /// Set mouse scaling
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetMouseScale(float scaleX, float scaleY);
+    
+    /// <summary>
+    /// Get mouse wheel movement for X or Y, whichever is larger
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial float GetMouseWheelMove();
+    
+    /// <summary>
+    /// Get mouse wheel movement for both X and Y
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial Vector2 GetMouseWheelMoveV();
+    
+    /// <summary>
+    /// Set mouse cursor
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetMouseCursor(MouseCursor cursor);
 }
