@@ -1649,244 +1649,319 @@ public static unsafe partial class Raylib
     [LibraryImport(LibName)]
     public static partial void DrawRingLines(
         Vector2 center, float innerRadius, float outerRadius, float startAngle, float endAngle, int segments, Color color);
-    
+
     /// <summary>
     /// Draw a color-filled rectangle
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawRectangle(int posX, int posY, int width, int height, Color color);
-    
+
     /// <summary>
     /// Draw a color-filled rectangle (Vector version)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawRectangleV(Vector2 position, Vector2 size, Color color);
-    
+
     /// <summary>
     /// Draw a color-filled rectangle
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawRectangleRec(Rectangle rec, Color color);
-    
+
     /// <summary>
     /// Draw a color-filled rectangle with pro parameters
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawRectanglePro(Rectangle rec, Vector2 origin, float rotation, Color color);
-    
+
     /// <summary>
     /// Draw a vertical-gradient-filled rectangle
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawRectangleGradientV(int posX, int posY, int width, int height, Color color1, Color color2);
-    
+
     /// <summary>
     /// Draw a horizontal-gradient-filled rectangle
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawRectangleGradientH(int posX, int posY, int width, int height, Color color1, Color color2);
-    
+
     /// <summary>
     /// Draw a gradient-filled rectangle with custom vertex colors
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawRectangleGradientEx(Rectangle rec, Color col1, Color col2, Color col3, Color col4);
-    
+
     /// <summary>
     /// Draw rectangle outline
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawRectangleLines(int posX, int posY, int width, int height, Color color);
-    
+
     /// <summary>
     /// Draw rectangle outline with extended parameters
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawRectangleLinesEx(Rectangle rec, float lineThick, Color color);
-    
+
     /// <summary>
     /// Draw rectangle with rounded edges
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawRectangleRounded(Rectangle rec, float roundness, int segments, Color color);
-    
+
     /// <summary>
     /// Draw rectangle lines with rounded edges
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawRectangleRoundedLines(Rectangle rec, float roundness, int segments, Color color);
-    
+
     /// <summary>
     /// Draw rectangle with rounded edges outline
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawRectangleRoundedLinesEx(Rectangle rec, float roundness, int segments, float lineThick, Color color);
-    
+
     /// <summary>
     /// Draw a color-filled triangle (vertex in counter-clockwise order!)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawTriangle(Vector2 v1, Vector2 v2, Vector2 v3, Color color);
-    
+
     /// <summary>
     /// Draw triangle outline (vertex in counter-clockwise order!)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawTriangleLines(Vector2 v1, Vector2 v2, Vector2 v3, Color color);
-    
+
     /// <summary>
     /// Draw a triangle fan defined by points (first vertex is the center)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawTriangleFan(Vector2* points, int pointCount, Color color);
-    
+
     /// <summary>
     /// Draw a triangle strip defined by points
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawTriangleStrip(Vector2* points, int pointCount, Color color);
-    
+
     /// <summary>
     /// Draw a regular polygon (Vector version)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawPoly(Vector2 center, int sides, float radius, float rotation, Color color);
-    
+
     /// <summary>
     /// Draw a polygon outline of n sides
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawPolyLines(Vector2 center, int sides, float radius, float rotation, Color color);
-    
+
     /// <summary>
     /// Draw a polygon outline of n sides with extended parameters
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawPolyLinesEx(Vector2 center, int sides, float radius, float rotation, float lineThick, Color color);
-    
+
     /// <summary>
     /// Draw spline: Linear, minimum 2 points
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawSplineLinear(Vector2* points, int pointCount, float thick, Color color);
-    
+
     /// <summary>
     /// Draw spline: B-Spline, minimum 4 points
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawSplineBasis(Vector2* points, int pointCount, float thick, Color color);
-    
+
     /// <summary>
     /// Draw spline: Catmull-Rom, minimum 4 points
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawSplineCatmullRom(Vector2* points, int pointCount, float thick, Color color);
-    
+
     /// <summary>
     /// Draw spline: Quadratic Bezier, minimum 3 points (1 control point): [p1, c2, p3, c4...]
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawSplineBezierQuadratic(Vector2* points, int pointCount, float thick, Color color);
-    
+
     /// <summary>
     /// Draw spline: Cubic Bezier, minimum 4 points (2 control points): [p1, c2, c3, p4, c5, c6...]
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawSplineBezierCubic(Vector2* points, int pointCount, float thick, Color color);
-    
+
     /// <summary>
     /// Draw spline segment: Linear, 2 points
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawSplineSegmentLinear(Vector2 p1, Vector2 p2, float thick, Color color);
-    
+
     /// <summary>
     /// Draw spline segment: B-Spline, 4 points
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawSplineSegmentBasis(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float thick, Color color);
-    
+
     /// <summary>
     /// Draw spline segment: Catmull-Rom, 4 points
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawSplineSegmentCatmullRom(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float thick, Color color);
-    
+
     /// <summary>
     /// Draw spline segment: Quadratic Bezier, 2 points, 1 control point
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawSplineSegmentBezierQuadratic(Vector2 p1, Vector2 c2, Vector2 p3, float thick, Color color);
-    
+
     /// <summary>
     /// Draw spline segment: Cubic Bezier, 2 points, 2 control points
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawSplineSegmentBezierCubic(Vector2 p1, Vector2 c2, Vector2 c3, Vector2 p4, float thick, Color color);
-    
+
     /// <summary>
     /// Get (evaluate) spline point: Linear
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Vector2 GetSplinePointLinear(Vector2 startPos, Vector2 endPos, float t);
-    
+
     /// <summary>
     /// Get (evaluate) spline point: B-Spline
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Vector2 GetSplinePointBasis(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float t);
-    
+
     /// <summary>
     /// Get (evaluate) spline point: Catmull-Rom
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Vector2 GetSplinePointCatmullRom(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float t);
-    
+
     /// <summary>
     /// Get (evaluate) spline point: Quadratic Bezier
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Vector2 GetSplinePointBezierQuad(Vector2 p1, Vector2 c2, Vector2 p3, float t);
-    
+
     /// <summary>
     /// Get (evaluate) spline point: Cubic Bezier
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Vector2 GetSplinePointBezierCubic(Vector2 p1, Vector2 c2, Vector2 c3, Vector2 p4, float t);
-    
-    
+
+    /// <summary>
+    /// Check collision between two rectangles
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool CheckCollisionRecs(Rectangle rec1, Rectangle rec2);
+
+    /// <summary>
+    /// Check collision between two circles
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2);
+
+    /// <summary>
+    /// Check collision between circle and rectangle
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec);
+
+    /// <summary>
+    /// Check if point is inside rectangle
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool CheckCollisionPointRec(Vector2 point, Rectangle rec);
+
+    /// <summary>
+    /// Check if point is inside circle
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool CheckCollisionPointCircle(Vector2 point, Vector2 center, float radius);
+
+    /// <summary>
+    /// Check if point is inside a triangle
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3);
+
+    /// <summary>
+    /// Check if point is within a polygon described by array of vertices
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool CheckCollisionPointPoly(Vector2 point, Vector2* points, int pointCount);
+
+    /// <summary>
+    /// Check the collision between two lines defined by two points each, returns collision point by reference
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2* collisionPoint);
+
+    /// <summary>
+    /// Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int threshold);
+
+    /// <summary>
+    /// Check if circle collides with a line created betweeen two points [p1] and [p2]
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool CheckCollisionCircleLine(Vector2 center, float radius, Vector2 p1, Vector2 p2);
+
+    /// <summary>
+    /// Get collision rectangle for two rectangles collision
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Rectangle GetCollisionRec(Rectangle rec1, Rectangle rec2);
 }
