@@ -1157,4 +1157,34 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial void SetMouseCursor(MouseCursor cursor);
+    
+    /// <summary>
+    /// Get touch position X for touch point 0 (relative to screen size)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial int GetTouchX();
+    
+    /// <summary>
+    /// Get touch position Y for touch point 0 (relative to screen size)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial int GetTouchY();
+    
+    /// <summary>
+    /// Get touch position XY for a touch point index (relative to screen size)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial Vector2 GetTouchPosition(int index);
+    
+    /// <summary>
+    /// Get touch point identifier for given index
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial int GetTouchPointId(int index);
+    
+    /// <summary>
+    /// Get number of touch points
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial int GetTouchPointCount();
 }
