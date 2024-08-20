@@ -1007,4 +1007,70 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial void SetExitKey(KeyboardKey key);
+    
+    /// <summary>
+    /// Check if a gamepad is available
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsGamepadAvailable(int gamepad);
+    
+    /// <summary>
+    /// Get gamepad internal name id
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial sbyte* GetGamepadName(int gamepad);
+    
+    /// <summary>
+    /// Check if a gamepad button has been pressed once
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsGamepadButtonPressed(int gamepad, GamepadButton button);
+    
+    /// <summary>
+    /// Check if a gamepad button is being pressed
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsGamepadButtonDown(int gamepad, GamepadButton button);
+    
+    /// <summary>
+    /// Check if a gamepad button has been released once
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsGamepadButtonReleased(int gamepad, GamepadButton button);
+    
+    /// <summary>
+    /// Check if a gamepad button is NOT being pressed
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsGamepadButtonUp(int gamepad, GamepadButton button);
+    
+    /// <summary>
+    /// Get the last gamepad button pressed
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial GamepadButton GetGamepadButtonPressed();
+    
+    /// <summary>
+    /// Get gamepad axis count for a gamepad
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial int GetGamepadAxisCount(int gamepad);
+    
+    /// <summary>
+    /// Get axis movement value for a gamepad axis
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial float GetGamepadAxisMovement(int gamepad, GamepadAxis axis);
+    
+    /// <summary>
+    /// Set internal gamepad mappings (SDL_GameControllerDB)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial int SetGamepadMappings(sbyte* mappings);
+    
+    /// <summary>
+    /// Set gamepad vibration for both motors
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetGamepadVibration(int gamepad, float leftMotor, float rightMotor);
 }
