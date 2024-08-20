@@ -720,4 +720,46 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial void SetSaveFileTextCallback(SaveFileTextCallback callback);
+    
+    /// <summary>
+    /// Load file data as byte array (read)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial byte* LoadFileData(sbyte* fileName, int* dataSize);
+    
+    /// <summary>
+    /// Unload file data allocated by LoadFileData()
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void UnloadFileData(byte* data);
+    
+    /// <summary>
+    /// Save data to file from byte array (write), returns true on success
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool SaveFileData(sbyte* fileName, void* data, int dataSize);
+    
+    /// <summary>
+    /// Export data to code (.h), returns true on success
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool ExportDataAsCode(byte* data, int dataSize, sbyte* fileName);
+    
+    /// <summary>
+    /// Load text data from file (read), returns a '\0' terminated string
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial sbyte* LoadFileText(sbyte* fileName);
+    
+    /// <summary>
+    /// Unload file text data allocated by LoadFileText()
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void UnloadFileText(sbyte* text);
+    
+    /// <summary>
+    /// Save text data to file (write), string must be '\0' terminated, returns true on success
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool SaveFileText(sbyte* fileName, sbyte* text);
 }
