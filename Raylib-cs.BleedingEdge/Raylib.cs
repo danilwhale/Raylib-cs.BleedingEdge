@@ -911,4 +911,52 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial byte* DecodeDataBase64(byte* data, int* outputSize);
+    
+    /// <summary>
+    /// Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial AutomationEventList LoadAutomationEventList(sbyte* fileName);
+    
+    /// <summary>
+    /// Unload automation events list from file
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void UnloadAutomationEventList(AutomationEventList list);
+    
+    /// <summary>
+    /// Export automation events list as text file
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool ExportAutomationEventList(AutomationEventList list, sbyte* fileName);
+    
+    /// <summary>
+    /// Set automation event list to record to
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetAutomationEventList(AutomationEventList* list);
+    
+    /// <summary>
+    /// Set automation event internal base frame to start recording
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetAutomationEventBaseFrame(int frame);
+    
+    /// <summary>
+    /// Start recording automation events (AutomationEventList must be set)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void StartAutomationEventRecording();
+    
+    /// <summary>
+    /// Stop recording automation events
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void StopAutomationEventRecording();
+    
+    /// <summary>
+    /// Play a recorded automation event
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void PlayAutomationEvent(AutomationEvent @event);
 }
