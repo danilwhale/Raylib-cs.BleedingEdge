@@ -2658,4 +2658,116 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawTextureNPatch(Texture texture, NPatchInfo nPatchInfo, Rectangle dest, Vector2 origin, float rotation, Color tint);
+
+    /// <summary>
+    /// Check if two colors are equal
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool ColorIsEqual(Color col1, Color col2);
+
+    /// <summary>
+    /// Get color with alpha applied, alpha goes from 0.0f to 1.0f
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Color Fade(Color color, float alpha);
+
+    /// <summary>
+    /// Get hexadecimal value for a Color (0xRRGGBBAA)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial int ColorToInt(Color color);
+
+    /// <summary>
+    /// Get Color normalized as float [0..1]
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Vector4 ColorNormalize(Color color);
+
+    /// <summary>
+    /// Get Color from normalized values [0..1]
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Color ColorFromNormalized(Vector4 normalized);
+
+    /// <summary>
+    /// Get HSV values for a Color, hue [0..360], saturation/value [0..1]
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Vector3 ColorToHSV(Color color);
+
+    /// <summary>
+    /// Get a Color from HSV values, hue [0..360], saturation/value [0..1]
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Color ColorFromHSV(float hue, float saturation, float value);
+
+    /// <summary>
+    /// Get color multiplied with another color
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Color ColorTint(Color color, Color tint);
+
+    /// <summary>
+    /// Get color with brightness correction, brightness factor goes from -1.0f to 1.0f
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Color ColorBrightness(Color color, float factor);
+
+    /// <summary>
+    /// Get color with contrast correction, contrast values between -1.0f and 1.0f
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Color ColorContrast(Color color, float contrast);
+
+    /// <summary>
+    /// Get color with alpha applied, alpha goes from 0.0f to 1.0f
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Color ColorAlpha(Color color, float alpha);
+
+    /// <summary>
+    /// Get src alpha-blended into dst color with tint
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Color ColorAlphaBlend(Color dst, Color src, Color tint);
+
+    /// <summary>
+    /// Get Color structure from hexadecimal value
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Color GetColor(uint hexValue);
+
+    /// <summary>
+    /// Get Color from a source pixel pointer of certain format
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Color GetPixelColor(void* srcPtr, PixelFormat format);
+
+    /// <summary>
+    /// Set color formatted into destination pixel pointer
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetPixelColor(void* dstPtr, Color color, PixelFormat format);
+
+    /// <summary>
+    /// Get pixel data size in bytes for certain format
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial int GetPixelDataSize(int width, int height, PixelFormat format);
 }
