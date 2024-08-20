@@ -2616,4 +2616,46 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void SetTextureWrap(Texture texture, TextureWrap wrap);
+
+    /// <summary>
+    /// Draw a Texture2D
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawTexture(Texture texture, int posX, int posY, Color tint);
+
+    /// <summary>
+    /// Draw a Texture2D with position defined as Vector2
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawTextureV(Texture texture, Vector2 position, Color tint);
+
+    /// <summary>
+    /// Draw a Texture2D with extended parameters
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawTextureEx(Texture texture, Vector2 position, float rotation, float scale, Color tint);
+
+    /// <summary>
+    /// Draw a part of a texture defined by a rectangle
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawTextureRec(Texture texture, Rectangle source, Vector2 position, Color tint);
+
+    /// <summary>
+    /// Draw a part of a texture defined by a rectangle with 'pro' parameters
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawTexturePro(Texture texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, Color tint);
+
+    /// <summary>
+    /// Draws a texture (or part of it) that stretches or shrinks nicely
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawTextureNPatch(Texture texture, NPatchInfo nPatchInfo, Rectangle dest, Vector2 origin, float rotation, Color tint);
 }
