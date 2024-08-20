@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
+using Microsoft.VisualBasic;
 using Raylib_cs.BleedingEdge.Enums;
 using Raylib_cs.BleedingEdge.Interop;
 using Raylib_cs.BleedingEdge.Types;
@@ -2118,4 +2119,256 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Image GenImageText(int width, int height, sbyte* text);
+
+    /// <summary>
+    /// Create an image duplicate (useful for transformations)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image ImageCopy(Image image);
+
+    /// <summary>
+    /// Create an image from another image piece
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image ImageFromImage(Image image, Rectangle rec);
+
+    /// <summary>
+    /// Create an image from a selected channel of another image (GRAYSCALE)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image ImageFromChannel(Image image, int selectedChannel);
+
+    /// <summary>
+    /// Create an image from text (default font)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image ImageText(sbyte* text, int fontSize, Color color);
+
+    /// <summary>
+    /// Create an image from text (custom sprite font)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image ImageTextEx(Font font, sbyte* text, float fontSize, float spacing, Color tint);
+
+    /// <summary>
+    /// Convert image data to desired format
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageFormat(Image* image, PixelFormat newFormat);
+
+    /// <summary>
+    /// Convert image to POT (power-of-two)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageToPOT(Image* image, Color fill);
+
+    /// <summary>
+    /// Crop an image to a defined rectangle
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageCrop(Image* image, Rectangle crop);
+
+    /// <summary>
+    /// Crop image depending on alpha value
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageAlphaCrop(Image* image, float threshold);
+
+    /// <summary>
+    /// Clear alpha channel to desired color
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageAlphaClear(Image* image, Color color, float threshold);
+
+    /// <summary>
+    /// Apply alpha mask to image
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageAlphaMask(Image* image, Image alphaMask);
+
+    /// <summary>
+    /// Premultiply alpha channel
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageAlphaPremultiply(Image* image);
+
+    /// <summary>
+    /// Apply Gaussian blur using a box blur approximation
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageBlurGaussian(Image* image, int blurSize);
+
+    /// <summary>
+    /// Apply custom square convolution kernel to image
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageKernelConvolution(Image* image, float* kernel, int kernelSize);
+
+    /// <summary>
+    /// Resize image (Bicubic scaling algorithm)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageResize(Image* image, int newWidth, int newHeight);
+
+    /// <summary>
+    /// Resize image (Nearest-Neighbor scaling algorithm)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageResizeNN(Image* image, int newWidth, int newHeight);
+    
+    /// <summary>
+    /// Resize canvas and fill with color
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageResizeCanvas(Image* image, int newWidth, int newHeight, int offsetX, int offsetY, Color fill);
+
+    /// <summary>
+    /// Compute all mipmap levels for a provided image
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageMipmaps(Image* image);
+
+    /// <summary>
+    /// Dither image data to 16bpp or lower (Floyd-Steinberg dithering)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDither(Image* image, int rBpp, int gBpp, int bBpp, int aBpp);
+
+    /// <summary>
+    /// Flip image vertically
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageFlipVertical(Image* image);
+
+    /// <summary>
+    /// Flip image horizontally
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageFlipHorizontal(Image* image);
+
+    /// <summary>
+    /// Rotate image by input angle in degrees (-359 to 359)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageRotate(Image* image, int degrees);
+
+    /// <summary>
+    /// Rotate image clockwise 90deg
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageRotateCW(Image* image);
+
+    /// <summary>
+    /// Rotate image counter-clockwise 90deg
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageRotateCCW(Image* image);
+
+    /// <summary>
+    /// Modify image color: tint
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageColorTint(Image* image, Color color);
+
+    /// <summary>
+    /// Modify image color: invert
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageColorInvert(Image* image);
+
+    /// <summary>
+    /// Modify image color: grayscale
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageColorGrayscale(Image* image);
+
+    /// <summary>
+    /// Modify image color: contrast (-100 to 100)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageColorContrast(Image* image, float contrast);
+
+    /// <summary>
+    /// Modify image color: brightness (-255 to 255)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageColorBrightness(Image* image, int brightness);
+
+    /// <summary>
+    /// Modify image color: replace color
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageColorReplace(Image* image, Color color, Color replace);
+
+    /// <summary>
+    /// Load color data from image as a Color array (RGBA - 32bit)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Color* LoadImageColors(Image image);
+
+    /// <summary>
+    /// Load colors palette from image as a Color array (RGBA - 32bit)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Color* LoadImagePalette(Image image, int maxPaletteSize, int* colorCount);
+
+    /// <summary>
+    /// Unload color data loaded with LoadImageColors()
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadImageColors(Color* colors);
+
+    /// <summary>
+    /// Unload colors palette loaded with LoadImagePalette()
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadImagePalette(Color* colors);
+
+    /// <summary>
+    /// Get image alpha border rectangle
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Rectangle GetImageAlphaBorder(Image image, float threshold);
+
+    /// <summary>
+    /// Get image pixel color at (x, y) position
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Color GetImageColor(Image image, int x, int y);
 }
