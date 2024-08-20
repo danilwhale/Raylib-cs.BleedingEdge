@@ -2595,4 +2595,25 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void UpdateTextureRec(Texture texture, Rectangle rec, void* pixels);
+
+    /// <summary>
+    /// Generate GPU mipmaps for a texture
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void GenTextureMipmaps(Texture texture);
+
+    /// <summary>
+    /// Set texture scaling filter mode
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetTextureFilter(Texture texture, TextureFilter filter);
+
+    /// <summary>
+    /// Set texture wrapping mode
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetTextureWrap(Texture texture, TextureWrap wrap);
 }
