@@ -835,668 +835,951 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void SetSaveFileTextCallback(SaveFileTextCallback callback);
-    
+
     /// <summary>
     /// Load file data as byte array (read)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial byte* LoadFileData(sbyte* fileName, int* dataSize);
-    
+
     /// <summary>
     /// Unload file data allocated by LoadFileData()
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void UnloadFileData(byte* data);
-    
+
     /// <summary>
     /// Save data to file from byte array (write), returns true on success
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool SaveFileData(sbyte* fileName, void* data, int dataSize);
-    
+
     /// <summary>
     /// Export data to code (.h), returns true on success
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool ExportDataAsCode(byte* data, int dataSize, sbyte* fileName);
-    
+
     /// <summary>
     /// Load text data from file (read), returns a '\0' terminated string
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial sbyte* LoadFileText(sbyte* fileName);
-    
+
     /// <summary>
     /// Unload file text data allocated by LoadFileText()
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void UnloadFileText(sbyte* text);
-    
+
     /// <summary>
     /// Save text data to file (write), string must be '\0' terminated, returns true on success
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool SaveFileText(sbyte* fileName, sbyte* text);
-    
+
     /// <summary>
     /// Check if file exists
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool FileExists(sbyte* fileName);
-    
+
     /// <summary>
     /// Check if a directory path exists
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool DirectoryExists(sbyte* dirPath);
-    
+
     /// <summary>
     /// Check file extension (including point: .png, .wav)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsFileExtension(sbyte* fileName, sbyte* ext);
-    
+
     /// <summary>
     /// Get file length in bytes (NOTE: GetFileSize() conflicts with windows.h)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial int GetFileLength(sbyte* fileName);
-    
+
     /// <summary>
     /// Get pointer to extension for a filename string (includes dot: '.png')
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial sbyte* GetFileExtension(sbyte* fileName);
-    
+
     /// <summary>
     /// Get pointer to filename for a path string
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial sbyte* GetFileName(sbyte* filePath);
-    
+
     /// <summary>
     /// Get filename string without extension (uses static string)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial sbyte* GetFileNameWithoutExt(sbyte* filePath);
-    
+
     /// <summary>
     /// Get full path for a given fileName with path (uses static string)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial sbyte* GetDirectoryPath(sbyte* filePath);
-    
+
     /// <summary>
     /// Get previous directory path for a given path (uses static string)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial sbyte* GetPrevDirectoryPath(sbyte* dirPath);
-    
+
     /// <summary>
     /// Get current working directory (uses static string)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial sbyte* GetWorkingDirectory();
-    
+
     /// <summary>
     /// Get the directory of the running application (uses static string)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial sbyte* GetApplicationDirectory();
-    
+
     /// <summary>
     /// Change working directory, return true on success
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool ChangeDirectory(sbyte* dir);
-    
+
     /// <summary>
     /// Check if a given path is a file or a directory
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsPathFile(sbyte* path);
-    
+
     /// <summary>
     /// Check if fileName is valid for the platform/OS
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsFileNameValid(sbyte* fileName);
-    
+
     /// <summary>
     /// Load directory filepaths
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial FilePathList LoadDirectoryFiles(sbyte* dirPath);
-    
+
     /// <summary>
     /// Load directory filepaths with extension filtering and recursive directory scan
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial FilePathList LoadDirectoryFilesEx(sbyte* basePath, sbyte* filter, NativeBool scanSubdirs);
-    
+
     /// <summary>
     /// Unload filepaths
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void UnloadDirectoryFiles(FilePathList files);
-    
+
     /// <summary>
     /// Check if a file has been dropped into window
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsFileDropped();
-    
+
     /// <summary>
     /// Load dropped filepaths
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial FilePathList LoadDroppedFiles();
-    
+
     /// <summary>
     /// Unload dropped filepaths
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void UnloadDroppedFiles(FilePathList files);
-    
+
     /// <summary>
     /// Get file modification time (last write time)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial long GetFileModTime();
-    
+
     /// <summary>
     /// Compress data (DEFLATE algorithm), memory must be MemFree()
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial byte* CompressData(byte* data, int dataSize, int* compDataSize);
-    
+
     /// <summary>
     /// Decompress data (DEFLATE algorithm), memory must be MemFree()
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial byte* DecompressData(byte* compData, int compDataSize, int* dataSize);
-    
+
     /// <summary>
     /// Encode data to Base64 string, memory must be MemFree()
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial sbyte* EncodeDataBase64(byte* data, int dataSize, int* outputSize);
-    
+
     /// <summary>
     /// Decode Base64 string data, memory must be MemFree()
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial byte* DecodeDataBase64(byte* data, int* outputSize);
-    
+
     /// <summary>
     /// Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial AutomationEventList LoadAutomationEventList(sbyte* fileName);
-    
+
     /// <summary>
     /// Unload automation events list from file
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void UnloadAutomationEventList(AutomationEventList list);
-    
+
     /// <summary>
     /// Export automation events list as text file
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool ExportAutomationEventList(AutomationEventList list, sbyte* fileName);
-    
+
     /// <summary>
     /// Set automation event list to record to
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void SetAutomationEventList(AutomationEventList* list);
-    
+
     /// <summary>
     /// Set automation event internal base frame to start recording
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void SetAutomationEventBaseFrame(int frame);
-    
+
     /// <summary>
     /// Start recording automation events (AutomationEventList must be set)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void StartAutomationEventRecording();
-    
+
     /// <summary>
     /// Stop recording automation events
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void StopAutomationEventRecording();
-    
+
     /// <summary>
     /// Play a recorded automation event
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void PlayAutomationEvent(AutomationEvent @event);
-    
+
     /// <summary>
     /// Check if a key has been pressed once
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsKeyPressed(KeyboardKey key);
-    
+
     /// <summary>
     /// Check if a key has been pressed again (Only PLATFORM_DESKTOP)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsKeyPressedRepeat(KeyboardKey key);
-    
+
     /// <summary>
     /// Check if a key is being pressed
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsKeyDown(KeyboardKey key);
-    
+
     /// <summary>
     /// Check if a key has been released once
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsKeyReleased(KeyboardKey key);
-    
+
     /// <summary>
     /// Check if a key is NOT being pressed
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsKeyUp(KeyboardKey key);
-    
+
     /// <summary>
     /// Get key pressed (keycode), call it multiple times for keys queued, returns 0 when the queue is empty
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial KeyboardKey GetKeyPressed();
-    
+
     /// <summary>
     /// Get char pressed (unicode), call it multiple times for chars queued, returns 0 when the queue is empty
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial int GetCharPressed();
-    
+
     /// <summary>
     /// Set a custom key to exit program (default is ESC)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void SetExitKey(KeyboardKey key);
-    
+
     /// <summary>
     /// Check if a gamepad is available
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsGamepadAvailable(int gamepad);
-    
+
     /// <summary>
     /// Get gamepad internal name id
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial sbyte* GetGamepadName(int gamepad);
-    
+
     /// <summary>
     /// Check if a gamepad button has been pressed once
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsGamepadButtonPressed(int gamepad, GamepadButton button);
-    
+
     /// <summary>
     /// Check if a gamepad button is being pressed
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsGamepadButtonDown(int gamepad, GamepadButton button);
-    
+
     /// <summary>
     /// Check if a gamepad button has been released once
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsGamepadButtonReleased(int gamepad, GamepadButton button);
-    
+
     /// <summary>
     /// Check if a gamepad button is NOT being pressed
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsGamepadButtonUp(int gamepad, GamepadButton button);
-    
+
     /// <summary>
     /// Get the last gamepad button pressed
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial GamepadButton GetGamepadButtonPressed();
-    
+
     /// <summary>
     /// Get gamepad axis count for a gamepad
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial int GetGamepadAxisCount(int gamepad);
-    
+
     /// <summary>
     /// Get axis movement value for a gamepad axis
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial float GetGamepadAxisMovement(int gamepad, GamepadAxis axis);
-    
+
     /// <summary>
     /// Set internal gamepad mappings (SDL_GameControllerDB)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial int SetGamepadMappings(sbyte* mappings);
-    
+
     /// <summary>
     /// Set gamepad vibration for both motors
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void SetGamepadVibration(int gamepad, float leftMotor, float rightMotor);
-    
+
     /// <summary>
     /// Check if a mouse button has been pressed once
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsMouseButtonPressed(MouseButton button);
-    
+
     /// <summary>
     /// Check if a mouse button is being pressed
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsMouseButtonDown(MouseButton button);
-    
+
     /// <summary>
     /// Check if a mouse button has been released once
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsMouseButtonReleased(MouseButton button);
-    
+
     /// <summary>
     /// Check if a mouse button is NOT being pressed
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsMouseButtonUp(MouseButton button);
-    
+
     /// <summary>
     /// Get mouse position X
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial int GetMouseX();
-    
+
     /// <summary>
     /// Get mouse position Y
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial int GetMouseY();
-    
+
     /// <summary>
     /// Get mouse position XY
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Vector2 GetMousePosition();
-    
+
     /// <summary>
     /// Get mouse delta between frames
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Vector2 GetMouseDelta();
-    
+
     /// <summary>
     /// Set mouse position XY
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void SetMousePosition(int x, int y);
-    
+
     /// <summary>
     /// Set mouse offset
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void SetMouseOffset(int offsetX, int offsetY);
-    
+
     /// <summary>
     /// Set mouse scaling
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void SetMouseScale(float scaleX, float scaleY);
-    
+
     /// <summary>
     /// Get mouse wheel movement for X or Y, whichever is larger
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial float GetMouseWheelMove();
-    
+
     /// <summary>
     /// Get mouse wheel movement for both X and Y
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Vector2 GetMouseWheelMoveV();
-    
+
     /// <summary>
     /// Set mouse cursor
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void SetMouseCursor(MouseCursor cursor);
-    
+
     /// <summary>
     /// Get touch position X for touch point 0 (relative to screen size)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial int GetTouchX();
-    
+
     /// <summary>
     /// Get touch position Y for touch point 0 (relative to screen size)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial int GetTouchY();
-    
+
     /// <summary>
     /// Get touch position XY for a touch point index (relative to screen size)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Vector2 GetTouchPosition(int index);
-    
+
     /// <summary>
     /// Get touch point identifier for given index
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial int GetTouchPointId(int index);
-    
+
     /// <summary>
     /// Get number of touch points
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial int GetTouchPointCount();
-    
+
     /// <summary>
     /// Enable a set of gestures using flags
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void SetGesturesEnabled(Gesture flags);
-    
+
     /// <summary>
     /// Check if a gesture have been detected
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsGestureDetected(Gesture gesture);
-    
+
     /// <summary>
     /// Get latest detected gesture
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Gesture GetGestureDetected();
-    
+
     /// <summary>
     /// Get gesture hold time in milliseconds
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial float GetGestureHoldDuration();
-    
+
     /// <summary>
     /// Get gesture drag vector
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Vector2 GetGestureDragVector();
-    
+
     /// <summary>
     /// Get gesture drag angle
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial float GetGestureDragAngle();
-    
+
     /// <summary>
     /// Get gesture pinch delta
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Vector2 GetGesturePinchVector();
-    
+
     /// <summary>
     /// Get gesture pinch angle
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial float GetGesturePinchAngle();
-    
+
     /// <summary>
     /// Update camera position for selected mode
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void UpdateCamera(Camera3D* camera, CameraMode mode);
-    
+
     /// <summary>
     /// Update camera movement/rotation
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void UpdateCameraPro(Camera3D* camera, Vector3 movement, Vector3 rotation, float zoom);
-    
+
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Vector3 GetCameraForward(Camera3D* camera);
-    
+
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Vector3 GetCameraUp(Camera3D* camera);
-    
+
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Vector3 GetCameraRight(Camera3D* camera);
-    
+
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void CameraMoveForward(Camera3D* camera, float distance, NativeBool moveInWorldPlane);
-    
+
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void CameraMoveUp(Camera3D* camera, float distance);
-    
+
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void CameraMoveRight(Camera3D* camera, float distance, NativeBool moveInWorldPlane);
-    
+
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void CameraMoveToTarget(Camera3D* camera, float delta);
-    
+
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void CameraYaw(Camera3D* camera, float angle, NativeBool rotateAroundTarget);
-    
+
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void CameraPitch(Camera3D* camera, float angle, NativeBool lockView, NativeBool rotateAroundTarget, NativeBool rotateUp);
-    
+    public static partial void CameraPitch(
+        Camera3D* camera, float angle, NativeBool lockView, NativeBool rotateAroundTarget, NativeBool rotateUp);
+
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void CameraRoll(Camera3D* camera, float angle);
-    
+
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Matrix4x4 GetCameraViewMatrix(Camera3D* camera);
-    
+
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Matrix4x4 GetCameraProjectionMatrix(Camera3D* camera, float aspect);
+
+    /// <summary>
+    /// Set texture and rectangle to be used on shapes drawing
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetShapesTexture(Texture texture, Rectangle source);
+
+    /// <summary>
+    /// Get texture that is used for shapes drawing
+    /// </summary>+
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Texture GetShapesTexture();
+
+    /// <summary>
+    /// Get texture source rectangle that is used for shapes drawing
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Rectangle GetShapesTextureRectangle();
+
+    /// <summary>
+    /// Draw a pixel
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawPixel(int posX, int posY, Color color);
+
+    /// <summary>
+    /// Draw a pixel (Vector version)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawPixelV(Vector2 position, Color color);
+
+    /// <summary>
+    /// Draw a line
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawLine(int startPosX, int startPosY, int endPosX, int endPosY, Color color);
+
+    /// <summary>
+    /// Draw a line (using gl lines)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawLineV(Vector2 startPos, Vector2 endPos, Color color);
+
+    /// <summary>
+    /// Draw a line (using triangles/quads)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawLineEx(Vector2 startPos, Vector2 endPos, float thick, Color color);
+
+    /// <summary>
+    /// Draw lines sequence (using gl lines)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawLineStrip(Vector2* points, int pointCount, Color color);
+
+    /// <summary>
+    /// Draw line segment cubic-bezier in-out interpolation
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawLineBezier(Vector2 startPos, Vector2 endPos, float think, Color color);
+
+    /// <summary>
+    /// Draw a color-filled circle
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawCircle(int centerX, int centerY, float radius, Color color);
+
+    /// <summary>
+    /// Draw a piece of a circle
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawCircleSector(Vector2 center, float radius, float startAngle, float endAngle, int segments, Color color);
+
+    /// <summary>
+    /// Draw circle sector outline
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawCircleSectorLines(Vector2 center, float radius, float startAngle, float endAngle, int segments, Color color);
+
+    /// <summary>
+    /// Draw a gradient-filled circle
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawCircleGradient(int centerX, int centerY, float radius, Color color1, Color color2);
+
+    /// <summary>
+    /// Draw a color-filled circle (Vector version)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawCircleV(Vector2 center, float radius, Color color);
+
+    /// <summary>
+    /// Draw circle outline
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawCircleLines(int centerX, int centerY, float radius, Color color);
+
+    /// <summary>
+    /// Draw circle outline (Vector version)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawCircleLinesV(Vector2 center, float radius, Color color);
+
+    /// <summary>
+    /// Draw ellipse
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawEllipse(int centerX, int centerY, float radiusH, float radiusV, Color color);
+
+    /// <summary>
+    /// Draw ellipse outline
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawEllipseLines(int centerX, int centerY, float radiusH, float radiusV, Color color);
+
+    /// <summary>
+    /// Draw ring
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawRing(
+        Vector2 center, float innerRadius, float outerRadius, float startAngle, float endAngle, int segments, Color color);
+
+    /// <summary>
+    /// Draw ring outline
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawRingLines(
+        Vector2 center, float innerRadius, float outerRadius, float startAngle, float endAngle, int segments, Color color);
+    
+    /// <summary>
+    /// Draw a color-filled rectangle
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawRectangle(int posX, int posY, int width, int height, Color color);
+    
+    /// <summary>
+    /// Draw a color-filled rectangle (Vector version)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawRectangleV(Vector2 position, Vector2 size, Color color);
+    
+    /// <summary>
+    /// Draw a color-filled rectangle
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawRectangleRec(Rectangle rec, Color color);
+    
+    /// <summary>
+    /// Draw a color-filled rectangle with pro parameters
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawRectanglePro(Rectangle rec, Vector2 origin, float rotation, Color color);
+    
+    /// <summary>
+    /// Draw a vertical-gradient-filled rectangle
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawRectangleGradientV(int posX, int posY, int width, int height, Color color1, Color color2);
+    
+    /// <summary>
+    /// Draw a horizontal-gradient-filled rectangle
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawRectangleGradientH(int posX, int posY, int width, int height, Color color1, Color color2);
+    
+    /// <summary>
+    /// Draw a gradient-filled rectangle with custom vertex colors
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawRectangleGradientEx(Rectangle rec, Color col1, Color col2, Color col3, Color col4);
+    
+    /// <summary>
+    /// Draw rectangle outline
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawRectangleLines(int posX, int posY, int width, int height, Color color);
+    
+    /// <summary>
+    /// Draw rectangle outline with extended parameters
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawRectangleLinesEx(Rectangle rec, float lineThick, Color color);
+    
+    /// <summary>
+    /// Draw rectangle with rounded edges
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawRectangleRounded(Rectangle rec, float roundness, int segments, Color color);
+    
+    /// <summary>
+    /// Draw rectangle lines with rounded edges
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawRectangleRoundedLines(Rectangle rec, float roundness, int segments, Color color);
+    
+    /// <summary>
+    /// Draw rectangle with rounded edges outline
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawRectangleRoundedLinesEx(Rectangle rec, float roundness, int segments, float lineThick, Color color);
+    
+    /// <summary>
+    /// Draw a color-filled triangle (vertex in counter-clockwise order!)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawTriangle(Vector2 v1, Vector2 v2, Vector2 v3, Color color);
+    
+    /// <summary>
+    /// Draw triangle outline (vertex in counter-clockwise order!)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawTriangleLines(Vector2 v1, Vector2 v2, Vector2 v3, Color color);
+    
+    /// <summary>
+    /// Draw a triangle fan defined by points (first vertex is the center)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawTriangleFan(Vector2* points, int pointCount, Color color);
+    
+    /// <summary>
+    /// Draw a triangle strip defined by points
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawTriangleStrip(Vector2* points, int pointCount, Color color);
+    
+    /// <summary>
+    /// Draw a regular polygon (Vector version)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawPoly(Vector2 center, int sides, float radius, float rotation, Color color);
+    
+    /// <summary>
+    /// Draw a polygon outline of n sides
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawPolyLines(Vector2 center, int sides, float radius, float rotation, Color color);
+    
+    /// <summary>
+    /// Draw a polygon outline of n sides with extended parameters
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawPolyLinesEx(Vector2 center, int sides, float radius, float rotation, float lineThick, Color color);
 }
