@@ -1437,4 +1437,66 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial float GetGesturePinchAngle();
+    
+    /// <summary>
+    /// Update camera position for selected mode
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UpdateCamera(Camera3D* camera, CameraMode mode);
+    
+    /// <summary>
+    /// Update camera movement/rotation
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UpdateCameraPro(Camera3D* camera, Vector3 movement, Vector3 rotation, float zoom);
+    
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Vector3 GetCameraForward(Camera3D* camera);
+    
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Vector3 GetCameraUp(Camera3D* camera);
+    
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Vector3 GetCameraRight(Camera3D* camera);
+    
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void CameraMoveForward(Camera3D* camera, float distance, NativeBool moveInWorldPlane);
+    
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void CameraMoveUp(Camera3D* camera, float distance);
+    
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void CameraMoveRight(Camera3D* camera, float distance, NativeBool moveInWorldPlane);
+    
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void CameraMoveToTarget(Camera3D* camera, float delta);
+    
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void CameraYaw(Camera3D* camera, float angle, NativeBool rotateAroundTarget);
+    
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void CameraPitch(Camera3D* camera, float angle, NativeBool lockView, NativeBool rotateAroundTarget, NativeBool rotateUp);
+    
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void CameraRoll(Camera3D* camera, float angle);
+    
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Matrix4x4 GetCameraViewMatrix(Camera3D* camera);
+    
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Matrix4x4 GetCameraProjectionMatrix(Camera3D* camera, float aspect);
 }
