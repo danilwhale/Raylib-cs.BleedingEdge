@@ -1782,4 +1782,74 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawPolyLinesEx(Vector2 center, int sides, float radius, float rotation, float lineThick, Color color);
+    
+    /// <summary>
+    /// Draw spline: Linear, minimum 2 points
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawSplineLinear(Vector2* points, int pointCount, float thick, Color color);
+    
+    /// <summary>
+    /// Draw spline: B-Spline, minimum 4 points
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawSplineBasis(Vector2* points, int pointCount, float thick, Color color);
+    
+    /// <summary>
+    /// Draw spline: Catmull-Rom, minimum 4 points
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawSplineCatmullRom(Vector2* points, int pointCount, float thick, Color color);
+    
+    /// <summary>
+    /// Draw spline: Quadratic Bezier, minimum 3 points (1 control point): [p1, c2, p3, c4...]
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawSplineBezierQuadratic(Vector2* points, int pointCount, float thick, Color color);
+    
+    /// <summary>
+    /// Draw spline: Cubic Bezier, minimum 4 points (2 control points): [p1, c2, c3, p4, c5, c6...]
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawSplineBezierCubic(Vector2* points, int pointCount, float thick, Color color);
+    
+    /// <summary>
+    /// Draw spline segment: Linear, 2 points
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawSplineSegmentLinear(Vector2 p1, Vector2 p2, float thick, Color color);
+    
+    /// <summary>
+    /// Draw spline segment: B-Spline, 4 points
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawSplineSegmentBasis(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float thick, Color color);
+    
+    /// <summary>
+    /// Draw spline segment: Catmull-Rom, 4 points
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawSplineSegmentCatmullRom(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float thick, Color color);
+    
+    /// <summary>
+    /// Draw spline segment: Quadratic Bezier, 2 points, 1 control point
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawSplineSegmentBezierQuadratic(Vector2 p1, Vector2 c2, Vector2 p3, float thick, Color color);
+    
+    /// <summary>
+    /// Draw spline segment: Cubic Bezier, 2 points, 2 control points
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawSplineSegmentBezierCubic(Vector2 p1, Vector2 c2, Vector2 c3, Vector2 p4, float thick, Color color);
 }
