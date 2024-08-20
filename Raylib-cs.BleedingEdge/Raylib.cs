@@ -1381,4 +1381,60 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial int GetTouchPointCount();
+    
+    /// <summary>
+    /// Enable a set of gestures using flags
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetGesturesEnabled(Gesture flags);
+    
+    /// <summary>
+    /// Check if a gesture have been detected
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsGestureDetected(Gesture gesture);
+    
+    /// <summary>
+    /// Get latest detected gesture
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Gesture GetGestureDetected();
+    
+    /// <summary>
+    /// Get gesture hold time in milliseconds
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial float GetGestureHoldDuration();
+    
+    /// <summary>
+    /// Get gesture drag vector
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Vector2 GetGestureDragVector();
+    
+    /// <summary>
+    /// Get gesture drag angle
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial float GetGestureDragAngle();
+    
+    /// <summary>
+    /// Get gesture pinch delta
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Vector2 GetGesturePinchVector();
+    
+    /// <summary>
+    /// Get gesture pinch angle
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial float GetGesturePinchAngle();
 }
