@@ -887,4 +887,28 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial long GetFileModTime();
+    
+    /// <summary>
+    /// Compress data (DEFLATE algorithm), memory must be MemFree()
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial byte* CompressData(byte* data, int dataSize, int* compDataSize);
+    
+    /// <summary>
+    /// Decompress data (DEFLATE algorithm), memory must be MemFree()
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial byte* DecompressData(byte* compData, int compDataSize, int* dataSize);
+    
+    /// <summary>
+    /// Encode data to Base64 string, memory must be MemFree()
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial sbyte* EncodeDataBase64(byte* data, int dataSize, int* outputSize);
+    
+    /// <summary>
+    /// Decode Base64 string data, memory must be MemFree()
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial byte* DecodeDataBase64(byte* data, int* outputSize);
 }
