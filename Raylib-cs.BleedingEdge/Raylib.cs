@@ -2371,4 +2371,158 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Color GetImageColor(Image image, int x, int y);
+
+    /// <summary>
+    /// Clear image background with given color
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageClearBackground(Image* dst, Color color);
+
+    /// <summary>
+    /// Draw pixel within an image
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawPixel(Image* dst, int posX, int posY, Color color);
+
+    /// <summary>
+    /// Draw pixel within an image (Vector version)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawPixelV(Image* dst, Vector2 position, Color color);
+
+    /// <summary>
+    /// Draw line within an image
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawLine(Image* dst, int startPosX, int startPosY, int endPosX, int endPosY, Color color);
+
+    /// <summary>
+    /// Draw line within an image (Vector version)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawLineV(Image* dst, Vector2 start, Vector2 end, Color color);
+
+    /// <summary>
+    /// Draw a line defining thickness within an image
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawLineEx(Image* dst, Vector2 start, Vector2 end, int thick, Color color);
+
+    /// <summary>
+    /// Draw a filled circle within an image
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawCircle(Image* dst, int centerX, int centerY, int radius, Color color);
+
+    /// <summary>
+    /// Draw a filled circle within an image (Vector version)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawCircleV(Image* dst, Vector2 center, int radius, Color color);
+
+    /// <summary>
+    /// Draw circle outline within an image
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawCircleLines(Image* dst, int centerX, int centerY, int radius, Color color);
+
+    /// <summary>
+    /// Draw circle outline within an image (Vector version)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawCircleLinesV(Image* dst, Vector2 center, int radius, Color color);
+
+    /// <summary>
+    /// Draw rectangle within an image
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawRectangle(Image* dst, int posX, int posY, int width, int height, Color color);
+
+    /// <summary>
+    /// Draw rectangle within an image (Vector version)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawRectangleV(Image* dst, Vector2 position, Vector2 size, Color color);
+
+    /// <summary>
+    /// Draw rectangle within an image
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawRectangleRec(Image* dst, Rectangle rec, Color color);
+
+    /// <summary>
+    /// Draw rectangle lines within an image
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawRectangleLines(Image* dst, Rectangle rec, int thick, Color color);
+
+    /// <summary>
+    /// Draw triangle within an image
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawTriangle(Image* dst, Vector2 v1, Vector2 v2, Vector2 v3, Color color);
+
+    /// <summary>
+    /// Draw triangle with interpolated colors within an image
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawTriangleEx(Image* dst, Vector2 v1, Vector2 v2, Vector2 v3, Color c1, Color c2, Color c3);
+
+    /// <summary>
+    /// Draw triangle outline within an image
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawTriangleLines(Image* dst, Vector2 v1, Vector2 v2, Vector2 v3, Color color);
+
+    /// <summary>
+    /// Draw a triangle fan defined by points within an image (first vertex is the center)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawTriangleFan(Image* dst, Vector2* points, int pointCount, Color color);
+
+    /// <summary>
+    /// Draw a triangle strip defined by points within an image
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawTriangleStrip(Image* dst, Vector2* points, int pointCount, Color color);
+
+    /// <summary>
+    /// Draw a source image within a destination image (tint applied to source)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDraw(Image* dst, Image src, Rectangle srcRec, Rectangle dstRec, Color tint);
+
+    /// <summary>
+    /// Draw text (using default font) within an image (destination)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawText(Image* dst, sbyte* text, int posX, int posY, int fontSize, Color color);
+
+    /// <summary>
+    /// Draw text (custom sprite font) within an image (destination)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ImageDrawTextEx(Image* dst, Font font, sbyte* text, Vector2 position, float fontSize, float spacing, Color tint);
 }
