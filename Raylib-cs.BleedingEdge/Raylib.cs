@@ -2525,4 +2525,74 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void ImageDrawTextEx(Image* dst, Font font, sbyte* text, Vector2 position, float fontSize, float spacing, Color tint);
+
+    /// <summary>
+    /// Load texture from file into GPU memory (VRAM)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Texture LoadTexture(sbyte* fileName);
+
+    /// <summary>
+    /// Load texture from image data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Texture LoadTextureFromImage(Image image);
+
+    /// <summary>
+    /// Load cubemap from image, multiple image cubemap layouts supported
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Texture LoadTextureCubemap(Image image, CubemapLayout layout);
+
+    /// <summary>
+    /// Load texture for rendering (framebuffer)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial RenderTexture LoadRenderTexture(int width, int height);
+
+    /// <summary>
+    /// Check if a texture is ready
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsTextureReady(Texture texture);
+
+    /// <summary>
+    /// Unload texture from GPU memory (VRAM)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadTexture(Texture texture);
+
+    /// <summary>
+    /// Check if a render texture is ready
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsRenderTextureReady(RenderTexture target);
+
+    /// <summary>
+    /// Unload render texture from GPU memory (VRAM)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadRenderTexture(RenderTexture target);
+
+    /// <summary>
+    /// Update GPU texture with new data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UpdateTexture(Texture texture, void* pixels);
+
+    /// <summary>
+    /// Update GPU texture rectangle with new data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UpdateTextureRec(Texture texture, Rectangle rec, void* pixels);
 }
