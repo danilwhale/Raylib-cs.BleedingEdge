@@ -2055,4 +2055,67 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool ExportImageAsCode(Image image, sbyte* fileName);
+
+    /// <summary>
+    /// Generate image: plain color
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image GenImageColor(int width, int height, Color color);
+
+    /// <summary>
+    /// Generate image: linear gradient, direction in degrees [0..360], 0=Vertical gradient
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image GenImageGradientLinear(int width, int height, int direction, Color start, Color end);
+
+    /// <summary>
+    /// Generate image: radial gradient
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image GenImageGradientRadial(int width, int height, float density, Color inner, Color outer);
+
+    /// <summary>
+    /// Generate image: square gradient
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image GenImageGradientSquare(int width, int height, float density, Color inner, Color outer);
+
+    /// <summary>
+    /// Generate image: checked
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image GenImageChecked(int width, int height, int checksX, int checksY, Color col1, Color col2);
+
+    /// <summary>
+    /// Generate image: white noise
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image GenImageWhiteNoise(int width, int height, float factor);
+
+    /// <summary>
+    /// Generate image: perlin noise
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image GenImagePerlinNoise(int width, int height, int offsetX, int offsetY, float scale);
+
+    /// <summary>
+    /// Generate image: cellular algorithm, bigger tileSize means bigger cells
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image GenImageCellular(int width, int height, int tileSize);
+
+    /// <summary>
+    /// Generate image: grayscale image from text data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image GenImageText(int width, int height, sbyte* text);
 }
