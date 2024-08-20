@@ -93,7 +93,6 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Set window configuration state using flags (only PLATFORM_DESKTOP)
     /// </summary>
-    /// <param name="flags"></param>
     [LibraryImport(LibName)]
     public static partial void SetWindowState(ConfigFlags flags);
 
@@ -239,7 +238,7 @@ public static unsafe partial class Raylib
     /// Get specified monitor position
     /// </summary>
     [LibraryImport(LibName)]
-    public static partial Vector2 GetMonitorPosition();
+    public static partial Vector2 GetMonitorPosition(int monitor);
 
     /// <summary>
     /// Get specified monitor width (current video mode used by monitor)
