@@ -762,4 +762,130 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial NativeBool SaveFileText(sbyte* fileName, sbyte* text);
+    
+    /// <summary>
+    /// Check if file exists
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool FileExists(sbyte* fileName);
+    
+    /// <summary>
+    /// Check if a directory path exists
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool DirectoryExists(sbyte* dirPath);
+    
+    /// <summary>
+    /// Check file extension (including point: .png, .wav)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsFileExtension(sbyte* fileName, sbyte* ext);
+    
+    /// <summary>
+    /// Get file length in bytes (NOTE: GetFileSize() conflicts with windows.h)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial int GetFileLength(sbyte* fileName);
+    
+    /// <summary>
+    /// Get pointer to extension for a filename string (includes dot: '.png')
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial sbyte* GetFileExtension(sbyte* fileName);
+    
+    /// <summary>
+    /// Get pointer to filename for a path string
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial sbyte* GetFileName(sbyte* filePath);
+    
+    /// <summary>
+    /// Get filename string without extension (uses static string)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial sbyte* GetFileNameWithoutExt(sbyte* filePath);
+    
+    /// <summary>
+    /// Get full path for a given fileName with path (uses static string)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial sbyte* GetDirectoryPath(sbyte* filePath);
+    
+    /// <summary>
+    /// Get previous directory path for a given path (uses static string)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial sbyte* GetPrevDirectoryPath(sbyte* dirPath);
+    
+    /// <summary>
+    /// Get current working directory (uses static string)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial sbyte* GetWorkingDirectory();
+    
+    /// <summary>
+    /// Get the directory of the running application (uses static string)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial sbyte* GetApplicationDirectory();
+    
+    /// <summary>
+    /// Change working directory, return true on success
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool ChangeDirectory(sbyte* dir);
+    
+    /// <summary>
+    /// Check if a given path is a file or a directory
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsPathFile(sbyte* path);
+    
+    /// <summary>
+    /// Check if fileName is valid for the platform/OS
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsFileNameValid(sbyte* fileName);
+    
+    /// <summary>
+    /// Load directory filepaths
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial FilePathList LoadDirectoryFiles(sbyte* dirPath);
+    
+    /// <summary>
+    /// Load directory filepaths with extension filtering and recursive directory scan
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial FilePathList LoadDirectoryFilesEx(sbyte* basePath, sbyte* filter, NativeBool scanSubdirs);
+    
+    /// <summary>
+    /// Unload filepaths
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void UnloadDirectoryFiles(FilePathList files);
+    
+    /// <summary>
+    /// Check if a file has been dropped into window
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsFileDropped();
+    
+    /// <summary>
+    /// Load dropped filepaths
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial FilePathList LoadDroppedFiles();
+    
+    /// <summary>
+    /// Unload dropped filepaths
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void UnloadDroppedFiles(FilePathList files);
+    
+    /// <summary>
+    /// Get file modification time (last write time)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial long GetFileModTime();
 }
