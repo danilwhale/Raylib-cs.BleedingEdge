@@ -959,4 +959,52 @@ public static unsafe partial class Raylib
     /// </summary>
     [LibraryImport(LibName)]
     public static partial void PlayAutomationEvent(AutomationEvent @event);
+    
+    /// <summary>
+    /// Check if a key has been pressed once
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsKeyPressed(KeyboardKey key);
+    
+    /// <summary>
+    /// Check if a key has been pressed again (Only PLATFORM_DESKTOP)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsKeyPressedRepeat(KeyboardKey key);
+    
+    /// <summary>
+    /// Check if a key is being pressed
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsKeyDown(KeyboardKey key);
+    
+    /// <summary>
+    /// Check if a key has been released once
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsKeyReleased(KeyboardKey key);
+    
+    /// <summary>
+    /// Check if a key is NOT being pressed
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsKeyUp(KeyboardKey key);
+    
+    /// <summary>
+    /// Get key pressed (keycode), call it multiple times for keys queued, returns 0 when the queue is empty
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial KeyboardKey GetKeyPressed();
+    
+    /// <summary>
+    /// Get char pressed (unicode), call it multiple times for chars queued, returns 0 when the queue is empty
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial int GetCharPressed();
+    
+    /// <summary>
+    /// Set a custom key to exit program (default is ESC)
+    /// </summary>
+    [LibraryImport(LibName)]
+    public static partial void SetExitKey(KeyboardKey key);
 }
