@@ -2824,4 +2824,81 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial int GetPixelDataSize(int width, int height, PixelFormat format);
+
+    /// <summary>
+    /// Get the default Font
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Font GetFontDefault();
+
+    /// <summary>
+    /// Load font from file into GPU memory (VRAM)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Font LoadFont(sbyte* fileName);
+
+    /// <summary>
+    /// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default character set
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Font LoadFontEx(sbyte* fiileName, int fontSize, int* codepoints, int codepointCount);
+
+    /// <summary>
+    /// Load font from Image (XNA style)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Font LoadFontFromImage(Image image, Color key, int firstChar);
+
+    /// <summary>
+    /// Load font from memory buffer, fileType refers to extension: i.e. '.ttf'
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Font LoadFontFromMemory(sbyte* fileType, byte* fileData, int dataSize, int fontSize, int* codepoints, int codepointCount);
+
+    /// <summary>
+    /// Check if a font is ready
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsFontReady(Font font);
+
+    /// <summary>
+    /// Load font data for further use
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial GlyphInfo* LoadFontData(byte* fileData, int dataSize, int fontSize, int* codepoints, int codepointCount, FontType type);
+
+    /// <summary>
+    /// Generate image font atlas using chars info
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image GenImageFontAtlas(GlyphInfo* glyphs, Rectangle** glyphRecs, int glyphCount, int fontSize, int padding, int packMethod);
+
+    /// <summary>
+    /// Unload font chars info data (RAM)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadFontData(GlyphInfo* glyphs, int glyphCount);
+
+    /// <summary>
+    /// Unload font from GPU memory (VRAM)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadFont(Font font);
+
+    /// <summary>
+    /// Export font as code file, returns true on success
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool ExportFontAsCode(Font font, sbyte* fileName);
 }
