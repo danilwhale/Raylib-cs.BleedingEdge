@@ -3543,4 +3543,46 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize);
+
+    /// <summary>
+    /// Load materials from model file
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Material* LoadMaterials(sbyte* fileName, int* materialCount);
+
+    /// <summary>
+    /// Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Material LoadMaterialDefault();
+
+    /// <summary>
+    /// Check if a material is ready
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsMaterialReady(Material material);
+
+    /// <summary>
+    /// Unload material from GPU memory (VRAM)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadMaterial(Material material);
+
+    /// <summary>
+    /// Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetMaterialTexture(Material* material, MaterialMapIndex mapType, Texture texture);
+
+    /// <summary>
+    /// Set material for a mesh
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetModelMeshMaterial(Model* model, int meshId, int materialid);
 }
