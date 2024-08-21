@@ -3312,4 +3312,39 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawGrid(int slices, float spacing);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Model LoadModel(sbyte* fileName);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Model LoadModelFromMesh(Mesh mesh);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsModelReady(Model model);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadModel(Model model);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial BoundingBox GetModelBoundingBox(Model model);
 }
