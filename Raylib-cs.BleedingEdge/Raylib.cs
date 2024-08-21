@@ -3802,4 +3802,95 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool ExportWaveAsCode(Wave wave, sbyte* fileName);
+
+    /// <summary>
+    /// Play a sound
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void PlaySound(Sound sound);
+
+    /// <summary>
+    /// Stop playing a sound
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void StopSound(Sound sound);
+
+    /// <summary>
+    /// Pause a sound
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void PauseSound(Sound sound);
+
+    /// <summary>
+    /// Resume a paused sound
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ResumeSound(Sound sound);
+
+    /// <summary>
+    /// Check if a sound is currently playing
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsSoundPlaying(Sound sound);
+
+    /// <summary>
+    /// Set volume for a sound (1.0 is max level)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetSoundVolume(Sound sound, float volume);
+
+    /// <summary>
+    /// Set pitch for a sound (1.0 is base level)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetSoundPitch(Sound sound, float pitch);
+
+    /// <summary>
+    /// Set pan for a sound (0.5 is center)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetSoundPan(Sound sound, float pan);
+
+    /// <summary>
+    /// Copy a wave to a new wave
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Wave WaveCopy(Wave wave);
+
+    /// <summary>
+    /// Crop a wave to defined frames range
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void WaveCrop(Wave* wave, int initFrame, int finalFrame);
+
+    /// <summary>
+    /// Convert wave data to desired format
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void WaveFormat(Wave* wave, int sampleRate, int sampleSize, int channels);
+
+    /// <summary>
+    /// Load samples data from wave as a 32bit float data array
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial float* LoadWaveSamples(Wave wave);
+
+    /// <summary>
+    /// Unload samples data loaded with LoadWaveSamples()
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadWaveSamples(float* samples);
 }
