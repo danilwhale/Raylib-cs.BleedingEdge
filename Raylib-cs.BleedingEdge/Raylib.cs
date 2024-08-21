@@ -1570,7 +1570,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawLineBezier(Vector2 startPos, Vector2 endPos, float think, Color color);
+    public static partial void DrawLineBezier(Vector2 startPos, Vector2 endPos, float thick, Color color);
 
     /// <summary>
     /// Draw a color-filled circle
