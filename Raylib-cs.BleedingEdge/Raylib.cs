@@ -3585,4 +3585,39 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void SetModelMeshMaterial(Model* model, int meshId, int materialid);
+
+    /// <summary>
+    /// Load model animations from file
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial ModelAnimation* LoadModelAnimations(sbyte* fileName, int* animCount);
+
+    /// <summary>
+    /// Update model animation pose
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UpdateModelAnimation(Model model, ModelAnimation anim, int frame);
+
+    /// <summary>
+    /// Unload animation data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadModelAnimation(ModelAnimation anim);
+
+    /// <summary>
+    /// Unload animation array data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadModelAnimations(ModelAnimation* animations, int animCount);
+
+    /// <summary>
+    /// Check model animation skeleton match
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsModelAnimationValid(Model model, ModelAnimation anim);
 }
