@@ -33,3 +33,6 @@ public unsafe delegate sbyte* LoadFileTextCallback(sbyte* fileName);
 /// </summary>
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public unsafe delegate NativeBool SaveFileTextCallback(sbyte* fileName, sbyte* text);
+
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+public unsafe delegate void AudioCallback(void* bufferData, uint frames);

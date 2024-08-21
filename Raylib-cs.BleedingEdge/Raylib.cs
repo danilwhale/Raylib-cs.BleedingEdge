@@ -4005,4 +4005,137 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial float GetMusicTimePlayed(Music music);
+
+    /// <summary>
+    /// Load audio stream (to stream raw audio pcm data)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial AudioStream LoadAudioStream(uint sampleRate, uint sampleSize, uint channels);
+
+    /// <summary>
+    /// Checks if an audio stream is ready
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsAudioStreamReady(AudioStream stream);
+
+    /// <summary>
+    /// Unload audio stream and free memory
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadAudioStream(AudioStream stream);
+
+    /// <summary>
+    /// Update audio stream buffers with data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UpdateAudioStream(AudioStream stream, void* data, int frameCount);
+
+    /// <summary>
+    /// Check if any audio stream buffers requires refill
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsAudioStreamProcessed(AudioStream stream);
+
+    /// <summary>
+    /// Play audio stream
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void PlayAudioStream(AudioStream stream);
+
+    /// <summary>
+    /// Pause audio stream
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void PauseAudioStream(AudioStream stream);
+
+    /// <summary>
+    /// Resume audio stream
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ResumeAudioStream(AudioStream stream);
+
+    /// <summary>
+    /// Check if audio stream is playing
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsAudioStreamPlaying(AudioStream stream);
+
+    /// <summary>
+    /// Stop audio stream
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void StopAudioStream(AudioStream stream);
+
+    /// <summary>
+    /// Set volume for audio stream (1.0 is max level)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetAudioStreamVolume(AudioStream stream, float volume);
+
+    /// <summary>
+    /// Set pitch for audio stream (1.0 is base level)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetAudioStreamPitch(AudioStream stream, float pitch);
+
+    /// <summary>
+    /// Set pan for audio stream (0.5 is centered)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetAudioStreamPan(AudioStream stream, float pan);
+
+    /// <summary>
+    /// Default size for new audio streams
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetAudioStreamBufferSizeDefault(int size);
+
+    /// <summary>
+    /// Audio thread callback to request new data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetAudioStreamCallback(AudioStream stream, AudioCallback callback);
+
+    /// <summary>
+    /// Attach audio stream processor to stream, receives the samples as 'float'
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void AttachAudioStreamProcessor(AudioStream stream, AudioCallback processor);
+
+    /// <summary>
+    /// Detach audio stream processor from stream
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DetachAudioStreamProcessor(AudioStream stream, AudioCallback processor);
+
+    /// <summary>
+    /// Attach audio stream processor to the entire audio pipeline, receives the samples as 'float'
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void AttachAudioMixedProcessor(AudioCallback processor);
+
+    /// <summary>
+    /// Detach audio stream processor from the entire audio pipeline
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DetachAudioMixedProcessor(AudioCallback processor);
 }
