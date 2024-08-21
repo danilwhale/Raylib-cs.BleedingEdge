@@ -3403,4 +3403,67 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawBillboardPro(Camera3D camera, Texture texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint);
+
+    /// <summary>
+    /// Upload mesh vertex data in GPU and provide VAO/VBO ids
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UploadMesh(Mesh* mesh, NativeBool dynamic);
+
+    /// <summary>
+    /// Update mesh vertex data in GPU for a specific buffer index
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UpdateMeshBuffer(Mesh mesh, int index, void* data, int dataSize, int offset);
+
+    /// <summary>
+    /// Unload mesh data from CPU and GPU
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadMesh(Mesh mesh);
+
+    /// <summary>
+    /// Draw a 3d mesh with material and transform
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawMesh(Mesh mesh, Material material, Matrix4x4 transform);
+
+    /// <summary>
+    /// Draw multiple mesh instances with material and different transforms
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawMeshInstanced(Mesh mesh, Material material, Matrix4x4* transforms, int instances);
+
+    /// <summary>
+    /// Compute mesh bounding box limits
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial BoundingBox GetMeshBoundingBox(Mesh mesh);
+
+    /// <summary>
+    /// Compute mesh tangents
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void GenMeshTangents(Mesh* mesh);
+
+    /// <summary>
+    /// Export mesh data to file, returns true on success
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool ExportMesh(Mesh mesh, sbyte* fileName);
+
+    /// <summary>
+    /// Export mesh as code file (.h) defining multiple arrays of vertex attributes
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool ExportMeshAsCode(Mesh mesh, sbyte* fileName);
 }
