@@ -2985,4 +2985,67 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Rectangle GetGlyphAtlasRec(Font font, int codepoint);
+
+    /// <summary>
+    /// Load UTF-8 text encoded from codepoints array
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial sbyte* LoadUTF8(int* codepoints, int length);
+
+    /// <summary>
+    /// Unload UTF-8 text encoded from codepoints array
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadUTF8(sbyte* text);
+
+    /// <summary>
+    /// Load all codepoints from a UTF-8 text string, codepoints count returned by parameter
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial int* LoadCodepoints(sbyte* text, int* count);
+
+    /// <summary>
+    /// Unload codepoints data from memory
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadCodepoints(int* codepoints);
+
+    /// <summary>
+    /// Get total number of codepoints in a UTF-8 encoded string
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial int GetCodepointCount(sbyte* text);
+
+    /// <summary>
+    /// Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial int GetCodepoint(sbyte* text, int* codepointSize);
+
+    /// <summary>
+    /// Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial int GetCodepointNext(sbyte* text, int* codepointSize);
+
+    /// <summary>
+    /// Get previous codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial int GetCodepointPrevious(sbyte* text, int* codepointSize);
+
+    /// <summary>
+    /// Encode one codepoint into UTF-8 byte array (array length returned as parameter)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial sbyte* CodepointToUTF8(int codepoint, int* utf8Size);
 }
