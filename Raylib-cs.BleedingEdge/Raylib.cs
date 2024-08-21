@@ -2943,4 +2943,46 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawTextCodepoints(Font font, int* codepoints, int codepointCount, Vector2 position, float fontSize, float spacing, Color tint);
+
+    /// <summary>
+    /// Set vertical line spacing when drawing with line-breaks
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetTextLineSpacing(int spacing);
+
+    /// <summary>
+    /// Measure string width for default font
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial int MeasureText(sbyte* text, int fontSize);
+
+    /// <summary>
+    /// Measure string size for Font
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Vector2 MeasureTextEx(Font font, sbyte* text, float fontSize, float spacing);
+
+    /// <summary>
+    /// Get glyph index position in font for a codepoint (unicode character), fallback to '?' if not found
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial int GetGlyphIndex(Font font, int codepoint);
+
+    /// <summary>
+    /// Get glyph font info data for a codepoint (unicode character), fallback to '?' if not found
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial GlyphInfo GetGlyphInfo(Font font, int codepoint);
+
+    /// <summary>
+    /// Get glyph rectangle in font atlas for a codepoint (unicode character), fallback to '?' if not found
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Rectangle GetGlyphAtlasRec(Font font, int codepoint);
 }
