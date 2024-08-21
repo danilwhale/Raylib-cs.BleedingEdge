@@ -1651,7 +1651,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawCircleGradient(int centerX, int centerY, float radius, Color color1, Color color2);
+    public static partial void DrawCircleGradient(int centerX, int centerY, float radius, Color inner, Color outter);
 
     /// <summary>
     /// Draw a color-filled circle (Vector version)
@@ -1737,21 +1737,21 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawRectangleGradientV(int posX, int posY, int width, int height, Color color1, Color color2);
+    public static partial void DrawRectangleGradientV(int posX, int posY, int width, int height, Color top, Color bottom);
 
     /// <summary>
     /// Draw a horizontal-gradient-filled rectangle
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawRectangleGradientH(int posX, int posY, int width, int height, Color color1, Color color2);
+    public static partial void DrawRectangleGradientH(int posX, int posY, int width, int height, Color left, Color right);
 
     /// <summary>
     /// Draw a gradient-filled rectangle with custom vertex colors
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawRectangleGradientEx(Rectangle rec, Color col1, Color col2, Color col3, Color col4);
+    public static partial void DrawRectangleGradientEx(Rectangle rec, Color topLeft, Color bottomLeft, Color topRight, Color bottomRight);
 
     /// <summary>
     /// Draw rectangle outline
