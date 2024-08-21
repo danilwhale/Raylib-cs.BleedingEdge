@@ -3347,4 +3347,60 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial BoundingBox GetModelBoundingBox(Model model);
+
+    /// <summary>
+    /// Draw a model (with texture if set)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawModel(Model model, Vector3 position, float scale, Color tint);
+
+    /// <summary>
+    /// Draw a model with extended parameters
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawModelEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
+
+    /// <summary>
+    /// Draw a model wires (with texture if set)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawModelWires(Model model, Vector3 position, float scale, Color tint);
+
+    /// <summary>
+    /// Draw a model wires (with texture if set) with extended parameters
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawModelWiresEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
+
+    /// <summary>
+    /// Draw bounding box (wires)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawBoundingBox(BoundingBox box, Color color);
+
+    /// <summary>
+    /// Draw a billboard texture
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawBillboard(Camera3D camera, Texture texture, Vector3 position, float scale, Color tint);
+
+    /// <summary>
+    /// Draw a billboard texture defined by source
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawBillboardRec(Camera3D camera, Texture texture, Rectangle source, Vector3 position, Vector2 size, Color tint);
+
+    /// <summary>
+    /// Draw a billboard texture defined by source and rotation
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawBillboardPro(Camera3D camera, Texture texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint);
 }
