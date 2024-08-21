@@ -3172,4 +3172,144 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial float TextToFloat(sbyte* text);
+
+    /// <summary>
+    /// Draw a line in 3D world space
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawLine3D(Vector3 startPos, Vector3 endPos, Color color);
+
+    /// <summary>
+    /// Draw a point in 3D space, actually a small line
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawPoint3D(Vector3 position, Color color);
+
+    /// <summary>
+    /// Draw a circle in 3D world space
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawCircle3D(Vector3 center, float radius, Vector3 rotationAxis, float rotationAngle, Color color);
+
+    /// <summary>
+    /// Draw a color-filled triangle (vertex in counter-clockwise order!)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawTriangle3D(Vector3 v1, Vector3 v2, Vector3 v3, Color color);
+
+    /// <summary>
+    /// Draw a triangle strip defined by points
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawTriangleStrip3D(Vector3* points, int pointCount, Color color);
+
+    /// <summary>
+    /// Draw cube
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawCube(Vector3 position, float width, float height, float length, Color color);
+
+    /// <summary>
+    /// Draw cube (Vector version)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawCubeV(Vector3 position, Vector3 size, Color color);
+
+    /// <summary>
+    /// Draw cube wires
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawCubeWires(Vector3 position, float width, float height, float length, Color color);
+
+    /// <summary>
+    /// Draw cube wires (Vector version)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawCubeWiresV(Vector3 position, Vector3 size, Color color);
+
+    /// <summary>
+    /// Draw sphere
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawSphere(Vector3 centerPos, float radius, Color color);
+
+    /// <summary>
+    /// Draw sphere with extended parameters
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawSphereEx(Vector3 centerPos, float radius, int rings, int slices, Color color);
+
+    /// <summary>
+    /// Draw sphere wires
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawCylinder(Vector3 position, float radiusTop, float radiusBottom, float height, int slices, Color color);
+
+    /// <summary>
+    /// Draw a cylinder/cone
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawCylinderEx(Vector3 startPos, Vector3 endPos, float startRadius, float endRadius, int sides, Color color);
+
+    /// <summary>
+    /// Draw a cylinder with base at startPos and top at endPos
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawCylinderWires(Vector3 position, float radiusTop, float radiusBottom, float height, int slices, Color color);
+
+    /// <summary>
+    /// Draw a cylinder/cone wires
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawCylinderWiresEx(Vector3 startPos, Vector3 endPos, float startRadius, float endRadius, int slices, Color color);
+
+    /// <summary>
+    /// Draw a cylinder wires with base at startPos and top at endPos
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawCapsule(Vector3 startPos, Vector3 endPos, float radius, int slices, int rings, Color color);
+
+    /// <summary>
+    /// Draw capsule wireframe with the center of its sphere caps at startPos and endPos
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawCapsuleWires(Vector3 startPos, Vector3 endPos, float radius, int slices, int rings, Color color);
+
+    /// <summary>
+    /// Draw a plane XZ
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawPlane(Vector3 centerPos, Vector2 size, Color color);
+
+    /// <summary>
+    /// Draw a ray line
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawRay(Ray ray, Color color);
+
+    /// <summary>
+    /// Draw a grid (centered at (0, 0, 0))
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawGrid(int slices, float spacing);
 }
