@@ -29,7 +29,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void InitWindow(int width, int height, byte* title);
+    public static partial void InitWindow(int width, int height, sbyte* title);
 
     /// <summary>
     /// Close window and unload OpenGL context
@@ -169,7 +169,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void SetWindowTitle(byte* title);
+    public static partial void SetWindowTitle(sbyte* title);
 
     /// <summary>
     /// Set window position on screen (only PLATFORM_DESKTOP)
@@ -330,21 +330,21 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* GetMonitorName(int monitor);
+    public static partial sbyte* GetMonitorName(int monitor);
 
     /// <summary>
     /// Set clipboard text content
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void SetClipboardText(byte* text);
+    public static partial void SetClipboardText(sbyte* text);
 
     /// <summary>
     /// Get clipboard text content
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* GetClipboardText();
+    public static partial sbyte* GetClipboardText();
 
     /// <summary>
     /// Enable waiting for events on EndDrawing(), no automatic event polling
@@ -540,14 +540,14 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Shader LoadShader(byte* vsFileName, byte* fsFileName);
+    public static partial Shader LoadShader(sbyte* vsFileName, sbyte* fsFileName);
 
     /// <summary>
     /// Load shader from code strings and bind default locations
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Shader LoadShaderFromMemory(byte* vsCode, byte* fsCode);
+    public static partial Shader LoadShaderFromMemory(sbyte* vsCode, sbyte* fsCode);
 
     /// <summary>
     /// Check if a shader is ready
@@ -561,14 +561,14 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial int GetShaderLocation(Shader shader, byte* uniformName);
+    public static partial int GetShaderLocation(Shader shader, sbyte* uniformName);
 
     /// <summary>
     /// Get shader attribute location
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial int GetShaderLocationAttrib(Shader shader, byte* attribName);
+    public static partial int GetShaderLocationAttrib(Shader shader, sbyte* attribName);
 
     /// <summary>
     /// Set shader uniform value
@@ -750,7 +750,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void TakeScreenshot(byte* fileName);
+    public static partial void TakeScreenshot(sbyte* fileName);
 
     /// <summary>
     /// Setup init configuration flags (view ConfigFlags)
@@ -764,14 +764,14 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void OpenURL(byte* url);
+    public static partial void OpenURL(sbyte* url);
 
     /// <summary>
     /// Show trace log messages (TraceLogLevel.Debug, TraceLogLevel.Info, TraceLogLevel.Warning, TraceLogLevel.Error...)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void TraceLog(TraceLogLevel logLevel, byte* text);
+    public static partial void TraceLog(TraceLogLevel logLevel, sbyte* text);
 
     /// <summary>
     /// Set the current threshold (minimum) log level
@@ -841,7 +841,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* LoadFileData(byte* fileName, int* dataSize);
+    public static partial byte* LoadFileData(sbyte* fileName, int* dataSize);
 
     /// <summary>
     /// Unload file data allocated by LoadFileData()
@@ -855,147 +855,147 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool SaveFileData(byte* fileName, void* data, int dataSize);
+    public static partial NativeBool SaveFileData(sbyte* fileName, void* data, int dataSize);
 
     /// <summary>
     /// Export data to code (.h), returns true on success
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool ExportDataAsCode(byte* data, int dataSize, byte* fileName);
+    public static partial NativeBool ExportDataAsCode(byte* data, int dataSize, sbyte* fileName);
 
     /// <summary>
     /// Load text data from file (read), returns a '\0' terminated string
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* LoadFileText(byte* fileName);
+    public static partial sbyte* LoadFileText(sbyte* fileName);
 
     /// <summary>
     /// Unload file text data allocated by LoadFileText()
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void UnloadFileText(byte* text);
+    public static partial void UnloadFileText(sbyte* text);
 
     /// <summary>
     /// Save text data to file (write), string must be '\0' terminated, returns true on success
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool SaveFileText(byte* fileName, byte* text);
+    public static partial NativeBool SaveFileText(sbyte* fileName, sbyte* text);
 
     /// <summary>
     /// Check if file exists
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool FileExists(byte* fileName);
+    public static partial NativeBool FileExists(sbyte* fileName);
 
     /// <summary>
     /// Check if a directory path exists
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool DirectoryExists(byte* dirPath);
+    public static partial NativeBool DirectoryExists(sbyte* dirPath);
 
     /// <summary>
     /// Check file extension (including point: .png, .wav)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool IsFileExtension(byte* fileName, byte* ext);
+    public static partial NativeBool IsFileExtension(sbyte* fileName, sbyte* ext);
 
     /// <summary>
     /// Get file length in bytes (NOTE: GetFileSize() conflicts with windows.h)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial int GetFileLength(byte* fileName);
+    public static partial int GetFileLength(sbyte* fileName);
 
     /// <summary>
     /// Get pointer to extension for a filename string (includes dot: '.png')
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* GetFileExtension(byte* fileName);
+    public static partial sbyte* GetFileExtension(sbyte* fileName);
 
     /// <summary>
     /// Get pointer to filename for a path string
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* GetFileName(byte* filePath);
+    public static partial sbyte* GetFileName(sbyte* filePath);
 
     /// <summary>
     /// Get filename string without extension (uses static string)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* GetFileNameWithoutExt(byte* filePath);
+    public static partial sbyte* GetFileNameWithoutExt(sbyte* filePath);
 
     /// <summary>
     /// Get full path for a given fileName with path (uses static string)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* GetDirectoryPath(byte* filePath);
+    public static partial sbyte* GetDirectoryPath(sbyte* filePath);
 
     /// <summary>
     /// Get previous directory path for a given path (uses static string)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* GetPrevDirectoryPath(byte* dirPath);
+    public static partial sbyte* GetPrevDirectoryPath(sbyte* dirPath);
 
     /// <summary>
     /// Get current working directory (uses static string)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* GetWorkingDirectory();
+    public static partial sbyte* GetWorkingDirectory();
 
     /// <summary>
     /// Get the directory of the running application (uses static string)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* GetApplicationDirectory();
+    public static partial sbyte* GetApplicationDirectory();
 
     /// <summary>
     /// Change working directory, return true on success
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool ChangeDirectory(byte* dir);
+    public static partial NativeBool ChangeDirectory(sbyte* dir);
 
     /// <summary>
     /// Check if a given path is a file or a directory
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool IsPathFile(byte* path);
+    public static partial NativeBool IsPathFile(sbyte* path);
 
     /// <summary>
     /// Check if fileName is valid for the platform/OS
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool IsFileNameValid(byte* fileName);
+    public static partial NativeBool IsFileNameValid(sbyte* fileName);
 
     /// <summary>
     /// Load directory filepaths
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial FilePathList LoadDirectoryFiles(byte* dirPath);
+    public static partial FilePathList LoadDirectoryFiles(sbyte* dirPath);
 
     /// <summary>
     /// Load directory filepaths with extension filtering and recursive directory scan
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial FilePathList LoadDirectoryFilesEx(byte* basePath, byte* filter, NativeBool scanSubdirs);
+    public static partial FilePathList LoadDirectoryFilesEx(sbyte* basePath, sbyte* filter, NativeBool scanSubdirs);
 
     /// <summary>
     /// Unload filepaths
@@ -1051,7 +1051,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* EncodeDataBase64(byte* data, int dataSize, int* outputSize);
+    public static partial sbyte* EncodeDataBase64(byte* data, int dataSize, int* outputSize);
 
     /// <summary>
     /// Decode Base64 string data, memory must be MemFree()
@@ -1065,7 +1065,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial AutomationEventList LoadAutomationEventList(byte* fileName);
+    public static partial AutomationEventList LoadAutomationEventList(sbyte* fileName);
 
     /// <summary>
     /// Unload automation events list from file
@@ -1079,7 +1079,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool ExportAutomationEventList(AutomationEventList list, byte* fileName);
+    public static partial NativeBool ExportAutomationEventList(AutomationEventList list, sbyte* fileName);
 
     /// <summary>
     /// Set automation event list to record to
@@ -1184,7 +1184,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* GetGamepadName(int gamepad);
+    public static partial sbyte* GetGamepadName(int gamepad);
 
     /// <summary>
     /// Check if a gamepad button has been pressed once
@@ -1240,7 +1240,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial int SetGamepadMappings(byte* mappings);
+    public static partial int SetGamepadMappings(sbyte* mappings);
 
     /// <summary>
     /// Set gamepad vibration for both motors
@@ -2024,42 +2024,42 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Image LoadImage(byte* fileName);
+    public static partial Image LoadImage(sbyte* fileName);
 
     /// <summary>
     /// Load image from RAW file data
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Image LoadImageRaw(byte* fileName, int width, int height, PixelFormat format, int headerSize);
+    public static partial Image LoadImageRaw(sbyte* fileName, int width, int height, PixelFormat format, int headerSize);
 
     /// <summary>
     /// Load image from SVG file data or string with specified size
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Image LoadImageSvg(byte* fileNameOrString, int width, int height);
+    public static partial Image LoadImageSvg(sbyte* fileNameOrString, int width, int height);
 
     /// <summary>
     /// Load image sequence from file (frames appended to image.data)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Image LoadImageAnim(byte* fileName, int* frames);
+    public static partial Image LoadImageAnim(sbyte* fileName, int* frames);
 
     /// <summary>
     /// Load image sequence from memory buffer
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Image LoadImageAnimFromMemory(byte* fileType, byte* fileData, int dataSize, int* frames);
+    public static partial Image LoadImageAnimFromMemory(sbyte* fileType, byte* fileData, int dataSize, int* frames);
 
     /// <summary>
     /// Load image from memory buffer, fileType refers to extension: i.e. '.png'
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Image LoadImageFromMemory(byte* fileType, byte* fileData, int dataSize);
+    public static partial Image LoadImageFromMemory(sbyte* fileType, byte* fileData, int dataSize);
 
     /// <summary>
     /// Load image from GPU texture data
@@ -2094,21 +2094,21 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool ExportImage(Image image, byte* fileName);
+    public static partial NativeBool ExportImage(Image image, sbyte* fileName);
 
     /// <summary>
     /// Export image to memory buffer
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* ExportImageToMemory(Image image, byte* fileType, int* fileSize);
+    public static partial byte* ExportImageToMemory(Image image, sbyte* fileType, int* fileSize);
 
     /// <summary>
     /// Export image as code file defining an array of bytes, returns true on success
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool ExportImageAsCode(Image image, byte* fileName);
+    public static partial NativeBool ExportImageAsCode(Image image, sbyte* fileName);
 
     /// <summary>
     /// Generate image: plain color
@@ -2171,7 +2171,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Image GenImageText(int width, int height, byte* text);
+    public static partial Image GenImageText(int width, int height, sbyte* text);
 
     /// <summary>
     /// Create an image duplicate (useful for transformations)
@@ -2199,14 +2199,14 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Image ImageText(byte* text, int fontSize, Color color);
+    public static partial Image ImageText(sbyte* text, int fontSize, Color color);
 
     /// <summary>
     /// Create an image from text (custom sprite font)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Image ImageTextEx(Font font, byte* text, float fontSize, float spacing, Color tint);
+    public static partial Image ImageTextEx(Font font, sbyte* text, float fontSize, float spacing, Color tint);
 
     /// <summary>
     /// Convert image data to desired format
@@ -2570,21 +2570,21 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void ImageDrawText(Image* dst, byte* text, int posX, int posY, int fontSize, Color color);
+    public static partial void ImageDrawText(Image* dst, sbyte* text, int posX, int posY, int fontSize, Color color);
 
     /// <summary>
     /// Draw text (custom sprite font) within an image (destination)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void ImageDrawTextEx(Image* dst, Font font, byte* text, Vector2 position, float fontSize, float spacing, Color tint);
+    public static partial void ImageDrawTextEx(Image* dst, Font font, sbyte* text, Vector2 position, float fontSize, float spacing, Color tint);
 
     /// <summary>
     /// Load texture from file into GPU memory (VRAM)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Texture LoadTexture(byte* fileName);
+    public static partial Texture LoadTexture(sbyte* fileName);
 
     /// <summary>
     /// Load texture from image data
@@ -2836,14 +2836,14 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Font LoadFont(byte* fileName);
+    public static partial Font LoadFont(sbyte* fileName);
 
     /// <summary>
     /// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default character set
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Font LoadFontEx(byte* fiileName, int fontSize, int* codepoints, int codepointCount);
+    public static partial Font LoadFontEx(sbyte* fiileName, int fontSize, int* codepoints, int codepointCount);
 
     /// <summary>
     /// Load font from Image (XNA style)
@@ -2857,7 +2857,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Font LoadFontFromMemory(byte* fileType, byte* fileData, int dataSize, int fontSize, int* codepoints, int codepointCount);
+    public static partial Font LoadFontFromMemory(sbyte* fileType, byte* fileData, int dataSize, int fontSize, int* codepoints, int codepointCount);
 
     /// <summary>
     /// Check if a font is ready
@@ -2899,7 +2899,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool ExportFontAsCode(Font font, byte* fileName);
+    public static partial NativeBool ExportFontAsCode(Font font, sbyte* fileName);
 
     /// <summary>
     /// Draw current FPS
@@ -2913,21 +2913,21 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawText(byte* text, int posX, int posY, int fontSize, Color color);
+    public static partial void DrawText(sbyte* text, int posX, int posY, int fontSize, Color color);
 
     /// <summary>
     /// Draw text using font and additional parameters
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawTextEx(Font font, byte* text, Vector2 position, float fontSize, float spacing, Color tint);
+    public static partial void DrawTextEx(Font font, sbyte* text, Vector2 position, float fontSize, float spacing, Color tint);
 
     /// <summary>
     /// Draw text using Font and pro parameters (rotation)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawTextPro(Font font, byte* text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint);
+    public static partial void DrawTextPro(Font font, sbyte* text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint);
 
     /// <summary>
     /// Draw one character (codepoint)
@@ -2955,14 +2955,14 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial int MeasureText(byte* text, int fontSize);
+    public static partial int MeasureText(sbyte* text, int fontSize);
 
     /// <summary>
     /// Measure string size for Font
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Vector2 MeasureTextEx(Font font, byte* text, float fontSize, float spacing);
+    public static partial Vector2 MeasureTextEx(Font font, sbyte* text, float fontSize, float spacing);
 
     /// <summary>
     /// Get glyph index position in font for a codepoint (unicode character), fallback to '?' if not found
@@ -2990,21 +2990,21 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* LoadUTF8(int* codepoints, int length);
+    public static partial sbyte* LoadUTF8(int* codepoints, int length);
 
     /// <summary>
     /// Unload UTF-8 text encoded from codepoints array
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void UnloadUTF8(byte* text);
+    public static partial void UnloadUTF8(sbyte* text);
 
     /// <summary>
     /// Load all codepoints from a UTF-8 text string, codepoints count returned by parameter
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial int* LoadCodepoints(byte* text, int* count);
+    public static partial int* LoadCodepoints(sbyte* text, int* count);
 
     /// <summary>
     /// Unload codepoints data from memory
@@ -3018,160 +3018,160 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial int GetCodepointCount(byte* text);
+    public static partial int GetCodepointCount(sbyte* text);
 
     /// <summary>
     /// Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial int GetCodepoint(byte* text, int* codepointSize);
+    public static partial int GetCodepoint(sbyte* text, int* codepointSize);
 
     /// <summary>
     /// Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial int GetCodepointNext(byte* text, int* codepointSize);
+    public static partial int GetCodepointNext(sbyte* text, int* codepointSize);
 
     /// <summary>
     /// Get previous codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial int GetCodepointPrevious(byte* text, int* codepointSize);
+    public static partial int GetCodepointPrevious(sbyte* text, int* codepointSize);
 
     /// <summary>
     /// Encode one codepoint into UTF-8 byte array (array length returned as parameter)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* CodepointToUTF8(int codepoint, int* utf8Size);
+    public static partial sbyte* CodepointToUTF8(int codepoint, int* utf8Size);
 
     /// <summary>
     /// Copy one string to another, returns bytes copied
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial int TextCopy(byte* dst, byte* src);
+    public static partial int TextCopy(sbyte* dst, sbyte* src);
 
     /// <summary>
     /// Check if two text string are equal
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool TextIsEqual(byte* text1, byte* text2);
+    public static partial NativeBool TextIsEqual(sbyte* text1, sbyte* text2);
 
     /// <summary>
     /// Get text length, checks for '\0' ending
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial uint TextLength(byte* text);
+    public static partial uint TextLength(sbyte* text);
 
     /// <summary>
     /// Text formatting with variables (sprintf() style)
     /// </summary>
     [Obsolete("Use string.Format(string, object[]) instead.")]
-    public static byte* TextFormat(byte* text) => throw new NotImplementedException();
+    public static sbyte* TextFormat(sbyte* text) => throw new NotImplementedException();
 
     /// <summary>
     /// Get a piece of a text string
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* TextSubtext(byte* text, int position, int length);
+    public static partial sbyte* TextSubtext(sbyte* text, int position, int length);
 
     /// <summary>
     /// Replace text string (WARNING: memory must be freed!)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* TextReplace(byte* text, byte* replace, byte* by);
+    public static partial sbyte* TextReplace(sbyte* text, sbyte* replace, sbyte* by);
 
     /// <summary>
     /// Insert text in a position (WARNING: memory must be freed!)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* TextInsert(byte* text, byte* insert, int position);
+    public static partial sbyte* TextInsert(sbyte* text, sbyte* insert, int position);
 
     /// <summary>
     /// Join text strings with delimiter
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* TextJoin(byte** textList, int count, byte* delimiter);
+    public static partial sbyte* TextJoin(sbyte** textList, int count, sbyte* delimiter);
 
     /// <summary>
     /// Split text into multiple strings
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte** TextSplit(byte* text, sbyte delimeter, int* count);
+    public static partial sbyte** TextSplit(sbyte* text, sbyte delimeter, int* count);
 
     /// <summary>
     /// Append text at specific position and move cursor!
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void TextAppend(byte* text, byte* append, int* position);
+    public static partial void TextAppend(sbyte* text, sbyte* append, int* position);
 
     /// <summary>
     /// Find first text occurrence within a string
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial int TextFindIndex(byte* text, byte* find);
+    public static partial int TextFindIndex(sbyte* text, sbyte* find);
 
     /// <summary>
     /// Get upper case version of provided string
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* TextToUpper(byte* text);
+    public static partial sbyte* TextToUpper(sbyte* text);
 
     /// <summary>
     /// Get lower case version of provided string
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* TextToLower(byte* text);
+    public static partial sbyte* TextToLower(sbyte* text);
 
     /// <summary>
     /// Get Pascal case notation version of provided string
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* TextToPascal(byte* text);
+    public static partial sbyte* TextToPascal(sbyte* text);
 
     /// <summary>
     /// Get Snake case notation version of provided string
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* TextToSnake(byte* text);
+    public static partial sbyte* TextToSnake(sbyte* text);
 
     /// <summary>
     /// Get Camel case notation version of provided string
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial byte* TextToCamel(byte* text);
+    public static partial sbyte* TextToCamel(sbyte* text);
 
     /// <summary>
     /// Get integer value from text (negative values not supported)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial int TextToInteger(byte* text);
+    public static partial int TextToInteger(sbyte* text);
 
     /// <summary>
     /// Get float value from text (negative values not supported)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial float TextToFloat(byte* text);
+    public static partial float TextToFloat(sbyte* text);
 
     /// <summary>
     /// Draw a line in 3D world space
@@ -3318,7 +3318,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Model LoadModel(byte* fileName);
+    public static partial Model LoadModel(sbyte* fileName);
 
     /// <summary>
     /// 
@@ -3458,14 +3458,14 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool ExportMesh(Mesh mesh, byte* fileName);
+    public static partial NativeBool ExportMesh(Mesh mesh, sbyte* fileName);
 
     /// <summary>
     /// Export mesh as code file (.h) defining multiple arrays of vertex attributes
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool ExportMeshAsCode(Mesh mesh, byte* fileName);
+    public static partial NativeBool ExportMeshAsCode(Mesh mesh, sbyte* fileName);
 
     /// <summary>
     /// Generate polygonal mesh
@@ -3549,7 +3549,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Material* LoadMaterials(byte* fileName, int* materialCount);
+    public static partial Material* LoadMaterials(sbyte* fileName, int* materialCount);
 
     /// <summary>
     /// Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)
@@ -3591,7 +3591,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial ModelAnimation* LoadModelAnimations(byte* fileName, int* animCount);
+    public static partial ModelAnimation* LoadModelAnimations(sbyte* fileName, int* animCount);
 
     /// <summary>
     /// Update model animation pose
@@ -3717,14 +3717,14 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Wave LoadWave(byte* fileName);
+    public static partial Wave LoadWave(sbyte* fileName);
 
     /// <summary>
     /// Load wave from memory buffer, fileType refers to extension: i.e. '.wav'
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Wave LoadWaveFromMemory(byte* fileType, byte* fileData, int dataSize);
+    public static partial Wave LoadWaveFromMemory(sbyte* fileType, byte* fileData, int dataSize);
 
     /// <summary>
     /// Checks if wave data is ready
@@ -3738,7 +3738,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Sound LoadSound(byte* fileName);
+    public static partial Sound LoadSound(sbyte* fileName);
 
     /// <summary>
     /// Load sound from wave data
@@ -3794,14 +3794,14 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool ExportWave(Wave wave, byte* fileName);
+    public static partial NativeBool ExportWave(Wave wave, sbyte* fileName);
 
     /// <summary>
     /// Export wave sample data to code (.h), returns true on success
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool ExportWaveAsCode(Wave wave, byte* fileName);
+    public static partial NativeBool ExportWaveAsCode(Wave wave, sbyte* fileName);
 
     /// <summary>
     /// Play a sound
@@ -3899,14 +3899,14 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Music LoadMusicStream(byte* fileName);
+    public static partial Music LoadMusicStream(sbyte* fileName);
 
     /// <summary>
     /// Load music stream from data
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Music LoadMusicStreamFromMemory(byte* fileType, byte* data, int dataSize);
+    public static partial Music LoadMusicStreamFromMemory(sbyte* fileType, byte* data, int dataSize);
 
     /// <summary>
     /// Checks if a music stream is ready
