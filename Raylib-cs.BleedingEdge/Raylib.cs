@@ -3893,4 +3893,116 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void UnloadWaveSamples(float* samples);
+
+    /// <summary>
+    /// Load music stream from file
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Music LoadMusicStream(sbyte* fileName);
+
+    /// <summary>
+    /// Load music stream from data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Music LoadMusicStreamFromMemory(sbyte* fileType, byte* data, int dataSize);
+
+    /// <summary>
+    /// Checks if a music stream is ready
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsMusicReady(Music music);
+
+    /// <summary>
+    /// Unload music stream
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadMusicStream(Music music);
+
+    /// <summary>
+    /// Start music playing
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void PlayMusicStream(Music music);
+
+    /// <summary>
+    /// Check if music is playing
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsMusicStreamPlaying(Music music);
+    
+    /// <summary>
+    /// Updates buffers for music streaming
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UpdateMusicStream(Music music);
+
+    /// <summary>
+    /// Stop music playing
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void StopMusicStream(Music music);
+
+    /// <summary>
+    /// Pause music playing
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void PauseMusicStream(Music music);
+
+    /// <summary>
+    /// Resume playing paused music
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void ResumeMusicStream(Music music);
+
+    /// <summary>
+    /// Seek music to a position (in seconds)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SeekMusicStream(Music music, float position);
+
+    /// <summary>
+    /// Set volume for music (1.0 is max level)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetMusicVolume(Music music, float volume);
+
+    /// <summary>
+    /// Set pitch for a music (1.0 is base level)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetMusicPitch(Music music, float pitch);
+
+    /// <summary>
+    /// Set pan for a music (0.5 is center)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void SetMusicPan(Music music, float pan);
+
+    /// <summary>
+    /// Get music time length (in seconds)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial float GetMusicTimeLength(Music music);
+
+    /// <summary>
+    /// Get current music time played (in seconds)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial float GetMusicTimePlayed(Music music);
 }
