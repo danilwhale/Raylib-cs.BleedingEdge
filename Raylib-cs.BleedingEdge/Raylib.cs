@@ -2,7 +2,6 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
-using Microsoft.VisualBasic;
 using Raylib_cs.BleedingEdge.Enums;
 using Raylib_cs.BleedingEdge.Interop;
 using Raylib_cs.BleedingEdge.Types;
@@ -3048,4 +3047,129 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial sbyte* CodepointToUTF8(int codepoint, int* utf8Size);
+
+    /// <summary>
+    /// Copy one string to another, returns bytes copied
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial int TextCopy(sbyte* dst, sbyte* src);
+
+    /// <summary>
+    /// Check if two text string are equal
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool TextIsEqual(sbyte* text1, sbyte* text2);
+
+    /// <summary>
+    /// Get text length, checks for '\0' ending
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial uint TextLength(sbyte* text);
+
+    /// <summary>
+    /// Text formatting with variables (sprintf() style)
+    /// </summary>
+    [Obsolete("Use string.Format(string, object[]) instead.")]
+    public static sbyte* TextFormat(sbyte* text) => throw new NotImplementedException();
+
+    /// <summary>
+    /// Get a piece of a text string
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial sbyte* TextSubtext(sbyte* text, int position, int length);
+
+    /// <summary>
+    /// Replace text string (WARNING: memory must be freed!)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial sbyte* TextReplace(sbyte* text, sbyte* replace, sbyte* by);
+
+    /// <summary>
+    /// Insert text in a position (WARNING: memory must be freed!)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial sbyte* TextInsert(sbyte* text, sbyte* insert, int position);
+
+    /// <summary>
+    /// Join text strings with delimiter
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial sbyte* TextJoin(sbyte** textList, int count, sbyte* delimiter);
+
+    /// <summary>
+    /// Split text into multiple strings
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial sbyte** TextSplit(sbyte* text, sbyte delimeter, int* count);
+
+    /// <summary>
+    /// Append text at specific position and move cursor!
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void TextAppend(sbyte* text, sbyte* append, int* position);
+
+    /// <summary>
+    /// Find first text occurrence within a string
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial int TextFindIndex(sbyte* text, sbyte* find);
+
+    /// <summary>
+    /// Get upper case version of provided string
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial sbyte* TextToUpper(sbyte* text);
+
+    /// <summary>
+    /// Get lower case version of provided string
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial sbyte* TextToLower(sbyte* text);
+
+    /// <summary>
+    /// Get Pascal case notation version of provided string
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial sbyte* TextToPascal(sbyte* text);
+
+    /// <summary>
+    /// Get Snake case notation version of provided string
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial sbyte* TextToSnake(sbyte* text);
+
+    /// <summary>
+    /// Get Camel case notation version of provided string
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial sbyte* TextToCamel(sbyte* text);
+
+    /// <summary>
+    /// Get integer value from text (negative values not supported)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial int TextToInteger(sbyte* text);
+
+    /// <summary>
+    /// Get float value from text (negative values not supported)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial float TextToFloat(sbyte* text);
 }
