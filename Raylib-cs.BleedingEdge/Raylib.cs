@@ -1453,51 +1453,105 @@ public static unsafe partial class Raylib
     [LibraryImport(LibName)]
     public static partial void UpdateCameraPro(Camera3D* camera, Vector3 movement, Vector3 rotation, float zoom);
 
+    /// <summary>
+    /// Returns the cameras forward vector (normalized)
+    /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Vector3 GetCameraForward(Camera3D* camera);
 
+    /// <summary>
+    /// Returns the cameras up vector (normalized)
+    /// </summary>
+    /// <remarks>
+    /// Note: The up vector might not be perpendicular to the forward vector
+    /// </remarks>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Vector3 GetCameraUp(Camera3D* camera);
 
+    /// <summary>
+    /// Returns the cameras right vector (normalized)
+    /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Vector3 GetCameraRight(Camera3D* camera);
 
+    /// <summary>
+    /// Moves the camera in its forward direction
+    /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void CameraMoveForward(Camera3D* camera, float distance, NativeBool moveInWorldPlane);
 
+    /// <summary>
+    /// Moves the camera in its up direction
+    /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void CameraMoveUp(Camera3D* camera, float distance);
 
+    /// <summary>
+    /// Moves the camera target in its current right direction
+    /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void CameraMoveRight(Camera3D* camera, float distance, NativeBool moveInWorldPlane);
 
+    /// <summary>
+    /// Moves the camera position closer/farther to/from the camera target
+    /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void CameraMoveToTarget(Camera3D* camera, float delta);
 
+    /// <summary>
+    /// Rotates the camera around its up vector <br/>
+    /// Yaw is "looking left and right" <br/>
+    /// If rotateAroundTarget is false, the camera rotates around its position
+    /// </summary>
+    /// <remarks>
+    /// Note: angle must be provided in radians
+    /// </remarks>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void CameraYaw(Camera3D* camera, float angle, NativeBool rotateAroundTarget);
 
+    /// <summary>
+    /// Rotates the camera around its right vector, pitch is "looking up and down" <br/>
+    ///  - lockView prevents camera overrotation (aka "somersaults") <br/>
+    ///  - rotateAroundTarget defines if rotation is around target or around its position <br/>
+    ///  - rotateUp rotates the up direction as well (typically only usefull in CAMERA_FREE)
+    /// </summary>
+    /// <remarks>
+    /// NOTE: angle must be provided in radians
+    /// </remarks>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void CameraPitch(
         Camera3D* camera, float angle, NativeBool lockView, NativeBool rotateAroundTarget, NativeBool rotateUp);
 
+    /// <summary>
+    /// Rotates the camera around its forward vector <br/>
+    /// Roll is "turning your head sideways to the left or right"
+    /// </summary>
+    /// <remarks>
+    /// Note: angle must be provided in radians
+    /// </remarks>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void CameraRoll(Camera3D* camera, float angle);
 
+    /// <summary>
+    /// Returns the camera view matrix
+    /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Matrix4x4 GetCameraViewMatrix(Camera3D* camera);
 
+    /// <summary>
+    /// Returns the camera projection matrix
+    /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Matrix4x4 GetCameraProjectionMatrix(Camera3D* camera, float aspect);
