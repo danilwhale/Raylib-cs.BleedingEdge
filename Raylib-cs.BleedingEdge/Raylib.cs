@@ -3466,4 +3466,81 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool ExportMeshAsCode(Mesh mesh, sbyte* fileName);
+
+    /// <summary>
+    /// Generate polygonal mesh
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Mesh GenMeshPoly(int sides, float radius);
+
+    /// <summary>
+    /// Generate plane mesh (with subdivisions)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Mesh GenMeshPlane(float width, float length, int resX, int resZ);
+
+    /// <summary>
+    /// Generate cuboid mesh
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Mesh GenMeshCube(float width, float height, float length);
+
+    /// <summary>
+    /// Generate sphere mesh (standard sphere)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Mesh GenMeshSphere(float radius, int rings, int slices);
+
+    /// <summary>
+    /// Generate half-sphere mesh (no bottom cap)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Mesh GenMeshHemiSphere(float radius, int rings, int slices);
+
+    /// <summary>
+    /// Generate cylinder mesh
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Mesh GenMeshCylinder(float radius, float height, int slices);
+
+    /// <summary>
+    /// Generate cone/pyramid mesh
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Mesh GenMeshCone(float radius, float height, int slices);
+
+    /// <summary>
+    /// Generate torus mesh
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Mesh GenMeshTorus(float radius, float size, int radSeg, int sides);
+
+    /// <summary>
+    /// Generate trefoil knot mesh
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Mesh GenMeshKnot(float radius, float size, int radSeg, int sides);
+
+    /// <summary>
+    /// Generate heightmap mesh from image data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Mesh GenMeshHeightmap(Image heightmap, Vector3 size);
+
+    /// <summary>
+    /// Generate cubes-based map mesh from image data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize);
 }
