@@ -3620,4 +3620,60 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsModelAnimationValid(Model model, ModelAnimation anim);
+
+    /// <summary>
+    /// Check collision between two spheres
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool CheckCollisionSpheres(Vector3 center1, float radius1, Vector3 center2, float radius2);
+
+    /// <summary>
+    /// Check collision between two bounding boxes
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool CheckCollisionBoxes(BoundingBox box1, BoundingBox box2);
+
+    /// <summary>
+    /// Check collision between box and sphere
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool CheckCollisionBoxSphere(BoundingBox box, Vector3 center, float radius);
+
+    /// <summary>
+    /// Get collision info between ray and sphere
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial RayCollision GetRayCollisionSphere(Ray ray, Vector3 center, float radius);
+
+    /// <summary>
+    /// Get collision info between ray and box
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial RayCollision GetRayCollisionBox(Ray ray, BoundingBox box);
+
+    /// <summary>
+    /// Get collision info between ray and mesh
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial RayCollision GetRayCollisionMesh(Ray ray, Mesh mesh, Matrix4x4 transform);
+
+    /// <summary>
+    /// Get collision info between ray and triangle
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial RayCollision GetRayCollisionTriangle(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3);
+
+    /// <summary>
+    /// Get collision info between ray and quad
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial RayCollision GetRayCollisionQuad(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3, Vector3 p4);
 }
