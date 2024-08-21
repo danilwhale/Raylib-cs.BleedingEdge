@@ -40,6 +40,21 @@ public struct Color(byte r, byte g, byte b, byte a = 255) : IEquatable<Color>
     /// Orange
     /// </summary>
     public static readonly Color Orange = new(255, 161, 0);
+
+        /// <summary>
+    /// Pink
+    /// </summary>
+    public static readonly Color Pink = new(255, 109, 194);
+    
+    /// <summary>
+    /// Red
+    /// </summary>
+    public static readonly Color Red = new(230, 41, 55);
+    
+    /// <summary>
+    /// Maroon
+    /// </summary>
+    public static readonly Color Maroon = new(190, 33, 55);
     
     /// <summary>
     /// Green
