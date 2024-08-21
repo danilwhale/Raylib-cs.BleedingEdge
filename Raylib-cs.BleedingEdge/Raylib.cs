@@ -3711,4 +3711,95 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial float GetMasterVolume();
+
+    /// <summary>
+    /// Load wave data from file
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Wave LoadWave(sbyte* fileName);
+
+    /// <summary>
+    /// Load wave from memory buffer, fileType refers to extension: i.e. '.wav'
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Wave LoadWaveFromMemory(sbyte* fileType, byte* fileData, int dataSize);
+
+    /// <summary>
+    /// Checks if wave data is ready
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsWaveReady(Wave wave);
+
+    /// <summary>
+    /// Load sound from file
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Sound LoadSound(sbyte* fileName);
+
+    /// <summary>
+    /// Load sound from wave data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Sound LoadSoundFromWave(Wave wave);
+
+    /// <summary>
+    /// Create a new sound that shares the same sample data as the source sound, does not own the sound data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Sound LoadSoundAlias(Sound source);
+
+    /// <summary>
+    /// Checks if a sound is ready
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool IsSoundReady(Sound sound);
+
+    /// <summary>
+    /// Update sound buffer with new data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UpdateSound(Sound sound, void* data, int sampleCount);
+
+    /// <summary>
+    /// Unload wave data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadWave(Wave wave);
+
+    /// <summary>
+    /// Unload sound
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadSound(Sound sound);
+
+    /// <summary>
+    /// Unload a sound alias (does not deallocate sample data)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UnloadSoundAlias(Sound alias);
+
+    /// <summary>
+    /// Export wave data to file, returns true on success
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool ExportWave(Wave wave, sbyte* fileName);
+
+    /// <summary>
+    /// Export wave sample data to code (.h), returns true on success
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool ExportWaveAsCode(Wave wave, sbyte* fileName);
 }
