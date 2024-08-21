@@ -2901,4 +2901,46 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool ExportFontAsCode(Font font, sbyte* fileName);
+
+    /// <summary>
+    /// Draw current FPS
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawFPS(int posX, int posY);
+
+    /// <summary>
+    /// Draw text (using default font)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawText(sbyte* text, int posX, int posY, int fontSize, Color color);
+
+    /// <summary>
+    /// Draw text using font and additional parameters
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawTextEx(Font font, sbyte* text, Vector2 position, float fontSize, float spacing, Color tint);
+
+    /// <summary>
+    /// Draw text using Font and pro parameters (rotation)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawTextPro(Font font, sbyte* text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint);
+
+    /// <summary>
+    /// Draw one character (codepoint)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawTextCodepoint(Font font, int codepoint, Vector2 position, float fontSize, Color tint);
+
+    /// <summary>
+    /// Draw multiple character (codepoint)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawTextCodepoints(Font font, int* codepoints, int codepointCount, Vector2 position, float fontSize, float spacing, Color tint);
 }
