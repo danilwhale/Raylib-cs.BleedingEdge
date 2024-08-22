@@ -3058,6 +3058,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Check if two text string are equal
     /// </summary>
+    [Obsolete("Use string.Equals(string) instead.")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool TextIsEqual(sbyte* text1, sbyte* text2);
@@ -3065,6 +3066,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Get text length, checks for '\0' ending
     /// </summary>
+    [Obsolete("Use string.Length instead.")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial uint TextLength(sbyte* text);
@@ -3078,6 +3080,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Get a piece of a text string
     /// </summary>
+    [Obsolete("Use string.Substring(int, int) instead.")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial sbyte* TextSubtext(sbyte* text, int position, int length);
@@ -3085,6 +3088,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Replace text string (WARNING: memory must be freed!)
     /// </summary>
+    [Obsolete("Use string.Replace(string, string?) instead.")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial sbyte* TextReplace(sbyte* text, sbyte* replace, sbyte* by);
@@ -3092,6 +3096,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Insert text in a position (WARNING: memory must be freed!)
     /// </summary>
+    [Obsolete("Use string.Insert(int, string)")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial sbyte* TextInsert(sbyte* text, sbyte* insert, int position);
@@ -3099,6 +3104,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Join text strings with delimiter
     /// </summary>
+    [Obsolete("Use string.Join(string, string[]) instead.")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial sbyte* TextJoin(sbyte** textList, int count, sbyte* delimiter);
@@ -3106,6 +3112,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Split text into multiple strings
     /// </summary>
+    [Obsolete("Use string.Split(string) instead.")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial sbyte** TextSplit(sbyte* text, sbyte delimeter, int* count);
@@ -3113,6 +3120,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Append text at specific position and move cursor!
     /// </summary>
+    [Obsolete("Use string.Concat(string) instead.")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void TextAppend(sbyte* text, sbyte* append, int* position);
@@ -3120,6 +3128,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Find first text occurrence within a string
     /// </summary>
+    [Obsolete("Use string.IndexOf(string) instead.")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial int TextFindIndex(sbyte* text, sbyte* find);
@@ -3127,6 +3136,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Get upper case version of provided string
     /// </summary>
+    [Obsolete("Use string.ToUpper() instead.")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial sbyte* TextToUpper(sbyte* text);
@@ -3134,6 +3144,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Get lower case version of provided string
     /// </summary>
+    [Obsolete("Use string.ToLower() instead.")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial sbyte* TextToLower(sbyte* text);
@@ -3162,6 +3173,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Get integer value from text (negative values not supported)
     /// </summary>
+    [Obsolete("Use int.TryParse(string, out int) or int.Parse(string) instead.")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial int TextToInteger(sbyte* text);
@@ -3169,6 +3181,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Get float value from text (negative values not supported)
     /// </summary>
+    [Obsolete("Use float.TryParse(string, out float) or float.TryParse(string) instead.")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial float TextToFloat(sbyte* text);
