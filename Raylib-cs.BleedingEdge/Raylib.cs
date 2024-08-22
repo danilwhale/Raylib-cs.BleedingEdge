@@ -2843,7 +2843,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Font LoadFontEx(sbyte* fiileName, int fontSize, int* codepoints, int codepointCount);
+    public static partial Font LoadFontEx(sbyte* fileName, int fontSize, int* codepoints, int codepointCount);
 
     /// <summary>
     /// Load font from Image (XNA style)
