@@ -1,89 +1,88 @@
 ﻿using System.Numerics;
-using System.Runtime.InteropServices;
 using Raylib_cs.BleedingEdge.Enums;
-using Raylib_cs.BleedingEdge.Interop;
 using Raylib_cs.BleedingEdge.Types;
 using static Raylib_cs.BleedingEdge.Raylib;
 
-// example with camera spinning around the cube!!!
-// soon cube will be rotated (when I implement rlgl) instead of the camera
-
-unsafe
+// bunnymark
+internal struct Bunny
 {
-    SetTraceLogCallback((level, text, args1) =>
-    {
-        Console.ForegroundColor = level switch
-        {
-            TraceLogLevel.Trace => ConsoleColor.DarkGray,
-            TraceLogLevel.Debug => ConsoleColor.DarkYellow,
-            TraceLogLevel.Info => ConsoleColor.Blue,
-            TraceLogLevel.Warning => ConsoleColor.Yellow,
-            TraceLogLevel.Error => ConsoleColor.Red,
-            TraceLogLevel.Fatal => ConsoleColor.DarkRed,
-            _ => ConsoleColor.Green
-        };
-        Console.WriteLine("[{0}] {1}", level.ToString(), NativeStringFormatter.Format((nint)text, args1));
-        Console.ResetColor();
-    });
-    
-    SetLoadFileDataCallback((name, size) =>
-    {
-        var strName = Marshal.PtrToStringUTF8((nint)name) ?? throw new Exception("failed to marshal file name");
-        
-        var bytes = File.ReadAllBytes(strName);
-        *size = bytes.Length;
-
-        var textHandle = Marshal.StringToCoTaskMemUTF8($"loaded {strName} using custom callback!");
-        TraceLog(TraceLogLevel.Info, (sbyte*)textHandle);
-        Marshal.FreeCoTaskMem(textHandle);
-        
-        var mem = (byte*)MemAlloc((uint)bytes.Length);
-
-        fixed (byte* pBytes = bytes)
-        {
-            Buffer.MemoryCopy(pBytes, mem, *size, *size);
-        }
-
-        return mem;
-    });
-    
-    fixed (byte* pTitle = "hello window"u8)
-    {
-        InitWindow(800, 540, (sbyte*)pTitle);
-    }
-
-    var camera = new Camera3D(Vector3.One, Vector3.Zero, 70.0f, CameraProjection.Perspective);
-    var mesh = GenMeshCube(1.0f, 1.0f, 1.0f);
-    var material = LoadMaterialDefault();
-
-    fixed (byte* pFileName = "warning.png"u8)
-    {
-        SetMaterialTexture(&material, MaterialMapIndex.Albedo, LoadTexture((sbyte*)pFileName));
-    }
-    
-    while (!WindowShouldClose())
-    {
-        // no rlgl yet, spin camera around the cube, instead of the cube itself
-        CameraYaw(&camera, GetFrameTime(), true);
-        CameraPitch(&camera, GetFrameTime() * 0.8f, false, true, true);
-        CameraRoll(&camera, GetFrameTime() * 0.5f);
-        
-        BeginDrawing();
-        ClearBackground(Color.SkyBlue);
-        
-        DrawFPS(0, 0);
-        
-        BeginMode3D(camera);
-        
-        DrawMesh(mesh, material, Matrix4x4.Transpose(Matrix4x4.Identity));
-        
-        EndMode3D();
-        
-        EndDrawing();
-    }
-    
-    UnloadMaterial(material);
-    UnloadMesh(mesh);
-    
-    CloseWindow();
+    public Vector2 Position;
+    public Vector2 Speed;
+    public Color Color;
 }
+
+internal class Program
+{
+    private const int MaxBunnies = 50_000;
+    private const int MaxBatchElements = 8_192;
+
+    private const int ScreenWidth = 800;
+    private const int ScreenHeight = 540;
+    
+    public static void Main()
+    {
+        InitWindow(ScreenWidth, ScreenHeight, "bunnymark");
+        
+        var texBunny = LoadTexture("wabbit_alpha.png");
+
+        Span<Bunny> bunnies = stackalloc Bunny[MaxBunnies];
+        var bunniesCount = 0;
+
+        while (!WindowShouldClose())
+        {
+            if (IsMouseButtonDown(MouseButton.Left))
+            {
+                for (var i = 0; i < 100; i++)
+                {
+                    if (bunniesCount < MaxBunnies)
+                    {
+                        bunnies[bunniesCount].Position = GetMousePosition();
+                        bunnies[bunniesCount].Speed.X = GetRandomValue(-250, 250) / 60.0f;
+                        bunnies[bunniesCount].Speed.Y = GetRandomValue(-250, 250) / 60.0f;
+                        bunnies[bunniesCount].Color = new Color((byte)GetRandomValue(50, 240), (byte)GetRandomValue(80, 240), (byte)GetRandomValue(100, 240));
+                        bunniesCount++;
+                    }
+                }
+            }
+
+            for (var i = 0; i < bunniesCount; i++)
+            {
+                bunnies[i].Position.X += bunnies[i].Speed.X;
+                bunnies[i].Position.Y += bunnies[i].Speed.Y;
+
+                if (bunnies[i].Position.X + texBunny.Width / 2.0f > GetScreenWidth() ||
+                    bunnies[i].Position.X + texBunny.Width / 2.0f < 0.0f)
+                {
+                    bunnies[i].Speed.X *= -1;
+                }
+                
+                if (bunnies[i].Position.Y + texBunny.Height / 2.0f > GetScreenHeight() ||
+                    bunnies[i].Position.Y + texBunny.Height / 2.0f - 40.0f < 0.0f)
+                {
+                    bunnies[i].Speed.Y *= -1;
+                }
+            }
+            
+            BeginDrawing();
+            ClearBackground(Color.RayWhite);
+
+            for (var i = 0; i < bunniesCount; i++)
+            {
+                DrawTexture(texBunny, (int)bunnies[i].Position.X, (int)bunnies[i].Position.Y, bunnies[i].Color);
+            }
+            
+            DrawRectangle(0, 0, ScreenWidth, 40, Color.Black);
+            DrawText($"bunnies: {bunniesCount}", 120, 10, 20, Color.Green);
+            DrawText($"batched draw calls: {1 + bunniesCount / MaxBatchElements}", 320, 10, 20, Color.Maroon);
+            
+            DrawFPS(10, 10);
+            
+            EndDrawing();
+        }
+        
+        UnloadTexture(texBunny);
+        
+        CloseWindow();
+    }
+}
+

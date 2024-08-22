@@ -6,7 +6,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="warning.png">
+    <None Remove="wabbit_alpha.png" />
+    <Content Include="wabbit_alpha.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
