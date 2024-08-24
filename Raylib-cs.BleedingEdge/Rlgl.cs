@@ -388,4 +388,74 @@ public static unsafe partial class Rlgl
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName, EntryPoint = "rlGetCullDistanceFar")]
     public static partial double GetCullDistanceFar();
+    
+    /// <summary>
+    /// Initialize drawing mode (how to organize vertex)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlBegin")]
+    public static partial void Begin(DrawMode mode);
+
+    /// <summary>
+    /// Finish vertex providing
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlEnd")]
+    public static partial void End();
+
+    /// <summary>
+    /// Define one vertex (position) - 2 int
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlVertex2i")]
+    public static partial void Vertex2i(int x, int y);
+
+    /// <summary>
+    /// Define one vertex (position) - 2 float
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlVertex2f")]
+    public static partial void Vertex2f(float x, float y);
+
+    /// <summary>
+    /// Define one vertex (position) - 3 float
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlVertex3f")]
+    public static partial void Vertex3f(float x, float y, float z);
+
+    /// <summary>
+    /// Define one vertex (texture coordinate) - 2 float
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlTexCoord2f")]
+    public static partial void TexCoord2f(float x, float y);
+
+    /// <summary>
+    /// Define one vertex (normal) - 3 float
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlNormal3f")]
+    public static partial void Normal3f(float x, float y, float z);
+
+    /// <summary>
+    /// Define one vertex (color) - 4 byte
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlColor4ub")]
+    public static partial void Color4ub(byte r, byte g, byte b, byte a);
+
+    /// <summary>
+    /// Define one vertex (color) - 3 float
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlColor3f")]
+    public static partial void Color3f(float x, float y, float z);
+
+    /// <summary>
+    /// Define one vertex (color) - 4 float
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlColor4f")]
+    public static partial void Color4f(float x, float y, float z, float w);
 }
