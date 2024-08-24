@@ -1,6 +1,6 @@
 namespace Raylib_cs.BleedingEdge.Enums;
 
-public enum ShaderType : uint
+public enum ShaderType
 {
     /// <summary>
     /// GL_FRAGMENT_SHADER

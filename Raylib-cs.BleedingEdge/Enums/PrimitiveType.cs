@@ -1,6 +1,6 @@
 namespace Raylib_cs.BleedingEdge.Enums;
 
-public enum DrawMode : uint
+public enum DrawMode
 {
     /// <summary>
     /// GL_LINES

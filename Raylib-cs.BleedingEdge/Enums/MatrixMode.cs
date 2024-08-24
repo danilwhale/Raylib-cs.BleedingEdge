@@ -1,6 +1,6 @@
 namespace Raylib_cs.BleedingEdge.Enums;
 
-public enum MatrixMode : uint
+public enum MatrixMode
 {
     /// <summary>
     /// GL_MODELVIEW
