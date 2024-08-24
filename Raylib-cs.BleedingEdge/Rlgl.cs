@@ -978,14 +978,14 @@ public static unsafe partial class Rlgl
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName, EntryPoint = "rlLoadVertexBuffer")]
-    public static partial uint LoadVertexBuffer(void* buffer, int size, NativeBool dynamic);
+    public static partial uint LoadVertexBuffer(void* buffer, int size, NativeBool @dynamic);
 
     /// <summary>
     /// Load vertex buffer elements object
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName, EntryPoint = "rlLoadVertexBufferElement")]
-    public static partial uint LoadVertexBufferElement(void* buffer, int size, NativeBool dynamic);
+    public static partial uint LoadVertexBufferElement(void* buffer, int size, NativeBool @dynamic);
 
     /// <summary>
     /// Update vertex buffer object data on GPU buffer
@@ -1034,7 +1034,7 @@ public static unsafe partial class Rlgl
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName, EntryPoint = "rlSetVertexAttributeDefault")]
-    public static partial void SetVertexAttributeDefault(int locIndex, void* value, int attribType, int count);
+    public static partial void SetVertexAttributeDefault(int locIndex, void* value, ShaderAttributeDataType attribType, int count);
 
     /// <summary>
     /// Draw vertex array (currently active vao)
@@ -1083,7 +1083,7 @@ public static unsafe partial class Rlgl
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName, EntryPoint = "rlLoadTextureCubemap")]
-    public static partial uint LoadTextureCubemap(void* data, int size, int format);
+    public static partial uint LoadTextureCubemap(void* data, int size, PixelFormat format);
 
     /// <summary>
     /// Update texture with new data on GPU
