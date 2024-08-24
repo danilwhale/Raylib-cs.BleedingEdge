@@ -1,8 +1,10 @@
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
 using Raylib_cs.BleedingEdge.Enums;
 using Raylib_cs.BleedingEdge.Interop;
+using Raylib_cs.BleedingEdge.Types;
 
 namespace Raylib_cs.BleedingEdge;
 
@@ -837,4 +839,543 @@ public static unsafe partial class Rlgl
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName, EntryPoint = "rlSetBlendFactorsSeparate")]
     public static partial void SetBlendFactorsSeparate(int glSrcRGB, int glDstRGB, int glSrcAlpha, int glDstAlpha, int glEqRGB, int glEqAlpha);
+
+    /// <summary>
+    /// Initialize rlgl (buffers, shaders, textures, states)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlInit")]
+    public static partial void Init(int width, int height);
+
+    /// <summary>
+    /// De-initialize rlgl (buffers, shaders, textures)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlClose")]
+    public static partial void Close();
+
+    /// <summary>
+    /// Load OpenGL extensions (loader function required)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlLoadExtensions")]
+    public static partial void LoadExtensions(void* loader);
+
+    /// <summary>
+    /// Get current OpenGL version
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlGetVersion")]
+    public static partial GlVersion GetVersion();
+
+    /// <summary>
+    /// Set current framebuffer width
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlSetFramebufferWidth")]
+    public static partial void SetFramebufferWidth(int width);
+
+    /// <summary>
+    /// Get default framebuffer width
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlGetFramebufferWidth")]
+    public static partial int GetFramebufferWidth();
+
+    /// <summary>
+    /// Set current framebuffer height
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlSetFramebufferHeight")]
+    public static partial void SetFramebufferHeight(int height);
+
+    /// <summary>
+    /// Get default framebuffer height
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlGetFramebufferHeight")]
+    public static partial int GetFramebufferHeight();
+
+    /// <summary>
+    /// Get default texture id
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlGetTextureIdDefault")]
+    public static partial uint GetTextureIdDefault();
+
+    /// <summary>
+    /// Get default shader id
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlGetShaderIdDefault")]
+    public static partial uint GetShaderIdDefault();
+
+    /// <summary>
+    /// Get default shader locations
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlGetShaderLocsDefault")]
+    public static partial int* GetShaderLocsDefault();
+
+    /// <summary>
+    /// Load a render batch system
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlLoadRenderBatch")]
+    public static partial RenderBatch LoadRenderBatch(int numBuffers, int bufferElements);
+
+    /// <summary>
+    /// Unload render batch system
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlUnloadRenderBatch")]
+    public static partial void UnloadRenderBatch(RenderBatch batch);
+
+    /// <summary>
+    /// Draw render batch data (Update->Draw->Reset)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlDrawRenderBatch")]
+    public static partial void DrawRenderBatch(RenderBatch* batch);
+
+    /// <summary>
+    /// Set the active render batch for rlgl (NULL for default internal)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlSetRenderBatchActive")]
+    public static partial void SetRenderBatchActive(RenderBatch* batch);
+
+    /// <summary>
+    /// Update and draw internal render batch
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlDrawRenderBatchActive")]
+    public static partial void DrawRenderBatchActive();
+
+    /// <summary>
+    /// Check internal buffer overflow for a given number of vertex
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlCheckRenderBatchLimit")]
+    public static partial NativeBool CheckRenderBatchLimit(int vCount);
+
+    /// <summary>
+    /// Set current texture for render batch and check buffers limits
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlSetTexture")]
+    public static partial void SetTexture(uint id);
+
+    /// <summary>
+    /// Load vertex array (vao) if supported
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlLoadVertexArray")]
+    public static partial uint LoadVertexArray();
+
+    /// <summary>
+    /// Load a vertex buffer object
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlLoadVertexBuffer")]
+    public static partial uint LoadVertexBuffer(void* buffer, int size, NativeBool dynamic);
+
+    /// <summary>
+    /// Load vertex buffer elements object
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlLoadVertexBufferElement")]
+    public static partial uint LoadVertexBufferElement(void* buffer, int size, NativeBool dynamic);
+
+    /// <summary>
+    /// Update vertex buffer object data on GPU buffer
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlUpdateVertexBuffer")]
+    public static partial void UpdateVertexBuffer(uint bufferId, void* data, int dataSize, int offset);
+
+    /// <summary>
+    /// Update vertex buffer elements data on GPU buffer
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlUpdateVertexBufferElements")]
+    public static partial void UpdateVertexBufferElements(uint id, void* data, int dataSize, int offset);
+
+    /// <summary>
+    /// Unload vertex array (vao)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlUnloadVertexArray")]
+    public static partial void UnloadVertexArray(uint vaoId);
+
+    /// <summary>
+    /// Unload vertex buffer object
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlUnloadVertexBuffer")]
+    public static partial void UnloadVertexBuffer(uint vboId);
+
+    /// <summary>
+    /// Set vertex attribute data configuration
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlSetVertexAttribute")]
+    public static partial void SetVertexAttribute(uint index, int compSize, int type, NativeBool normalized, int stride, int offset);
+
+    /// <summary>
+    /// Set vertex attribute data divisor
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlSetVertexAttributeDivisor")]
+    public static partial void SetVertexAttributeDivisor(uint index, int divisor);
+
+    /// <summary>
+    /// Set vertex attribute default value, when attribute to provided
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlSetVertexAttributeDefault")]
+    public static partial void SetVertexAttributeDefault(int locIndex, void* value, int attribType, int count);
+
+    /// <summary>
+    /// Draw vertex array (currently active vao)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlDrawVertexArray")]
+    public static partial void DrawVertexArray(int offset, int count);
+
+    /// <summary>
+    /// Draw vertex array elements
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlDrawVertexArrayElements")]
+    public static partial void DrawVertexArrayElements(int offset, int count, void* buffer);
+
+    /// <summary>
+    /// Draw vertex array (currently active vao) with instancing
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlDrawVertexArrayInstanced")]
+    public static partial void DrawVertexArrayInstanced(int offset, int count, int instances);
+
+    /// <summary>
+    /// Draw vertex array elements with instancing
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlDrawVertexArrayElementsInstanced")]
+    public static partial void DrawVertexArrayElementsInstanced(int offset, int count, void* buffer, int instances);
+
+    /// <summary>
+    /// Load texture data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlLoadTexture")]
+    public static partial uint LoadTexture(void* data, int width, int height, PixelFormat format, int mipmapCount);
+
+    /// <summary>
+    /// Load depth texture/renderbuffer (to be attached to fbo)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlLoadTextureDepth")]
+    public static partial uint LoadTextureDepth(int width, int height, NativeBool useRenderBuffer);
+
+    /// <summary>
+    /// Load texture cubemap data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlLoadTextureCubemap")]
+    public static partial uint LoadTextureCubemap(void* data, int size, int format);
+
+    /// <summary>
+    /// Update texture with new data on GPU
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlUpdateTexture")]
+    public static partial void UpdateTexture(uint id, int offsetX, int offsetY, int width, int height, PixelFormat format, void* data);
+
+    /// <summary>
+    /// Get OpenGL internal formats
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlGetGlTextureFormats")]
+    public static partial void GetGlTextureFormats(PixelFormat format, uint* glInternalFormat, uint* glFormat, uint* glType);
+
+    /// <summary>
+    /// Get name string for pixel format
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlGetPixelFormatName")]
+    public static partial sbyte* GetPixelFormatName(PixelFormat format);
+
+    /// <summary>
+    /// Unload texture from GPU memory
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlUnloadTexture")]
+    public static partial void UnloadTexture(uint id);
+
+    /// <summary>
+    /// Generate mipmap data for selected texture
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlGenTextureMipmaps")]
+    public static partial void GenTextureMipmaps(uint id, int width, int height, PixelFormat format, int* mipmaps);
+
+    /// <summary>
+    /// Read texture pixel data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlReadTexturePixels")]
+    public static partial void* ReadTexturePixels(uint id, int width, int height, PixelFormat format);
+
+    /// <summary>
+    /// Read screen pixel data (color buffer)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlReadScreenPixels")]
+    public static partial byte* ReadScreenPixels(int width, int height);
+
+    /// <summary>
+    /// Load an empty framebuffer
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlLoadFramebuffer")]
+    public static partial uint LoadFramebuffer();
+
+    /// <summary>
+    /// Attach texture/renderbuffer to a framebuffer
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlFramebufferAttach")]
+    public static partial void FramebufferAttach(uint fboId, uint texId, FramebufferAttachType attachType, FramebufferAttachTextureType texType, int mipLevel);
+
+    /// <summary>
+    /// Verify framebuffer is complete
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlFramebufferComplete")]
+    public static partial void FramebufferComplete(uint id);
+
+    /// <summary>
+    /// Delete framebuffer from GPU
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlUnloadFramebuffer")]
+    public static partial void UnloadFramebuffer(uint id);
+
+    /// <summary>
+    /// Load shader from code strings
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlLoadShaderCode")]
+    public static partial uint LoadShaderCode(sbyte* vsCode, sbyte* fsCode);
+
+    /// <summary>
+    /// Compile custom shader and return shader id (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlCompileShader")]
+    public static partial uint CompileShader(sbyte* shaderCode, ShaderType type);
+
+    /// <summary>
+    /// Load custom shader program
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlLoadShaderProgram")]
+    public static partial uint LoadShaderProgram(uint vShaderId, uint fShaderId);
+
+    /// <summary>
+    /// Unload shader program
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlUnloadShaderProgram")]
+    public static partial void UnloadShaderProgram(uint id);
+
+    /// <summary>
+    /// Get shader location uniform
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlGetLocationUniform")]
+    public static partial int GetLocationUniform(uint shaderId, sbyte* uniformName);
+
+    /// <summary>
+    /// Get shader location attribute
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlGetLocationAttrib")]
+    public static partial int GetLocationAttrib(uint shaderId, sbyte* attribName);
+
+    /// <summary>
+    /// Set shader value uniform
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlSetUniform")]
+    public static partial void SetUniform(int locIndex, void* value, ShaderUniformDataType uniformType, int count);
+
+    /// <summary>
+    /// Set shader value matrix
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlSetUniformMatrix")]
+    public static partial void SetUniformMatrix(int locIndex, Matrix4x4 mat);
+
+    /// <summary>
+    /// Set shader value sampler
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlSetUniformSampler")]
+    public static partial void SetUniformSampler(int locIndex, uint textureId);
+
+    /// <summary>
+    /// Set shader currently active (id and locations)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlSetShader")]
+    public static partial void SetShader(uint id, int* locs);
+
+    /// <summary>
+    /// Load compute shader program
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlLoadComputeShaderProgram")]
+    public static partial uint LoadComputeShaderProgram(uint shaderId);
+
+    /// <summary>
+    /// Dispatch compute shader (equivalent to *draw* for graphics pipeline)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlComputeShaderDispatch")]
+    public static partial void ComputeShaderDispatch(uint groupX, uint groupY, uint groupZ);
+
+    /// <summary>
+    /// Load shader storage buffer object (SSBO)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlLoadShaderBuffer")]
+    public static partial uint LoadShaderBuffer(uint size, void* data, int usageHint);
+
+    /// <summary>
+    /// Unload shader storage buffer object (SSBO)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlUnloadShaderBuffer")]
+    public static partial void UnloadShaderBuffer(uint ssboId);
+
+    /// <summary>
+    /// Update SSBO buffer data
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlUpdateShaderBuffer")]
+    public static partial void UpdateShaderBuffer(uint id, void* data, uint dataSize, uint offset);
+
+    /// <summary>
+    /// Bind SSBO buffer
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlBindShaderBuffer")]
+    public static partial void BindShaderBuffer(uint id, uint index);
+
+    /// <summary>
+    /// Read SSBO buffer data (GPU->CPU)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlReadShaderBuffer")]
+    public static partial void ReadShaderBuffer(uint id, void* dest, uint count, uint offset);
+
+    /// <summary>
+    /// Copy SSBO data between buffers
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlCopyShaderBuffer")]
+    public static partial void CopyShaderBuffer(uint destId, uint srcId, uint destOffset, uint srcOffset, uint count);
+
+    /// <summary>
+    /// Get SSBO buffer size
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlGetShaderBufferSize")]
+    public static partial uint GetShaderBufferSize(uint id);
+
+    /// <summary>
+    /// Bind image texture
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlBindImageTexture")]
+    public static partial void BindImageTexture(uint id, uint index, PixelFormat format, NativeBool @readonly);
+
+    /// <summary>
+    /// Get internal modelview matrix
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlGetMatrixModelview")]
+    public static partial Matrix4x4 GetMatrixModelview();
+
+    /// <summary>
+    /// Get internal projection matrix
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlGetMatrixProjection")]
+    public static partial Matrix4x4 GetMatrixProjection();
+
+    /// <summary>
+    /// Get internal accumulated transform matrix
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlGetMatrixTransform")]
+    public static partial Matrix4x4 GetMatrixTransform();
+
+    /// <summary>
+    /// Get internal projection matrix for stereo render (selected eye)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlGetMatrixProjectionStereo")]
+    public static partial Matrix4x4 GetMatrixProjectionStereo(int eye);
+
+    /// <summary>
+    /// Get internal view offset matrix for stereo render (selected eye)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlGetMatrixViewOffsetStereo")]
+    public static partial Matrix4x4 GetMatrixViewOffsetStereo(int eye);
+
+    /// <summary>
+    /// Set a custom projection matrix (replaces internal projection matrix)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlSetMatrixProjection")]
+    public static partial void SetMatrixProjection(Matrix4x4 proj);
+
+    /// <summary>
+    /// Set a custom modelview matrix (replaces internal modelview matrix)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlSetMatrixModelview")]
+    public static partial void SetMatrixModelview(Matrix4x4 view);
+
+    /// <summary>
+    /// Set eyes projection matrices for stereo rendering
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlSetMatrixProjectionStereo")]
+    public static partial void SetMatrixProjectionStereo(Matrix4x4 right, Matrix4x4 left);
+
+    /// <summary>
+    /// Set eyes view offsets matrices for stereo rendering
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlSetMatrixViewOffsetStereo")]
+    public static partial void SetMatrixViewOffsetStereo(Matrix4x4 right, Matrix4x4 left);
+
+    /// <summary>
+    /// Load and draw a cube
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlLoadDrawCube")]
+    public static partial void LoadDrawCube();
+
+    /// <summary>
+    /// Load and draw a quad
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlLoadDrawQuad")]
+    public static partial void LoadDrawQuad();
 }
