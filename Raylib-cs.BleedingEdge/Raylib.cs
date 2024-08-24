@@ -116,14 +116,14 @@ public static unsafe partial class Raylib
     public static partial void ClearWindowState(ConfigFlags flags);
 
     /// <summary>
-    /// Toggle window state: fullscreen/windowed (only PLATFORM_DESKTOP)
+    /// Toggle window state: fullscreen/windowed [resizes monitor to match window resolution] (only PLATFORM_DESKTOP)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void ToggleFullscreen();
 
     /// <summary>
-    /// Toggle window state: borderless windowed (only PLATFORM_DESKTOP)
+    /// Toggle window state: borderless windowed [resizes window to match monitor resolution] (only PLATFORM_DESKTOP)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
