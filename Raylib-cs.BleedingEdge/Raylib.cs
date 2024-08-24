@@ -3390,6 +3390,20 @@ public static unsafe partial class Raylib
     public static partial void DrawModelWiresEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
 
     /// <summary>
+    /// Draw a model as points
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawModelPoints(Model model, Vector3 position, float scale, Color tint);
+
+    /// <summary>
+    /// Draw a model as points with extended parameters
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void DrawModelPointsEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
+
+    /// <summary>
     /// Draw bounding box (wires)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
