@@ -98,7 +98,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="SetShaderValue(Raylib_cs.BleedingEdge.Types.Shader,int,Void*,Raylib_cs.BleedingEdge.Enums.ShaderUniformDataType)"/>
+    /// <summary>
+    /// Set shader uniform value
+    /// </summary>
     public static void SetShaderValue<T>(Shader shader, int locIndex, T value, ShaderUniformDataType uniformType)
         where T : unmanaged
     {
@@ -188,7 +190,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="SaveFileData(sbyte*,Void*,int)"/>
+    /// <summary>
+    /// Save data to file from byte array (write), returns true on success
+    /// </summary>
     public static NativeBool SaveFileData(string fileName, ReadOnlySpan<byte> data)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);

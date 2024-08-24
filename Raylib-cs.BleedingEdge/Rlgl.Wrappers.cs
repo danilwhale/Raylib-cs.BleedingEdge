@@ -116,7 +116,9 @@ public static unsafe partial class Rlgl
         }
     }
 
-    /// <inheritdoc cref="LoadTextureCubemap(void*,int,PixelFormat)"/>
+    /// <summary>
+    /// Load texture cubemap data
+    /// </summary>
     public static uint LoadTextureCubemap(int size, PixelFormat format)
     {
         return LoadTextureCubemap(null, size, format);
@@ -242,7 +244,9 @@ public static unsafe partial class Rlgl
         }
     }
 
-    /// <inheritdoc cref="LoadShaderBuffer(uint,void*,int)"/>
+    /// <summary>
+    /// Load shader storage buffer object (SSBO)
+    /// </summary>
     public static uint LoadShaderBuffer(uint size, int usageHint)
     {
         return LoadShaderBuffer(size, null, usageHint);
