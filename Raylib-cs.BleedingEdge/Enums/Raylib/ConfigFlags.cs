@@ -4,7 +4,7 @@ namespace Raylib_cs.BleedingEdge.Enums.Raylib;
 /// System/Window config flags
 /// </summary>
 /// <remarks>
-/// NOTE: Every bit registers one state (use it with bit masks) <br/>
+/// NOTE: Every bit registers one state (use it with bit masks) <br />
 /// By default all flags are set to 0
 /// </remarks>
 [Flags]
@@ -69,22 +69,22 @@ public enum ConfigFlags : uint
     /// Set to support HighDPI
     /// </summary>
     WindowHighDpi = 0x00002000,
-    
+
     /// <summary>
     /// Set to support mouse passthrough, only supported when ConfigFlags.WindowUndecorated
     /// </summary>
     WindowMousePassthrough = 0x00004000,
-    
+
     /// <summary>
     /// Set to run program in borderless windowed mode
     /// </summary>
     BorderlessWindowedMode = 0x00008000,
-    
+
     /// <summary>
     /// Set to try enabling MSAA 4X
     /// </summary>
     Msaa4XHint = 0x00000020,
-    
+
     /// <summary>
     /// Set to try enabling interlaced video format (for V3D)
     /// </summary>

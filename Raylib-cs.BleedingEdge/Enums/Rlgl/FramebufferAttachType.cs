@@ -19,7 +19,7 @@ public enum FramebufferAttachType
     /// Framebuffer attachment type: color 2
     /// </summary>
     ColorChannel2 = 2,
-    
+
     /// <summary>
     /// Framebuffer attachment type: color 3
     /// </summary>

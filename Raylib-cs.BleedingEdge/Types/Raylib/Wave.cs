@@ -12,7 +12,7 @@ public struct Wave
     /// Total number of frames (considering channels)
     /// </summary>
     public uint FrameCount;
-    
+
     /// <summary>
     /// Frequency (samples per second)
     /// </summary>

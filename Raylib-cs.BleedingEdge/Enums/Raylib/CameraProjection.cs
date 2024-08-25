@@ -9,7 +9,7 @@ public enum CameraProjection
     /// Perspective projection
     /// </summary>
     Perspective = 0,
-    
+
     /// <summary>
     /// Orthographic projection
     /// </summary>

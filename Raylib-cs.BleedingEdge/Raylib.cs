@@ -2,10 +2,8 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
-using Raylib_cs.BleedingEdge.Enums;
 using Raylib_cs.BleedingEdge.Enums.Raylib;
 using Raylib_cs.BleedingEdge.Interop;
-using Raylib_cs.BleedingEdge.Types;
 using Raylib_cs.BleedingEdge.Types.Raylib;
 
 [assembly: DisableRuntimeMarshalling]
@@ -1507,8 +1505,8 @@ public static unsafe partial class Raylib
     public static partial void CameraMoveToTarget(Camera3D* camera, float delta);
 
     /// <summary>
-    /// Rotates the camera around its up vector <br/>
-    /// Yaw is "looking left and right" <br/>
+    /// Rotates the camera around its up vector <br />
+    /// Yaw is "looking left and right" <br />
     /// If rotateAroundTarget is false, the camera rotates around its position
     /// </summary>
     /// <remarks>
@@ -1519,10 +1517,10 @@ public static unsafe partial class Raylib
     public static partial void CameraYaw(Camera3D* camera, float angle, NativeBool rotateAroundTarget);
 
     /// <summary>
-    /// Rotates the camera around its right vector, pitch is "looking up and down" <br/>
-    ///  - lockView prevents camera overrotation (aka "somersaults") <br/>
-    ///  - rotateAroundTarget defines if rotation is around target or around its position <br/>
-    ///  - rotateUp rotates the up direction as well (typically only usefull in CAMERA_FREE)
+    /// Rotates the camera around its right vector, pitch is "looking up and down" <br />
+    /// - lockView prevents camera overrotation (aka "somersaults") <br />
+    /// - rotateAroundTarget defines if rotation is around target or around its position <br />
+    /// - rotateUp rotates the up direction as well (typically only usefull in CAMERA_FREE)
     /// </summary>
     /// <remarks>
     /// NOTE: angle must be provided in radians
@@ -1533,7 +1531,7 @@ public static unsafe partial class Raylib
         Camera3D* camera, float angle, NativeBool lockView, NativeBool rotateAroundTarget, NativeBool rotateUp);
 
     /// <summary>
-    /// Rotates the camera around its forward vector <br/>
+    /// Rotates the camera around its forward vector <br />
     /// Roll is "turning your head sideways to the left or right"
     /// </summary>
     /// <remarks>
@@ -1566,7 +1564,8 @@ public static unsafe partial class Raylib
 
     /// <summary>
     /// Get texture that is used for shapes drawing
-    /// </summary>+
+    /// </summary>
+    /// +
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Texture GetShapesTexture();
@@ -1998,7 +1997,8 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2* collisionPoint);
+    public static partial NativeBool CheckCollisionLines(
+        Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2* collisionPoint);
 
     /// <summary>
     /// Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]
@@ -2286,7 +2286,7 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void ImageResizeNN(Image* image, int newWidth, int newHeight);
-    
+
     /// <summary>
     /// Resize canvas and fill with color
     /// </summary>
@@ -2712,7 +2712,8 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawTextureNPatch(Texture texture, NPatchInfo nPatchInfo, Rectangle dest, Vector2 origin, float rotation, Color tint);
+    public static partial void DrawTextureNPatch(
+        Texture texture, NPatchInfo nPatchInfo, Rectangle dest, Vector2 origin, float rotation, Color tint);
 
     /// <summary>
     /// Check if two colors are equal
@@ -2841,7 +2842,8 @@ public static unsafe partial class Raylib
     public static partial Font LoadFont(sbyte* fileName);
 
     /// <summary>
-    /// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default character set, font size is provided in pixels height
+    /// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default
+    /// character set, font size is provided in pixels height
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
@@ -2859,7 +2861,8 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Font LoadFontFromMemory(sbyte* fileType, byte* fileData, int dataSize, int fontSize, int* codepoints, int codepointCount);
+    public static partial Font LoadFontFromMemory(
+        sbyte* fileType, byte* fileData, int dataSize, int fontSize, int* codepoints, int codepointCount);
 
     /// <summary>
     /// Check if a font is ready
@@ -2880,7 +2883,8 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Image GenImageFontAtlas(GlyphInfo* glyphs, Rectangle** glyphRecs, int glyphCount, int fontSize, int padding, int packMethod);
+    public static partial Image GenImageFontAtlas(
+        GlyphInfo* glyphs, Rectangle** glyphRecs, int glyphCount, int fontSize, int padding, int packMethod);
 
     /// <summary>
     /// Unload font chars info data (RAM)
@@ -2929,7 +2933,8 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawTextPro(Font font, sbyte* text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint);
+    public static partial void DrawTextPro(
+        Font font, sbyte* text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint);
 
     /// <summary>
     /// Draw one character (codepoint)
@@ -2943,7 +2948,8 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawTextCodepoints(Font font, int* codepoints, int codepointCount, Vector2 position, float fontSize, float spacing, Color tint);
+    public static partial void DrawTextCodepoints(
+        Font font, int* codepoints, int codepointCount, Vector2 position, float fontSize, float spacing, Color tint);
 
     /// <summary>
     /// Set vertical line spacing when drawing with line-breaks
@@ -3074,7 +3080,10 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Text formatting with variables (sprintf() style)
     /// </summary>
-    public static sbyte* TextFormat(sbyte* text) => throw new Exception("Function not implemented.");
+    public static sbyte* TextFormat(sbyte* text)
+    {
+        throw new Exception("Function not implemented.");
+    }
 
     /// <summary>
     /// Get a piece of a text string
@@ -3315,35 +3324,30 @@ public static unsafe partial class Raylib
     public static partial void DrawGrid(int slices, float spacing);
 
     /// <summary>
-    /// 
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Model LoadModel(sbyte* fileName);
 
     /// <summary>
-    /// 
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Model LoadModelFromMesh(Mesh mesh);
 
     /// <summary>
-    /// 
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsModelReady(Model model);
 
     /// <summary>
-    /// 
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void UnloadModel(Model model);
 
     /// <summary>
-    /// 
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
@@ -3375,7 +3379,8 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawModelWiresEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
+    public static partial void DrawModelWiresEx(
+        Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
 
     /// <summary>
     /// Draw a model as points
@@ -3389,7 +3394,8 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawModelPointsEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
+    public static partial void DrawModelPointsEx(
+        Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
 
     /// <summary>
     /// Draw bounding box (wires)
@@ -3417,7 +3423,9 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawBillboardPro(Camera3D camera, Texture texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint);
+    public static partial void DrawBillboardPro(
+        Camera3D camera, Texture texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation,
+        Color tint);
 
     /// <summary>
     /// Upload mesh vertex data in GPU and provide VAO/VBO ids
@@ -3950,7 +3958,7 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsMusicStreamPlaying(Music music);
-    
+
     /// <summary>
     /// Updates buffers for music streaming
     /// </summary>

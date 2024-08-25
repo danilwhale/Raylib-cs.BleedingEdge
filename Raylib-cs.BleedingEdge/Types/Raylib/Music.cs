@@ -18,7 +18,7 @@ public struct Music
     /// Total number of frames (considering channels)
     /// </summary>
     public uint FrameCount;
-    
+
     /// <summary>
     /// Music looping enable
     /// </summary>

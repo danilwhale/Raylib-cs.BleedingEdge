@@ -27,7 +27,7 @@ public struct ModelAnimation
     /// Poses array by frame
     /// </summary>
     public unsafe Transform** FramePoses;
-    
+
     /// <summary>
     /// Animation name
     /// </summary>

@@ -8,7 +8,7 @@ namespace Raylib_cs.BleedingEdge.Types.Raylib;
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct RenderBatch
-{   
+{
     /// <summary>
     /// Number of vertex buffers (multi-buffering support)
     /// </summary>

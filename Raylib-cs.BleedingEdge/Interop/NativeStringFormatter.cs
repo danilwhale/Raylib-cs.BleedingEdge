@@ -4,41 +4,6 @@ namespace Raylib_cs.BleedingEdge.Interop;
 
 public static partial class NativeStringFormatter
 {
-    private static partial class Native
-    {
-        public static partial class Windows
-        {
-            [LibraryImport("msvcrt")]
-            public static partial int vsprintf(nint buffer, nint format, nint args);
-        
-            [LibraryImport("msvcrt")]
-            public static partial int vsnprintf(nint buffer, nuint size, nint format, nint args);
-        }
-
-        public static partial class Linux
-        {
-            [StructLayout(LayoutKind.Sequential, Pack = 4)]
-            public struct VaListLinuxX64
-            {
-                private uint _gpOffset;
-                private uint _fpOffset;
-                private nint _overflowArgArea;
-                private nint _regSaveArea;
-            }
-            
-            [LibraryImport("libc")]
-            public static partial int vsprintf(nint buffer, nint format, nint args);
-        
-            [LibraryImport("libc")]
-            public static partial int vsnprintf(nint buffer, nuint size, nint format, nint args);
-        }
-
-        public static partial class MacOS
-        {
-            [LibraryImport("libSystem")]
-            public static partial int vasprintf(ref nint buffer, nint format, nint args);
-        }
-    }
 
     public static string Format(nint format, nint args)
     {
@@ -57,9 +22,9 @@ public static partial class NativeStringFormatter
 
         var utf8Buffer = Marshal.AllocHGlobal(argsByteLength);
         VsPrintf(utf8Buffer, format, args);
-        
+
         var result = Marshal.PtrToStringUTF8(utf8Buffer);
-        
+
         Marshal.FreeHGlobal(utf8Buffer);
 
         return result ?? string.Empty;
@@ -84,17 +49,17 @@ public static partial class NativeStringFormatter
     private static string FormatLinuxX64(nint format, nint args)
     {
         var valistStruct = Marshal.PtrToStructure<Native.Linux.VaListLinuxX64>(args);
-        
+
         var valistPtr = Marshal.AllocHGlobal(Marshal.SizeOf(valistStruct));
         Marshal.StructureToPtr(valistStruct, valistPtr, false);
         var argsByteLength = Native.Linux.vsnprintf(nint.Zero, nuint.Zero, format, valistPtr) + 1;
-        
+
         Marshal.StructureToPtr(valistStruct, valistPtr, false);
         var utf8Buffer = Marshal.AllocHGlobal(argsByteLength);
         _ = Native.Linux.vsprintf(utf8Buffer, format, valistPtr);
 
         var result = Marshal.PtrToStringUTF8(utf8Buffer);
-        
+
         Marshal.FreeHGlobal(valistPtr);
         Marshal.FreeHGlobal(utf8Buffer);
 
@@ -129,5 +94,42 @@ public static partial class NativeStringFormatter
         }
 
         return -1;
+    }
+
+    private static partial class Native
+    {
+        public static partial class Windows
+        {
+            [LibraryImport("msvcrt")]
+            public static partial int vsprintf(nint buffer, nint format, nint args);
+
+            [LibraryImport("msvcrt")]
+            public static partial int vsnprintf(nint buffer, nuint size, nint format, nint args);
+        }
+
+        public static partial class Linux
+        {
+
+            [LibraryImport("libc")]
+            public static partial int vsprintf(nint buffer, nint format, nint args);
+
+            [LibraryImport("libc")]
+            public static partial int vsnprintf(nint buffer, nuint size, nint format, nint args);
+
+            [StructLayout(LayoutKind.Sequential, Pack = 4)]
+            public struct VaListLinuxX64
+            {
+                private uint _gpOffset;
+                private uint _fpOffset;
+                private nint _overflowArgArea;
+                private nint _regSaveArea;
+            }
+        }
+
+        public static partial class MacOS
+        {
+            [LibraryImport("libSystem")]
+            public static partial int vasprintf(ref nint buffer, nint format, nint args);
+        }
     }
 }

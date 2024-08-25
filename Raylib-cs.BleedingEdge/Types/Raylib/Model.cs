@@ -33,7 +33,7 @@ public struct Model
     /// Materials array
     /// </summary>
     public unsafe Material* Materials;
-    
+
     /// <summary>
     /// Mesh material number
     /// </summary>

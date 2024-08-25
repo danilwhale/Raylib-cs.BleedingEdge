@@ -13,17 +13,17 @@ public struct Rectangle(float x, float y, float width, float height)
     /// Rectangle top-left corner position x
     /// </summary>
     public float X = x;
-    
+
     /// <summary>
     /// Rectangle top-left corner position y
     /// </summary>
     public float Y = y;
-    
+
     /// <summary>
     /// Rectangle width
     /// </summary>
     public float Width = width;
-    
+
     /// <summary>
     /// Rectangle height
     /// </summary>

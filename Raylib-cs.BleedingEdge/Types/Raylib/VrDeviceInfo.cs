@@ -12,7 +12,7 @@ public struct VrDeviceInfo
     /// Horizontal resolution in pixels
     /// </summary>
     public int HResolution;
-    
+
     /// <summary>
     /// Vertical resolution in pixels
     /// </summary>
@@ -22,7 +22,7 @@ public struct VrDeviceInfo
     /// Horizontal size in meters
     /// </summary>
     public float HScreenSize;
-    
+
     /// <summary>
     /// Vertical size in meters
     /// </summary>
@@ -32,7 +32,7 @@ public struct VrDeviceInfo
     /// Distance between eye and display in meters
     /// </summary>
     public float EyeToScreenDistance;
-    
+
     /// <summary>
     /// Lens separation distance in meters
     /// </summary>

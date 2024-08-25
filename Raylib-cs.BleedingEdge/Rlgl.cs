@@ -2,11 +2,9 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
-using Raylib_cs.BleedingEdge.Enums;
 using Raylib_cs.BleedingEdge.Enums.Raylib;
 using Raylib_cs.BleedingEdge.Enums.Rlgl;
 using Raylib_cs.BleedingEdge.Interop;
-using Raylib_cs.BleedingEdge.Types;
 using Raylib_cs.BleedingEdge.Types.Raylib;
 
 namespace Raylib_cs.BleedingEdge;
@@ -380,21 +378,21 @@ public static unsafe partial class Rlgl
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName, EntryPoint = "rlSetClipPlanes")]
     public static partial void SetClipPlanes(double nearPlane, double farPlane);
-    
+
     /// <summary>
     /// Get cull plane distance near
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName, EntryPoint = "rlGetCullDistanceNear")]
     public static partial double GetCullDistanceNear();
-    
+
     /// <summary>
     /// Get cull plane distance far
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName, EntryPoint = "rlGetCullDistanceFar")]
     public static partial double GetCullDistanceFar();
-    
+
     /// <summary>
     /// Initialize drawing mode (how to organize vertex)
     /// </summary>
@@ -485,7 +483,7 @@ public static unsafe partial class Rlgl
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName, EntryPoint = "rlEnableVertexBuffer")]
     public static partial void EnableVertexBuffer(uint id);
-    
+
     /// <summary>
     /// Disable vertex buffer (VBO)
     /// </summary>
@@ -631,7 +629,8 @@ public static unsafe partial class Rlgl
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName, EntryPoint = "rlBlitFramebuffer")]
-    public static partial void BlitFramebuffer(int srcX, int srcY, int srcHeight, int dstX, int dstY, int dstWidth, int dstHeight, int bufferMask);
+    public static partial void BlitFramebuffer(
+        int srcX, int srcY, int srcHeight, int dstX, int dstY, int dstWidth, int dstHeight, int bufferMask);
 
     /// <summary>
     /// Bind framebuffer (FBO)
@@ -981,14 +980,14 @@ public static unsafe partial class Rlgl
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName, EntryPoint = "rlLoadVertexBuffer")]
-    public static partial uint LoadVertexBuffer(void* buffer, int size, NativeBool @dynamic);
+    public static partial uint LoadVertexBuffer(void* buffer, int size, NativeBool dynamic);
 
     /// <summary>
     /// Load vertex buffer elements object
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName, EntryPoint = "rlLoadVertexBufferElement")]
-    public static partial uint LoadVertexBufferElement(void* buffer, int size, NativeBool @dynamic);
+    public static partial uint LoadVertexBufferElement(void* buffer, int size, NativeBool dynamic);
 
     /// <summary>
     /// Update vertex buffer object data on GPU buffer
@@ -1149,7 +1148,8 @@ public static unsafe partial class Rlgl
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName, EntryPoint = "rlFramebufferAttach")]
-    public static partial void FramebufferAttach(uint fboId, uint texId, FramebufferAttachType attachType, FramebufferAttachTextureType texType, int mipLevel);
+    public static partial void FramebufferAttach(
+        uint fboId, uint texId, FramebufferAttachType attachType, FramebufferAttachTextureType texType, int mipLevel);
 
     /// <summary>
     /// Verify framebuffer is complete

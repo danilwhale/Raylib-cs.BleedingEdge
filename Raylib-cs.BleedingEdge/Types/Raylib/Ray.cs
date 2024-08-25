@@ -13,7 +13,7 @@ public struct Ray(Vector3 position, Vector3 direction)
     /// Ray position (origin)
     /// </summary>
     public Vector3 Position = position;
-    
+
     /// <summary>
     /// Ray direction (normalized)
     /// </summary>
