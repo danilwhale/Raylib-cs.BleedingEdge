@@ -2839,7 +2839,7 @@ public static unsafe partial class Raylib
     public static partial Font LoadFont(sbyte* fileName);
 
     /// <summary>
-    /// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default character set
+    /// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default character set, font size is provided in pixels height
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
