@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices;
 using Raylib_cs.BleedingEdge.Enums;
 using Raylib_cs.BleedingEdge.Enums.Raylib;
+using Raylib_cs.BleedingEdge.Enums.Rlgl;
 
 namespace Raylib_cs.BleedingEdge.Types.Rlgl;
 
