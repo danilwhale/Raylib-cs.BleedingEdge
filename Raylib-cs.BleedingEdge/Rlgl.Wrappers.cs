@@ -107,7 +107,9 @@ public static unsafe partial class Rlgl
         }
     }
 
-    /// <inheritdoc cref="LoadTextureCubemap" />
+    /// <summary>
+    /// Load texture cubemap data
+    /// </summary>
     public static uint LoadTextureCubemap<T>(ReadOnlySpan<T> data, PixelFormat format)
         where T : unmanaged
     {
@@ -204,14 +206,18 @@ public static unsafe partial class Rlgl
         return result;
     }
 
-    /// <inheritdoc cref="SetUniform" />
+    /// <summary>
+    /// Set shader value uniform
+    /// </summary>
     public static void SetUniform<T>(int locIndex, T value, ShaderUniformDataType uniformType, int count)
         where T : unmanaged
     {
         SetUniform(locIndex, &value, uniformType, count);
     }
 
-    /// <inheritdoc cref="SetUniform" />
+    /// <summary>
+    /// Set shader value uniform
+    /// </summary>
     public static void SetUniform<T>(int locIndex, ReadOnlySpan<T> value, ShaderUniformDataType uniformType)
         where T : unmanaged
     {
@@ -235,7 +241,9 @@ public static unsafe partial class Rlgl
         SetUniformSampler(locIndex, textureId);
     }
 
-    /// <inheritdoc cref="LoadShaderBuffer" />
+    /// <summary>
+    /// Load shader storage buffer object (SSBO)
+    /// </summary>
     public static uint LoadShaderBuffer<T>(ReadOnlySpan<T> data, int usageHint)
         where T : unmanaged
     {

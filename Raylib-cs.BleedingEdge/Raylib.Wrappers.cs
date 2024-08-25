@@ -168,7 +168,7 @@ public static unsafe partial class Raylib
         return (T*)MemRealloc((void*)ptr, (uint)(elementCount * sizeof(T)));
     }
 
-    /// <inheritdoc cref="MemFree)" />
+    /// <inheritdoc cref="MemFree" />
     public static void MemFree<T>(Span<T> span)
         where T : unmanaged
     {
@@ -328,7 +328,6 @@ public static unsafe partial class Raylib
     /// <inheritdoc cref="GetWorkingDirectory" />
     public static string GetWorkingDirectoryString()
     {
-        ;
         return Marshal.PtrToStringUTF8((nint)GetWorkingDirectory()) ?? string.Empty;
     }
 
@@ -615,7 +614,7 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="DrawTriangleFan(Vector2*,int,Color" />
+    /// <inheritdoc cref="DrawTriangleFan(Vector2*,int,Color)" />
     public static void DrawTriangleFan(ReadOnlySpan<Vector2> points, Color color)
     {
         fixed (Vector2* pPoints = points)
@@ -642,7 +641,7 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="DrawSplineBasis(Vector2*,int,float,Color" />
+    /// <inheritdoc cref="DrawSplineBasis(Vector2*,int,float,Color)" />
     public static void DrawSplineBasis(ReadOnlySpan<Vector2> points, float thick, Color color)
     {
         fixed (Vector2* pPoints = points)
@@ -1568,7 +1567,7 @@ public static unsafe partial class Raylib
     public static string CodepointToUTF8(int codepoint)
     {
         int utf8Size;
-        return Marshal.PtrToStringUTF8((nint)CodepointToUTF8(codepoint, &utf8Size), utf8Size) ?? string.Empty;
+        return Marshal.PtrToStringUTF8((nint)CodepointToUTF8(codepoint, &utf8Size), utf8Size);
     }
 
     /// <inheritdoc cref="TextToPascal(sbyte*)" />

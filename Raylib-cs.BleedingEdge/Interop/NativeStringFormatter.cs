@@ -9,7 +9,7 @@ public static partial class NativeStringFormatter
     {
         if (OperatingSystem.IsMacOS())
         {
-            return FormatMacOS(format, args);
+            return FormatMacOs(format, args);
         }
 
         if (OperatingSystem.IsLinux() && nint.Size == 8)
@@ -30,13 +30,13 @@ public static partial class NativeStringFormatter
         return result ?? string.Empty;
     }
 
-    private static string FormatMacOS(nint format, nint args)
+    private static string FormatMacOs(nint format, nint args)
     {
         var buffer = nint.Zero;
 
         try
         {
-            var count = Native.MacOS.vasprintf(ref buffer, format, args);
+            var count = Native.MacOs.vasprintf(ref buffer, format, args);
             if (count == -1) return string.Empty;
             return Marshal.PtrToStringUTF8(buffer) ?? string.Empty;
         }
@@ -46,15 +46,14 @@ public static partial class NativeStringFormatter
         }
     }
 
-    private static string FormatLinuxX64(nint format, nint args)
+    private static unsafe string FormatLinuxX64(nint format, nint args)
     {
-        var valistStruct = Marshal.PtrToStructure<Native.Linux.VaListLinuxX64>(args);
+        var valistStruct = *(Native.Linux.VaListLinuxX64*)args;
 
         var valistPtr = Marshal.AllocHGlobal(Marshal.SizeOf(valistStruct));
-        Marshal.StructureToPtr(valistStruct, valistPtr, false);
+        *(Native.Linux.VaListLinuxX64*)valistPtr = valistStruct;
         var argsByteLength = Native.Linux.vsnprintf(nint.Zero, nuint.Zero, format, valistPtr) + 1;
-
-        Marshal.StructureToPtr(valistStruct, valistPtr, false);
+        *(Native.Linux.VaListLinuxX64*)valistPtr = valistStruct;
         var utf8Buffer = Marshal.AllocHGlobal(argsByteLength);
         _ = Native.Linux.vsprintf(utf8Buffer, format, valistPtr);
 
@@ -126,7 +125,7 @@ public static partial class NativeStringFormatter
             }
         }
 
-        public static partial class MacOS
+        public static partial class MacOs
         {
             [LibraryImport("libSystem")]
             public static partial int vasprintf(ref nint buffer, nint format, nint args);

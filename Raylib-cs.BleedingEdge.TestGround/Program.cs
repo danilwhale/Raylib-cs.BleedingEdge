@@ -1,9 +1,8 @@
 ﻿using System.Numerics;
-using Raylib_cs.BleedingEdge.Enums;
 using Raylib_cs.BleedingEdge.Enums.Raylib;
-using Raylib_cs.BleedingEdge.Types;
 using Raylib_cs.BleedingEdge.Types.Raylib;
-using static Raylib_cs.BleedingEdge.Raylib;
+
+namespace Raylib_cs.BleedingEdge.TestGround;
 
 // bunnymark
 internal struct Bunny
@@ -23,25 +22,25 @@ internal class Program
     
     public static void Main()
     {
-        InitWindow(ScreenWidth, ScreenHeight, "bunnymark");
+        Raylib.InitWindow(ScreenWidth, ScreenHeight, "bunnymark");
         
-        var texBunny = LoadTexture("wabbit_alpha.png");
+        var texBunny = Raylib.LoadTexture("wabbit_alpha.png");
 
         Span<Bunny> bunnies = stackalloc Bunny[MaxBunnies];
         var bunniesCount = 0;
 
-        while (!WindowShouldClose())
+        while (!Raylib.WindowShouldClose())
         {
-            if (IsMouseButtonDown(MouseButton.Left))
+            if (Raylib.IsMouseButtonDown(MouseButton.Left))
             {
                 for (var i = 0; i < 100; i++)
                 {
                     if (bunniesCount < MaxBunnies)
                     {
-                        bunnies[bunniesCount].Position = GetMousePosition();
-                        bunnies[bunniesCount].Speed.X = GetRandomValue(-250, 250) / 60.0f;
-                        bunnies[bunniesCount].Speed.Y = GetRandomValue(-250, 250) / 60.0f;
-                        bunnies[bunniesCount].Color = new Color((byte)GetRandomValue(50, 240), (byte)GetRandomValue(80, 240), (byte)GetRandomValue(100, 240));
+                        bunnies[bunniesCount].Position = Raylib.GetMousePosition();
+                        bunnies[bunniesCount].Speed.X = Raylib.GetRandomValue(-250, 250) / 60.0f;
+                        bunnies[bunniesCount].Speed.Y = Raylib.GetRandomValue(-250, 250) / 60.0f;
+                        bunnies[bunniesCount].Color = new Color((byte)Raylib.GetRandomValue(50, 240), (byte)Raylib.GetRandomValue(80, 240), (byte)Raylib.GetRandomValue(100, 240));
                         bunniesCount++;
                     }
                 }
@@ -52,39 +51,38 @@ internal class Program
                 bunnies[i].Position.X += bunnies[i].Speed.X;
                 bunnies[i].Position.Y += bunnies[i].Speed.Y;
 
-                if (bunnies[i].Position.X + texBunny.Width / 2.0f > GetScreenWidth() ||
+                if (bunnies[i].Position.X + texBunny.Width / 2.0f > Raylib.GetScreenWidth() ||
                     bunnies[i].Position.X + texBunny.Width / 2.0f < 0.0f)
                 {
                     bunnies[i].Speed.X *= -1;
                 }
                 
-                if (bunnies[i].Position.Y + texBunny.Height / 2.0f > GetScreenHeight() ||
+                if (bunnies[i].Position.Y + texBunny.Height / 2.0f > Raylib.GetScreenHeight() ||
                     bunnies[i].Position.Y + texBunny.Height / 2.0f - 40.0f < 0.0f)
                 {
                     bunnies[i].Speed.Y *= -1;
                 }
             }
             
-            BeginDrawing();
-            ClearBackground(Color.RayWhite);
+            Raylib.BeginDrawing();
+            Raylib.ClearBackground(Color.RayWhite);
 
             for (var i = 0; i < bunniesCount; i++)
             {
-                DrawTexture(texBunny, (int)bunnies[i].Position.X, (int)bunnies[i].Position.Y, bunnies[i].Color);
+                Raylib.DrawTexture(texBunny, (int)bunnies[i].Position.X, (int)bunnies[i].Position.Y, bunnies[i].Color);
             }
             
-            DrawRectangle(0, 0, ScreenWidth, 40, Color.Black);
-            DrawText($"bunnies: {bunniesCount}", 120, 10, 20, Color.Green);
-            DrawText($"batched draw calls: {1 + bunniesCount / MaxBatchElements}", 320, 10, 20, Color.Maroon);
+            Raylib.DrawRectangle(0, 0, ScreenWidth, 40, Color.Black);
+            Raylib.DrawText($"bunnies: {bunniesCount}", 120, 10, 20, Color.Green);
+            Raylib.DrawText($"batched draw calls: {1 + bunniesCount / MaxBatchElements}", 320, 10, 20, Color.Maroon);
             
-            DrawFPS(10, 10);
+            Raylib.DrawFPS(10, 10);
             
-            EndDrawing();
+            Raylib.EndDrawing();
         }
         
-        UnloadTexture(texBunny);
+        Raylib.UnloadTexture(texBunny);
         
-        CloseWindow();
+        Raylib.CloseWindow();
     }
 }
-
