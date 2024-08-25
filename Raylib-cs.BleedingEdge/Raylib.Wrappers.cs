@@ -2,8 +2,10 @@ using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 using Raylib_cs.BleedingEdge.Enums;
+using Raylib_cs.BleedingEdge.Enums.Raylib;
 using Raylib_cs.BleedingEdge.Interop;
 using Raylib_cs.BleedingEdge.Types;
+using Raylib_cs.BleedingEdge.Types.Raylib;
 
 namespace Raylib_cs.BleedingEdge;
 
@@ -80,7 +82,7 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="GetShaderLocation(Raylib_cs.BleedingEdge.Types.Shader,sbyte*)"/>
+    /// <inheritdoc cref="GetShaderLocation(Shader,sbyte*)"/>
     public static int GetShaderLocation(Shader shader, string uniformName)
     {
         var pUniformName = Marshal.StringToCoTaskMemUTF8(uniformName);
@@ -89,7 +91,7 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="GetShaderLocationAttrib(Raylib_cs.BleedingEdge.Types.Shader,sbyte*)"/>
+    /// <inheritdoc cref="GetShaderLocationAttrib(Shader,sbyte*)"/>
     public static int GetShaderLocationAttrib(Shader shader, string attribName)
     {
         var pAttribName = Marshal.StringToCoTaskMemUTF8(attribName);
@@ -145,7 +147,7 @@ public static unsafe partial class Raylib
         Marshal.FreeCoTaskMem(pUrl);
     }
 
-    /// <inheritdoc cref="TraceLog(Raylib_cs.BleedingEdge.Enums.TraceLogLevel,sbyte*)"/>
+    /// <inheritdoc cref="TraceLog(TraceLogLevel,sbyte*)"/>
     public static void TraceLog(TraceLogLevel logLevel, string text)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);

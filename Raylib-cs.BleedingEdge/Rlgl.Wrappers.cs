@@ -1,8 +1,10 @@
 using System.Numerics;
 using System.Runtime.InteropServices;
 using Raylib_cs.BleedingEdge.Enums;
+using Raylib_cs.BleedingEdge.Enums.Raylib;
 using Raylib_cs.BleedingEdge.Interop;
 using Raylib_cs.BleedingEdge.Types;
+using Raylib_cs.BleedingEdge.Types.Raylib;
 
 namespace Raylib_cs.BleedingEdge;
 

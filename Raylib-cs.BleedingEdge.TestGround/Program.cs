@@ -1,6 +1,8 @@
 ﻿using System.Numerics;
 using Raylib_cs.BleedingEdge.Enums;
+using Raylib_cs.BleedingEdge.Enums.Raylib;
 using Raylib_cs.BleedingEdge.Types;
+using Raylib_cs.BleedingEdge.Types.Raylib;
 using static Raylib_cs.BleedingEdge.Raylib;
 
 // bunnymark
