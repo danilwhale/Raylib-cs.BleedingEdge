@@ -1,6 +1,5 @@
 ﻿using System.Numerics;
-using Raylib_cs.BleedingEdge.Enums.Raylib;
-using Raylib_cs.BleedingEdge.Types.Raylib;
+using Raylib_cs.BleedingEdge;
 
 namespace Raylib_cs.BleedingEdge.TestGround;
 
