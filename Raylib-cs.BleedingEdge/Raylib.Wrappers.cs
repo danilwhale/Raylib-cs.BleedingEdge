@@ -8,8 +8,8 @@ namespace Raylib_cs.BleedingEdge;
 
 public static unsafe partial class Raylib
 {
-
     private static GCHandle _automationEventListHandle;
+
     // all methods with native string (char*, or sbyte* in P/Invoke) parameters are using Marshal directly
     // instead of something like Utf8Buffer in Raylib-cs to reduce execution time and allocations
     // Utf8Handle is provided for user use
@@ -66,7 +66,7 @@ public static unsafe partial class Raylib
         var pFsFileName = Marshal.StringToCoTaskMemUTF8(fsFileName);
         var result = LoadShader((sbyte*)pVsFileName, (sbyte*)pFsFileName);
         Marshal.FreeCoTaskMem(pFsFileName);
-        Marshal.FreeCoTaskMem(pFsFileName);
+        Marshal.FreeCoTaskMem(pVsFileName);
         return result;
     }
 
@@ -77,7 +77,7 @@ public static unsafe partial class Raylib
         var pFsCode = Marshal.StringToCoTaskMemUTF8(fsCode);
         var result = LoadShaderFromMemory((sbyte*)pVsCode, (sbyte*)pFsCode);
         Marshal.FreeCoTaskMem(pFsCode);
-        Marshal.FreeCoTaskMem(pFsCode);
+        Marshal.FreeCoTaskMem(pVsCode);
         return result;
     }
 
@@ -166,16 +166,6 @@ public static unsafe partial class Raylib
         where T : unmanaged
     {
         return (T*)MemRealloc((void*)ptr, (uint)(elementCount * sizeof(T)));
-    }
-
-    /// <inheritdoc cref="MemFree" />
-    public static void MemFree<T>(Span<T> span)
-        where T : unmanaged
-    {
-        fixed (T* pSpan = span)
-        {
-            MemFree(pSpan);
-        }
     }
 
     /// <inheritdoc cref="LoadFileData(sbyte*,int*)" />
