@@ -123,7 +123,7 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     /// </summary>
     public void AllocVertices()
     {
-        Vertices = BleedingEdge.Raylib.MemAlloc<float>((uint)(3 * VertexCount));
+        Vertices = Raylib.MemAlloc<float>((uint)(3 * VertexCount));
     }
 
     /// <summary>
@@ -140,7 +140,7 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     /// </summary>
     public void AllocTexCoords()
     {
-        TexCoords = BleedingEdge.Raylib.MemAlloc<float>((uint)(2 * VertexCount));
+        TexCoords = Raylib.MemAlloc<float>((uint)(2 * VertexCount));
     }
 
     /// <summary>
@@ -157,7 +157,7 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     /// </summary>
     public void AllocTexCoords2()
     {
-        TexCoords2 = BleedingEdge.Raylib.MemAlloc<float>((uint)(2 * VertexCount));
+        TexCoords2 = Raylib.MemAlloc<float>((uint)(2 * VertexCount));
     }
 
     /// <summary>
@@ -174,7 +174,7 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     /// </summary>
     public void AllocNormals()
     {
-        Normals = BleedingEdge.Raylib.MemAlloc<float>((uint)(3 * VertexCount));
+        Normals = Raylib.MemAlloc<float>((uint)(3 * VertexCount));
     }
 
     /// <summary>
@@ -191,7 +191,7 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     /// </summary>
     public void AllocTangents()
     {
-        Tangents = BleedingEdge.Raylib.MemAlloc<float>((uint)(4 * VertexCount));
+        Tangents = Raylib.MemAlloc<float>((uint)(4 * VertexCount));
     }
 
     /// <summary>
@@ -208,7 +208,7 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     /// </summary>
     public void AllocColors()
     {
-        Colors = BleedingEdge.Raylib.MemAlloc<byte>((uint)(4 * VertexCount));
+        Colors = Raylib.MemAlloc<byte>((uint)(4 * VertexCount));
     }
     
     /// <summary>
@@ -217,7 +217,7 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     public Span<T> ColorsAs<T>()
         where T : unmanaged
     {
-        return new Span<T>(TexCoords, 4 * VertexCount * sizeof(byte) / sizeof(T));
+        return new Span<T>(Colors, 4 * VertexCount * sizeof(byte) / sizeof(T));
     }
     
     /// <summary>
@@ -225,7 +225,7 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     /// </summary>
     public void AllocIndices()
     {
-        Indices = BleedingEdge.Raylib.MemAlloc<ushort>((uint)(3 * TriangleCount));
+        Indices = Raylib.MemAlloc<ushort>((uint)(3 * TriangleCount));
     }
     
     /// <summary>
