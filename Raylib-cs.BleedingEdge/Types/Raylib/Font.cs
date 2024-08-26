@@ -1,4 +1,4 @@
-namespace Raylib_cs.BleedingEdge.Types.Raylib;
+namespace Raylib_cs.BleedingEdge;
 
 /// <summary>
 /// Font, font texture and GlyphInfo array data

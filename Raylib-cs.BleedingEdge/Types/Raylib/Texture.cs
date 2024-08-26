@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using Raylib_cs.BleedingEdge.Enums.Raylib;
+using Raylib_cs.BleedingEdge;
 
-namespace Raylib_cs.BleedingEdge.Types.Raylib;
+namespace Raylib_cs.BleedingEdge;
 
 /// <summary>
 /// Texture, tex data stored in GPU memory (VRAM)

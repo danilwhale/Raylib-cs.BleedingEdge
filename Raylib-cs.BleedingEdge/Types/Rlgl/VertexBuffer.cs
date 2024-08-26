@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace Raylib_cs.BleedingEdge.Types.Rlgl;
+namespace Raylib_cs.BleedingEdge;
 
 /// <summary>
 /// Dynamic vertex buffers (position + texcoords + colors + indices arrays)

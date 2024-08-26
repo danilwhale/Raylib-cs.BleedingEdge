@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using Raylib_cs.BleedingEdge.Enums.Rlgl;
+using Raylib_cs.BleedingEdge;
 
-namespace Raylib_cs.BleedingEdge.Types.Rlgl;
+namespace Raylib_cs.BleedingEdge;
 
 /// <summary>
 /// Draw call type

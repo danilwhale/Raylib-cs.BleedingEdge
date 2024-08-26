@@ -1,7 +1,7 @@
 using System.Numerics;
 using System.Runtime.InteropServices;
 
-namespace Raylib_cs.BleedingEdge.Types.Raylib;
+namespace Raylib_cs.BleedingEdge;
 
 /// <summary>
 /// Camera2D, defines position/orientation in 2d space

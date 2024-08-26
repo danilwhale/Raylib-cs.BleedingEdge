@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using Raylib_cs.BleedingEdge.Types.Rlgl;
+using Raylib_cs.BleedingEdge;
 
-namespace Raylib_cs.BleedingEdge.Types.Raylib;
+namespace Raylib_cs.BleedingEdge;
 
 /// <summary>
 /// rlRenderBatch type

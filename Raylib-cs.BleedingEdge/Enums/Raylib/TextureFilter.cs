@@ -1,4 +1,4 @@
-namespace Raylib_cs.BleedingEdge.Enums.Raylib;
+namespace Raylib_cs.BleedingEdge;
 
 /// <summary>
 /// Texture parameters: filter mode

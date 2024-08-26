@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace Raylib_cs.BleedingEdge.Types.Raylib;
+namespace Raylib_cs.BleedingEdge;
 
 /// <summary>
 /// Color, 4 components, R8G8B8A8 (32bit)

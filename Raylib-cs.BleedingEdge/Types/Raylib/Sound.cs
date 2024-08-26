@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace Raylib_cs.BleedingEdge.Types.Raylib;
+namespace Raylib_cs.BleedingEdge;
 
 /// <summary>
 /// Sound

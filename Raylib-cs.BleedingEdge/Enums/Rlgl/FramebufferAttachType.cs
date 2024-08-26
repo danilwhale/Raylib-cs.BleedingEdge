@@ -1,4 +1,4 @@
-namespace Raylib_cs.BleedingEdge.Enums.Rlgl;
+namespace Raylib_cs.BleedingEdge;
 
 /// <summary>
 /// Framebuffer attachment type
