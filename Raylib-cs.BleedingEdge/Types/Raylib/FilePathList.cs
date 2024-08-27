@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using Raylib_cs.BleedingEdge.Interop;
 
 namespace Raylib_cs.BleedingEdge;
 
@@ -17,9 +18,14 @@ public struct FilePathList
     /// Filepaths entries count
     /// </summary>
     public uint Count;
-
+    
     /// <summary>
     /// Filepaths entries
     /// </summary>
     public unsafe sbyte** Paths;
+
+    /// <summary>
+    /// Filepaths entries
+    /// </summary>
+    public unsafe NativeStringArray PathsArray => new(Count, Paths);
 }
