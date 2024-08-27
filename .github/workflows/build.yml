@@ -149,6 +149,9 @@ jobs:
             $suffix = '${{ github.run_number }}'
           }
           
+          echo $prefix
+          echo $suffix
+          
           echo prefix=$prefix >> $env:GITHUB_OUTPUT
           echo suffix=$suffix >> $env:GITHUB_OUTPUT
           
