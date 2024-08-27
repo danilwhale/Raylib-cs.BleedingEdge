@@ -154,6 +154,12 @@ jobs:
           
           echo prefix=$prefix >> $env:GITHUB_OUTPUT
           echo suffix=$suffix >> $env:GITHUB_OUTPUT
+      - name: sanity check
+        shell: pwsh
+        run: |
+          echo ${{ steps.package-info.outputs.prefix }}
+          echo ${{ steps.package-info.outputs.suffix }}
+          echo Get-Content -Path $env:GITHUB_OUTPUT -Raw
           
   
   pack-runtimes:
