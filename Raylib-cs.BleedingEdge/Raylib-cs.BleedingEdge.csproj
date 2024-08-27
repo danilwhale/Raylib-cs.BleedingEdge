@@ -22,6 +22,10 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
     </PropertyGroup>
+    
+    <ItemGroup>
+        <ProjectReference Include="../Raylib-cs.BleedingEdge.Runtimes"/>
+    </ItemGroup>
 
     <ItemGroup>
         <None Include="..\Assets\Logo-256.png" Pack="true" PackagePath="\"/>
