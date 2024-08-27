@@ -210,7 +210,7 @@ jobs:
           dotnet-version: 8.0.x
       
       - name: Create NuGet package
-        run: dotnet pack Raylib-cs.BleedingEdge.Runtimes --version-prefix ${{ needs.prepare-package-info.outputs.prefix }} --version-suffix ${{ needs.prepare-package-info.outputs.suffix }} -o nuget
+        run: dotnet pack Raylib-cs.BleedingEdge.Runtimes /p:VersionPrefix=${{ needs.prepare-package-info.outputs.prefix }} --version-suffix ${{ needs.prepare-package-info.outputs.suffix }} -o nuget
       
       - name: Upload NuGet package artifact
         uses: actions/upload-artifact@v4
@@ -232,7 +232,7 @@ jobs:
           dotnet-version: 8.0.x
       
       - name: Create NuGet package
-        run: dotnet pack Raylib-cs.BleedingEdge --version-prefix ${{ needs.prepare-package-info.outputs.prefix }} --version-suffix ${{ needs.prepare-package-info.outputs.suffix }} -o nuget
+        run: dotnet pack Raylib-cs.BleedingEdge /p:VersionPrefix=${{ needs.prepare-package-info.outputs.prefix }} --version-suffix ${{ needs.prepare-package-info.outputs.suffix }} -o nuget
       
       - name: Upload NuGet package artifact
         uses: actions/upload-artifact@v4
