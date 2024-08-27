@@ -2,8 +2,18 @@ name: build.yml
 on:
   push:
     branches: ['main']
+    paths:
+      - 'Raylib-cs.BleedingEdge/**'
+      - 'Raylib-cs.BleedingEdge.Native/**'
+      - 'raylib/**'
+      - '.github/workflows/**'
   pull_request:
     branches: ['*']
+    paths:
+      - 'Raylib-cs.BleedingEdge/**'
+      - 'Raylib-cs.BleedingEdge.Native/**'
+      - 'raylib/**'
+      - '.github/workflows/**'
 jobs:
   natives-linux-x64:
     runs-on: ubuntu-latest
