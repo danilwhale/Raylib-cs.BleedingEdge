@@ -17,7 +17,34 @@ Raylib-cs.BleedingEdge targets .NET 8+ and uses [the master branch of raylib rep
 > there are still no examples, you can rely on [Raylib-cs](https://github.com/chrisdill/raylib-cs) examples
 > as this binding has mostly same function signatures (see [code differences](#code-differences))
 
-## differences from [Raylib-cs](https://github.com/ChrisDill/Raylib-cs)
+basic example
+---
+
+```csharp
+using Raylib-cs.BleedingEdge;
+using static Raylib-cs.BleedingEdge.Raylib;
+
+const int screenWidth = 800;
+const int screenHeight = 540;
+
+InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+
+while (!WindowShouldClose())
+{
+    BeginDrawing();
+    ClearBackground(Color.RayWhite);
+    
+    DrawText("Congrats! You created your first window!", 190, 200, 20, Color.LightGray);
+    
+    EndDrawing();
+}
+
+CloseWindow();
+```
+
+differences from [Raylib-cs](https://github.com/ChrisDill/Raylib-cs)
+---
+
 ### main differences
 | [Raylib-cs](https://github.com/chrisdill/raylib-cs) | Raylib-cs.BleedingEdge  |
 |-----------------------------------------------------|-------------------------|
