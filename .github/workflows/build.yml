@@ -143,7 +143,6 @@ jobs:
           if ( $version.contains('-') )
           {
             $suffix = $version.substring($version.indexof('-') + 1) + '-${{ github.run_number }}'
-            $is-dev = $suffix -eq 'dev'
           }
           else
           {
