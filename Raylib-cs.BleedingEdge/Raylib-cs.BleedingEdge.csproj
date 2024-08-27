@@ -24,7 +24,7 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <ProjectReference Include="../Raylib-cs.BleedingEdge.Runtimes"/>
+        <ProjectReference Include="../Raylib-cs.BleedingEdge.Runtimes/Raylib-cs.BleedingEdge.Runtimes.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
