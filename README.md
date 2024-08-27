@@ -1,16 +1,19 @@
-<img src="https://raw.githubusercontent.com/danilwhale/Raylib-cs.BleedingEdge/main/Assets/Logo-256.png" style="width:96px;margin-right:10px" align="left" alt="logo">
+![logo](Assets/Logo-96.png)
 
 ### Raylib-cs.BleedingEdge
 C# bindings for raylib, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
 
+![NuGet Downloads](https://img.shields.io/nuget/dt/Raylib-cs.BleedingEdge?style=flat-square&logo=nuget)
+![GitHub License](https://img.shields.io/github/license/danilwhale/Raylib-cs.BleedingEdge?style=flat-square)
+![Discord](https://img.shields.io/discord/426912293134270465?style=flat-square&logo=discord&logoColor=white)
+![GitHub Repo stars](https://img.shields.io/github/stars/danilwhale/Raylib-cs.BleedingEdge?style=flat-square)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/danilwhale/Raylib-cs.BleedingEdge?style=flat-square)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/danilwhale/Raylib-cs.BleedingEdge/build.yml?style=flat-square&logo=githubactions&logoColor=white)
 
 ---
 
-> TODO: add nuget package badge
-
 Raylib-cs.BleedingEdge targets .NET 8+ and uses [the master branch of raylib repo](https://github.com/raysan5/raylib/tree/master)
 
-> [!WARNING]
 > there are still no examples, you can rely on Raylib-cs' examples
 > as this binding has mostly same function signatures (see [code differences](#code-differences))
 
