@@ -1,4 +1,4 @@
-<img src="Assets/Logo-256.png" style="width:128px;margin-right:10px" align="left" alt="logo">
+<img src="Assets/Logo-256.png" style="width:96px;margin-right:10px" align="left" alt="logo">
 
 ### Raylib-cs.BleedingEdge
 C# bindings for raylib, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
