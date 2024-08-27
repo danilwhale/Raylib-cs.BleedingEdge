@@ -127,6 +127,7 @@ jobs:
           submodules: true
       
       - name: Setup package info
+        id: package-info
         shell: pwsh
         run: |
           $header = [System.IO.File]::ReadAllText('${{ github.workspace }}/raylib/src/raylib.h')
