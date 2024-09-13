@@ -5,14 +5,14 @@ on:
     paths:
       - 'Raylib-cs.BleedingEdge/**'
       - 'Raylib-cs.BleedingEdge.Native/**'
-      - 'raylib/**'
+      - 'raylib'
       - '.github/workflows/**'
   pull_request:
     branches: ['*']
     paths:
       - 'Raylib-cs.BleedingEdge/**'
       - 'Raylib-cs.BleedingEdge.Native/**'
-      - 'raylib/**'
+      - 'raylib'
       - '.github/workflows/**'
 jobs:
   natives-linux-x64:
