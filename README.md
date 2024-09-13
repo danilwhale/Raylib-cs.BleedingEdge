@@ -1,4 +1,4 @@
-![logo](Assets/Logo-96.png)
+![logo](https://raw.githubusercontent.com/danilwhale/Raylib-cs.BleedingEdge/main/Assets/Logo-96.png)
 
 ### Raylib-cs.BleedingEdge
 C# bindings for raylib, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
