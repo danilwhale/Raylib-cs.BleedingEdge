@@ -10,13 +10,17 @@ public static unsafe partial class Rlgl
 
     private static GCHandle _activeRenderBatch;
 
-    /// <inheritdoc cref="MultMatrixf(float*)" />
+    /// <summary>
+    /// Multiply the current matrix by another matrix
+    /// </summary>
     public static void MultMatrixf(Matrix4x4 mat)
     {
         MultMatrixf((float*)&mat);
     }
 
-    /// <inheritdoc cref="DrawRenderBatch(RenderBatch*)" />
+    /// <summary>
+    /// Draw render batch data (Update->Draw->Reset)
+    /// </summary>
     public static void DrawRenderBatch(ref RenderBatch batch)
     {
         fixed (RenderBatch* pBatch = &batch)
@@ -25,7 +29,9 @@ public static unsafe partial class Rlgl
         }
     }
 
-    /// <inheritdoc cref="SetRenderBatchActive(RenderBatch*)" />
+    /// <summary>
+    /// Set the active render batch for rlgl (NULL for default internal)
+    /// </summary>
     public static void SetRenderBatchActive(ref RenderBatch batch)
     {
         if (_activeRenderBatch.IsAllocated)
@@ -39,7 +45,9 @@ public static unsafe partial class Rlgl
         SetRenderBatchActive((RenderBatch*)_activeRenderBatch.AddrOfPinnedObject());
     }
 
-    /// <inheritdoc cref="LoadVertexBuffer" />
+    /// <summary>
+    /// Load a vertex buffer object
+    /// </summary>
     public static uint LoadVertexBuffer<T>(ReadOnlySpan<T> buffer, NativeBool dynamic)
         where T : unmanaged
     {
@@ -49,7 +57,9 @@ public static unsafe partial class Rlgl
         }
     }
 
-    /// <inheritdoc cref="LoadVertexBufferElement" />
+    /// <summary>
+    /// Load vertex buffer elements object
+    /// </summary>
     public static uint LoadVertexBufferElement<T>(ReadOnlySpan<T> buffer, NativeBool dynamic)
         where T : unmanaged
     {
@@ -59,7 +69,9 @@ public static unsafe partial class Rlgl
         }
     }
 
-    /// <inheritdoc cref="UpdateVertexBuffer" />
+    /// <summary>
+    /// Update vertex buffer object data on GPU buffer
+    /// </summary>
     public static void UpdateVertexBuffer<T>(uint bufferId, ReadOnlySpan<T> data, int offset)
         where T : unmanaged
     {
@@ -69,7 +81,9 @@ public static unsafe partial class Rlgl
         }
     }
 
-    /// <inheritdoc cref="UpdateVertexBufferElements" />
+    /// <summary>
+    /// Update vertex buffer elements data on GPU buffer
+    /// </summary>
     public static void UpdateVertexBufferElements<T>(uint id, ReadOnlySpan<T> data, int offset)
         where T : unmanaged
     {
@@ -79,14 +93,18 @@ public static unsafe partial class Rlgl
         }
     }
 
-    /// <inheritdoc cref="SetVertexAttributeDefault" />
+    /// <summary>
+    /// Set vertex attribute default value, when attribute to provided
+    /// </summary>
     public static void SetVertexAttributeDefault<T>(int locIndex, T value, ShaderAttributeDataType attribType, int count)
         where T : unmanaged
     {
         SetVertexAttributeDefault(locIndex, &value, attribType, count);
     }
 
-    /// <inheritdoc cref="SetVertexAttributeDefault" />
+    /// <summary>
+    /// Set vertex attribute default value, when attribute to provided
+    /// </summary>
     public static void SetVertexAttributeDefault<T>(int locIndex, ReadOnlySpan<T> value, ShaderAttributeDataType attribType)
         where T : unmanaged
     {
@@ -96,7 +114,9 @@ public static unsafe partial class Rlgl
         }
     }
 
-    /// <inheritdoc cref="LoadTexture" />
+    /// <summary>
+    /// Load texture data
+    /// </summary>
     public static uint LoadTexture<T>(ReadOnlySpan<T> data, int width, int height, PixelFormat format, int mipmapCount)
         where T : unmanaged
     {
@@ -126,7 +146,9 @@ public static unsafe partial class Rlgl
         return LoadTextureCubemap(null, size, format);
     }
 
-    /// <inheritdoc cref="UpdateTexture" />
+    /// <summary>
+    /// Update texture with new data on GPU
+    /// </summary>
     public static void UpdateTexture<T>(uint id, int offsetX, int offsetY, int width, int height, PixelFormat format, ReadOnlySpan<T> data)
         where T : unmanaged
     {
@@ -136,7 +158,9 @@ public static unsafe partial class Rlgl
         }
     }
 
-    /// <inheritdoc cref="GetGlTextureFormats(PixelFormat,uint*,uint*,uint*)" />
+    /// <summary>
+    /// Get OpenGL internal formats
+    /// </summary>
     public static void GetGlTextureFormats(PixelFormat format, out uint glInternalFormat, out uint glFormat, out uint glType)
     {
         // the
@@ -152,13 +176,17 @@ public static unsafe partial class Rlgl
         }
     }
 
-    /// <inheritdoc cref="GetPixelFormatName" />
+    /// <summary>
+    /// Get name string for pixel format
+    /// </summary>
     public static string GetPixelFormatNameString(PixelFormat format)
     {
         return Marshal.PtrToStringUTF8((nint)GetPixelFormatName(format)) ?? string.Empty;
     }
 
-    /// <inheritdoc cref="GenTextureMipmaps(uint,int,int,PixelFormat,int*)" />
+    /// <summary>
+    /// Generate mipmap data for selected texture
+    /// </summary>
     public static void GenTextureMipmaps(uint id, int width, int height, PixelFormat format, out int mipmaps)
     {
         fixed (int* pMipmaps = &mipmaps)
@@ -167,7 +195,9 @@ public static unsafe partial class Rlgl
         }
     }
 
-    /// <inheritdoc cref="LoadShaderCode(sbyte*,sbyte*)" />
+    /// <summary>
+    /// Load shader from code strings
+    /// </summary>
     public static uint LoadShaderCode(string vsCode, string fsCode)
     {
         var pVsCode = Marshal.StringToCoTaskMemUTF8(vsCode);
@@ -178,7 +208,9 @@ public static unsafe partial class Rlgl
         return result;
     }
 
-    /// <inheritdoc cref="CompileShader(sbyte*,ShaderType)" />
+    /// <summary>
+    /// Compile custom shader and return shader id (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)
+    /// </summary>
     public static uint CompileShader(string shaderCode, ShaderType type)
     {
         var pShaderCode = Marshal.StringToCoTaskMemUTF8(shaderCode);
@@ -187,7 +219,9 @@ public static unsafe partial class Rlgl
         return result;
     }
 
-    /// <inheritdoc cref="GetLocationUniform(uint,sbyte*)" />
+    /// <summary>
+    /// Get shader location uniform
+    /// </summary>
     public static int GetLocationUniform(uint shaderId, string uniformName)
     {
         var pUniformName = Marshal.StringToCoTaskMemUTF8(uniformName);
@@ -196,7 +230,9 @@ public static unsafe partial class Rlgl
         return result;
     }
 
-    /// <inheritdoc cref="GetLocationAttrib(uint,sbyte*)" />
+    /// <summary>
+    /// Get shader location attribute
+    /// </summary>
     public static int GetLocationAttrib(uint shaderId, string attribName)
     {
         var pAttribName = Marshal.StringToCoTaskMemUTF8(attribName);
@@ -226,15 +262,17 @@ public static unsafe partial class Rlgl
         }
     }
 
-    // overloads with similiar methods for convenience
-
-    /// <inheritdoc cref="SetUniformMatrix" />
+    /// <summary>
+    /// Set shader value matrix
+    /// </summary>
     public static void SetUniform(int locIndex, Matrix4x4 mat)
     {
         SetUniformMatrix(locIndex, mat);
     }
 
-    /// <inheritdoc cref="SetUniformSampler" />
+    /// <summary>
+    /// Set shader value sampler
+    /// </summary>
     public static void SetUniform(int locIndex, uint textureId)
     {
         SetUniformSampler(locIndex, textureId);
@@ -260,7 +298,9 @@ public static unsafe partial class Rlgl
         return LoadShaderBuffer(size, null, usageHint);
     }
 
-    /// <inheritdoc cref="UpdateShaderBuffer" />
+    /// <summary>
+    /// Update SSBO buffer data
+    /// </summary>
     public static void UpdateShaderBuffer<T>(uint id, ReadOnlySpan<T> data, uint offset)
         where T : unmanaged
     {
@@ -270,7 +310,9 @@ public static unsafe partial class Rlgl
         }
     }
 
-    /// <inheritdoc cref="ReadShaderBuffer" />
+    /// <summary>
+    /// Read SSBO buffer data (GPU->CPU)
+    /// </summary>
     public static void ReadShaderBuffer<T>(uint id, Span<T> dest, uint count, uint offset)
         where T : unmanaged
     {

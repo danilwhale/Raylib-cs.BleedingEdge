@@ -13,7 +13,9 @@ public static unsafe partial class Raylib
     // instead of something like Utf8Buffer in Raylib-cs to reduce execution time and allocations
     // Utf8Handle is provided for user use
 
-    /// <inheritdoc cref="InitWindow(int,int,sbyte*)" />
+    /// <summary>
+    /// Initialize window and OpenGL context
+    /// </summary>
     public static void InitWindow(int width, int height, string title)
     {
         var pTitle = Marshal.StringToCoTaskMemUTF8(title);
@@ -21,7 +23,9 @@ public static unsafe partial class Raylib
         Marshal.FreeCoTaskMem(pTitle);
     }
 
-    /// <inheritdoc cref="SetWindowIcons(Image*,int)" />
+    /// <summary>
+    /// Set icon for window (multiple images, RGBA 32bit, only PLATFORM_DESKTOP)
+    /// </summary>
     public static void SetWindowIcons(ReadOnlySpan<Image> images)
     {
         fixed (Image* pImages = images)
@@ -30,7 +34,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="SetWindowTitle(sbyte*)" />
+    /// <summary>
+    /// Set title for window (only PLATFORM_DESKTOP and PLATFORM_WEB)
+    /// </summary>
     public static void SetWindowTitle(string title)
     {
         var pTitle = Marshal.StringToCoTaskMemUTF8(title);
@@ -38,13 +44,17 @@ public static unsafe partial class Raylib
         Marshal.FreeCoTaskMem(pTitle);
     }
 
-    /// <inheritdoc cref="GetMonitorName" />
+    /// <summary>
+    /// Get the human-readable, UTF-8 encoded name of the specified monitor
+    /// </summary>
     public static string GetMonitorNameString(int monitor)
     {
         return Marshal.PtrToStringUTF8((IntPtr)GetMonitorName(monitor)) ?? string.Empty;
     }
 
-    /// <inheritdoc cref="SetClipboardText(sbyte*)" />
+    /// <summary>
+    /// Set clipboard text content
+    /// </summary>
     public static void SetClipboardText(string text)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -52,13 +62,17 @@ public static unsafe partial class Raylib
         Marshal.FreeCoTaskMem(pText);
     }
 
-    /// <inheritdoc cref="GetClipboardText" />
+    /// <summary>
+    /// Get clipboard text content
+    /// </summary>
     public static string GetClipboardTextString()
     {
         return Marshal.PtrToStringUTF8((nint)GetClipboardText()) ?? string.Empty;
     }
 
-    /// <inheritdoc cref="LoadShader(sbyte*,sbyte*)" />
+    /// <summary>
+    /// Load shader from files and bind default locations
+    /// </summary>
     public static Shader LoadShader(string vsFileName, string fsFileName)
     {
         var pVsFileName = Marshal.StringToCoTaskMemUTF8(vsFileName);
@@ -69,7 +83,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadShaderFromMemory(sbyte*,sbyte*)" />
+    /// <summary>
+    /// Load shader from code strings and bind default locations
+    /// </summary>
     public static Shader LoadShaderFromMemory(string vsCode, string fsCode)
     {
         var pVsCode = Marshal.StringToCoTaskMemUTF8(vsCode);
@@ -80,7 +96,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="GetShaderLocation(Shader,sbyte*)" />
+    /// <summary>
+    /// Get shader uniform location
+    /// </summary>
     public static int GetShaderLocation(Shader shader, string uniformName)
     {
         var pUniformName = Marshal.StringToCoTaskMemUTF8(uniformName);
@@ -89,7 +107,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="GetShaderLocationAttrib(Shader,sbyte*)" />
+    /// <summary>
+    /// Get shader attribute location
+    /// </summary>
     public static int GetShaderLocationAttrib(Shader shader, string attribName)
     {
         var pAttribName = Marshal.StringToCoTaskMemUTF8(attribName);
@@ -107,7 +127,9 @@ public static unsafe partial class Raylib
         SetShaderValue(shader, locIndex, &value, uniformType);
     }
 
-    /// <inheritdoc cref="SetShaderValueV" />
+    /// <summary>
+    /// Set shader uniform value vector
+    /// </summary>
     public static void SetShaderValue<T>(Shader shader, int locIndex, ReadOnlySpan<T> value, ShaderUniformDataType uniformType)
         where T : unmanaged
     {
@@ -117,19 +139,25 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="SetShaderValueMatrix" />
+    /// <summary>
+    /// Set shader uniform value (matrix 4x4)
+    /// </summary>
     public static void SetShaderValue(Shader shader, int locIndex, Matrix4x4 mat)
     {
         SetShaderValueMatrix(shader, locIndex, mat);
     }
 
-    /// <inheritdoc cref="SetShaderValueTexture" />
+    /// <summary>
+    /// Set shader uniform value for texture (sampler2d)
+    /// </summary>
     public static void SetShaderValue(Shader shader, int locIndex, Texture texture)
     {
         SetShaderValueTexture(shader, locIndex, texture);
     }
 
-    /// <inheritdoc cref="TakeScreenshot(sbyte*)" />
+    /// <summary>
+    /// Takes a screenshot of current screen (filename extension defines format)
+    /// </summary>
     public static void TakeScreenshot(string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -137,7 +165,9 @@ public static unsafe partial class Raylib
         Marshal.FreeCoTaskMem(pFileName);
     }
 
-    /// <inheritdoc cref="OpenURL(sbyte*)" />
+    /// <summary>
+    /// Open URL with default system browser (if available)
+    /// </summary>
     public static void OpenURL(string url)
     {
         var pUrl = Marshal.StringToCoTaskMemUTF8(url);
@@ -145,7 +175,9 @@ public static unsafe partial class Raylib
         Marshal.FreeCoTaskMem(pUrl);
     }
 
-    /// <inheritdoc cref="TraceLog(TraceLogLevel,sbyte*)" />
+    /// <summary>
+    /// Show trace log messages (TraceLogLevel.Debug, TraceLogLevel.Info, TraceLogLevel.Warning, TraceLogLevel.Error...)
+    /// </summary>
     public static void TraceLog(TraceLogLevel logLevel, string text)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -153,21 +185,27 @@ public static unsafe partial class Raylib
         Marshal.FreeCoTaskMem(pText);
     }
 
-    /// <inheritdoc cref="MemAlloc" />
+    /// <summary>
+    /// Internal memory allocator
+    /// </summary>
     public static T* MemAlloc<T>(uint elementCount)
         where T : unmanaged
     {
         return (T*)MemAlloc((uint)(elementCount * sizeof(T)));
     }
 
-    /// <inheritdoc cref="MemRealloc" />
+    /// <summary>
+    /// Internal memory reallocator
+    /// </summary>
     public static T* MemRealloc<T>(T* ptr, uint elementCount)
         where T : unmanaged
     {
         return (T*)MemRealloc((void*)ptr, (uint)(elementCount * sizeof(T)));
     }
 
-    /// <inheritdoc cref="LoadFileData(sbyte*,int*)" />
+    /// <summary>
+    /// Load file data as byte array (read)
+    /// </summary>
     public static byte* LoadFileData(string fileName, out int dataSize)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -197,7 +235,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="ExportDataAsCode(byte*,int,sbyte*)" />
+    /// <summary>
+    /// Export data to code (.h), returns true on success
+    /// </summary>
     public static NativeBool ExportDataAsCode(ReadOnlySpan<byte> data, string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -211,7 +251,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadFileText(sbyte*)" />
+    /// <summary>
+    /// Load text data from file (read), returns a '\0' terminated string
+    /// </summary>
     public static sbyte* LoadFileText(string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -220,7 +262,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="SaveFileText(sbyte*,sbyte*)" />
+    /// <summary>
+    /// Save text data to file (write), string must be '\0' terminated, returns true on success
+    /// </summary>
     public static NativeBool SaveFileText(string fileName, string text)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -231,7 +275,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="FileExists(sbyte*)" />
+    /// <summary>
+    /// Check if file exists
+    /// </summary>
     public static NativeBool FileExists(string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -240,7 +286,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="DirectoryExists(sbyte*)" />
+    /// <summary>
+    /// Check if a directory path exists
+    /// </summary>
     public static NativeBool DirectoryExists(string dirName)
     {
         var pDirName = Marshal.StringToCoTaskMemUTF8(dirName);
@@ -249,7 +297,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="IsFileExtension(sbyte*,sbyte*)" />
+    /// <summary>
+    /// Check file extension (including point: .png, .wav)
+    /// </summary>
     public static NativeBool IsFileExtension(string fileName, string ext)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -260,7 +310,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="GetFileLength(sbyte*)" />
+    /// <summary>
+    /// Get file length in bytes (NOTE: GetFileSize() conflicts with windows.h)
+    /// </summary>
     public static int GetFileLength(string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -269,7 +321,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="GetFileExtension(sbyte*)" />
+    /// <summary>
+    /// Get pointer to extension for a filename string (includes dot: '.png')
+    /// </summary>
     public static string GetFileExtension(string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -278,7 +332,9 @@ public static unsafe partial class Raylib
         return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
     }
 
-    /// <inheritdoc cref="GetFileName(sbyte*)" />
+    /// <summary>
+    /// Get pointer to filename for a path string
+    /// </summary>
     public static string GetFileName(string filePath)
     {
         var pFilePath = Marshal.StringToCoTaskMemUTF8(filePath);
@@ -287,7 +343,9 @@ public static unsafe partial class Raylib
         return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
     }
 
-    /// <inheritdoc cref="GetFileNameWithoutExt(sbyte*)" />
+    /// <summary>
+    /// Get filename string without extension (uses static string)
+    /// </summary>
     public static string GetFileNameWithoutExt(string filePath)
     {
         var pFilePath = Marshal.StringToCoTaskMemUTF8(filePath);
@@ -296,7 +354,9 @@ public static unsafe partial class Raylib
         return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
     }
 
-    /// <inheritdoc cref="GetDirectoryPath(sbyte*)" />
+    /// <summary>
+    /// Get full path for a given fileName with path (uses static string)
+    /// </summary>
     public static string GetDirectoryPath(string filePath)
     {
         var pFilePath = Marshal.StringToCoTaskMemUTF8(filePath);
@@ -305,7 +365,9 @@ public static unsafe partial class Raylib
         return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
     }
 
-    /// <inheritdoc cref="GetPrevDirectoryPath(sbyte*)" />
+    /// <summary>
+    /// Get previous directory path for a given path (uses static string)
+    /// </summary>
     public static string GetPrevDirectoryPath(string dirPath)
     {
         var pDirPath = Marshal.StringToCoTaskMemUTF8(dirPath);
@@ -314,19 +376,25 @@ public static unsafe partial class Raylib
         return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
     }
 
-    /// <inheritdoc cref="GetWorkingDirectory" />
+    /// <summary>
+    /// Get current working directory (uses static string)
+    /// </summary>
     public static string GetWorkingDirectoryString()
     {
         return Marshal.PtrToStringUTF8((nint)GetWorkingDirectory()) ?? string.Empty;
     }
 
-    /// <inheritdoc cref="GetApplicationDirectory" />
+    /// <summary>
+    /// Get the directory of the running application (uses static string)
+    /// </summary>
     public static string GetApplicationDirectoryString()
     {
         return Marshal.PtrToStringUTF8((nint)GetApplicationDirectory()) ?? string.Empty;
     }
 
-    /// <inheritdoc cref="ChangeDirectory(sbyte*)" />
+    /// <summary>
+    /// Change working directory, return true on success
+    /// </summary>
     public static NativeBool ChangeDirectory(string dir)
     {
         var pDir = Marshal.StringToCoTaskMemUTF8(dir);
@@ -335,7 +403,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="IsPathFile(sbyte*)" />
+    /// <summary>
+    /// Check if a given path is a file or a directory
+    /// </summary>
     public static NativeBool IsPathFile(string path)
     {
         var pPath = Marshal.StringToCoTaskMemUTF8(path);
@@ -344,7 +414,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="IsFileNameValid(sbyte*)" />
+    /// <summary>
+    /// Check if fileName is valid for the platform/OS
+    /// </summary>
     public static NativeBool IsFileNameValid(string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -353,7 +425,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadDirectoryFiles(sbyte*)" />
+    /// <summary>
+    /// Load directory filepaths
+    /// </summary>
     public static FilePathList LoadDirectoryFiles(string dirPath)
     {
         var pDirPath = Marshal.StringToCoTaskMemUTF8(dirPath);
@@ -362,7 +436,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadDirectoryFilesEx(sbyte*,sbyte*,NativeBool)" />
+    /// <summary>
+    /// Load directory filepaths with extension filtering and recursive directory scan
+    /// </summary>
     public static FilePathList LoadDirectoryFilesEx(string basePath, string filter, NativeBool scanSubdirs)
     {
         var pBasePath = Marshal.StringToCoTaskMemUTF8(basePath);
@@ -373,7 +449,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="CompressData(byte*,int,int*)" />
+    /// <summary>
+    /// Compress data (DEFLATE algorithm), memory must be MemFree()
+    /// </summary>
     public static byte* CompressData(ReadOnlySpan<byte> data, out int compDataSize)
     {
         fixed (byte* pData = data)
@@ -385,7 +463,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="DecompressData(byte*,int,int*)" />
+    /// <summary>
+    /// Decompress data (DEFLATE algorithm), memory must be MemFree()
+    /// </summary>
     public static byte* DecompressData(ReadOnlySpan<byte> compData, out int dataSize)
     {
         fixed (byte* pCompData = compData)
@@ -397,7 +477,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="EncodeDataBase64(byte*,int,int*)" />
+    /// <summary>
+    /// Encode data to Base64 string, memory must be MemFree()
+    /// </summary>
     public static sbyte* EncodeDataBase64(ReadOnlySpan<byte> data, out int outputSize)
     {
         fixed (byte* pData = data)
@@ -409,7 +491,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="DecodeDataBase64(byte*,int*)" />
+    /// <summary>
+    /// Decode Base64 string data, memory must be MemFree()
+    /// </summary>
     public static byte* DecodeDataBase64(ReadOnlySpan<byte> data, out int outputSize)
     {
         fixed (byte* pData = data)
@@ -421,7 +505,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="LoadAutomationEventList(sbyte*)" />
+    /// <summary>
+    /// Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS
+    /// </summary>
     public static AutomationEventList LoadAutomationEventList(string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -430,7 +516,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="ExportAutomationEventList(AutomationEventList,sbyte*)" />
+    /// <summary>
+    /// Export automation events list as text file
+    /// </summary>
     public static NativeBool ExportAutomationEventList(AutomationEventList list, string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -439,7 +527,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="SetAutomationEventList(AutomationEventList*)" />
+    /// <summary>
+    /// Set automation event list to record to
+    /// </summary>
     public static void SetAutomationEventList(ref AutomationEventList list)
     {
         if (_automationEventListHandle.IsAllocated)
@@ -453,13 +543,17 @@ public static unsafe partial class Raylib
         SetAutomationEventList((AutomationEventList*)_automationEventListHandle.AddrOfPinnedObject());
     }
 
-    /// <inheritdoc cref="GetGamepadName" />
+    /// <summary>
+    /// Get gamepad internal name id
+    /// </summary>
     public static string GetGamepadNameString(int gamepad)
     {
         return Marshal.PtrToStringUTF8((nint)GetGamepadName(gamepad)) ?? string.Empty;
     }
 
-    /// <inheritdoc cref="SetGamepadMappings(sbyte*)" />
+    /// <summary>
+    /// Set internal gamepad mappings (SDL_GameControllerDB)
+    /// </summary>
     public static int SetGamepadMappings(string mappings)
     {
         var pMappings = Marshal.StringToCoTaskMemUTF8(mappings);
@@ -468,7 +562,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="UpdateCamera(Camera3D*,CameraMode)" />
+    /// <summary>
+    /// Update camera position for selected mode
+    /// </summary>
     public static void UpdateCamera(ref Camera3D camera, CameraMode mode)
     {
         fixed (Camera3D* pCamera = &camera)
@@ -477,7 +573,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="UpdateCameraPro(Camera3D*,Vector3,Vector3,float)" />
+    /// <summary>
+    /// Update camera movement/rotation
+    /// </summary>
     public static void UpdateCameraPro(ref Camera3D camera, Vector3 movement, Vector3 rotation, float zoom)
     {
         fixed (Camera3D* pCamera = &camera)
@@ -486,7 +584,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="GetCameraForward(Camera3D*)" />
+    /// <summary>
+    /// Returns the cameras forward vector (normalized)
+    /// </summary>
     public static Vector3 GetCameraForward(ref Camera3D camera)
     {
         fixed (Camera3D* pCamera = &camera)
@@ -495,7 +595,12 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="GetCameraUp(Camera3D*)" />
+    /// <summary>
+    /// Returns the cameras up vector (normalized)
+    /// </summary>
+    /// <remarks>
+    /// Note: The up vector might not be perpendicular to the forward vector
+    /// </remarks>
     public static Vector3 GetCameraUp(ref Camera3D camera)
     {
         fixed (Camera3D* pCamera = &camera)
@@ -504,7 +609,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="GetCameraRight(Camera3D*)" />
+    /// <summary>
+    /// Returns the cameras right vector (normalized)
+    /// </summary>
     public static Vector3 GetCameraRight(ref Camera3D camera)
     {
         fixed (Camera3D* pCamera = &camera)
@@ -513,7 +620,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="CameraMoveForward(Camera3D*,float,NativeBool)" />
+    /// <summary>
+    /// Moves the camera in its forward direction
+    /// </summary>
     public static void CameraMoveForward(ref Camera3D camera, float distance, NativeBool moveInWorldPlane)
     {
         fixed (Camera3D* pCamera = &camera)
@@ -522,7 +631,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="CameraMoveUp(Camera3D*,float)" />
+    /// <summary>
+    /// Moves the camera in its up direction
+    /// </summary>
     public static void CameraMoveUp(ref Camera3D camera, float distance)
     {
         fixed (Camera3D* pCamera = &camera)
@@ -531,7 +642,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="CameraMoveRight(Camera3D*,float,NativeBool)" />
+    /// <summary>
+    /// Moves the camera target in its current right direction
+    /// </summary>
     public static void CameraMoveRight(ref Camera3D camera, float distance, NativeBool moveInWorldPlane)
     {
         fixed (Camera3D* pCamera = &camera)
@@ -540,7 +653,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="CameraMoveToTarget(Camera3D*,float)" />
+    /// <summary>
+    /// Moves the camera position closer/farther to/from the camera target
+    /// </summary>
     public static void CameraMoveToTarget(ref Camera3D camera, float delta)
     {
         fixed (Camera3D* pCamera = &camera)
@@ -549,7 +664,14 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="CameraYaw(Camera3D*,float,NativeBool)" />
+    /// <summary>
+    /// Rotates the camera around its up vector <br />
+    /// Yaw is "looking left and right" <br />
+    /// If rotateAroundTarget is false, the camera rotates around its position
+    /// </summary>
+    /// <remarks>
+    /// Note: angle must be provided in radians
+    /// </remarks>
     public static void CameraYaw(ref Camera3D camera, float angle, NativeBool rotateAroundTarget)
     {
         fixed (Camera3D* pCamera = &camera)
@@ -558,7 +680,15 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="CameraPitch(Camera3D*,float,NativeBool,NativeBool,NativeBool)" />
+    /// <summary>
+    /// Rotates the camera around its right vector, pitch is "looking up and down" <br />
+    /// - lockView prevents camera overrotation (aka "somersaults") <br />
+    /// - rotateAroundTarget defines if rotation is around target or around its position <br />
+    /// - rotateUp rotates the up direction as well (typically only usefull in CAMERA_FREE)
+    /// </summary>
+    /// <remarks>
+    /// NOTE: angle must be provided in radians
+    /// </remarks>
     public static void CameraPitch(ref Camera3D camera, float angle, NativeBool lockView, NativeBool rotateAroundTarget, NativeBool rotateUp)
     {
         fixed (Camera3D* pCamera = &camera)
@@ -567,7 +697,13 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="CameraRoll(Camera3D*,float)" />
+    /// <summary>
+    /// Rotates the camera around its forward vector <br />
+    /// Roll is "turning your head sideways to the left or right"
+    /// </summary>
+    /// <remarks>
+    /// Note: angle must be provided in radians
+    /// </remarks>
     public static void CameraRoll(ref Camera3D camera, float angle)
     {
         fixed (Camera3D* pCamera = &camera)
@@ -576,7 +712,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="GetCameraViewMatrix(Camera3D*)" />
+    /// <summary>
+    /// Returns the camera view matrix
+    /// </summary>
     public static Matrix4x4 GetCameraViewMatrix(ref Camera3D camera)
     {
         fixed (Camera3D* pCamera = &camera)
@@ -585,7 +723,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="GetCameraProjectionMatrix(Camera3D*,float)" />
+    /// <summary>
+    /// Returns the camera projection matrix
+    /// </summary>
     public static Matrix4x4 GetCameraProjectionMatrix(ref Camera3D camera, float aspect)
     {
         fixed (Camera3D* pCamera = &camera)
@@ -594,7 +734,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="DrawLineStrip(Vector2*,int,Color)" />
+    /// <summary>
+    /// Draw lines sequence (using gl lines)
+    /// </summary>
     public static void DrawLineStrip(ReadOnlySpan<Vector2> points, Color color)
     {
         fixed (Vector2* pPoints = points)
@@ -603,7 +745,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="DrawTriangleFan(Vector2*,int,Color)" />
+    /// <summary>
+    /// Draw a triangle fan defined by points (first vertex is the center)
+    /// </summary>
     public static void DrawTriangleFan(ReadOnlySpan<Vector2> points, Color color)
     {
         fixed (Vector2* pPoints = points)
@@ -612,7 +756,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="DrawTriangleStrip(Vector2*,int,Color)" />
+    /// <summary>
+    /// Draw a triangle strip defined by points
+    /// </summary>
     public static void DrawTriangleStrip(ReadOnlySpan<Vector2> points, Color color)
     {
         fixed (Vector2* pPoints = points)
@@ -621,7 +767,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="DrawSplineLinear(Vector2*,int,float,Color)" />
+    /// <summary>
+    /// Draw spline: Linear, minimum 2 points
+    /// </summary>
     public static void DrawSplineLinear(ReadOnlySpan<Vector2> points, float thick, Color color)
     {
         fixed (Vector2* pPoints = points)
@@ -630,7 +778,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="DrawSplineBasis(Vector2*,int,float,Color)" />
+    /// <summary>
+    /// Draw spline: B-Spline, minimum 4 points
+    /// </summary>
     public static void DrawSplineBasis(ReadOnlySpan<Vector2> points, float thick, Color color)
     {
         fixed (Vector2* pPoints = points)
@@ -639,7 +789,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="DrawSplineCatmullRom(Vector2*,int,float,Color)" />
+    /// <summary>
+    /// Draw spline: Catmull-Rom, minimum 4 points
+    /// </summary>
     public static void DrawSplineCatmullRom(ReadOnlySpan<Vector2> points, float thick, Color color)
     {
         fixed (Vector2* pPoints = points)
@@ -648,7 +800,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="DrawSplineBezierQuadratic(Vector2*,int,float,Color)" />
+    /// <summary>
+    /// Draw spline: Quadratic Bezier, minimum 3 points (1 control point): [p1, c2, p3, c4...]
+    /// </summary>
     public static void DrawSplineBezierQuadratic(ReadOnlySpan<Vector2> points, float thick, Color color)
     {
         fixed (Vector2* pPoints = points)
@@ -657,7 +811,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="DrawSplineBezierCubic(Vector2*,int,float,Color)" />
+    /// <summary>
+    /// Draw spline: Cubic Bezier, minimum 4 points (2 control points): [p1, c2, c3, p4, c5, c6...]
+    /// </summary>
     public static void DrawSplineBezierCubic(ReadOnlySpan<Vector2> points, float thick, Color color)
     {
         fixed (Vector2* pPoints = points)
@@ -666,7 +822,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="CheckCollisionPointPoly(Vector2,Vector2*,int)" />
+    /// <summary>
+    /// Check if point is within a polygon described by array of vertices
+    /// </summary>
     public static NativeBool CheckCollisionPointPoly(Vector2 point, ReadOnlySpan<Vector2> points)
     {
         fixed (Vector2* pPoints = points)
@@ -675,7 +833,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="CheckCollisionLines(Vector2,Vector2,Vector2,Vector2,Vector2*)" />
+    /// <summary>
+    /// Check the collision between two lines defined by two points each, returns collision point by reference
+    /// </summary>
     public static NativeBool CheckCollisionLines(
         Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, out Vector2 collisionPoint)
     {
@@ -685,7 +845,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="LoadImage(sbyte*)" />
+    /// <summary>
+    /// Load image from file into CPU memory (RAM)
+    /// </summary>
     public static Image LoadImage(string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -694,7 +856,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadImageRaw(sbyte*,int,int,PixelFormat,int)" />
+    /// <summary>
+    /// Load image from RAW file data
+    /// </summary>
     public static Image LoadImageRaw(string fileName, int width, int height, PixelFormat format, int headerSize)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -703,7 +867,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadImageSvg(sbyte*,int,int)" />
+    /// <summary>
+    /// Load image from SVG file data or string with specified size
+    /// </summary>
     public static Image LoadImageSvg(string fileNameOrString, int width, int height)
     {
         var pFileNameOrString = Marshal.StringToCoTaskMemUTF8(fileNameOrString);
@@ -712,7 +878,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadImageAnim(sbyte*,int*)" />
+    /// <summary>
+    /// Load image sequence from file (frames appended to image.data)
+    /// </summary>
     public static Image LoadImageAnim(string fileName, out int frames)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -726,7 +894,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadImageAnimFromMemory(sbyte*,byte*,int,int*)" />
+    /// <summary>
+    /// Load image sequence from memory buffer
+    /// </summary>
     public static Image LoadImageAnimFromMemory(string fileType, ReadOnlySpan<byte> fileData, out int frames)
     {
         var pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
@@ -743,7 +913,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadImageFromMemory(sbyte*,byte*,int)" />
+    /// <summary>
+    /// Load image from memory buffer, fileType refers to extension: i.e. '.png'
+    /// </summary>
     public static Image LoadImageFromMemory(string fileType, ReadOnlySpan<byte> fileData)
     {
         var pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
@@ -757,7 +929,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="ExportImage(Image,sbyte*)" />
+    /// <summary>
+    /// Export image data to file, returns true on success
+    /// </summary>
     public static NativeBool ExportImage(Image image, string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -766,7 +940,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="ExportImageToMemory(Image,sbyte*,int*)" />
+    /// <summary>
+    /// Export image to memory buffer
+    /// </summary>
     public static byte* ExportImageToMemory(Image image, string fileType, out int fileSize)
     {
         var pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
@@ -780,7 +956,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="ExportImageAsCode(Image,sbyte*)" />
+    /// <summary>
+    /// Export image as code file defining an array of bytes, returns true on success
+    /// </summary>
     public static NativeBool ExportImageAsCode(Image image, string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -789,7 +967,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="GenImageText(int,int,sbyte*)" />
+    /// <summary>
+    /// Generate image: grayscale image from text data
+    /// </summary>
     public static Image GenImageText(int width, int height, string text)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -798,7 +978,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="ImageText(sbyte*,int,Color)" />
+    /// <summary>
+    /// Create an image from text (default font)
+    /// </summary>
     public static Image ImageText(string text, int fontSize, Color color)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -807,7 +989,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="ImageTextEx(Font,sbyte*,float,float,Color)" />
+    /// <summary>
+    /// Create an image from text (custom sprite font)
+    /// </summary>
     public static Image ImageTextEx(Font font, string text, float fontSize, float spacing, Color tint)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -816,7 +1000,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="ImageFormat(Image*,PixelFormat)" />
+    /// <summary>
+    /// Convert image data to desired format
+    /// </summary>
     public static void ImageFormat(ref Image image, PixelFormat newFormat)
     {
         fixed (Image* pImage = &image)
@@ -825,7 +1011,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageToPOT(Image*,Color)" />
+    /// <summary>
+    /// Convert image to POT (power-of-two)
+    /// </summary>
     public static void ImageToPOT(ref Image image, Color fill)
     {
         fixed (Image* pImage = &image)
@@ -834,7 +1022,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageCrop(Image*,Rectangle)" />
+    /// <summary>
+    /// Crop an image to a defined rectangle
+    /// </summary>
     public static void ImageCrop(ref Image image, Rectangle crop)
     {
         fixed (Image* pImage = &image)
@@ -843,7 +1033,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageAlphaCrop(Image*,float)" />
+    /// <summary>
+    /// Crop image depending on alpha value
+    /// </summary>
     public static void ImageAlphaCrop(ref Image image, float threshold)
     {
         fixed (Image* pImage = &image)
@@ -852,7 +1044,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageAlphaClear(Image*,Color,float)" />
+    /// <summary>
+    /// Clear alpha channel to desired color
+    /// </summary>
     public static void ImageAlphaClear(ref Image image, Color color, float threshold)
     {
         fixed (Image* pImage = &image)
@@ -861,7 +1055,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageAlphaMask(Image*,Image)" />
+    /// <summary>
+    /// Apply alpha mask to image
+    /// </summary>
     public static void ImageAlphaMask(ref Image image, Image alphaMask)
     {
         fixed (Image* pImage = &image)
@@ -870,7 +1066,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageAlphaPremultiply(Image*)" />
+    /// <summary>
+    /// Premultiply alpha channel
+    /// </summary>
     public static void ImageAlphaPremultiply(ref Image image)
     {
         fixed (Image* pImage = &image)
@@ -879,7 +1077,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageBlurGaussian(Image*,int)" />
+    /// <summary>
+    /// Apply Gaussian blur using a box blur approximation
+    /// </summary>
     public static void ImageBlurGaussian(ref Image image, int blurSize)
     {
         fixed (Image* pImage = &image)
@@ -888,7 +1088,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageKernelConvolution(Image*,float*,int)" />
+    /// <summary>
+    /// Apply custom square convolution kernel to image
+    /// </summary>
     public static void ImageKernelConvolution(ref Image image, ReadOnlySpan<float> kernel, int kernelSize)
     {
         fixed (Image* pImage = &image)
@@ -900,7 +1102,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageResize(Image*,int,int)" />
+    /// <summary>
+    /// Resize image (Bicubic scaling algorithm)
+    /// </summary>
     public static void ImageResize(ref Image image, int newWidth, int newHeight)
     {
         fixed (Image* pImage = &image)
@@ -909,7 +1113,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageResizeNN(Image*,int,int)" />
+    /// <summary>
+    /// Resize image (Nearest-Neighbor scaling algorithm)
+    /// </summary>
     public static void ImageResizeNN(ref Image image, int newWidth, int newHeight)
     {
         fixed (Image* pImage = &image)
@@ -918,7 +1124,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageResizeCanvas(Image*,int,int,int,int,Color)" />
+    /// <summary>
+    /// Resize canvas and fill with color
+    /// </summary>
     public static void ImageResizeCanvas(ref Image image, int newWidth, int newHeight, int offsetX, int offsetY, Color fill)
     {
         fixed (Image* pImage = &image)
@@ -927,7 +1135,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageMipmaps(Image*)" />
+    /// <summary>
+    /// Compute all mipmap levels for a provided image
+    /// </summary>
     public static void ImageMipmaps(ref Image image)
     {
         fixed (Image* pImage = &image)
@@ -936,7 +1146,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDither(Image*,int,int,int,int)" />
+    /// <summary>
+    /// Dither image data to 16bpp or lower (Floyd-Steinberg dithering)
+    /// </summary>
     public static void ImageDither(ref Image image, int rBpp, int gBpp, int bBpp, int aBpp)
     {
         fixed (Image* pImage = &image)
@@ -945,7 +1157,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageFlipVertical(Image*)" />
+    /// <summary>
+    /// Flip image vertically
+    /// </summary>
     public static void ImageFlipVertical(ref Image image)
     {
         fixed (Image* pImage = &image)
@@ -954,7 +1168,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageFlipHorizontal(Image*)" />
+    /// <summary>
+    /// Flip image horizontally
+    /// </summary>
     public static void ImageFlipHorizontal(ref Image image)
     {
         fixed (Image* pImage = &image)
@@ -963,7 +1179,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageRotate(Image*,int)" />
+    /// <summary>
+    /// Rotate image by input angle in degrees (-359 to 359)
+    /// </summary>
     public static void ImageRotate(ref Image image, int degrees)
     {
         fixed (Image* pImage = &image)
@@ -972,7 +1190,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageRotateCW(Image*)" />
+    /// <summary>
+    /// Rotate image clockwise 90deg
+    /// </summary>
     public static void ImageRotateCW(ref Image image)
     {
         fixed (Image* pImage = &image)
@@ -981,7 +1201,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageRotateCCW(Image*)" />
+    /// <summary>
+    /// Rotate image counter-clockwise 90deg
+    /// </summary>
     public static void ImageRotateCCW(ref Image image)
     {
         fixed (Image* pImage = &image)
@@ -990,7 +1212,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageColorTint(Image*,Color)" />
+    /// <summary>
+    /// Modify image color: tint
+    /// </summary>
     public static void ImageColorTint(ref Image image, Color color)
     {
         fixed (Image* pImage = &image)
@@ -999,7 +1223,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageColorInvert(Image*)" />
+    /// <summary>
+    /// Modify image color: invert
+    /// </summary>
     public static void ImageColorInvert(ref Image image)
     {
         fixed (Image* pImage = &image)
@@ -1008,7 +1234,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageColorGrayscale(Image*)" />
+    /// <summary>
+    /// Modify image color: grayscale
+    /// </summary>
     public static void ImageColorGrayscale(ref Image image)
     {
         fixed (Image* pImage = &image)
@@ -1017,7 +1245,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageColorContrast(Image*,float)" />
+    /// <summary>
+    /// Modify image color: contrast (-100 to 100)
+    /// </summary>
     public static void ImageColorContrast(ref Image image, float contrast)
     {
         fixed (Image* pImage = &image)
@@ -1026,7 +1256,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageColorBrightness(Image*,int)" />
+    /// <summary>
+    /// Modify image color: brightness (-255 to 255)
+    /// </summary>
     public static void ImageColorBrightness(ref Image image, int brightness)
     {
         fixed (Image* pImage = &image)
@@ -1035,7 +1267,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageColorReplace(Image*,Color,Color)" />
+    /// <summary>
+    /// Modify image color: replace color
+    /// </summary>
     public static void ImageColorReplace(ref Image image, Color color, Color replace)
     {
         fixed (Image* pImage = &image)
@@ -1044,7 +1278,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="LoadImagePalette(Image,int,int*)" />
+    /// <summary>
+    /// Load colors palette from image as a Color array (RGBA - 32bit)
+    /// </summary>
     public static Color* LoadImagePalette(Image image, int maxPaletteSize, out int colorCount)
     {
         fixed (int* pColorCount = &colorCount)
@@ -1053,7 +1289,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageClearBackground(Image*,Color)" />
+    /// <summary>
+    /// Clear image background with given color
+    /// </summary>
     public static void ImageClearBackground(ref Image image, Color color)
     {
         fixed (Image* pImage = &image)
@@ -1062,7 +1300,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawPixel(Image*,int,int,Color)" />
+    /// <summary>
+    /// Draw pixel within an image
+    /// </summary>
     public static void ImageDrawPixel(ref Image dst, int posX, int posY, Color color)
     {
         fixed (Image* pDst = &dst)
@@ -1071,7 +1311,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawPixelV(Image*,Vector2,Color)" />
+    /// <summary>
+    /// Draw pixel within an image (Vector version)
+    /// </summary>
     public static void ImageDrawPixelV(ref Image dst, Vector2 position, Color color)
     {
         fixed (Image* pDst = &dst)
@@ -1080,7 +1322,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawLine(Image*,int,int,int,int,Color)" />
+    /// <summary>
+    /// Draw line within an image
+    /// </summary>
     public static void ImageDrawLine(ref Image dst, int startPosX, int startPosY, int endPosX, int endPosY, Color color)
     {
         fixed (Image* pDst = &dst)
@@ -1089,7 +1333,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawLineV(Image*,Vector2,Vector2,Color)" />
+    /// <summary>
+    /// Draw line within an image (Vector version)
+    /// </summary>
     public static void ImageDrawLineV(ref Image dst, Vector2 start, Vector2 end, Color color)
     {
         fixed (Image* pDst = &dst)
@@ -1098,7 +1344,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawLineEx(Image*,Vector2,Vector2,int,Color)" />
+    /// <summary>
+    /// Draw a line defining thickness within an image
+    /// </summary>
     public static void ImageDrawLineEx(ref Image dst, Vector2 start, Vector2 end, int thick, Color color)
     {
         fixed (Image* pDst = &dst)
@@ -1107,7 +1355,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawCircle(Image*,int,int,int,Color)" />
+    /// <summary>
+    /// Draw a filled circle within an image
+    /// </summary>
     public static void ImageDrawCircle(ref Image dst, int centerX, int centerY, int radius, Color color)
     {
         fixed (Image* pDst = &dst)
@@ -1116,7 +1366,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawCircleV(Image*,Vector2,int,Color)" />
+    /// <summary>
+    /// Draw a filled circle within an image (Vector version)
+    /// </summary>
     public static void ImageDrawCircleV(ref Image dst, Vector2 center, int radius, Color color)
     {
         fixed (Image* pDst = &dst)
@@ -1125,7 +1377,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawCircleLines(Image*,int,int,int,Color)" />
+    /// <summary>
+    /// Draw circle outline within an image
+    /// </summary>
     public static void ImageDrawCircleLines(ref Image dst, int centerX, int centerY, int radius, Color color)
     {
         fixed (Image* pDst = &dst)
@@ -1134,7 +1388,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawCircleLinesV(Image*,Vector2,int,Color)" />
+    /// <summary>
+    /// Draw circle outline within an image (Vector version)
+    /// </summary>
     public static void ImageDrawCircleLinesV(ref Image dst, Vector2 center, int radius, Color color)
     {
         fixed (Image* pDst = &dst)
@@ -1143,7 +1399,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawRectangle(Image*,int,int,int,int,Color)" />
+    /// <summary>
+    /// Draw rectangle within an image
+    /// </summary>
     public static void ImageDrawRectangle(ref Image dst, int posX, int posY, int width, int height, Color color)
     {
         fixed (Image* pDst = &dst)
@@ -1152,7 +1410,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawRectangleV(Image*,Vector2,Vector2,Color)" />
+    /// <summary>
+    /// Draw rectangle within an image (Vector version)
+    /// </summary>
     public static void ImageDrawRectangleV(ref Image dst, Vector2 position, Vector2 size, Color color)
     {
         fixed (Image* pDst = &dst)
@@ -1161,7 +1421,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawRectangleRec(Image*,Rectangle,Color)" />
+    /// <summary>
+    /// Draw rectangle within an image
+    /// </summary>
     public static void ImageDrawRectangleRec(ref Image dst, Rectangle rec, Color color)
     {
         fixed (Image* pDst = &dst)
@@ -1170,7 +1432,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawRectangleLines(Image*,Rectangle,int,Color)" />
+    /// <summary>
+    /// Draw rectangle lines within an image
+    /// </summary>
     public static void ImageDrawRectangleLines(ref Image dst, Rectangle rec, int thick, Color color)
     {
         fixed (Image* pDst = &dst)
@@ -1179,7 +1443,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawTriangle(Image*,Vector2,Vector2,Vector2,Color)" />
+    /// <summary>
+    /// Draw triangle within an image
+    /// </summary>
     public static void ImageDrawTriangle(ref Image dst, Vector2 v1, Vector2 v2, Vector2 v3, Color color)
     {
         fixed (Image* pDst = &dst)
@@ -1188,7 +1454,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawTriangleEx(Image*,Vector2,Vector2,Vector2,Color,Color,Color)" />
+    /// <summary>
+    /// Draw triangle with interpolated colors within an image
+    /// </summary>
     public static void ImageDrawTriangleEx(ref Image dst, Vector2 v1, Vector2 v2, Vector2 v3, Color c1, Color c2, Color c3)
     {
         fixed (Image* pDst = &dst)
@@ -1197,7 +1465,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawTriangleLines(Image*,Vector2,Vector2,Vector2,Color)" />
+    /// <summary>
+    /// Draw triangle outline within an image
+    /// </summary>
     public static void ImageDrawTriangleLines(ref Image dst, Vector2 v1, Vector2 v2, Vector2 v3, Color color)
     {
         fixed (Image* pDst = &dst)
@@ -1206,7 +1476,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawTriangleFan(Image*,Vector2*,int,Color)" />
+    /// <summary>
+    /// Draw a triangle fan defined by points within an image (first vertex is the center)
+    /// </summary>
     public static void ImageDrawTriangleFan(ref Image dst, ReadOnlySpan<Vector2> points, Color color)
     {
         fixed (Image* pDst = &dst)
@@ -1218,7 +1490,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawTriangleStrip(Image*,Vector2*,int,Color)" />
+    /// <summary>
+    /// Draw a triangle strip defined by points within an image
+    /// </summary>
     public static void ImageDrawTriangleStrip(ref Image dst, ReadOnlySpan<Vector2> points, Color color)
     {
         fixed (Image* pDst = &dst)
@@ -1230,7 +1504,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDraw(Image*,Image,Rectangle,Rectangle,Color)" />
+    /// <summary>
+    /// Draw a source image within a destination image (tint applied to source)
+    /// </summary>
     public static void ImageDraw(ref Image dst, Image src, Rectangle srcRec, Rectangle dstRec, Color tint)
     {
         fixed (Image* pDst = &dst)
@@ -1239,7 +1515,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ImageDrawText(Image*,sbyte*,int,int,int,Color)" />
+    /// <summary>
+    /// Draw text (using default font) within an image (destination)
+    /// </summary>
     public static void ImageDrawText(ref Image dst, string text, int posX, int posY, int fontSize, Color color)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -1251,7 +1529,9 @@ public static unsafe partial class Raylib
         Marshal.FreeCoTaskMem(pText);
     }
 
-    /// <inheritdoc cref="ImageDrawTextEx(Image*,Font,sbyte*,Vector2,float,float,Color)" />
+    /// <summary>
+    /// Draw text (custom sprite font) within an image (destination)
+    /// </summary>
     public static void ImageDrawTextEx(ref Image dst, Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -1263,7 +1543,9 @@ public static unsafe partial class Raylib
         Marshal.FreeCoTaskMem(pText);
     }
 
-    /// <inheritdoc cref="LoadTexture(sbyte*)" />
+    /// <summary>
+    /// Load texture from file into GPU memory (VRAM)
+    /// </summary>
     public static Texture LoadTexture(string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -1272,7 +1554,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="UpdateTexture" />
+    /// <summary>
+    /// Update GPU texture with new data
+    /// </summary>
     public static void UpdateTexture<T>(Texture texture, ReadOnlySpan<T> pixels)
         where T : unmanaged
     {
@@ -1282,7 +1566,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="UpdateTextureRec" />
+    /// <summary>
+    /// Update GPU texture rectangle with new data
+    /// </summary>
     public static void UpdateTextureRec<T>(Texture texture, Rectangle rec, ReadOnlySpan<T> pixels)
         where T : unmanaged
     {
@@ -1292,7 +1578,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="LoadFont(sbyte*)" />
+    /// <summary>
+    /// Load font from file into GPU memory (VRAM)
+    /// </summary>
     public static Font LoadFont(string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -1301,7 +1589,10 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadFontEx(sbyte*,int,int*,int)" />
+    /// <summary>
+    /// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default
+    /// character set, font size is provided in pixels height
+    /// </summary>
     public static Font LoadFontEx(string fileName, int fontSize, ReadOnlySpan<int> codepoints)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -1322,7 +1613,10 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadFontEx(sbyte*,int,int*,int)" />
+    /// <summary>
+    /// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default
+    /// character set, font size is provided in pixels height
+    /// </summary>
     public static Font LoadFontEx(string fileName, int fontSize, int codepointCount)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -1331,7 +1625,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadFontFromMemory(sbyte*,byte*,int,int,int*,int)" />
+    /// <summary>
+    /// Load font from memory buffer, fileType refers to extension: i.e. '.ttf'
+    /// </summary>
     public static Font LoadFontFromMemory(string fileType, ReadOnlySpan<byte> fileData, int fontSize, ReadOnlySpan<int> codepoints)
     {
         var pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
@@ -1355,7 +1651,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadFontFromMemory(sbyte*,byte*,int,int,int*,int)" />
+    /// <summary>
+    /// Load font from memory buffer, fileType refers to extension: i.e. '.ttf'
+    /// </summary>
     public static Font LoadFontFromMemory(string fileType, ReadOnlySpan<byte> fileData, int fontSize, int codepointCount)
     {
         var pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
@@ -1369,7 +1667,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadFontData(byte*,int,int,int*,int,FontType)" />
+    /// <summary>
+    /// Load font data for further use
+    /// </summary>
     public static GlyphInfo* LoadFontData(ReadOnlySpan<byte> fileData, int fontSize, ReadOnlySpan<int> codepoints, FontType type)
     {
         fixed (byte* pFileData = fileData)
@@ -1386,7 +1686,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="LoadFontData(byte*,int,int,int*,int,FontType)" />
+    /// <summary>
+    /// Load font data for further use
+    /// </summary>
     public static GlyphInfo* LoadFontData(ReadOnlySpan<byte> fileData, int fontSize, int codepointCount, FontType type)
     {
         fixed (byte* pFileData = fileData)
@@ -1395,7 +1697,11 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="GenImageFontAtlas(GlyphInfo*,Rectangle**,int,int,int,int)" />
+    // TODO: maybe use Span<Rectangle> instead?
+
+    /// <summary>
+    /// Generate image font atlas using chars info
+    /// </summary>
     public static Image GenImageFontAtlas(ReadOnlySpan<GlyphInfo> glyphs, out Rectangle[] glyphRecs, int fontSize, int padding, int packMethod)
     {
         Image result;
@@ -1417,7 +1723,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="ExportFontAsCode(Font,sbyte*)" />
+    /// <summary>
+    /// Export font as code file, returns true on success
+    /// </summary>
     public static NativeBool ExportFontAsCode(Font font, string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -1426,7 +1734,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="DrawText(sbyte*,int,int,int,Color)" />
+    /// <summary>
+    /// Draw text (using default font)
+    /// </summary>
     public static void DrawText(string text, int posX, int posY, int fontSize, Color color)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -1434,7 +1744,9 @@ public static unsafe partial class Raylib
         Marshal.FreeCoTaskMem(pText);
     }
 
-    /// <inheritdoc cref="DrawTextEx(Font,sbyte*,Vector2,float,float,Color)" />
+    /// <summary>
+    /// Draw text using font and additional parameters
+    /// </summary>
     public static void DrawTextEx(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -1442,7 +1754,9 @@ public static unsafe partial class Raylib
         Marshal.FreeCoTaskMem(pText);
     }
 
-    /// <inheritdoc cref="DrawTextPro(Font,sbyte*,Vector2,Vector2,float,float,float,Color)" />
+    /// <summary>
+    /// Draw text using Font and pro parameters (rotation)
+    /// </summary>
     public static void DrawTextPro(
         Font font, string text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint)
     {
@@ -1451,7 +1765,9 @@ public static unsafe partial class Raylib
         Marshal.FreeCoTaskMem(pText);
     }
 
-    /// <inheritdoc cref="DrawTextCodepoints(Font,int*,int,Vector2,float,float,Color)" />
+    /// <summary>
+    /// Draw multiple character (codepoint)
+    /// </summary>
     public static void DrawTextCodepoints(Font font, ReadOnlySpan<int> codepoints, Vector2 position, float fontSize, float spacing, Color tint)
     {
         fixed (int* pCodepoints = codepoints)
@@ -1460,7 +1776,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="MeasureText(sbyte*,int)" />
+    /// <summary>
+    /// Measure string width for default font
+    /// </summary>
     public static int MeasureText(string text, int fontSize)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -1469,7 +1787,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="MeasureTextEx(Font,sbyte*,float,float)" />
+    /// <summary>
+    /// Measure string size for Font
+    /// </summary>
     public static Vector2 MeasureTextEx(Font font, string text, float fontSize, float spacing)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -1478,7 +1798,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadUTF8(int*,int)" />
+    /// <summary>
+    /// Load UTF-8 text encoded from codepoints array
+    /// </summary>
     public static sbyte* LoadUTF8(ReadOnlySpan<int> codepoints)
     {
         fixed (int* pCodepoints = codepoints)
@@ -1487,7 +1809,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="LoadCodepoints(sbyte*,int*)" />
+    /// <summary>
+    /// Load all codepoints from a UTF-8 text string, codepoints count returned by parameter
+    /// </summary>
     public static int* LoadCodepoints(string text, out int count)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -1501,7 +1825,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="GetCodepointCount(sbyte*)" />
+    /// <summary>
+    /// Get total number of codepoints in a UTF-8 encoded string
+    /// </summary>
     public static int GetCodepointCount(string text)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -1510,7 +1836,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="GetCodepoint(sbyte*,int*)" />
+    /// <summary>
+    /// Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
+    /// </summary>
     public static int GetCodepoint(string text, out int codepointSize)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -1524,7 +1852,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="GetCodepointNext(sbyte*,int*)" />
+    /// <summary>
+    /// Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
+    /// </summary>
     public static int GetCodepointNext(string text, out int codepointSize)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -1538,7 +1868,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="GetCodepointPrevious(sbyte*,int*)" />
+    /// <summary>
+    /// Get previous codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
+    /// </summary>
     public static int GetCodepointPrevious(string text, out int codepointSize)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -1552,14 +1884,18 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="CodepointToUTF8(int,int*)" />
+    /// <summary>
+    /// Encode one codepoint into UTF-8 byte array (array length returned as parameter)
+    /// </summary>
     public static string CodepointToUTF8(int codepoint)
     {
         int utf8Size;
         return Marshal.PtrToStringUTF8((nint)CodepointToUTF8(codepoint, &utf8Size), utf8Size);
     }
 
-    /// <inheritdoc cref="TextToPascal(sbyte*)" />
+    /// <summary>
+    /// Get Pascal case notation version of provided string
+    /// </summary>
     public static string TextToPascal(string text)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -1568,7 +1904,9 @@ public static unsafe partial class Raylib
         return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
     }
 
-    /// <inheritdoc cref="TextToSnake(sbyte*)" />
+    /// <summary>
+    /// Get Snake case notation version of provided string
+    /// </summary>
     public static string TextToSnake(string text)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -1577,7 +1915,9 @@ public static unsafe partial class Raylib
         return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
     }
 
-    /// <inheritdoc cref="TextToCamel(sbyte*)" />
+    /// <summary>
+    /// Get Camel case notation version of provided string
+    /// </summary>
     public static string TextToCamel(string text)
     {
         var pText = Marshal.StringToCoTaskMemUTF8(text);
@@ -1586,7 +1926,9 @@ public static unsafe partial class Raylib
         return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
     }
 
-    /// <inheritdoc cref="DrawTriangleStrip3D(Vector3*,int,Color)" />
+    /// <summary>
+    /// Draw a triangle strip defined by points
+    /// </summary>
     public static void DrawTriangleStrip3D(ReadOnlySpan<Vector3> points, Color color)
     {
         fixed (Vector3* pPoints = points)
@@ -1595,7 +1937,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="LoadModel(sbyte*)" />
+    /// <summary>
+    /// Load model from files (meshes and materials)
+    /// </summary>
     public static Model LoadModel(string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -1604,7 +1948,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="UploadMesh(Mesh*,NativeBool)" />
+    /// <summary>
+    /// Upload mesh vertex data in GPU and provide VAO/VBO ids
+    /// </summary>
     public static void UploadMesh(ref Mesh mesh, NativeBool dynamic)
     {
         fixed (Mesh* pMesh = &mesh)
@@ -1613,7 +1959,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="UpdateMeshBuffer" />
+    /// <summary>
+    /// Update mesh vertex data in GPU for a specific buffer index
+    /// </summary>
     public static void UpdateMeshBuffer<T>(Mesh mesh, int index, ReadOnlySpan<T> data, int offset)
         where T : unmanaged
     {
@@ -1623,7 +1971,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="DrawMeshInstanced(Mesh,Material,Matrix4x4*,int)" />
+    /// <summary>
+    /// Draw multiple mesh instances with material and different transforms
+    /// </summary>
     public static void DrawMeshInstanced(Mesh mesh, Material material, ReadOnlySpan<Matrix4x4> transforms)
     {
         fixed (Matrix4x4* pTransforms = transforms)
@@ -1632,7 +1982,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="GenMeshTangents(Mesh*)" />
+    /// <summary>
+    /// Compute mesh tangents
+    /// </summary>
     public static void GenMeshTangents(ref Mesh mesh)
     {
         fixed (Mesh* pMesh = &mesh)
@@ -1641,7 +1993,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ExportMesh(Mesh,sbyte*)" />
+    /// <summary>
+    /// Export mesh data to file, returns true on success
+    /// </summary>
     public static NativeBool ExportMesh(Mesh mesh, string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -1650,7 +2004,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="ExportMeshAsCode(Mesh,sbyte*)" />
+    /// <summary>
+    /// Export mesh as code file (.h) defining multiple arrays of vertex attributes
+    /// </summary>
     public static NativeBool ExportMeshAsCode(Mesh mesh, string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -1659,7 +2015,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadMaterials(sbyte*,int*)" />
+    /// <summary>
+    /// Load materials from model file
+    /// </summary>
     public static Material* LoadMaterials(string fileName, out int materialCount)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -1674,7 +2032,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="SetMaterialTexture(Material*,MaterialMapIndex,Texture)" />
+    /// <summary>
+    /// Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)
+    /// </summary>
     public static void SetMaterialTexture(ref Material material, MaterialMapIndex mapType, Texture texture)
     {
         fixed (Material* pMaterial = &material)
@@ -1683,7 +2043,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="SetModelMeshMaterial(Model*,int,int)" />
+    /// <summary>
+    /// Set material for a mesh
+    /// </summary>
     public static void SetModelMeshMaterial(ref Model model, int meshId, int materialId)
     {
         fixed (Model* pModel = &model)
@@ -1692,7 +2054,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="LoadModelAnimations(sbyte*,int*)" />
+    /// <summary>
+    /// Load model animations from file
+    /// </summary>
     public static ModelAnimation* LoadModelAnimations(string fileName, out int animCount)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -1706,7 +2070,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadWave(sbyte*)" />
+    /// <summary>
+    /// Load wave data from file
+    /// </summary>
     public static Wave LoadWave(string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -1715,7 +2081,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadWaveFromMemory(sbyte*,byte*,int)" />
+    /// <summary>
+    /// Load wave from memory buffer, fileType refers to extension: i.e. '.wav'
+    /// </summary>
     public static Wave LoadWaveFromMemory(string fileType, ReadOnlySpan<byte> fileData)
     {
         var pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
@@ -1729,7 +2097,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadSound(sbyte*)" />
+    /// <summary>
+    /// Load sound from file
+    /// </summary>
     public static Sound LoadSound(string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -1738,7 +2108,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="UpdateSound" />
+    /// <summary>
+    /// Update sound buffer with new data
+    /// </summary>
     public static void UpdateSound<T>(Sound sound, ReadOnlySpan<T> data, int sampleCount)
         where T : unmanaged
     {
@@ -1748,7 +2120,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="ExportWave(Wave,sbyte*)" />
+    /// <summary>
+    /// Export wave data to file, returns true on success
+    /// </summary>
     public static NativeBool ExportWave(Wave wave, string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -1757,7 +2131,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="ExportWaveAsCode(Wave,sbyte*)" />
+    /// <summary>
+    /// Export wave sample data to code (.h), returns true on success
+    /// </summary>
     public static NativeBool ExportWaveAsCode(Wave wave, string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -1766,7 +2142,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="WaveCrop(Wave*,int,int)" />
+    /// <summary>
+    /// Crop a wave to defined frames range
+    /// </summary>
     public static void WaveCrop(ref Wave wave, int initFrame, int finalFrame)
     {
         fixed (Wave* pWave = &wave)
@@ -1775,7 +2153,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="WaveFormat(Wave*,int,int,int)" />
+    /// <summary>
+    /// Convert wave data to desired format
+    /// </summary>
     public static void WaveFormat(ref Wave wave, int sampleRate, int sampleSize, int channels)
     {
         fixed (Wave* pWave = &wave)
@@ -1784,7 +2164,9 @@ public static unsafe partial class Raylib
         }
     }
 
-    /// <inheritdoc cref="LoadMusicStream(sbyte*)" />
+    /// <summary>
+    /// Load music stream from file
+    /// </summary>
     public static Music LoadMusicStream(string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
@@ -1793,7 +2175,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="LoadMusicStreamFromMemory(sbyte*,byte*,int)" />
+    /// <summary>
+    /// Load music stream from data
+    /// </summary>
     public static Music LoadMusicStreamFromMemory(string fileType, ReadOnlySpan<byte> data)
     {
         var pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
@@ -1807,7 +2191,9 @@ public static unsafe partial class Raylib
         return result;
     }
 
-    /// <inheritdoc cref="UpdateAudioStream" />
+    /// <summary>
+    /// Update audio stream buffers with data
+    /// </summary>
     public static void UpdateAudioStream<T>(AudioStream stream, ReadOnlySpan<T> data, int frameCount)
         where T : unmanaged
     {
