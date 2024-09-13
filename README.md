@@ -53,6 +53,12 @@ differences from [Raylib-cs](https://github.com/ChrisDill/Raylib-cs)
 | raylib 5.0                                          | raylib 5.5-dev (master) |
 
 ### code differences
+Raylib-cs.BleedingEdge is a little more low-level than Raylib-cs, for example: 
+Raylib-cs has `GetDroppedFiles`, which basically does `LoadDroppedFiles`, copies data from it 
+to `string[]` and does `UnloadDroppedFiles`. Raylib-cs.BleedingEdge doesn't have `GetDroppedFiles`, 
+instead of this you must `LoadDroppedFiles` and `UnloadDroppedFiles` yourself, like in normal raylib. 
+`FilePathList` has `PathsArray` property, which makes easier to use `FilePathList` in C# world
+
 ###### `*` means *any*, e.g. `*Span<T>` can be `Span<T>` or `ReadOnlySpan<T>`
 | [Raylib-cs](https://github.com/chrisdill/raylib-cs) | Raylib-cs.BleedingEdge                                   |
 |-----------------------------------------------------|----------------------------------------------------------|
