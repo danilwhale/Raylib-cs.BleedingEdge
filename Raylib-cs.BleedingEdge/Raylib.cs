@@ -3323,30 +3323,35 @@ public static unsafe partial class Raylib
     public static partial void DrawGrid(int slices, float spacing);
 
     /// <summary>
+    /// Load model from files (meshes and materials)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Model LoadModel(sbyte* fileName);
 
     /// <summary>
+    /// Load model from generated mesh (default material)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial Model LoadModelFromMesh(Mesh mesh);
 
     /// <summary>
+    /// Check if a model is ready
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsModelReady(Model model);
 
     /// <summary>
+    /// Unload model (including meshes) from memory (RAM and/or VRAM)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void UnloadModel(Model model);
 
     /// <summary>
+    /// Compute model bounding box limits (considers all meshes)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
