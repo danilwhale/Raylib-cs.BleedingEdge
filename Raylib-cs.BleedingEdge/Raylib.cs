@@ -990,7 +990,8 @@ public static unsafe partial class Raylib
     public static partial FilePathList LoadDirectoryFiles(sbyte* dirPath);
 
     /// <summary>
-    /// Load directory filepaths with extension filtering and recursive directory scan
+    /// Load directory filepaths with extension filtering and recursive directory scan. 
+    /// Use "/DIR" in the filter string to include directories in the result
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
@@ -2825,6 +2826,13 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial int GetPixelDataSize(int width, int height, PixelFormat format);
+
+    /// <summary>
+    /// Get color lerp interpolation between two colors, factor [0.0f..1.0f]
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Color ColorLerp(Color color1, Color color2, float factor);
 
     /// <summary>
     /// Get the default Font
