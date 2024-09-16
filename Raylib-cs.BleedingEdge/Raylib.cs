@@ -805,35 +805,35 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void SetTraceLogCallback(TraceLogCallback callback);
+    public static partial void SetTraceLogCallback(delegate* unmanaged[Cdecl]<TraceLogLevel, sbyte*, nint, void> callback);
 
     /// <summary>
     /// Set custom file binary data loader
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void SetLoadFileDataCallback(LoadFileDataCallback callback);
+    public static partial void SetLoadFileDataCallback(delegate* unmanaged[Cdecl]<sbyte*, int*, sbyte*> callback);
 
     /// <summary>
     /// Set custom file binary data saver
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void SetSaveFileDataCallback(SaveFileDataCallback callback);
+    public static partial void SetSaveFileDataCallback(delegate* unmanaged[Cdecl]<sbyte*, void*, int, NativeBool> callback);
 
     /// <summary>
     /// Set custom file text data loader
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void SetLoadFileTextCallback(LoadFileTextCallback callback);
+    public static partial void SetLoadFileTextCallback(delegate* unmanaged[Cdecl]<sbyte*, sbyte*> callback);
 
     /// <summary>
     /// Set custom file text data saver
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void SetSaveFileTextCallback(SaveFileTextCallback callback);
+    public static partial void SetSaveFileTextCallback(delegate* unmanaged[Cdecl]<sbyte*, sbyte*, NativeBool> callback);
 
     /// <summary>
     /// Load file data as byte array (read)
@@ -3084,6 +3084,7 @@ public static unsafe partial class Raylib
     [LibraryImport(LibName)]
     public static partial uint TextLength(sbyte* text);
 
+    // TODO: add support for variable args and implement the function
     /// <summary>
     /// Text formatting with variables (sprintf() style)
     /// </summary>
@@ -4144,33 +4145,33 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void SetAudioStreamCallback(AudioStream stream, AudioCallback callback);
+    public static partial void SetAudioStreamCallback(AudioStream stream, delegate* unmanaged[Cdecl]<void*, uint, void> callback);
 
     /// <summary>
     /// Attach audio stream processor to stream, receives the samples as 'float'
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void AttachAudioStreamProcessor(AudioStream stream, AudioCallback processor);
+    public static partial void AttachAudioStreamProcessor(AudioStream stream, delegate* unmanaged[Cdecl]<void*, uint, void> processor);
 
     /// <summary>
     /// Detach audio stream processor from stream
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DetachAudioStreamProcessor(AudioStream stream, AudioCallback processor);
+    public static partial void DetachAudioStreamProcessor(AudioStream stream, delegate* unmanaged[Cdecl]<void*, uint, void> processor);
 
     /// <summary>
     /// Attach audio stream processor to the entire audio pipeline, receives the samples as 'float'
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void AttachAudioMixedProcessor(AudioCallback processor);
+    public static partial void AttachAudioMixedProcessor(delegate* unmanaged[Cdecl]<void*, uint, void> processor);
 
     /// <summary>
     /// Detach audio stream processor from the entire audio pipeline
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DetachAudioMixedProcessor(AudioCallback processor);
+    public static partial void DetachAudioMixedProcessor(delegate* unmanaged[Cdecl]<void*, uint, void> processor);
 }
