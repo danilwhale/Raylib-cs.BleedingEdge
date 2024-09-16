@@ -53,7 +53,7 @@ public static unsafe partial class Rlgl
     {
         fixed (T* pBuffer = buffer)
         {
-            return LoadVertexBuffer(pBuffer, buffer.Length, dynamic);
+            return LoadVertexBuffer(pBuffer, buffer.Length * sizeof(T), dynamic);
         }
     }
 
@@ -65,7 +65,7 @@ public static unsafe partial class Rlgl
     {
         fixed (T* pBuffer = buffer)
         {
-            return LoadVertexBufferElement(pBuffer, buffer.Length, dynamic);
+            return LoadVertexBufferElement(pBuffer, buffer.Length * sizeof(T), dynamic);
         }
     }
 
@@ -77,7 +77,7 @@ public static unsafe partial class Rlgl
     {
         fixed (T* pData = data)
         {
-            UpdateVertexBuffer(bufferId, pData, data.Length, offset);
+            UpdateVertexBuffer(bufferId, pData, data.Length * sizeof(T), offset);
         }
     }
 
@@ -89,7 +89,7 @@ public static unsafe partial class Rlgl
     {
         fixed (T* pData = data)
         {
-            UpdateVertexBufferElements(id, pData, data.Length, offset);
+            UpdateVertexBufferElements(id, pData, data.Length * sizeof(T), offset);
         }
     }
 
@@ -134,7 +134,7 @@ public static unsafe partial class Rlgl
     {
         fixed (T* pData = data)
         {
-            return LoadTextureCubemap(pData, data.Length, format);
+            return LoadTextureCubemap(pData, data.Length * sizeof(T), format);
         }
     }
 
@@ -286,7 +286,7 @@ public static unsafe partial class Rlgl
     {
         fixed (T* pData = data)
         {
-            return LoadShaderBuffer((uint)data.Length, pData, usageHint);
+            return LoadShaderBuffer((uint)(data.Length * sizeof(T)), pData, usageHint);
         }
     }
 
@@ -306,7 +306,7 @@ public static unsafe partial class Rlgl
     {
         fixed (T* pData = data)
         {
-            UpdateShaderBuffer(id, pData, (uint)data.Length, offset);
+            UpdateShaderBuffer(id, pData, (uint)(data.Length * sizeof(T)), offset);
         }
     }
 

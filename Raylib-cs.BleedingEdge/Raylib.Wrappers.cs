@@ -222,13 +222,14 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Save data to file from byte array (write), returns true on success
     /// </summary>
-    public static NativeBool SaveFileData(string fileName, ReadOnlySpan<byte> data)
+    public static NativeBool SaveFileData<T>(string fileName, ReadOnlySpan<T> data)
+        where T : unmanaged
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
         NativeBool result;
-        fixed (byte* pData = data)
+        fixed (T* pData = data)
         {
-            result = SaveFileData((sbyte*)pFileName, pData, data.Length);
+            result = SaveFileData((sbyte*)pFileName, pData, data.Length * sizeof(T));
         }
 
         Marshal.FreeCoTaskMem(pFileName);
@@ -1967,7 +1968,7 @@ public static unsafe partial class Raylib
     {
         fixed (T* pData = data)
         {
-            UpdateMeshBuffer(mesh, index, pData, data.Length, offset);
+            UpdateMeshBuffer(mesh, index, pData, data.Length * sizeof(T), offset);
         }
     }
 
