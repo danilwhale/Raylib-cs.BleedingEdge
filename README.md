@@ -21,8 +21,8 @@ basic example
 ---
 
 ```csharp
-using Raylib-cs.BleedingEdge;
-using static Raylib-cs.BleedingEdge.Raylib;
+using Raylib_cs.BleedingEdge;
+using static Raylib_cs.BleedingEdge.Raylib;
 
 const int screenWidth = 800;
 const int screenHeight = 540;
