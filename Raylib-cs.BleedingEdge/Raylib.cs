@@ -990,8 +990,8 @@ public static unsafe partial class Raylib
     public static partial FilePathList LoadDirectoryFiles(sbyte* dirPath);
 
     /// <summary>
-    /// Load directory filepaths with extension filtering and recursive directory scan. 
-    /// Use "/DIR" in the filter string to include directories in the result
+    /// Load directory filepaths with extension filtering and recursive directory scan.
+    /// Use 'DIR' in the filter string to include directories in the result
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
