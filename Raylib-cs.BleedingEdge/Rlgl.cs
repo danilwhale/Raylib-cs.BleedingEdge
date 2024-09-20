@@ -1225,7 +1225,7 @@ public static unsafe partial class Rlgl
     /// Set shader value matrices
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetUniformMatrix")]
+    [LibraryImport(LibName, EntryPoint = "rlSetUniformMatrices")]
     public static partial void SetUniformMatrices(int locIndex, Matrix4x4* mat, int count);
 
     /// <summary>
