@@ -279,6 +279,25 @@ public static unsafe partial class Rlgl
     }
 
     /// <summary>
+    /// Set shader value matrices
+    /// </summary>
+    public static void SetUniform(int locIndex, ReadOnlySpan<Matrix4x4> mat)
+    {
+        SetUniformMatrices(locIndex, mat);
+    }
+
+    /// <summary>
+    /// Set shader value matrices
+    /// </summary>
+    public static void SetUniformMatrices(int locIndex, ReadOnlySpan<Matrix4x4> mat)
+    {
+        fixed (Matrix4x4* pMat = mat)
+        {
+            SetUniformMatrices(locIndex, pMat, mat.Length);
+        }
+    }
+
+    /// <summary>
     /// Load shader storage buffer object (SSBO)
     /// </summary>
     public static uint LoadShaderBuffer<T>(ReadOnlySpan<T> data, int usageHint)

@@ -134,6 +134,21 @@ public enum ShaderLocationIndex
     /// Shader location: sampler2d texture: brdf
     /// </summary>
     MapBrdf,
+    
+    /// <summary>
+    /// Shader location: vertex attribute: boneIds
+    /// </summary>
+    VertexBoneIDs,
+    
+    /// <summary>
+    /// Shader location: vertex attribute: boneWeights
+    /// </summary>
+    VertexBoneWeights,
+    
+    /// <summary>
+    /// Shader location: array of matrices uniform: boneMatrices
+    /// </summary>
+    BoneMatrices,
 
     MapDiffuse = MapAlbedo,
     MapSpecular = MapMetalness

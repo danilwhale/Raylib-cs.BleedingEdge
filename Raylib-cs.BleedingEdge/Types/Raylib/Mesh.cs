@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.Runtime.InteropServices;
 
 namespace Raylib_cs.BleedingEdge;
@@ -39,9 +40,24 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     public const int VertexBufferTexCoords2 = 5;
     
     /// <summary>
+    /// Default <see cref="VboID"/> index for <see cref="BoneIDs"/>
+    /// </summary>
+    public const int VertexBufferBoneIDs = 6;
+    
+    /// <summary>
+    /// Default <see cref="VboID"/> index for <see cref="BoneWeights"/>
+    /// </summary>
+    public const int VertexBufferBoneWeights = 7;
+    
+    /// <summary>
     /// Default <see cref="VboID"/> index for <see cref="Indices"/>
     /// </summary>
     public const int VertexBufferIndices = 6;
+
+    /// <summary>
+    /// Maximum vertex buffers (VBO) per mesh
+    /// </summary>
+    public const int MaxVertexBuffers = 9;
     
     /// <summary>
     /// Number of vertices stored in arrays
@@ -99,14 +115,24 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     public float* AnimNormals;
 
     /// <summary>
-    /// Vertex bone ids, max 255 bone ids, up to 4 bones influence by vertex (skinning)
+    /// Vertex bone ids, max 255 bone ids, up to 4 bones influence by vertex (skinning) (shader-location = 6)
     /// </summary>
     public byte* BoneIDs;
 
     /// <summary>
-    /// Vertex bone weight, up to 4 bones influence by vertex (skinning)
+    /// Vertex bone weight, up to 4 bones influence by vertex (skinning) (shader-location = 7)
     /// </summary>
     public float* BoneWeights;
+
+    /// <summary>
+    /// Bones animated transformation matrices
+    /// </summary>
+    public Matrix4x4* BoneMatrices;
+
+    /// <summary>
+    /// Number of bones
+    /// </summary>
+    public int BoneCount;
 
     /// <summary>
     /// OpenGL Vertex Array Object id

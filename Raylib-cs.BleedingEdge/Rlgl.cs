@@ -1220,6 +1220,13 @@ public static unsafe partial class Rlgl
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName, EntryPoint = "rlSetUniformMatrix")]
     public static partial void SetUniformMatrix(int locIndex, Matrix4x4 mat);
+    
+    /// <summary>
+    /// Set shader value matrices
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName, EntryPoint = "rlSetUniformMatrix")]
+    public static partial void SetUniformMatrices(int locIndex, Matrix4x4* mat, int count);
 
     /// <summary>
     /// Set shader value sampler

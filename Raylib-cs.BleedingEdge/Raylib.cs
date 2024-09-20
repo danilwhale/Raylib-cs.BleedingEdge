@@ -3656,6 +3656,13 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsModelAnimationValid(Model model, ModelAnimation anim);
+    
+    /// <summary>
+    /// Update model animation mesh bone matrices
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UpdateModelAnimationBoneMatrices(Model model, ModelAnimation anim, int frame);
 
     /// <summary>
     /// Check collision between two spheres
