@@ -52,7 +52,7 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     /// <summary>
     /// Default <see cref="VboID"/> index for <see cref="Indices"/>
     /// </summary>
-    public const int VertexBufferIndices = 6;
+    public const int VertexBufferIndices = 8;
 
     /// <summary>
     /// Maximum vertex buffers (VBO) per mesh
