@@ -394,6 +394,17 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>
+    /// Create directories (including full path requested), returns 0 on success
+    /// </summary>
+    public static int MakeDirectory(string dirPath)
+    {
+        var pDirPath = Marshal.StringToCoTaskMemUTF8(dirPath);
+        var result = MakeDirectory((sbyte*)pDirPath);
+        Marshal.FreeCoTaskMem(pDirPath);
+        return result;
+    }
+
+    /// <summary>
     /// Change working directory, return true on success
     /// </summary>
     public static NativeBool ChangeDirectory(string dir)

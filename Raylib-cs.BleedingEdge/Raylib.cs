@@ -962,6 +962,13 @@ public static unsafe partial class Raylib
     public static partial sbyte* GetApplicationDirectory();
 
     /// <summary>
+    /// Create directories (including full path requested), returns 0 on success
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial int MakeDirectory(sbyte* dirPath);
+
+    /// <summary>
     /// Change working directory, return true on success
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
