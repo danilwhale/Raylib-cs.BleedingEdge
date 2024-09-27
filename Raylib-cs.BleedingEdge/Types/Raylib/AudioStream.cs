@@ -11,12 +11,12 @@ public struct AudioStream
     /// <summary>
     /// Pointer to internal data used by the audio system
     /// </summary>
-    public unsafe void* Buffer;
+    public unsafe AudioBuffer* Buffer;
 
     /// <summary>
     /// Pointer to internal data processor, useful for audio effects
     /// </summary>
-    public unsafe void* Processor;
+    public unsafe AudioProcessor* Processor;
 
     /// <summary>
     /// Frequency (samples per second)
