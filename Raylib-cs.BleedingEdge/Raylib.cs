@@ -1585,14 +1585,14 @@ public static unsafe partial class Raylib
     public static partial Rectangle GetShapesTextureRectangle();
 
     /// <summary>
-    /// Draw a pixel
+    /// Draw a pixel using geometry [Can be slow, use with care]
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawPixel(int posX, int posY, Color color);
 
     /// <summary>
-    /// Draw a pixel (Vector version)
+    /// Draw a pixel using geometry (Vector version) [Can be slow, use with care]
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]

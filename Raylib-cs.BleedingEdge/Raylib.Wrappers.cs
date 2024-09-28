@@ -1710,6 +1710,7 @@ public static unsafe partial class Raylib
     }
 
     // TODO: maybe use Span<Rectangle> instead?
+    // nevermind using span causes heap corruption
 
     /// <summary>
     /// Generate image font atlas using chars info
