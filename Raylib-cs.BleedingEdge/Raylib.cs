@@ -3665,7 +3665,7 @@ public static unsafe partial class Raylib
     public static partial NativeBool IsModelAnimationValid(Model model, ModelAnimation anim);
     
     /// <summary>
-    /// Update model animation mesh bone matrices
+    /// Update model animation mesh bone matrices (Note GPU skinning does not work on Mac)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
