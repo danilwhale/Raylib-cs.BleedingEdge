@@ -53,20 +53,10 @@ Differences from [Raylib-cs](https://github.com/ChrisDill/Raylib-cs)
 | raylib 5.0                                          | raylib 5.5-dev (master) |
 
 ### Code Differences
-Raylib-cs.BleedingEdge is a little more low-level than Raylib-cs, for example:
-Raylib-cs has `GetDroppedFiles`, which basically does `LoadDroppedFiles`, copies data from resulting `FilePathList` 
-to `string[]` and does `UnloadDroppedFiles`. Raylib-cs.BleedingEdge doesn't have `GetDroppedFiles`, 
-instead of this you must do `LoadDroppedFiles` and `UnloadDroppedFiles` yourself, like in normal raylib.
-
-###### `*` means *any*, e.g. `*Span<T>` can be `Span<T>` or `ReadOnlySpan<T>`
-| [Raylib-cs](https://github.com/chrisdill/raylib-cs) | Raylib-cs.BleedingEdge                                   |
-|-----------------------------------------------------|----------------------------------------------------------|
-| `using Raylib-cs`                                   | `using Raylib-cs.BleedingEdge`                           |
-| `Texture2D`                                         | `Texture`                                                |
-| `RenderTexture2D`                                   | `RenderTexture`                                          |
-| `T[]` for functions with pointers                   | `Span<T>` for functions with pointers                    |
-| `int` argument for the length of array              | -, use `Span<T>.Slice` if necessary                      |
-| `Function_()` as `string` variant                   | `FunctionString()` as `string` variant                   |
-| `Utf8Buffer`                                        | `Utf8Handle`                                             |
-| `New<T>(uint)`                                      | `MemAlloc<T>(uint)`                                      |
-| `Get*` (`GetDroppedFiles`)                          | -, use `Load*`, `Unload*` (`Load/UnloadDroppedFiles`)    |
+| Raylib-cs                              | Raylib-cs.BleedingEdge                |
+|----------------------------------------|---------------------------------------|
+| `using Raylib-cs`                      | `using Raylib-cs.BleedingEdge`        |
+| `T[]` for functions with pointers      | `Span<T>` for functions with pointers |
+| `int` argument for the length of array | -, use `Span<T>.Slice` if necessary   |
+| `Utf8Buffer`                           | `Utf8Handle`                          |
+| `AudioCallback`                        | `AudioMixedCallback`                  |
