@@ -455,7 +455,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void BeginTextureMode(RenderTexture target);
+    public static partial void BeginTextureMode(RenderTexture2D target);
 
     /// <summary>
     /// Ends drawing to render texture
@@ -595,7 +595,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void SetShaderValueTexture(Shader shader, int locIndex, Texture texture);
+    public static partial void SetShaderValueTexture(Shader shader, int locIndex, Texture2D texture);
 
     /// <summary>
     /// Unload shader from GPU memory (VRAM)
@@ -1567,7 +1567,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void SetShapesTexture(Texture texture, Rectangle source);
+    public static partial void SetShapesTexture(Texture2D texture, Rectangle source);
 
     /// <summary>
     /// Get texture that is used for shapes drawing
@@ -1575,7 +1575,7 @@ public static unsafe partial class Raylib
     /// +
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Texture GetShapesTexture();
+    public static partial Texture2D GetShapesTexture();
 
     /// <summary>
     /// Get texture source rectangle that is used for shapes drawing
@@ -2075,7 +2075,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Image LoadImageFromTexture(Texture texture);
+    public static partial Image LoadImageFromTexture(Texture2D texture);
 
     /// <summary>
     /// Load image from screen buffer and (screenshot)
@@ -2593,126 +2593,126 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Texture LoadTexture(sbyte* fileName);
+    public static partial Texture2D LoadTexture(sbyte* fileName);
 
     /// <summary>
     /// Load texture from image data
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Texture LoadTextureFromImage(Image image);
+    public static partial Texture2D LoadTextureFromImage(Image image);
 
     /// <summary>
     /// Load cubemap from image, multiple image cubemap layouts supported
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial Texture LoadTextureCubemap(Image image, CubemapLayout layout);
+    public static partial Texture2D LoadTextureCubemap(Image image, CubemapLayout layout);
 
     /// <summary>
     /// Load texture for rendering (framebuffer)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial RenderTexture LoadRenderTexture(int width, int height);
+    public static partial RenderTexture2D LoadRenderTexture(int width, int height);
 
     /// <summary>
     /// Check if a texture is ready
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool IsTextureReady(Texture texture);
+    public static partial NativeBool IsTextureReady(Texture2D texture);
 
     /// <summary>
     /// Unload texture from GPU memory (VRAM)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void UnloadTexture(Texture texture);
+    public static partial void UnloadTexture(Texture2D texture);
 
     /// <summary>
     /// Check if a render texture is ready
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool IsRenderTextureReady(RenderTexture target);
+    public static partial NativeBool IsRenderTextureReady(RenderTexture2D target);
 
     /// <summary>
     /// Unload render texture from GPU memory (VRAM)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void UnloadRenderTexture(RenderTexture target);
+    public static partial void UnloadRenderTexture(RenderTexture2D target);
 
     /// <summary>
     /// Update GPU texture with new data
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void UpdateTexture(Texture texture, void* pixels);
+    public static partial void UpdateTexture(Texture2D texture, void* pixels);
 
     /// <summary>
     /// Update GPU texture rectangle with new data
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void UpdateTextureRec(Texture texture, Rectangle rec, void* pixels);
+    public static partial void UpdateTextureRec(Texture2D texture, Rectangle rec, void* pixels);
 
     /// <summary>
     /// Generate GPU mipmaps for a texture
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void GenTextureMipmaps(Texture texture);
+    public static partial void GenTextureMipmaps(Texture2D texture);
 
     /// <summary>
     /// Set texture scaling filter mode
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void SetTextureFilter(Texture texture, TextureFilter filter);
+    public static partial void SetTextureFilter(Texture2D texture, TextureFilter filter);
 
     /// <summary>
     /// Set texture wrapping mode
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void SetTextureWrap(Texture texture, TextureWrap wrap);
+    public static partial void SetTextureWrap(Texture2D texture, TextureWrap wrap);
 
     /// <summary>
     /// Draw a Texture2D
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawTexture(Texture texture, int posX, int posY, Color tint);
+    public static partial void DrawTexture(Texture2D texture, int posX, int posY, Color tint);
 
     /// <summary>
     /// Draw a Texture2D with position defined as Vector2
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawTextureV(Texture texture, Vector2 position, Color tint);
+    public static partial void DrawTextureV(Texture2D texture, Vector2 position, Color tint);
 
     /// <summary>
     /// Draw a Texture2D with extended parameters
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawTextureEx(Texture texture, Vector2 position, float rotation, float scale, Color tint);
+    public static partial void DrawTextureEx(Texture2D texture, Vector2 position, float rotation, float scale, Color tint);
 
     /// <summary>
     /// Draw a part of a texture defined by a rectangle
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawTextureRec(Texture texture, Rectangle source, Vector2 position, Color tint);
+    public static partial void DrawTextureRec(Texture2D texture, Rectangle source, Vector2 position, Color tint);
 
     /// <summary>
     /// Draw a part of a texture defined by a rectangle with 'pro' parameters
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawTexturePro(Texture texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, Color tint);
+    public static partial void DrawTexturePro(Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, Color tint);
 
     /// <summary>
     /// Draws a texture (or part of it) that stretches or shrinks nicely
@@ -2720,7 +2720,7 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawTextureNPatch(
-        Texture texture, NPatchInfo nPatchInfo, Rectangle dest, Vector2 origin, float rotation, Color tint);
+        Texture2D texture, NPatchInfo nPatchInfo, Rectangle dest, Vector2 origin, float rotation, Color tint);
 
     /// <summary>
     /// Check if two colors are equal
@@ -3429,14 +3429,14 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawBillboard(Camera3D camera, Texture texture, Vector3 position, float scale, Color tint);
+    public static partial void DrawBillboard(Camera3D camera, Texture2D texture, Vector3 position, float scale, Color tint);
 
     /// <summary>
     /// Draw a billboard texture defined by source
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void DrawBillboardRec(Camera3D camera, Texture texture, Rectangle source, Vector3 position, Vector2 size, Color tint);
+    public static partial void DrawBillboardRec(Camera3D camera, Texture2D texture, Rectangle source, Vector3 position, Vector2 size, Color tint);
 
     /// <summary>
     /// Draw a billboard texture defined by source and rotation
@@ -3444,7 +3444,7 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void DrawBillboardPro(
-        Camera3D camera, Texture texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation,
+        Camera3D camera, Texture2D texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation,
         Color tint);
 
     /// <summary>
@@ -3620,7 +3620,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void SetMaterialTexture(Material* material, MaterialMapIndex mapType, Texture texture);
+    public static partial void SetMaterialTexture(Material* material, MaterialMapIndex mapType, Texture2D texture);
 
     /// <summary>
     /// Set material for a mesh

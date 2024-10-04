@@ -11,7 +11,7 @@ public struct MaterialMap
     /// <summary>
     /// Material map texture
     /// </summary>
-    public Texture Texture;
+    public Texture2D Texture;
 
     /// <summary>
     /// Material map color

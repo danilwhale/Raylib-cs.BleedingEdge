@@ -23,7 +23,7 @@ public struct Font
     /// <summary>
     /// Texture atlas containing the glyphs
     /// </summary>
-    public Texture Texture;
+    public Texture2D Texture;
 
     /// <summary>
     /// Rectangles in texture for the glyphs

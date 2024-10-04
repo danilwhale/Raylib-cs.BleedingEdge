@@ -150,7 +150,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Set shader uniform value for texture (sampler2d)
     /// </summary>
-    public static void SetShaderValue(Shader shader, int locIndex, Texture texture)
+    public static void SetShaderValue(Shader shader, int locIndex, Texture2D texture)
     {
         SetShaderValueTexture(shader, locIndex, texture);
     }
@@ -1558,7 +1558,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Load texture from file into GPU memory (VRAM)
     /// </summary>
-    public static Texture LoadTexture(string fileName)
+    public static Texture2D LoadTexture(string fileName)
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
         var result = LoadTexture((sbyte*)pFileName);
@@ -1569,7 +1569,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Update GPU texture with new data
     /// </summary>
-    public static void UpdateTexture<T>(Texture texture, ReadOnlySpan<T> pixels)
+    public static void UpdateTexture<T>(Texture2D texture, ReadOnlySpan<T> pixels)
         where T : unmanaged
     {
         fixed (T* pPixels = pixels)
@@ -1581,7 +1581,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Update GPU texture rectangle with new data
     /// </summary>
-    public static void UpdateTextureRec<T>(Texture texture, Rectangle rec, ReadOnlySpan<T> pixels)
+    public static void UpdateTextureRec<T>(Texture2D texture, Rectangle rec, ReadOnlySpan<T> pixels)
         where T : unmanaged
     {
         fixed (T* pPixels = pixels)
@@ -2048,7 +2048,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)
     /// </summary>
-    public static void SetMaterialTexture(ref Material material, MaterialMapIndex mapType, Texture texture)
+    public static void SetMaterialTexture(ref Material material, MaterialMapIndex mapType, Texture2D texture)
     {
         fixed (Material* pMaterial = &material)
         {

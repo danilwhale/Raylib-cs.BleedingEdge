@@ -6,7 +6,7 @@ namespace Raylib_cs.BleedingEdge;
 /// RenderTexture, fbo for texture rendering
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct RenderTexture
+public struct RenderTexture2D
 {
     /// <summary>
     /// OpenGL framebuffer object id
@@ -16,10 +16,10 @@ public struct RenderTexture
     /// <summary>
     /// Color buffer attachment texture
     /// </summary>
-    public Texture Texture;
+    public Texture2D Texture;
 
     /// <summary>
     /// Depth buffer attachment texture
     /// </summary>
-    public Texture Depth;
+    public Texture2D Depth;
 }

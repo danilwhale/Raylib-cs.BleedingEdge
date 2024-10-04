@@ -7,7 +7,7 @@ namespace Raylib_cs.BleedingEdge;
 /// Texture, tex data stored in GPU memory (VRAM)
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct Texture
+public struct Texture2D
 {
     /// <summary>
     /// OpenGL texture id

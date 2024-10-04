@@ -10,47 +10,47 @@ namespace Raylib_cs.BleedingEdge;
 public unsafe struct Mesh(int vertexCount, int triangleCount)
 {
     /// <summary>
-    /// Default <see cref="VboID"/> index for <see cref="Vertices"/>
+    /// Default <see cref="VboId"/> index for <see cref="Vertices"/>
     /// </summary>
     public const int VertexBufferPositions = 0;
     
     /// <summary>
-    /// Default <see cref="VboID"/> index for <see cref="TexCoords"/>
+    /// Default <see cref="VboId"/> index for <see cref="TexCoords"/>
     /// </summary>
     public const int VertexBufferTexCoords = 1;
     
     /// <summary>
-    /// Default <see cref="VboID"/> index for <see cref="Normals"/>
+    /// Default <see cref="VboId"/> index for <see cref="Normals"/>
     /// </summary>
     public const int VertexBufferNormals = 2;
     
     /// <summary>
-    /// Default <see cref="VboID"/> index for <see cref="Colors"/>
+    /// Default <see cref="VboId"/> index for <see cref="Colors"/>
     /// </summary>
     public const int VertexBufferColors = 3;
     
     /// <summary>
-    /// Default <see cref="VboID"/> index for <see cref="Tangents"/>
+    /// Default <see cref="VboId"/> index for <see cref="Tangents"/>
     /// </summary>
     public const int VertexBufferTangents = 4;
     
     /// <summary>
-    /// Default <see cref="VboID"/> index for <see cref="TexCoords2"/>
+    /// Default <see cref="VboId"/> index for <see cref="TexCoords2"/>
     /// </summary>
     public const int VertexBufferTexCoords2 = 5;
     
     /// <summary>
-    /// Default <see cref="VboID"/> index for <see cref="BoneIDs"/>
+    /// Default <see cref="VboId"/> index for <see cref="BoneIDs"/>
     /// </summary>
     public const int VertexBufferBoneIDs = 6;
     
     /// <summary>
-    /// Default <see cref="VboID"/> index for <see cref="BoneWeights"/>
+    /// Default <see cref="VboId"/> index for <see cref="BoneWeights"/>
     /// </summary>
     public const int VertexBufferBoneWeights = 7;
     
     /// <summary>
-    /// Default <see cref="VboID"/> index for <see cref="Indices"/>
+    /// Default <see cref="VboId"/> index for <see cref="Indices"/>
     /// </summary>
     public const int VertexBufferIndices = 8;
 
@@ -137,12 +137,12 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     /// <summary>
     /// OpenGL Vertex Array Object id
     /// </summary>
-    public uint VaoID;
+    public uint VaoId;
 
     /// <summary>
     /// OpenGL Vertex Buffer Objects id (default vertex data)
     /// </summary>
-    public uint* VboID;
+    public uint* VboId;
 
     /// <summary>
     /// Allocates <see cref="Vertices"/>
