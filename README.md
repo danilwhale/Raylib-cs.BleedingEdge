@@ -14,10 +14,10 @@ C# bindings for raylib, a simple and easy-to-use library to learn videogames pro
 
 Raylib-cs.BleedingEdge targets .NET 8+ and uses [the master branch of raylib repo](https://github.com/raysan5/raylib/tree/master)
 
-> there are still no examples, you can rely on [Raylib-cs](https://github.com/chrisdill/raylib-cs) examples
+> To see examples, you can reference the [Raylib-cs](https://github.com/chrisdill/raylib-cs) examples
 > as this binding has mostly same function signatures (see [code differences](#code-differences))
 
-basic example
+Basic Example
 ---
 
 ```csharp
@@ -42,18 +42,18 @@ while (!WindowShouldClose())
 CloseWindow();
 ```
 
-differences from [Raylib-cs](https://github.com/ChrisDill/Raylib-cs)
+Differences from [Raylib-cs](https://github.com/ChrisDill/Raylib-cs)
 ---
 
-### main differences
+### Main Differences
 | [Raylib-cs](https://github.com/chrisdill/raylib-cs) | Raylib-cs.BleedingEdge  |
 |-----------------------------------------------------|-------------------------|
 | .NET 6.0+                                           | .NET 8.0+               |
 | Released 07-2018                                    | Released 08-2024        |
 | raylib 5.0                                          | raylib 5.5-dev (master) |
 
-### code differences
-Raylib-cs.BleedingEdge is a little more low-level than Raylib-cs, for example: 
+### Code Differences
+Raylib-cs.BleedingEdge is a little more low-level than Raylib-cs, for example:
 Raylib-cs has `GetDroppedFiles`, which basically does `LoadDroppedFiles`, copies data from resulting `FilePathList` 
 to `string[]` and does `UnloadDroppedFiles`. Raylib-cs.BleedingEdge doesn't have `GetDroppedFiles`, 
 instead of this you must do `LoadDroppedFiles` and `UnloadDroppedFiles` yourself, like in normal raylib.
