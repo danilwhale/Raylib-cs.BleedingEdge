@@ -880,17 +880,6 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>
-    /// Load image from SVG file data or string with specified size
-    /// </summary>
-    public static Image LoadImageSvg(string fileNameOrString, int width, int height)
-    {
-        var pFileNameOrString = Marshal.StringToCoTaskMemUTF8(fileNameOrString);
-        var result = LoadImageSvg((sbyte*)pFileNameOrString, width, height);
-        Marshal.FreeCoTaskMem(pFileNameOrString);
-        return result;
-    }
-
-    /// <summary>
     /// Load image sequence from file (frames appended to image.data)
     /// </summary>
     public static Image LoadImageAnim(string fileName, out int frames)

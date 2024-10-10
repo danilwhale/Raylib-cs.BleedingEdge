@@ -2043,13 +2043,6 @@ public static unsafe partial class Raylib
     public static partial Image LoadImageRaw(sbyte* fileName, int width, int height, PixelFormat format, int headerSize);
 
     /// <summary>
-    /// Load image from SVG file data or string with specified size
-    /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName)]
-    public static partial Image LoadImageSvg(sbyte* fileNameOrString, int width, int height);
-
-    /// <summary>
     /// Load image sequence from file (frames appended to image.data)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
