@@ -6,7 +6,7 @@ namespace Raylib_cs.BleedingEdge;
 /// ModelAnimation
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct ModelAnimation
+public unsafe struct ModelAnimation
 {
     /// <summary>
     /// Number of bones
@@ -21,15 +21,23 @@ public struct ModelAnimation
     /// <summary>
     /// Bones information (skeleton)
     /// </summary>
-    public unsafe BoneInfo* Bones;
+    public BoneInfo* Bones;
 
     /// <summary>
     /// Poses array by frame
     /// </summary>
-    public unsafe Transform** FramePoses;
+    public Transform** FramePoses;
 
     /// <summary>
     /// Animation name
     /// </summary>
-    public unsafe fixed sbyte Name[32];
+    public fixed sbyte Name[32];
+
+    public override string ToString()
+    {
+        fixed (sbyte* pName = Name)
+        {
+            return $"<BoneCount:{BoneCount} FrameCount:{FrameCount} Name:{Marshal.PtrToStringUTF8((nint)pName)}>";
+        }
+    }
 }

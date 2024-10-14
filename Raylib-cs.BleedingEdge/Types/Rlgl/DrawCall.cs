@@ -32,5 +32,10 @@ public struct DrawCall
     /// <summary>
     /// Texture id to be used on the draw -> Use to create new draw call if changes
     /// </summary>
-    public uint TextureID;
+    public uint TextureId;
+
+    public override string ToString()
+    {
+        return $"<Mode:{Mode} VertexCount:{VertexCount} VertexAlignment:{VertexAlignment} TextureId:{TextureId}>";
+    }
 }

@@ -3,7 +3,7 @@ namespace Raylib_cs.BleedingEdge;
 /// <summary>
 /// Font, font texture and GlyphInfo array data
 /// </summary>
-public struct Font
+public unsafe struct Font
 {
     /// <summary>
     /// Base size (default chars height)
@@ -28,10 +28,15 @@ public struct Font
     /// <summary>
     /// Rectangles in texture for the glyphs
     /// </summary>
-    public unsafe Rectangle* Recs;
+    public Rectangle* Recs;
 
     /// <summary>
     /// Glyphs info data
     /// </summary>
-    public unsafe GlyphInfo* Glyphs;
+    public GlyphInfo* Glyphs;
+
+    public override string ToString()
+    {
+        return $"<BaseSize:{BaseSize} GlyphCount:{GlyphCount} GlyphPadding:{GlyphPadding} Texture:{Texture}>";
+    }
 }

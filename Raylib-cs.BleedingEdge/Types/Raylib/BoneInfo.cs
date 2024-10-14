@@ -6,15 +6,23 @@ namespace Raylib_cs.BleedingEdge;
 /// Bone, skeletal animation bone
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct BoneInfo
+public unsafe struct BoneInfo
 {
     /// <summary>
     /// Bone name
     /// </summary>
-    public unsafe fixed sbyte Name[32];
+    public fixed sbyte Name[32];
 
     /// <summary>
     /// Bone parent
     /// </summary>
     public int Parent;
+
+    public override string ToString()
+    {
+        fixed (sbyte* pName = Name)
+        {
+            return $"<Name:{Marshal.PtrToStringUTF8((nint)pName)} Parent:{Parent}>";
+        }
+    }
 }

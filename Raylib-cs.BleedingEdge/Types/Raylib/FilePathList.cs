@@ -7,7 +7,7 @@ namespace Raylib_cs.BleedingEdge;
 /// File path list
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct FilePathList
+public unsafe struct FilePathList
 {
     /// <summary>
     /// Filepaths max entries
@@ -22,10 +22,15 @@ public struct FilePathList
     /// <summary>
     /// Filepaths entries
     /// </summary>
-    public unsafe sbyte** Paths;
+    public sbyte** Paths;
 
     /// <summary>
     /// Filepaths entries
     /// </summary>
-    public unsafe NativeStringArray PathsArray => new(Count, Paths);
+    public NativeStringArray PathsArray => new(Count, Paths);
+
+    public override string ToString()
+    {
+        return $"<Capacity:{Capacity} Count:{Count}>";
+    }
 }

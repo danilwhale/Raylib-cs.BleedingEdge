@@ -22,4 +22,9 @@ public struct RenderTexture2D
     /// Depth buffer attachment texture
     /// </summary>
     public Texture2D Depth;
+
+    public override string ToString()
+    {
+        return $"<Id:{Id} Texture:{Texture} Depth:{Depth}>";
+    }
 }

@@ -6,17 +6,17 @@ namespace Raylib_cs.BleedingEdge;
 /// AudioStream, custom audio stream
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct AudioStream
+public unsafe struct AudioStream
 {
     /// <summary>
     /// Pointer to internal data used by the audio system
     /// </summary>
-    public unsafe AudioBuffer* Buffer;
+    public AudioBuffer* Buffer;
 
     /// <summary>
     /// Pointer to internal data processor, useful for audio effects
     /// </summary>
-    public unsafe AudioProcessor* Processor;
+    public AudioProcessor* Processor;
 
     /// <summary>
     /// Frequency (samples per second)
@@ -32,4 +32,9 @@ public struct AudioStream
     /// Number of channels (1-mono, 2-stereo, ...)
     /// </summary>
     public uint Channels;
+
+    public override string ToString()
+    {
+        return $"<SampleRate:{SampleRate} SampleSize:{SampleSize} Channels:{Channels}>";
+    }
 }

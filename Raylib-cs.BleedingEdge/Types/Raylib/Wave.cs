@@ -32,4 +32,9 @@ public struct Wave
     /// Buffer data pointer
     /// </summary>
     public unsafe void* Data;
+
+    public override string ToString()
+    {
+        return $"<FrameCount:{FrameCount} SampleRate:{SampleRate} SampleSize:{SampleSize} Channels:{Channels}>";
+    }
 }

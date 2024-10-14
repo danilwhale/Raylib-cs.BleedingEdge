@@ -7,7 +7,7 @@ namespace Raylib_cs.BleedingEdge;
 /// Model, meshes, materials and animation data
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct Model
+public unsafe struct Model
 {
     /// <summary>
     /// Local transform matrix
@@ -27,17 +27,17 @@ public struct Model
     /// <summary>
     /// Meshes array
     /// </summary>
-    public unsafe Mesh* Meshes;
+    public Mesh* Meshes;
 
     /// <summary>
     /// Materials array
     /// </summary>
-    public unsafe Material* Materials;
+    public Material* Materials;
 
     /// <summary>
     /// Mesh material number
     /// </summary>
-    public unsafe int* MeshMaterial;
+    public int* MeshMaterial;
 
     /// <summary>
     /// Number of bones
@@ -47,10 +47,15 @@ public struct Model
     /// <summary>
     /// Bones information (skeleton)
     /// </summary>
-    public unsafe BoneInfo* Bones;
+    public BoneInfo* Bones;
 
     /// <summary>
     /// Bones base transformation (pose)
     /// </summary>
-    public unsafe Transform* BindPose;
+    public Transform* BindPose;
+
+    public override string ToString()
+    {
+        return $"<Transform:{Transform} MeshCount:{MeshCount} MaterialCount:{MaterialCount} BoneCount:{BoneCount}>";
+    }
 }

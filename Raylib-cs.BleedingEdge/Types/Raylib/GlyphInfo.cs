@@ -32,4 +32,9 @@ public struct GlyphInfo
     /// Character image data
     /// </summary>
     public Image Image;
+
+    public override string ToString()
+    {
+        return $"<Value:{Value} OffsetX:{OffsetX} OffsetY:{OffsetY} AdvanceX:{AdvanceX} Image:{Image}";
+    }
 }

@@ -38,4 +38,9 @@ public struct NPatchInfo
     /// Layout of the n-patch: 3x3, 1x3 or 3x1
     /// </summary>
     public NPatchLayout Layout;
+
+    public override string ToString()
+    {
+        return $"<Source:{Source} Left:{Left} Top:{Top} Right:{Right} Bottom:{Bottom} Layout:{Layout}";
+    }
 }

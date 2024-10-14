@@ -7,7 +7,7 @@ namespace Raylib_cs.BleedingEdge;
 /// Automation event
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct AutomationEvent
+public unsafe struct AutomationEvent
 {
     /// <summary>
     /// Event frame
@@ -22,5 +22,10 @@ public struct AutomationEvent
     /// <summary>
     /// Event parameters (if required)
     /// </summary>
-    public unsafe fixed int Params[4];
+    public fixed int Params[4];
+
+    public override string ToString()
+    {
+        return $"<Frame:{Frame} Type:{Type} Params:<{Params[0]} {Params[1]} {Params[2]} {Params[3]}>>";
+    }
 }

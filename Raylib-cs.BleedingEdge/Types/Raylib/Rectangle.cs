@@ -70,4 +70,9 @@ public struct Rectangle(float x, float y, float width, float height)
         : this(position.X, position.Y, size.X, size.Y)
     {
     }
+
+    public override string ToString()
+    {
+        return $"<Position:{Position} Size:{Size}>";
+    }
 }

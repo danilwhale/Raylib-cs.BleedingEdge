@@ -38,4 +38,9 @@ public struct RenderBatch
     /// Current depth value for next draw
     /// </summary>
     public float CurrentDepth;
+
+    public override string ToString()
+    {
+        return $"<BufferCount:{BufferCount} CurrentBuffer:{CurrentBuffer} DrawCounter:{DrawCounter} CurrentDepth:{CurrentDepth}>";
+    }
 }

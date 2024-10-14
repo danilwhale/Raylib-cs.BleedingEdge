@@ -18,4 +18,9 @@ public struct Ray(Vector3 position, Vector3 direction)
     /// Ray direction (normalized)
     /// </summary>
     public Vector3 Direction = direction;
+
+    public override string ToString()
+    {
+        return $"<Position:{Position} Direction:{Direction}>";
+    }
 }

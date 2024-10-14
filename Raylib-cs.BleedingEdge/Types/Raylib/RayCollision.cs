@@ -29,4 +29,9 @@ public struct RayCollision
     /// Surface normal of hit
     /// </summary>
     public Vector3 Normal;
+
+    public override string ToString()
+    {
+        return $"<Hit:{Hit} Distance:{Distance} Point:{Point} Normal:{Normal}>";
+    }
 }

@@ -6,7 +6,7 @@ namespace Raylib_cs.BleedingEdge;
 /// VrDeviceInfo, Head-Mounted-Display device parameters
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct VrDeviceInfo
+public unsafe struct VrDeviceInfo
 {
     /// <summary>
     /// Horizontal resolution in pixels
@@ -46,10 +46,10 @@ public struct VrDeviceInfo
     /// <summary>
     /// Lens distortion constant parameters
     /// </summary>
-    public unsafe fixed float LensDistortionValues[4];
+    public fixed float LensDistortionValues[4];
 
     /// <summary>
     /// Chromatic aberration correction parameters
     /// </summary>
-    public unsafe fixed float ChromaAbCorrection[4];
+    public fixed float ChromaAbCorrection[4];
 }

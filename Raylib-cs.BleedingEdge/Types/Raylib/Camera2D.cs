@@ -28,4 +28,9 @@ public struct Camera2D(Vector2 offset, Vector2 target, float rotation, float zoo
     /// Camera zoom (scaling), should be 1.0f by default
     /// </summary>
     public float Zoom = zoom;
+
+    public override string ToString()
+    {
+        return $"<Offset:{Offset} Target:{Target} Rotation:{Rotation} Zoom:{Zoom}>";
+    }
 }

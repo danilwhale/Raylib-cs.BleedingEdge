@@ -17,4 +17,9 @@ public struct Sound
     /// Total number of frames (considering channels)
     /// </summary>
     public uint FrameCount;
+
+    public override string ToString()
+    {
+        return $"<Stream:{Stream} FrameCount:{FrameCount}>";
+    }
 }

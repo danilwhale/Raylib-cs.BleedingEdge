@@ -7,7 +7,7 @@ namespace Raylib_cs.BleedingEdge;
 /// VrStereoConfig, VR stereo rendering configuration for simulator
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct VrStereoConfig
+public unsafe struct VrStereoConfig
 {
     /// <summary>
     /// VR projection matrices (per eye)
@@ -32,30 +32,30 @@ public struct VrStereoConfig
     /// <summary>
     /// VR left lens center
     /// </summary>
-    public unsafe fixed float LeftLensCenter[2];
+    public fixed float LeftLensCenter[2];
 
     /// <summary>
     /// VR right lens center
     /// </summary>
-    public unsafe fixed float RightLensCenter[2];
+    public fixed float RightLensCenter[2];
 
     /// <summary>
     /// VR left screen center
     /// </summary>
-    public unsafe fixed float LeftScreenCenter[2];
+    public fixed float LeftScreenCenter[2];
 
     /// <summary>
     /// VR right screen center
     /// </summary>
-    public unsafe fixed float RightScreenCenter[2];
+    public fixed float RightScreenCenter[2];
 
     /// <summary>
     /// VR distortion scale
     /// </summary>
-    public unsafe fixed float Scale[2];
+    public fixed float Scale[2];
 
     /// <summary>
     /// VR distortion scale in
     /// </summary>
-    public unsafe fixed float ScaleIn[2];
+    public fixed float ScaleIn[2];
 }

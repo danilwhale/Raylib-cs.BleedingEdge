@@ -22,4 +22,9 @@ public struct MaterialMap
     /// Material map value
     /// </summary>
     public float Value;
+
+    public override string ToString()
+    {
+        return $"<Texture:{Texture} Color:{Color} Value:{Value}>";
+    }
 }

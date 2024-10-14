@@ -42,4 +42,9 @@ public struct Camera3D(Vector3 position, Vector3 target, Vector3 up, float fovY,
         : this(position, target, Vector3.UnitY, fovY, projection)
     {
     }
+
+    public override string ToString()
+    {
+        return $"<Position:{Position} Target:{Target} Up:{Up} FovY:{FovY} Projection:{Projection}>";
+    }
 }

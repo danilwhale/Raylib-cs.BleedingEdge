@@ -6,7 +6,7 @@ namespace Raylib_cs.BleedingEdge;
 /// Dynamic vertex buffers (position + texcoords + colors + indices arrays)
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct VertexBuffer
+public unsafe struct VertexBuffer
 {
     /// <summary>
     /// Number of elements in the buffer (QUADS)
@@ -16,35 +16,40 @@ public struct VertexBuffer
     /// <summary>
     /// Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
     /// </summary>
-    public unsafe float* Vertices;
+    public float* Vertices;
 
     /// <summary>
     /// Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)
     /// </summary>
-    public unsafe float* Texcoords;
+    public float* Texcoords;
 
     /// <summary>
     /// Vertex normal (XYZ - 3 components per vertex) (shader-location = 2)
     /// </summary>
-    public unsafe float* Normals;
+    public float* Normals;
 
     /// <summary>
     /// Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
     /// </summary>
-    public unsafe byte* Colors;
+    public byte* Colors;
 
     /// <summary>
     /// Vertex indices (in case vertex data comes indexed) (6 indices per quad)
     /// </summary>
-    public unsafe uint* Indices;
+    public uint* Indices;
 
     /// <summary>
     /// OpenGL Vertex Array Object id
     /// </summary>
-    public uint VaoID;
+    public uint VaoId;
 
     /// <summary>
     /// OpenGL Vertex Buffer Objects id (5 types of vertex data)
     /// </summary>
-    public unsafe fixed uint VboID[5];
+    public fixed uint VboId[5];
+
+    public override string ToString()
+    {
+        return $"<ElementCount:{ElementCount} VaoId:{VaoId} VboId:<{VboId[0]}, {VboId[1]}, {VboId[2]}, {VboId[3]}, {VboId[4]}>>";
+    }
 }

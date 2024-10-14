@@ -6,7 +6,7 @@ namespace Raylib_cs.BleedingEdge;
 /// Automation event list
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct AutomationEventList
+public unsafe struct AutomationEventList
 {
     /// <summary>
     /// Events max entries (MAX_AUTOMATION_EVENTS)
@@ -21,5 +21,10 @@ public struct AutomationEventList
     /// <summary>
     /// Events entries
     /// </summary>
-    public unsafe AutomationEvent* Events;
+    public AutomationEvent* Events;
+
+    public override string ToString()
+    {
+        return $"<Capacity:{Capacity} Count:{Count}>";
+    }
 }

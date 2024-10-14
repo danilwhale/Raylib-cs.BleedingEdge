@@ -33,4 +33,9 @@ public struct Music
     /// Audio context data, depends on type
     /// </summary>
     public unsafe void* CtxData;
+
+    public override string ToString()
+    {
+        return $"<Stream:{Stream} FrameCount:{FrameCount} Looping:{Looping} CtxType:{CtxType}>";
+    }
 }

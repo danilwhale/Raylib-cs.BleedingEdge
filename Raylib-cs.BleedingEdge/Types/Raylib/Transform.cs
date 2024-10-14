@@ -23,4 +23,9 @@ public struct Transform(Vector3 translation, Quaternion rotation, Vector3 scale)
     /// Scale
     /// </summary>
     public Vector3 Scale = scale;
+
+    public override string ToString()
+    {
+        return $"<Translation:{Translation} Rotation:{Rotation} Scale:{Scale}>";
+    }
 }

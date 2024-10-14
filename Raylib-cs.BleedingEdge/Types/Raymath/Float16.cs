@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 namespace Raylib_cs.BleedingEdge;
 
 [StructLayout(LayoutKind.Sequential)]
-public struct Float16
+public unsafe struct Float16
 {
-    public unsafe fixed float Values[16];
+    public fixed float Values[16];
 }

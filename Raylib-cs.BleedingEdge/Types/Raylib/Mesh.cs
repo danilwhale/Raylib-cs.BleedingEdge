@@ -1,5 +1,6 @@
 using System.Numerics;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Raylib_cs.BleedingEdge;
 
@@ -261,5 +262,17 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
         where T : unmanaged
     {
         return new Span<T>(Indices, 3 * TriangleCount * sizeof(ushort) / sizeof(T));
+    }
+
+    public override string ToString()
+    {
+        var vboIdBuilder = new StringBuilder();
+        for (var i = 0; i < MaxVertexBuffers - 1; i++)
+        {
+            vboIdBuilder.Append($"{VboId[i]}, ");
+        }
+        vboIdBuilder.Append($"{VboId[MaxVertexBuffers - 1]}");
+        
+        return $"<VertexCount:{VertexCount} TriangleCount:{TriangleCount} BoneCount:{BoneCount} VaoId:{VaoId} VboId:<{vboIdBuilder}>";
     }
 }

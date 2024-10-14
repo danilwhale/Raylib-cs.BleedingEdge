@@ -6,7 +6,7 @@ namespace Raylib_cs.BleedingEdge;
 /// Material, includes shader and maps
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct Material
+public unsafe struct Material
 {
     /// <summary>
     /// Material shader
@@ -16,10 +16,10 @@ public struct Material
     /// <summary>
     /// Material maps array (MAX_MATERIAL_MAPS)
     /// </summary>
-    public unsafe MaterialMap* Maps;
+    public MaterialMap* Maps;
 
     /// <summary>
     /// Material generic parameters (if required)
     /// </summary>
-    public unsafe fixed float Params[4];
+    public fixed float Params[4];
 }

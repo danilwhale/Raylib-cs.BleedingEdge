@@ -7,12 +7,12 @@ namespace Raylib_cs.BleedingEdge;
 /// Image, pixel data stored in CPU memory (RAM)
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct Image
+public unsafe struct Image
 {
     /// <summary>
     /// Image raw data
     /// </summary>
-    public unsafe void* Data;
+    public void* Data;
 
     /// <summary>
     /// Image base width
@@ -33,4 +33,9 @@ public struct Image
     /// Data format
     /// </summary>
     public PixelFormat Format;
+
+    public override string ToString()
+    {
+        return $"<Width:{Width} Height:{Height} Mipmaps:{Mipmaps} Format:{Format}>";
+    }
 }

@@ -190,6 +190,11 @@ public struct Color(byte r, byte g, byte b, byte a = 255) : IEquatable<Color>
         return HashCode.Combine(R, G, B, A);
     }
 
+    public override string ToString()
+    {
+        return $"<{R} {G} {B} {A}>";
+    }
+
     public static bool operator ==(Color left, Color right)
     {
         return left.Equals(right);

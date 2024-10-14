@@ -33,4 +33,9 @@ public struct Texture2D
     /// Data format
     /// </summary>
     public PixelFormat Format;
+
+    public override string ToString()
+    {
+        return $"<Id:{Id} Width:{Width} Height:{Height} Mipmaps:{Mipmaps} Format:{Format}>";
+    }
 }

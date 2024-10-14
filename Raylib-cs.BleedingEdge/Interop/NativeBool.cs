@@ -7,6 +7,11 @@ public readonly struct NativeBool(sbyte value)
 {
     private readonly sbyte _value = value;
 
+    public override string ToString()
+    {
+        return ((bool)this).ToString();
+    }
+
     public static NativeBool operator +(NativeBool left, NativeBool right)
     {
         return new NativeBool((sbyte)(left._value + right._value));
