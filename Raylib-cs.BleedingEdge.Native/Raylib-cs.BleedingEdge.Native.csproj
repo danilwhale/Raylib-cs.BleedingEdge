@@ -41,11 +41,11 @@
         <LibBuildArgs Include="-A $(LibArch)"/>
     </ItemGroup>
     
-    <ItemGroup>
-        <LibCompileShared Condition="'$(CompileShared)' == true" Include="ON"/>
-        <LibCompileShared Condition="'$(CompileShared)' == false" Include="OFF"/>
-        <LibCompileShared Condition="'$(LibCompileShared)' == ''" Include="ON"/>
-    </ItemGroup>
+    <PropertyGroup>
+        <LibCompileShared Condition="'$(CompileShared)' == true">ON</LibCompileShared>
+        <LibCompileShared Condition="'$(CompileShared)' == false">OFF</LibCompileShared>
+        <LibCompileShared Condition="'$(LibCompileShared)' == ''">ON</LibCompileShared>
+    </PropertyGroup>
     
     <!-- configure build -->
     <ItemGroup>
