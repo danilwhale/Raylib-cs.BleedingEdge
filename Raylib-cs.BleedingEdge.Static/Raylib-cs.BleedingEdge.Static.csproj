@@ -24,5 +24,8 @@
     <ItemGroup>
         <ProjectReference Include="..\Raylib-cs.BleedingEdge.Runtimes.Static\Raylib-cs.BleedingEdge.Runtimes.Static.csproj"/>
         <ProjectReference Include="..\Raylib-cs.BleedingEdge\Raylib-cs.BleedingEdge.csproj"/>
+        <None Include="..\Assets\Logo-256.png" Pack="true" PackagePath="\"/>
+        <None Include="..\README.md" Pack="true" PackagePath="\"/>
+        <None Include="..\LICENSE" Pack="true" PackagePath="\"/>
     </ItemGroup>
 </Project>
