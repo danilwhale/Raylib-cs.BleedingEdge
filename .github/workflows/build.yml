@@ -353,22 +353,22 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Create .Runtimes.Shared NuGet package
-        run: dotnet pack Raylib-cs.BleedingEdge.Runtimes.Shared /p:VersionPrefix=${{ needs.prepare-package-info.outputs.prefix }} --version-suffix ${{ needs.prepare-package-info.outputs.suffix }} -o nuget-shared
+      - name: Create .Shared NuGet package
+        run: dotnet pack Raylib-cs.BleedingEdge.Shared /p:VersionPrefix=${{ needs.prepare-package-info.outputs.prefix }} --version-suffix ${{ needs.prepare-package-info.outputs.suffix }} -o nuget-shared
 
-      - name: Upload .Runtimes.Shared NuGet package artifact
+      - name: Upload .Shared NuGet package artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Raylib-cs.BleedingEdge.Runtimes.Shared
+          name: Raylib-cs.BleedingEdge.Shared
           path: nuget-shared/*
 
-      - name: Create .Runtimes.Static NuGet package
-        run: dotnet pack Raylib-cs.BleedingEdge.Runtimes.Static /p:VersionPrefix=${{ needs.prepare-package-info.outputs.prefix }} --version-suffix ${{ needs.prepare-package-info.outputs.suffix }} -o nuget-static
+      - name: Create .Static NuGet package
+        run: dotnet pack Raylib-cs.BleedingEdge.Static /p:VersionPrefix=${{ needs.prepare-package-info.outputs.prefix }} --version-suffix ${{ needs.prepare-package-info.outputs.suffix }} -o nuget-static
 
-      - name: Upload .Runtimes.Static NuGet package artifact
+      - name: Upload .Static NuGet package artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Raylib-cs.BleedingEdge.Runtimes.Static
+          name: Raylib-cs.BleedingEdge.Static
           path: nuget-static/*
   
   upload-nuget-packages:
