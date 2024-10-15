@@ -5,7 +5,7 @@
         </ItemGroup>
         
         <Copy
-                Condition="!Exists('$(MSBuildThisFileDirectory)..\static-runtimes')"
+                Condition="!Exists('$(ProjectDir)\static-runtimes')"
                 SourceFiles="@(StaticRuntimes)"
                 DestinationFolder="@(StaticRuntimes->'$(ProjectDir)\static-runtimes\%(RecursiveDir)')"
         />
