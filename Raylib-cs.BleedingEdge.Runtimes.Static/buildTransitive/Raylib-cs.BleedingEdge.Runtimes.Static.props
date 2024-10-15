@@ -5,9 +5,9 @@
         </ItemGroup>
         
         <Copy
-                Condition="!Exists('$(ProjectDir)\static-runtimes')"
+                Condition="!Exists('$(ProjectDir)static-runtimes')"
                 SourceFiles="@(StaticRuntimes)"
-                DestinationFolder="$(ProjectDir)\static-runtimes\"
+                DestinationFolder="$(ProjectDir)static-runtimes\%(RecursiveDir)"
         />
     </Target>
 </Project>
