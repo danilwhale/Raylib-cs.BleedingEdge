@@ -1,0 +1,13 @@
+<Project>
+    <Target Name="CopyRuntimes" BeforeTargets="Build">
+        <ItemGroup>
+            <StaticRuntimes Include="$(MSBuildThisFileDirectory)..\static-runtimes\**\*.*"/>
+        </ItemGroup>
+        
+        <Copy
+                Condition="!Exists('$(MSBuildThisFileDirectory)..\static-runtimes')"
+                SourceFiles="@(StaticRuntimes)"
+                DestinationFolder="@(StaticRuntimes->'$(ProjectDir)\static-runtimes\%(RecursiveDir)')"
+        />
+    </Target>
+</Project>

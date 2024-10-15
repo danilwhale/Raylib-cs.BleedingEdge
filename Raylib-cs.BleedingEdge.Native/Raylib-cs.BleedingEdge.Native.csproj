@@ -6,13 +6,19 @@
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     </PropertyGroup>
+    
+    <PropertyGroup>
+        <LibBuildPath>$(BaseIntermediateOutputPath)native-$(Configuration)</LibBuildPath>
+    </PropertyGroup>
 
     <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+        <LibStaticExtension>a</LibStaticExtension>
         <LibExtension>so</LibExtension>
         <LibPrefix>lib</LibPrefix>
     </PropertyGroup>
 
     <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+        <LibStaticExtension>a</LibStaticExtension>
         <LibExtension>dylib</LibExtension>
         <LibPrefix>lib</LibPrefix>
         <LibArch Condition="'$(BuildArch)' == ''">arm64</LibArch>
@@ -20,6 +26,7 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+        <LibStaticExtension>lib</LibStaticExtension>
         <LibExtension>dll</LibExtension>
         <LibPrefix>$(Configuration)/</LibPrefix>
         <LibArch Condition="'$(BuildArch)' == ''">x64</LibArch>
@@ -27,31 +34,43 @@
     </PropertyGroup>
     
     <ItemGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
-        <LibBuildArgs Include="-D CMAKE_OSX_ARCHITECTURES=$(BuildArch)"/>
+        <LibBuildArgs Include="-D CMAKE_OSX_ARCHITECTURES=$(LibArch)"/>
     </ItemGroup>
 
     <ItemGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
-        <LibBuildArgs Include="-A $(BuildArch)"/>
+        <LibBuildArgs Include="-A $(LibArch)"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <LibCompileShared Condition="'$(CompileShared)' == true" Include="ON"/>
+        <LibCompileShared Condition="'$(CompileShared)' == false" Include="OFF"/>
+        <LibCompileShared Condition="'$(LibCompileShared)' == ''" Include="ON"/>
     </ItemGroup>
     
     <!-- configure build -->
     <ItemGroup>
         <Content
-            Include="$(BaseIntermediateOutputPath)native/raylib/$(LibPrefix)raylib.$(LibExtension)"
+            Include="$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibExtension)"
             Link="%(Filename)%(Extension)"
             CopyToOutputDirectory="PreserveNewest"
-            Condition="Exists('$(BaseIntermediateOutputPath)native/raylib/$(LibPrefix)raylib.$(LibExtension)')"/>
+            Condition="Exists('$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibExtension)')"/>
+
+        <Content
+                Include="$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibStaticExtension)"
+                Link="%(Filename)%(Extension)"
+                CopyToOutputDirectory="PreserveNewest"
+                Condition="Exists('$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibStaticExtension)')"/>
         
-        <LibBuildArgs Include="-B $(BaseIntermediateOutputPath)native"/>
+        <LibBuildArgs Include="-B $(LibBuildPath)"/>
         <LibBuildArgs Include="-S ../raylib" />
+        <LibBuildArgs Include="-D BUILD_SHARED_LIBS=$(LibCompileShared)"/>
         <LibBuildArgs Include="-D CMAKE_BUILD_TYPE=$(Configuration)" />
-        <LibBuildArgs Include="-D BUILD_SHARED_LIBS=ON" />
         <LibBuildArgs Include="-D BUILD_EXAMPLES=OFF" />
     </ItemGroup>
     
     <!-- build -->
     <Target Name="BuildLib" Condition="$(SkipLocalBuild) != true">
-        <Exec Command="cmake @(LibBuildArgs, ' ')" Condition="!Exists('$(BaseIntermediateOutputPath)native/CMakeCache.txt')"/>
-        <Exec Command="cmake --build $(BaseIntermediateOutputPath)native --config $(Configuration)"/>
+        <Exec Command="cmake @(LibBuildArgs, ' ')" Condition="!Exists('$(LibBuildPath)/CMakeCache.txt')"/>
+        <Exec Command="cmake --build $(LibBuildPath) --config $(Configuration)"/>
     </Target>
 </Project>
