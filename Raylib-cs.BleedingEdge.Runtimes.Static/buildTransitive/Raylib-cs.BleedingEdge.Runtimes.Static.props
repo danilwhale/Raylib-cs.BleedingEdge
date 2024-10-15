@@ -7,7 +7,7 @@
         <Copy
                 Condition="!Exists('$(ProjectDir)\static-runtimes')"
                 SourceFiles="@(StaticRuntimes)"
-                DestinationFolder="@(StaticRuntimes->'$(ProjectDir)\static-runtimes\%(RecursiveDir)')"
+                DestinationFiles="@(StaticRuntimes->'$(ProjectDir)\static-runtimes\%(RecursiveDir)')"
         />
     </Target>
 </Project>
