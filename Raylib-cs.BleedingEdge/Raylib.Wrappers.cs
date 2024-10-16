@@ -529,7 +529,7 @@ public static unsafe partial class Raylib
     }
 
     // ComputeMD5 doesn't allocate memory using MemAlloc, so we can use Span for it
-    
+
     /// <summary>
     /// Compute MD5 hash code, returns static int[4] (16 bytes)
     /// </summary>
@@ -1622,16 +1622,9 @@ public static unsafe partial class Raylib
     {
         var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
         Font result;
-        if (codepoints.IsEmpty)
+        fixed (int* pCodepoints = codepoints)
         {
-            result = LoadFontEx((sbyte*)pFileName, fontSize, null, 0);
-        }
-        else
-        {
-            fixed (int* pCodepoints = codepoints)
-            {
-                result = LoadFontEx((sbyte*)pFileName, fontSize, pCodepoints, codepoints.Length);
-            }
+            result = LoadFontEx((sbyte*)pFileName, fontSize, pCodepoints, codepoints.Length);
         }
 
         Marshal.FreeCoTaskMem(pFileName);
@@ -1659,17 +1652,11 @@ public static unsafe partial class Raylib
         Font result;
         fixed (byte* pFileData = fileData)
         {
-            if (codepoints.IsEmpty)
+            fixed (int* pCodepoints = codepoints)
             {
-                result = LoadFontFromMemory((sbyte*)pFileType, pFileData, fileData.Length, fontSize, null, 0);
+                result = LoadFontFromMemory((sbyte*)pFileType, pFileData, fileData.Length, fontSize, pCodepoints, codepoints.Length);
             }
-            else
-            {
-                fixed (int* pCodepoints = codepoints)
-                {
-                    result = LoadFontFromMemory((sbyte*)pFileType, pFileData, fileData.Length, fontSize, pCodepoints, codepoints.Length);
-                }
-            }
+
         }
 
         Marshal.FreeCoTaskMem(pFileType);
@@ -1699,11 +1686,6 @@ public static unsafe partial class Raylib
     {
         fixed (byte* pFileData = fileData)
         {
-            if (codepoints.IsEmpty)
-            {
-                return LoadFontData(pFileData, fileData.Length, fontSize, null, 0, type);
-            }
-
             fixed (int* pCodepoints = codepoints)
             {
                 return LoadFontData(pFileData, fileData.Length, fontSize, pCodepoints, codepoints.Length, type);
