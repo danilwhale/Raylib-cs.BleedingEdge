@@ -7,5 +7,5 @@
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     </PropertyGroup>
     
-    <Import Project="CompileNatices.props"/>
+    <Import Project="CompileNatives.props"/>
 </Project>
