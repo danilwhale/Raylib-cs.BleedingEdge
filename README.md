@@ -37,9 +37,9 @@ If you need *only prebuilt raylib library natives*, you can just
 install [Raylib-cs.BleedingEdge.Runtimes](https://nuget.org/packages/Raylib-cs.BleedingEdge.Runtimes)
 
 If you want to *customize raylib*, you need to
-copy [CompileNatives.props](https://raw.githubusercontent.com/danilwhale/Raylib-cs.BleedingEdge/refs/heads/main/Raylib-cs.BleedingEdge.Native/CompileNatives.csproj)
+copy [CompileNatives.props](https://raw.githubusercontent.com/danilwhale/Raylib-cs.BleedingEdge/refs/heads/main/Raylib-cs.BleedingEdge.Native/CompileNatives.props)
 to your project files and add `<Import Project="CompileNatives.props">` to
-your [project file](https://raw.githubusercontent.com/danilwhale/Raylib-cs.BleedingEdge/refs/heads/main/Raylib-cs.BleedingEdge.Native/CompileNatives.csproj)
+your [project file](https://raw.githubusercontent.com/danilwhale/Raylib-cs.BleedingEdge/refs/heads/main/Raylib-cs.BleedingEdge.Native/Raylib-cs.BleedingEdge.Native.csproj)
 (`.csproj`)
 > [!NOTE]
 > If you want to compile a static library,
