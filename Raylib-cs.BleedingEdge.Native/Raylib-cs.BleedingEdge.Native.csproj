@@ -1,76 +1,11 @@
 ﻿<!-- most of code taken from https://github.com/chrisdill/raylib-cs/blob/master/Raylib-cs.Native/Raylib-cs.Native.csproj -->
 
-<Project Sdk="Microsoft.NET.Sdk" InitialTargets="BuildLib">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     </PropertyGroup>
     
-    <PropertyGroup>
-        <LibBuildPath>$(BaseIntermediateOutputPath)native-$(Configuration)</LibBuildPath>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
-        <LibStaticExtension>a</LibStaticExtension>
-        <LibExtension>so</LibExtension>
-        <LibPrefix>lib</LibPrefix>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
-        <LibStaticExtension>a</LibStaticExtension>
-        <LibExtension>dylib</LibExtension>
-        <LibPrefix>lib</LibPrefix>
-        <LibArch Condition="'$(BuildArch)' == ''">arm64</LibArch>
-        <LibArch Condition="'$(BuildArch)' != ''">$(BuildArch)</LibArch>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
-        <LibStaticExtension>lib</LibStaticExtension>
-        <LibExtension>dll</LibExtension>
-        <LibPrefix>$(Configuration)/</LibPrefix>
-        <LibArch Condition="'$(BuildArch)' == ''">x64</LibArch>
-        <LibArch Condition="'$(BuildArch)' != ''">$(BuildArch)</LibArch>
-    </PropertyGroup>
-    
-    <ItemGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
-        <LibBuildArgs Include="-D CMAKE_OSX_ARCHITECTURES=$(LibArch)"/>
-    </ItemGroup>
-
-    <ItemGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
-        <LibBuildArgs Include="-A $(LibArch)"/>
-    </ItemGroup>
-    
-    <PropertyGroup>
-        <LibCompileShared Condition="'$(CompileShared)' == true">ON</LibCompileShared>
-        <LibCompileShared Condition="'$(CompileShared)' == false">OFF</LibCompileShared>
-        <LibCompileShared Condition="'$(LibCompileShared)' == ''">ON</LibCompileShared>
-    </PropertyGroup>
-    
-    <!-- configure build -->
-    <ItemGroup>
-        <Content
-            Include="$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibExtension)"
-            Link="%(Filename)%(Extension)"
-            CopyToOutputDirectory="PreserveNewest"
-            Condition="Exists('$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibExtension)')"/>
-
-        <Content
-                Include="$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibStaticExtension)"
-                Link="%(Filename)%(Extension)"
-                CopyToOutputDirectory="PreserveNewest"
-                Condition="Exists('$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibStaticExtension)')"/>
-        
-        <LibBuildArgs Include="-B $(LibBuildPath)"/>
-        <LibBuildArgs Include="-S ../raylib" />
-        <LibBuildArgs Include="-D BUILD_SHARED_LIBS=$(LibCompileShared)"/>
-        <LibBuildArgs Include="-D CMAKE_BUILD_TYPE=$(Configuration)" />
-        <LibBuildArgs Include="-D BUILD_EXAMPLES=OFF" />
-    </ItemGroup>
-    
-    <!-- build -->
-    <Target Name="BuildLib" Condition="$(SkipLocalBuild) != true">
-        <Exec Command="cmake @(LibBuildArgs, ' ')" Condition="!Exists('$(LibBuildPath)/CMakeCache.txt')"/>
-        <Exec Command="cmake --build $(LibBuildPath) --config $(Configuration)"/>
-    </Target>
+    <Import Project="CompileNatices.props"/>
 </Project>

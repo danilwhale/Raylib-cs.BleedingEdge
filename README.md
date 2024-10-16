@@ -17,36 +17,37 @@ Raylib-cs.BleedingEdge targets .NET 8+ and
 uses [the master branch of raylib repo](https://github.com/raysan5/raylib/tree/master)
 
 > To see examples, you can reference the [Raylib-cs](https://github.com/chrisdill/raylib-cs) examples
-> as this binding has mostly same function signatures (see [code differences](#code-differences))
+> as this binding has mostly same function signatures (see [API differences](#api-differences))
 
 installation
 ---
 
-You will need to install one of the following NuGet packages:
+You will need to install the following NuGet packages:
 
-- Base
-    - Features *only binding for raylib, without prebuilt library files*. **Requires manually compiled raylib**
+- Raylib-cs.BleedingEdge
+    - Features *only binding for raylib, without prebuilt natives*. **Requires manually compiled raylib**
     - [![NuGet package](https://img.shields.io/nuget/dt/Raylib-cs.BleedingEdge?style=flat-square&logo=nuget
       )](https://nuget.org/packages/Raylib-cs.BleedingEdge)
-- Shared
-    - Features *shared (dynamic) library*, which is located near the executable when you build your project. **While
-      executable is less portable, it's easier to set up the project**
-    - [![NuGet package](https://img.shields.io/nuget/dt/Raylib-cs.BleedingEdge.Shared?style=flat-square&logo=nuget
-      )](https://nuget.org/packages/Raylib-cs.BleedingEdge.Shared)
-- Static
-    - Features *static library*, **which can be linked with your NativeAOT project to make portable and compact
-      executable**.
-    - All static libraries will get copied to `static-runtimes` inside of your project root folder and are structured
-      like this: `static-runtimes / RID / raylib.lib/libraylib.a`;
-    - https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/interop
-    - [![NuGet package](https://img.shields.io/nuget/dt/Raylib-cs.BleedingEdge.Static?style=flat-square&logo=nuget
-      )](https://nuget.org/packages/Raylib-cs.BleedingEdge.Static)
+- Raylib-cs.BleedingEdge.Runtimes
+    - Features *shared library natives* that are located near the executable when you build your project.
+    - [![NuGet package](https://img.shields.io/nuget/dt/Raylib-cs.BleedingEdge?style=flat-square&logo=nuget
+      )](https://nuget.org/packages/Raylib-cs.BleedingEdge.Runtimes)
 
-In case you need *only prebuilt raylib*, you can just
-install [Raylib-cs.BleedingEdge.Runtimes.Static](https://nuget.org/packages/Raylib-cs.BleedingEdge.Runtimes.Static)
-or [Raylib-cs.BleedingEdge.Runtimes.Shared](https://nuget.org/packages/Raylib-cs.BleedingEdge.Runtimes.Shared) depending
-on your needs
-(read above)
+If you need *only prebuilt raylib library natives*, you can just
+install [Raylib-cs.BleedingEdge.Runtimes](https://nuget.org/packages/Raylib-cs.BleedingEdge.Runtimes)
+
+If you want to *customize raylib*, you need to
+copy [CompileNatives.props](https://raw.githubusercontent.com/danilwhale/Raylib-cs.BleedingEdge/refs/heads/main/Raylib-cs.BleedingEdge.Native/CompileNatives.csproj)
+to your project files and add `<Import Project="CompileNatives.props">` to
+your [project file](https://raw.githubusercontent.com/danilwhale/Raylib-cs.BleedingEdge/refs/heads/main/Raylib-cs.BleedingEdge.Native/CompileNatives.csproj)
+(`.csproj`)
+
+If you need *static library*,
+go
+to [GitHub Actions](https://github.com/danilwhale/Raylib-cs.BleedingEdge/actions/workflows/build-static-natives.yaml),
+open the latest build (top most) and download `RID-static` artifact
+> [!NOTE]
+> You will need GitHub account to download artifacts
 
 basic example
 ---

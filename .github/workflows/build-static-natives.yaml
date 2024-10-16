@@ -1,0 +1,115 @@
+name: Build static natives
+on:
+  push:
+    branches: [ 'main' ]
+    paths:
+      - 'Raylib-cs.BleedingEdge.Native/**'
+      - 'raylib'
+      - '.github/workflows/**'
+  pull_request:
+    branches: [ '*' ]
+    paths:
+      - 'Raylib-cs.BleedingEdge.Native/**'
+      - 'raylib'
+      - '.github/workflows/**'
+jobs:
+  natives-linux-x64:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Setup compile dependencies
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install \
+            libasound2-dev \
+            libx11-dev \
+            libxrandr-dev \
+            libxi-dev \
+            libgl1-mesa-dev \
+            libglu1-mesa-dev \
+            libxcursor-dev \
+            libxinerama-dev \
+            libwayland-dev \
+            libxkbcommon-dev
+
+      - name: Compile static native
+        run: dotnet build Raylib-cs.BleedingEdge.Native -c Release /p:CompileShared=false
+
+      - name: Upload static native
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-x64-static
+          path: Raylib-cs.BleedingEdge.Native/bin/Release/libraylib.a
+          if-no-files-found: 'error'
+
+  natives-osx:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        name: [ 'arm64', 'x64' ]
+        include:
+          - name: 'arm64'
+            arch: 'arm64'
+          - name: 'x64'
+            arch: 'x86_64'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Compile static native
+        run: dotnet build Raylib-cs.BleedingEdge.Native -c Release /p:BuildArch=${{ matrix.arch }} /p:CompileShared=false
+
+      - name: Upload static native
+        uses: actions/upload-artifact@v4
+        with:
+          name: osx-${{ matrix.name }}-static
+          path: Raylib-cs.BleedingEdge.Native/bin/Release/libraylib.a
+          if-no-files-found: 'error'
+
+  natives-windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        name: [ 'x86', 'x64' ]
+        include:
+          - name: 'x86'
+            arch: 'win32'
+          - name: 'x64'
+            arch: 'x64'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Compile static native
+        run: dotnet build Raylib-cs.BleedingEdge.Native -c Release /p:BuildArch=${{ matrix.arch }} /p:CompileShared=false
+
+      - name: Upload static native
+        uses: actions/upload-artifact@v4
+        with:
+          name: win-${{ matrix.name }}-static
+          path: Raylib-cs.BleedingEdge.Native/bin/Release/raylib.lib
+          if-no-files-found: 'error'

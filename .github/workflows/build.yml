@@ -1,4 +1,4 @@
-name: build.yml
+name: Build binding and shared natives
 on:
   push:
     branches: ['main']
@@ -51,20 +51,7 @@ jobs:
           name: linux-x64-shared
           path: Raylib-cs.BleedingEdge.Native/bin/Release/libraylib.so
           if-no-files-found: 'error'
-      
-      - name: Cleanup
-        shell: pwsh
-        run: 'Remove-Item -Recurse -Force Raylib-cs.BleedingEdge.Native/obj/native-Release'
-      
-      - name: Compile static native
-        run: dotnet build Raylib-cs.BleedingEdge.Native -c Release /p:CompileShared=false
-      
-      - name: Upload static native
-        uses: actions/upload-artifact@v4
-        with:
-          name: linux-x64-static
-          path: Raylib-cs.BleedingEdge.Native/bin/Release/libraylib.a
-          if-no-files-found: 'error'
+          
   natives-osx:
     runs-on: macos-latest
     strategy: 
@@ -94,20 +81,6 @@ jobs:
         with:
           name: osx-${{ matrix.name }}-shared
           path: Raylib-cs.BleedingEdge.Native/bin/Release/libraylib.dylib
-          if-no-files-found: 'error'
-      
-      - name: Cleanup
-        shell: pwsh
-        run: 'Remove-Item -Recurse -Force Raylib-cs.BleedingEdge.Native/obj/native-Release'
-
-      - name: Compile static native
-        run: dotnet build Raylib-cs.BleedingEdge.Native -c Release /p:BuildArch=${{ matrix.arch }} /p:CompileShared=false
-
-      - name: Upload static native
-        uses: actions/upload-artifact@v4
-        with:
-          name: osx-${{ matrix.name }}-static
-          path: Raylib-cs.BleedingEdge.Native/bin/Release/libraylib.a
           if-no-files-found: 'error'
   
   natives-windows:
@@ -139,20 +112,6 @@ jobs:
         with:
           name: win-${{ matrix.name }}-shared
           path: Raylib-cs.BleedingEdge.Native/bin/Release/raylib.dll
-          if-no-files-found: 'error'
-
-      - name: Cleanup
-        shell: pwsh
-        run: 'Remove-Item -Recurse -Force Raylib-cs.BleedingEdge.Native/obj/native-Release'
-
-      - name: Compile static native
-        run: dotnet build Raylib-cs.BleedingEdge.Native -c Release /p:BuildArch=${{ matrix.arch }} /p:CompileShared=false
-
-      - name: Upload static native
-        uses: actions/upload-artifact@v4
-        with:
-          name: win-${{ matrix.name }}-static
-          path: Raylib-cs.BleedingEdge.Native/bin/Release/raylib.lib
           if-no-files-found: 'error'
   
   prepare-package-info:
@@ -203,7 +162,7 @@ jobs:
           echo Get-Content -Path $env:GITHUB_OUTPUT -Raw
           
   
-  pack-shared-runtimes:
+  pack-runtimes:
     runs-on: ubuntu-latest
     needs:
       - prepare-package-info
@@ -218,31 +177,31 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: linux-x64-shared
-          path: Raylib-cs.BleedingEdge.Runtimes.Shared/runtimes/linux-x64/native
+          path: Raylib-cs.BleedingEdge.Runtimes/runtimes/linux-x64/native
 
       - name: Download osx-arm64 native
         uses: actions/download-artifact@v4
         with:
           name: osx-arm64-shared
-          path: Raylib-cs.BleedingEdge.Runtimes.Shared/runtimes/osx-arm64/native
+          path: Raylib-cs.BleedingEdge.Runtimes/runtimes/osx-arm64/native
 
       - name: Download osx-x64 native
         uses: actions/download-artifact@v4
         with:
           name: osx-x64-shared
-          path: Raylib-cs.BleedingEdge.Runtimes.Shared/runtimes/osx-x64/native
+          path: Raylib-cs.BleedingEdge.Runtimes/runtimes/osx-x64/native
 
       - name: Download win-x86 native
         uses: actions/download-artifact@v4
         with:
           name: win-x86-shared
-          path: Raylib-cs.BleedingEdge.Runtimes.Shared/runtimes/win-x86/native
+          path: Raylib-cs.BleedingEdge.Runtimes/runtimes/win-x86/native
 
       - name: Download win-x64 native
         uses: actions/download-artifact@v4
         with:
           name: win-x64-shared
-          path: Raylib-cs.BleedingEdge.Runtimes.Shared/runtimes/win-x64/native
+          path: Raylib-cs.BleedingEdge.Runtimes/runtimes/win-x64/native
       
       - name: Setup .NET 8
         uses: actions/setup-dotnet@v4
@@ -250,69 +209,14 @@ jobs:
           dotnet-version: 8.0.x
       
       - name: Create NuGet package
-        run: dotnet pack Raylib-cs.BleedingEdge.Runtimes.Shared /p:VersionPrefix=${{ needs.prepare-package-info.outputs.prefix }} --version-suffix ${{ needs.prepare-package-info.outputs.suffix }} -o nuget
+        run: dotnet pack Raylib-cs.BleedingEdge.Runtimes /p:VersionPrefix=${{ needs.prepare-package-info.outputs.prefix }} --version-suffix ${{ needs.prepare-package-info.outputs.suffix }} -o nuget
       
       - name: Upload NuGet package artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Raylib-cs.BleedingEdge.Runtimes.Shared
+          name: Raylib-cs.BleedingEdge.Runtimes
           path: nuget/*
 
-  pack-static-runtimes:
-    runs-on: ubuntu-latest
-    needs:
-      - prepare-package-info
-      - natives-linux-x64
-      - natives-osx
-      - natives-windows
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Download linux-x64 native
-        uses: actions/download-artifact@v4
-        with:
-          name: linux-x64-static
-          path: Raylib-cs.BleedingEdge.Runtimes.Static/static-runtimes/linux-x64
-
-      - name: Download osx-arm64 native
-        uses: actions/download-artifact@v4
-        with:
-          name: osx-arm64-static
-          path: Raylib-cs.BleedingEdge.Runtimes.Static/static-runtimes/osx-arm64
-
-      - name: Download osx-x64 native
-        uses: actions/download-artifact@v4
-        with:
-          name: osx-x64-static
-          path: Raylib-cs.BleedingEdge.Runtimes.Static/static-runtimes/osx-x64
-
-      - name: Download win-x86 native
-        uses: actions/download-artifact@v4
-        with:
-          name: win-x86-static
-          path: Raylib-cs.BleedingEdge.Runtimes.Static/static-runtimes/win-x86
-
-      - name: Download win-x64 native
-        uses: actions/download-artifact@v4
-        with:
-          name: win-x64-static
-          path: Raylib-cs.BleedingEdge.Runtimes.Static/static-runtimes/win-x64
-
-      - name: Setup .NET 8
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 8.0.x
-
-      - name: Create NuGet package
-        run: dotnet pack Raylib-cs.BleedingEdge.Runtimes.Static /p:VersionPrefix=${{ needs.prepare-package-info.outputs.prefix }} --version-suffix ${{ needs.prepare-package-info.outputs.suffix }} -o nuget
-
-      - name: Upload NuGet package artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: Raylib-cs.BleedingEdge.Runtimes.Static
-          path: nuget/*
-  
   pack-binding:
     runs-on: ubuntu-latest
     needs:
@@ -335,47 +239,11 @@ jobs:
           name: Raylib-cs.BleedingEdge
           path: nuget/*
   
-  pack-meta-packages:
-    runs-on: ubuntu-latest
-    needs:
-      - prepare-package-info
-      - pack-shared-runtimes
-      - pack-static-runtimes
-      - pack-binding
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup .NET 8
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 8.0.x
-
-      - name: Create .Shared NuGet package
-        run: dotnet pack Raylib-cs.BleedingEdge.Shared /p:VersionPrefix=${{ needs.prepare-package-info.outputs.prefix }} --version-suffix ${{ needs.prepare-package-info.outputs.suffix }} -o nuget-shared
-
-      - name: Upload .Shared NuGet package artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: Raylib-cs.BleedingEdge.Shared
-          path: nuget-shared/*
-
-      - name: Create .Static NuGet package
-        run: dotnet pack Raylib-cs.BleedingEdge.Static /p:VersionPrefix=${{ needs.prepare-package-info.outputs.prefix }} --version-suffix ${{ needs.prepare-package-info.outputs.suffix }} -o nuget-static
-
-      - name: Upload .Static NuGet package artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: Raylib-cs.BleedingEdge.Static
-          path: nuget-static/*
-  
   upload-nuget-packages:
     runs-on: ubuntu-latest
     needs:
-      - pack-shared-runtimes
-      - pack-static-runtimes
+      - pack-runtimes
       - pack-binding
-      - pack-meta-packages
     steps:
       - name: Download NuGet package artifacts
         uses: actions/download-artifact@v4
