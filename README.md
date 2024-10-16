@@ -30,7 +30,7 @@ You will need to install the following NuGet packages:
       )](https://nuget.org/packages/Raylib-cs.BleedingEdge)
 - Raylib-cs.BleedingEdge.Runtimes
     - Features *shared library natives* that are located near the executable when you build your project.
-    - [![NuGet package](https://img.shields.io/nuget/dt/Raylib-cs.BleedingEdge?style=flat-square&logo=nuget
+    - [![NuGet package](https://img.shields.io/nuget/dt/Raylib-cs.BleedingEdge.Runtimes?style=flat-square&logo=nuget
       )](https://nuget.org/packages/Raylib-cs.BleedingEdge.Runtimes)
 
 If you need *only prebuilt raylib library natives*, you can just
