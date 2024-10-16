@@ -1068,6 +1068,20 @@ public static unsafe partial class Raylib
     public static partial byte* DecodeDataBase64(byte* data, int* outputSize);
 
     /// <summary>
+    /// Compute CRC32 hash code
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial uint ComputeCRC32(byte* data, int dataSize);
+    
+    /// <summary>
+    /// Compute MD5 hash code, returns static int[4] (16 bytes)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial uint* ComputeMD5(byte* data, int dataSize);
+
+    /// <summary>
     /// Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

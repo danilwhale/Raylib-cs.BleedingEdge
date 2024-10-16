@@ -518,6 +518,30 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>
+    /// Compute CRC32 hash code
+    /// </summary>
+    public static uint ComputeCRC32(ReadOnlySpan<byte> data)
+    {
+        fixed (byte* pData = data)
+        {
+            return ComputeCRC32(pData, data.Length);
+        }
+    }
+
+    // ComputeMD5 doesn't allocate memory using MemAlloc, so we can use Span for it
+    
+    /// <summary>
+    /// Compute MD5 hash code, returns static int[4] (16 bytes)
+    /// </summary>
+    public static Span<uint> ComputeMD5(ReadOnlySpan<byte> data)
+    {
+        fixed (byte* pData = data)
+        {
+            return new Span<uint>(ComputeMD5(pData, data.Length), 4);
+        }
+    }
+
+    /// <summary>
     /// Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS
     /// </summary>
     public static AutomationEventList LoadAutomationEventList(string fileName)
