@@ -41,6 +41,9 @@ copy [CompileNatives.props](https://raw.githubusercontent.com/danilwhale/Raylib-
 to your project files and add `<Import Project="CompileNatives.props">` to
 your [project file](https://raw.githubusercontent.com/danilwhale/Raylib-cs.BleedingEdge/refs/heads/main/Raylib-cs.BleedingEdge.Native/CompileNatives.csproj)
 (`.csproj`)
+> [!NOTE]
+> If you want to compile a static library,
+> add `<CompileShared>false</CompileShared>` in your project file's `PropertyGroup`
 
 If you need *static library*,
 go
