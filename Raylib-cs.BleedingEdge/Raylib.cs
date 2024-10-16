@@ -549,11 +549,11 @@ public static unsafe partial class Raylib
     public static partial Shader LoadShaderFromMemory(sbyte* vsCode, sbyte* fsCode);
 
     /// <summary>
-    /// Check if a shader is ready
+    /// Check if a shader is valid (loaded on GPU)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool IsShaderReady(Shader shader);
+    public static partial NativeBool IsShaderValid(Shader shader);
 
     /// <summary>
     /// Get shader uniform location
@@ -2092,11 +2092,11 @@ public static unsafe partial class Raylib
     public static partial Image LoadImageFromScreen();
 
     /// <summary>
-    /// Check if an image is ready
+    /// Check if an image is valid (data and parameters)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool IsImageReady(Image image);
+    public static partial NativeBool IsImageValid(Image image);
 
     /// <summary>
     /// Unload image from CPU memory (RAM)
@@ -2624,11 +2624,11 @@ public static unsafe partial class Raylib
     public static partial RenderTexture2D LoadRenderTexture(int width, int height);
 
     /// <summary>
-    /// Check if a texture is ready
+    /// Check if a texture is valid (loaded in GPU)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool IsTextureReady(Texture2D texture);
+    public static partial NativeBool IsTextureValid(Texture2D texture);
 
     /// <summary>
     /// Unload texture from GPU memory (VRAM)
@@ -2638,11 +2638,11 @@ public static unsafe partial class Raylib
     public static partial void UnloadTexture(Texture2D texture);
 
     /// <summary>
-    /// Check if a render texture is ready
+    /// Check if a render texture is valid (loaded in GPU)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool IsRenderTextureReady(RenderTexture2D target);
+    public static partial NativeBool IsRenderTextureValid(RenderTexture2D target);
 
     /// <summary>
     /// Unload render texture from GPU memory (VRAM)
@@ -2886,11 +2886,11 @@ public static unsafe partial class Raylib
         sbyte* fileType, byte* fileData, int dataSize, int fontSize, int* codepoints, int codepointCount);
 
     /// <summary>
-    /// Check if a font is ready
+    /// Check if a font is valid (font data loaded, WARNING: GPU texture not checked)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool IsFontReady(Font font);
+    public static partial NativeBool IsFontValid(Font font);
 
     /// <summary>
     /// Load font data for further use
@@ -3360,11 +3360,11 @@ public static unsafe partial class Raylib
     public static partial Model LoadModelFromMesh(Mesh mesh);
 
     /// <summary>
-    /// Check if a model is ready
+    /// Check if a model is valid (loaded in GPU, VAO/VBOs)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool IsModelReady(Model model);
+    public static partial NativeBool IsModelValid(Model model);
 
     /// <summary>
     /// Unload model (including meshes) from memory (RAM and/or VRAM)
@@ -3609,11 +3609,11 @@ public static unsafe partial class Raylib
     public static partial Material LoadMaterialDefault();
 
     /// <summary>
-    /// Check if a material is ready
+    /// Check if a material is valid (shader assigned, map textures loaded in GPU)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool IsMaterialReady(Material material);
+    public static partial NativeBool IsMaterialValid(Material material);
 
     /// <summary>
     /// Unload material from GPU memory (VRAM)
@@ -3784,11 +3784,11 @@ public static unsafe partial class Raylib
     public static partial Wave LoadWaveFromMemory(sbyte* fileType, byte* fileData, int dataSize);
 
     /// <summary>
-    /// Checks if wave data is ready
+    /// Checks if wave data is valid (data loaded and parameters)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool IsWaveReady(Wave wave);
+    public static partial NativeBool IsWaveValid(Wave wave);
 
     /// <summary>
     /// Load sound from file
@@ -3812,11 +3812,11 @@ public static unsafe partial class Raylib
     public static partial Sound LoadSoundAlias(Sound source);
 
     /// <summary>
-    /// Checks if a sound is ready
+    /// Checks if a sound is valid (data loaded and buffers initialized)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool IsSoundReady(Sound sound);
+    public static partial NativeBool IsSoundValid(Sound sound);
 
     /// <summary>
     /// Update sound buffer with new data
@@ -3966,11 +3966,11 @@ public static unsafe partial class Raylib
     public static partial Music LoadMusicStreamFromMemory(sbyte* fileType, byte* data, int dataSize);
 
     /// <summary>
-    /// Checks if a music stream is ready
+    /// Checks if a music stream is valid (context and buffers initialized)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool IsMusicReady(Music music);
+    public static partial NativeBool IsMusicValid(Music music);
 
     /// <summary>
     /// Unload music stream
@@ -4071,11 +4071,11 @@ public static unsafe partial class Raylib
     public static partial AudioStream LoadAudioStream(uint sampleRate, uint sampleSize, uint channels);
 
     /// <summary>
-    /// Checks if an audio stream is ready
+    /// Checks if an audio stream is valid (buffers initialized)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial NativeBool IsAudioStreamReady(AudioStream stream);
+    public static partial NativeBool IsAudioStreamValid(AudioStream stream);
 
     /// <summary>
     /// Unload audio stream and free memory
