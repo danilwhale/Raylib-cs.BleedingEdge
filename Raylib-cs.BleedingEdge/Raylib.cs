@@ -1080,6 +1080,13 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial uint* ComputeMD5(byte* data, int dataSize);
+    
+    /// <summary>
+    /// Compute SHA1 hash code, returns static int[5] (20 bytes)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial uint* ComputeSHA1(byte* data, int dataSize);
 
     /// <summary>
     /// Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS

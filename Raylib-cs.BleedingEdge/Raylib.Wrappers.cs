@@ -528,7 +528,7 @@ public static unsafe partial class Raylib
         }
     }
 
-    // ComputeMD5 doesn't allocate memory using MemAlloc, so we can use Span for it
+    // ComputeMD5 and ComputeSHA1 don't allocate memory using MemAlloc, so we can use Span for it
 
     /// <summary>
     /// Compute MD5 hash code, returns static int[4] (16 bytes)
@@ -538,6 +538,17 @@ public static unsafe partial class Raylib
         fixed (byte* pData = data)
         {
             return new Span<uint>(ComputeMD5(pData, data.Length), 4);
+        }
+    }
+    
+    /// <summary>
+    /// Compute SHA1 hash code, returns static int[5] (20 bytes)
+    /// </summary>
+    public static Span<uint> ComputeSHA1(ReadOnlySpan<byte> data)
+    {
+        fixed (byte* pData = data)
+        {
+            return new Span<uint>(ComputeSHA1(pData, data.Length), 5);
         }
     }
 
