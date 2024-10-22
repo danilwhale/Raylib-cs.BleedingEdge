@@ -22,33 +22,20 @@ uses [the master branch of raylib repo](https://github.com/raysan5/raylib/tree/m
 installation
 ---
 
-You will need to install the following NuGet packages:
+```
+$ dotnet add package Raylib-cs.BleedingEdge --prerelease
+$ dotnet add package Raylib-cs.BleedingEdge.Runtimes --prerelease
+```
 
-- Raylib-cs.BleedingEdge
-    - Features *only binding for raylib, without prebuilt natives*.
-    - [![NuGet package](https://img.shields.io/nuget/dt/Raylib-cs.BleedingEdge?style=flat-square&logo=nuget
-      )](https://nuget.org/packages/Raylib-cs.BleedingEdge)
-- Raylib-cs.BleedingEdge.Runtimes
-    - Features *shared library natives* that are located near the executable when you build your project.
-    - [![NuGet package](https://img.shields.io/nuget/dt/Raylib-cs.BleedingEdge.Runtimes?style=flat-square&logo=nuget
-      )](https://nuget.org/packages/Raylib-cs.BleedingEdge.Runtimes)
+If you need just runtimes: install `Raylib-cs.BleedingEdge.Runtimes`
 
-If you need *only prebuilt raylib library natives*, you can just
-install [Raylib-cs.BleedingEdge.Runtimes](https://nuget.org/packages/Raylib-cs.BleedingEdge.Runtimes)
-
-If you want to *customize raylib*, you need to
-copy [CompileNatives.props](https://raw.githubusercontent.com/danilwhale/Raylib-cs.BleedingEdge/refs/heads/main/Raylib-cs.BleedingEdge.Native/CompileNatives.props)
-to your project files and add `<Import Project="CompileNatives.props">` to
-your [project file](https://raw.githubusercontent.com/danilwhale/Raylib-cs.BleedingEdge/refs/heads/main/Raylib-cs.BleedingEdge.Native/Raylib-cs.BleedingEdge.Native.csproj)
-(`.csproj`)
+If you need custom native build: uninstall `Raylib-cs.BleedingEdge.Runtimes` and
+add [CompileNatives.props](https://raw.githubusercontent.com/danilwhale/Raylib-cs.BleedingEdge/refs/heads/main/Raylib-cs.BleedingEdge.Native/CompileNatives.props)
+to your project and import it (add `<Import Project="CompileNatives.props"/>`)
 > [!NOTE]
-> If you want to compile a static library,
-> add `<CompileShared>false</CompileShared>` in your project file's `PropertyGroup`
+> If you need to compile a static library: add `<CompileShared>false</CompileShared>` to your project's `PropertyGroup`
 
-If you need *static library*,
-go
-to [GitHub Actions](https://github.com/danilwhale/Raylib-cs.BleedingEdge/actions/workflows/build-static-natives.yaml),
-open the latest build (top most) and download `RID-static` artifact
+You can download static library natives from [GitHub Actions](https://github.com/danilwhale/Raylib-cs.BleedingEdge/actions/workflows/build-static-natives.yaml)
 > [!NOTE]
 > You will need GitHub account to download artifacts
 
