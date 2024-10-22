@@ -1,5 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Raylib_cs.BleedingEdge.TestGround</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+     <LibBuildArgs Include="-D GRAPHICS=GRAPHICS_API_OPENGL_43"/> 
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Raylib-cs.BleedingEdge\Raylib-cs.BleedingEdge.csproj" />
     <ProjectReference Include="..\Raylib-cs.BleedingEdge.Native\Raylib-cs.BleedingEdge.Native.csproj" />
@@ -11,14 +24,5 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>Raylib_cs.BleedingEdge.TestGround</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
 
 </Project>

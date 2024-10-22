@@ -5,6 +5,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <NoWarn>2008</NoWarn>
     </PropertyGroup>
     
     <Import Project="CompileNatives.props"/>

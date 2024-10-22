@@ -1,47 +1,90 @@
 <Project InitialTargets="BuildLib">
-
+    <!-- configure native build -->
     <PropertyGroup>
+        <!-- if you use git, you can add raylib submodule to your solution directory -->
         <LibSourcePath>../raylib</LibSourcePath>
         <LibBuildPath>$(BaseIntermediateOutputPath)native-$(Configuration)</LibBuildPath>
     </PropertyGroup>
-
-    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
-        <LibStaticExtension>a</LibStaticExtension>
-        <LibExtension>so</LibExtension>
-        <LibPrefix>lib</LibPrefix>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
-        <LibStaticExtension>a</LibStaticExtension>
-        <LibExtension>dylib</LibExtension>
-        <LibPrefix>lib</LibPrefix>
-        <LibArch Condition="'$(BuildArch)' == ''">arm64</LibArch>
-        <LibArch Condition="'$(BuildArch)' != ''">$(BuildArch)</LibArch>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
-        <LibStaticExtension>lib</LibStaticExtension>
-        <LibExtension>dll</LibExtension>
-        <LibPrefix>$(Configuration)/</LibPrefix>
-        <LibArch Condition="'$(BuildArch)' == ''">x64</LibArch>
-        <LibArch Condition="'$(BuildArch)' != ''">$(BuildArch)</LibArch>
-    </PropertyGroup>
-
-    <ItemGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
-        <LibBuildArgs Include="-D CMAKE_OSX_ARCHITECTURES=$(LibArch)"/>
-    </ItemGroup>
-
-    <ItemGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
-        <LibBuildArgs Include="-A $(LibArch)"/>
+    
+    <!-- configure build arguments, that will be passed to cmake -->
+    <ItemGroup>
+        <!-- <LibBuildArgs Include="-D GRAPHICS=GRAPHICS_API_OPENGL_43"/> -->
     </ItemGroup>
 
     <PropertyGroup>
-        <LibCompileShared Condition="'$(CompileShared)' == true">ON</LibCompileShared>
-        <LibCompileShared Condition="'$(CompileShared)' == false">OFF</LibCompileShared>
-        <LibCompileShared Condition="'$(LibCompileShared)' == ''">ON</LibCompileShared>
+        <LibProcArch>$([System.Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture)</LibProcArch>
     </PropertyGroup>
 
-    <!-- configure build -->
+    <!-- detect resulting runtime architecture, pass BuildArch property to specify it -->
+    <Choose>
+        <When Condition="$(BuildArch) == ''">
+            <PropertyGroup>
+                <LibArch Condition="'$(LibProcArch)' == 'X86'">x86</LibArch>
+                <LibArch Condition="'$(LibProcArch)' == 'X64'">x64</LibArch>
+                <LibArch Condition="'$(LibProcArch)' == 'Arm64'">arm64</LibArch>
+            </PropertyGroup>
+        </When>
+        <Otherwise>
+            <PropertyGroup>
+                <LibArch>$(BuildArch)</LibArch>
+            </PropertyGroup>
+        </Otherwise>
+    </Choose>
+
+    <!-- setup platform-specific parameters, like library extension and prefix -->
+    <Choose>
+        <When Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+            <PropertyGroup>
+                <LibStaticExtension>a</LibStaticExtension>
+                <LibExtension>so</LibExtension>
+                <LibPrefix>lib</LibPrefix>
+            </PropertyGroup>
+        </When>
+        <When Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+            <PropertyGroup>
+                <LibStaticExtension>a</LibStaticExtension>
+                <LibExtension>dylib</LibExtension>
+                <LibPrefix>lib</LibPrefix>
+            </PropertyGroup>
+        </When>
+        <When Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+            <PropertyGroup>
+                <LibStaticExtension>lib</LibStaticExtension>
+                <LibExtension>dll</LibExtension>
+                <LibPrefix>$(Configuration)/</LibPrefix>
+            </PropertyGroup>
+        </When>
+    </Choose>
+
+    <Choose>
+        <When Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+            <ItemGroup>
+                <LibBuildArgs Include="-D CMAKE_OSX_ARCHITECTURES=$(LibArch)"/>
+            </ItemGroup>
+        </When>
+        <When Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+            <ItemGroup>
+                <LibBuildArgs Include="-A $(LibArch)"/>
+            </ItemGroup>
+        </When>
+    </Choose>
+
+    <!-- enable or disable shared library compilation -->
+    <Choose>
+        <When Condition="'$(CompileShared)' == 'false'">
+            <PropertyGroup>
+                <LibCompileShared>OFF</LibCompileShared>
+            </PropertyGroup>
+        </When>
+        <Otherwise>
+            <PropertyGroup>
+                <LibCompileShared>ON</LibCompileShared>
+            </PropertyGroup>
+        </Otherwise>
+    </Choose>
+
+    <!-- link library files to the project root, edit if you need different directory -->
+    <!-- use "runtimes\$(RuntimeIdentifier)\%(Filename)%(Extension)" to link library file to 'runtimes\RID' directory-->
     <ItemGroup>
         <Content
                 Include="$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibExtension)"
@@ -54,7 +97,10 @@
                 Link="%(Filename)%(Extension)"
                 CopyToOutputDirectory="PreserveNewest"
                 Condition="Exists('$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibStaticExtension)')"/>
+    </ItemGroup>
 
+    <!-- configure build -->
+    <ItemGroup>
         <LibBuildArgs Include="-B $(LibBuildPath)"/>
         <LibBuildArgs Include="-S $(LibSourcePath)"/>
         <LibBuildArgs Include="-D BUILD_SHARED_LIBS=$(LibCompileShared)"/>
@@ -64,8 +110,7 @@
 
     <!-- build -->
     <Target Name="BuildLib" Condition="$(SkipLocalBuild) != true">
-        <Exec Command="cmake @(LibBuildArgs, ' ')" Condition="!Exists('$(LibBuildPath)/CMakeCache.txt')"/>
+        <Exec Command="cmake @(LibBuildArgs, ' ')"/>
         <Exec Command="cmake --build $(LibBuildPath) --config $(Configuration)"/>
     </Target>
-    
 </Project>
