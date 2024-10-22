@@ -1271,11 +1271,11 @@ public static unsafe partial class Raylib
     public static partial int SetGamepadMappings(sbyte* mappings);
 
     /// <summary>
-    /// Set gamepad vibration for both motors
+    /// Set gamepad vibration for both motors (duration in seconds)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void SetGamepadVibration(int gamepad, float leftMotor, float rightMotor);
+    public static partial void SetGamepadVibration(int gamepad, float leftMotor, float rightMotor, float duration);
 
     /// <summary>
     /// Check if a mouse button has been pressed once
@@ -1432,7 +1432,7 @@ public static unsafe partial class Raylib
     public static partial Gesture GetGestureDetected();
 
     /// <summary>
-    /// Get gesture hold time in milliseconds
+    /// Get gesture hold time in seconds
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
