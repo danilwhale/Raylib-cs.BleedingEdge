@@ -5,7 +5,7 @@ namespace Raylib_cs.BleedingEdge;
 
 public static unsafe partial class Raylib
 {
-    private static AudioMixedCallback? _audioMixedCallback;
+    private static AudioCallback? _audioMixedCallback;
     
     /// <summary>
     /// Get the human-readable, UTF-8 encoded name of the specified monitor
@@ -74,7 +74,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Attach audio stream processor to the entire audio pipeline
     /// </summary>
-    public static void AttachAudioMixedProcessor(AudioMixedCallback processor)
+    public static void AttachAudioMixedProcessor(AudioCallback processor)
     {
         if (_audioMixedCallback != null) return;
         _audioMixedCallback = processor;
@@ -84,7 +84,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Detach audio stream processor from the entire audio pipeline
     /// </summary>
-    public static void DetachAudioMixedProcessor(AudioMixedCallback processor)
+    public static void DetachAudioMixedProcessor(AudioCallback processor)
     {
         if (_audioMixedCallback == null || _audioMixedCallback != processor) return;
         DetachAudioMixedProcessor(&AudioMixedProcessorCallback);

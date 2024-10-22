@@ -101,4 +101,3 @@ differences from [Raylib-cs](https://github.com/ChrisDill/Raylib-cs)
 | `T[]` for functions with pointers                   | `Span<T>` for functions with pointers |
 | `int` argument for the length of array              | -, use `Span<T>.Slice` if necessary   |
 | `Utf8Buffer`                                        | `Utf8Handle`                          |
-| `AudioCallback`                                     | `AudioMixedCallback`                  |
