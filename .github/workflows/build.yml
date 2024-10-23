@@ -104,7 +104,7 @@ jobs:
             libwayland-dev
 
       - name: Compile native
-        run: dotnet build Raylib-cs.BleedingEdge.Native -c Release /p:BuildArch=${{ matrix.arch }}
+        run: dotnet build Raylib-cs.BleedingEdge.Native -c Release -r ${{ matrix.name }} /p:BuildArch=${{ matrix.arch }}
 
       - name: Upload native
         uses: actions/upload-artifact@v4

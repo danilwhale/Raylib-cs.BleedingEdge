@@ -3,7 +3,7 @@
     <PropertyGroup>
         <!-- if you use git, you can add raylib submodule to your solution directory -->
         <LibSourcePath>../raylib</LibSourcePath>
-        <LibBuildPath>$(BaseIntermediateOutputPath)native-$(Configuration)</LibBuildPath>
+        <LibBuildPath>$(BaseIntermediateOutputPath)native-$(RuntimeIdentifier)-$(Configuration)</LibBuildPath>
     </PropertyGroup>
     
     <!-- configure build arguments, that will be passed to cmake -->
