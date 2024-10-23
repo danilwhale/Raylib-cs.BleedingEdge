@@ -84,17 +84,16 @@
     </Choose>
 
     <!-- link library files to the project root, edit if you need different directory -->
-    <!-- use "runtimes\$(RuntimeIdentifier)\%(Filename)%(Extension)" to link library file to 'runtimes\RID' directory-->
     <ItemGroup>
         <Content
                 Include="$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibExtension)"
-                Link="%(Filename)%(Extension)"
+                Link="runtimes\$(RuntimeIdentifier)\native\%(Filename)%(Extension)"
                 CopyToOutputDirectory="PreserveNewest"
                 Condition="Exists('$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibExtension)')"/>
 
         <Content
                 Include="$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibStaticExtension)"
-                Link="%(Filename)%(Extension)"
+                Link="runtimes\$(RuntimeIdentifier)\native\%(Filename)%(Extension)"
                 CopyToOutputDirectory="PreserveNewest"
                 Condition="Exists('$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibStaticExtension)')"/>
     </ItemGroup>
