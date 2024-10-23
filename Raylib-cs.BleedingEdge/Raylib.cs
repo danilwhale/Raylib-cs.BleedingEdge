@@ -1991,6 +1991,13 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec);
+    
+    /// <summary>
+    /// Check if circle collides with a line created betweeen two points [p1] and [p2]
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool CheckCollisionCircleLine(Vector2 center, float radius, Vector2 p1, Vector2 p2);
 
     /// <summary>
     /// Check if point is inside rectangle
@@ -2012,6 +2019,13 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3);
+    
+    /// <summary>
+    /// Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial NativeBool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int threshold);
 
     /// <summary>
     /// Check if point is within a polygon described by array of vertices
@@ -2027,20 +2041,6 @@ public static unsafe partial class Raylib
     [LibraryImport(LibName)]
     public static partial NativeBool CheckCollisionLines(
         Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2* collisionPoint);
-
-    /// <summary>
-    /// Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]
-    /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName)]
-    public static partial NativeBool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int threshold);
-
-    /// <summary>
-    /// Check if circle collides with a line created betweeen two points [p1] and [p2]
-    /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName)]
-    public static partial NativeBool CheckCollisionCircleLine(Vector2 center, float radius, Vector2 p1, Vector2 p2);
 
     /// <summary>
     /// Get collision rectangle for two rectangles collision
