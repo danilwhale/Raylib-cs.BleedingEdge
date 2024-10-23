@@ -33,6 +33,8 @@ If you need custom native build: uninstall `Raylib-cs.BleedingEdge.Runtimes` and
 add [CompileNatives.props](https://raw.githubusercontent.com/danilwhale/Raylib-cs.BleedingEdge/refs/heads/main/Raylib-cs.BleedingEdge.Native/CompileNatives.props)
 to your project and import it (add `<Import Project="CompileNatives.props"/>`)
 > [!NOTE]
+> (Requires custom native build!!)
+> 
 > If you need to compile a static library: add `<CompileShared>false</CompileShared>` to your project's `PropertyGroup`
 
 You can download static library natives from [GitHub Actions](https://github.com/danilwhale/Raylib-cs.BleedingEdge/actions/workflows/build-static-natives.yaml)
