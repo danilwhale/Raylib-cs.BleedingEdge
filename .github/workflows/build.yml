@@ -93,15 +93,15 @@ jobs:
           sudo apt-get update
           sudo apt-get install \
             libasound2-dev \
+            libx11-dev \
+            libxrandr-dev \
+            libxi-dev \
             libgl1-mesa-dev \
             libglu1-mesa-dev \
-            libx11-dev \
             libxcursor-dev \
-            libxi-dev \
             libxinerama-dev \
-            libxkbcommon-dev \
-            libxrandr-dev \
-            libwayland-dev
+            libwayland-dev \
+            libxkbcommon-dev
 
       - name: Compile native
         run: dotnet build Raylib-cs.BleedingEdge.Native -c Release -r ${{ matrix.name }} /p:BuildArch=${{ matrix.arch }}
