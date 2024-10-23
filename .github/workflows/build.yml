@@ -13,6 +13,47 @@ on:
       - 'raylib'
       - '.github/workflows/**'
 jobs:
+  prepare-package-info:
+    runs-on: ubuntu-latest
+    outputs:
+      prefix: ${{ steps.package-info.outputs.prefix }}
+      suffix: ${{ steps.package-info.outputs.suffix }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup package info
+        id: package-info
+        shell: pwsh
+        run: |
+          $header = [System.IO.File]::ReadAllText('${{ github.workspace }}/raylib/src/raylib.h')
+
+          # "(.*)\.(.*)" == "*.*" == "5.5-dev"
+          if ( !($header -match '"(.*)\.(.*)"') )
+          {
+            exit 1
+          }
+
+          $version = $matches[0].substring(1, $matches[0].length - 2)
+          $prefix = $version.substring(0, $version.indexof('-'))
+          $suffix = ''
+          if ( $version.contains('-') )
+          {
+            $suffix = $version.substring($version.indexof('-') + 1) + '-${{ github.run_number }}'
+          }
+          else
+          {
+            $suffix = '${{ github.run_number }}'
+          }
+
+          echo $prefix
+          echo $suffix
+
+          echo prefix=$prefix >> $env:GITHUB_OUTPUT
+          echo suffix=$suffix >> $env:GITHUB_OUTPUT
+
   natives:
     strategy:
       matrix:
@@ -72,54 +113,11 @@ jobs:
           path: Raylib-cs.BleedingEdge.Native/bin/Release/runtimes/**
           if-no-files-found: 'error'
   
-  prepare-package-info:
-    runs-on: ubuntu-latest
-    outputs:
-      prefix: ${{ steps.package-info.outputs.prefix }}
-      suffix: ${{ steps.package-info.outputs.suffix }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          submodules: true
-
-      - name: Setup package info
-        id: package-info
-        shell: pwsh
-        run: |
-          $header = [System.IO.File]::ReadAllText('${{ github.workspace }}/raylib/src/raylib.h')
-          
-          # "(.*)\.(.*)" == "*.*" == "5.5-dev"
-          if ( !($header -match '"(.*)\.(.*)"') )
-          {
-            exit 1
-          }
-          
-          $version = $matches[0].substring(1, $matches[0].length - 2)
-          $prefix = $version.substring(0, $version.indexof('-'))
-          $suffix = ''
-          if ( $version.contains('-') )
-          {
-            $suffix = $version.substring($version.indexof('-') + 1) + '-${{ github.run_number }}'
-          }
-          else
-          {
-            $suffix = '${{ github.run_number }}'
-          }
-          
-          echo $prefix
-          echo $suffix
-          
-          echo prefix=$prefix >> $env:GITHUB_OUTPUT
-          echo suffix=$suffix >> $env:GITHUB_OUTPUT
-  
   pack-runtimes:
     runs-on: ubuntu-latest
     needs:
       - prepare-package-info
-      - natives-linux-x64
-      - natives-osx
-      - natives-windows
+      - natives
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

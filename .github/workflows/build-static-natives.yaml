@@ -12,6 +12,8 @@ on:
       - 'Raylib-cs.BleedingEdge.Native/**'
       - 'raylib'
       - '.github/workflows/**'
+
+jobs:
   natives:
     strategy:
       matrix:
