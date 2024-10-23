@@ -99,9 +99,9 @@ jobs:
             libxcursor-dev \
             libxi-dev \
             libxinerama-dev \
-            libxkbcommon-dev
+            libxkbcommon-dev \
             libxrandr-dev \
-            libwayland-dev \
+            libwayland-dev
 
       - name: Compile native
         run: dotnet build Raylib-cs.BleedingEdge.Native -c Release /p:BuildArch=${{ matrix.arch }}
