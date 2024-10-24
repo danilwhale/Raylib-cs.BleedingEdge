@@ -36,17 +36,22 @@ jobs:
             exit 1
           }
 
-          $version = $matches[0].substring(1, $matches[0].length - 2)
+          # due to how nuget sorts versions we need to increase 3rd version number every 100 runs so it will properly sort
+          # so if we have 105 runs we will get 5.5.1-dev-5 and with 608 runs we will get 5.5.6-dev-8 :)
+          $run_number = ${{ github.run_number }}
+          $rel_run_number = $run_number % 100
+
+          $version = $matches[0].substring(1, $matches[0].length - 2) + '.' + ([int] [Math]::Truncate($run_number / 100))
           $suffix = ''
           if ( $version.contains('-') )
           {
             $prefix = $version.substring(0, $version.indexof('-'))
-            $suffix = $version.substring($version.indexof('-') + 1) + '-${{ github.run_number }}'
+            $suffix = $version.substring($version.indexof('-') + 1) + "-$rel_run_number"
           }
           else
           {
             $prefix = $version
-            $suffix = 'dev' + '-${{ github.run_number }}'
+            $suffix = 'dev' + "-$rel_run_number"
           }
 
           echo $prefix
