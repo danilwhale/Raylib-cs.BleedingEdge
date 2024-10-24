@@ -37,14 +37,15 @@ jobs:
           }
 
           $version = $matches[0].substring(1, $matches[0].length - 2)
-          $prefix = $version.substring(0, $version.indexof('-'))
           $suffix = ''
           if ( $version.contains('-') )
           {
+            $prefix = $version.substring(0, $version.indexof('-'))
             $suffix = $version.substring($version.indexof('-') + 1) + '-${{ github.run_number }}'
           }
           else
           {
+            $prefix = $version
             $suffix = '${{ github.run_number }}'
           }
 
