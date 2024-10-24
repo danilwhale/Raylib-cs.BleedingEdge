@@ -15,7 +15,7 @@ public static unsafe partial class Raylib
     public const int MajorVersion = 5;
     public const int MinorVersion = 5;
     public const int PatchVersion = 0;
-    public const string VersionString = "5.5-dev";
+    public const string VersionString = "5.5";
 
     public const float Pi = 3.14159265358979323846f;
     public const float Deg2Rad = Pi / 180.0f;
@@ -59,28 +59,28 @@ public static unsafe partial class Raylib
     public static partial NativeBool IsWindowFullscreen();
 
     /// <summary>
-    /// Check if window is currently hidden (only PLATFORM_DESKTOP)
+    /// Check if window is currently hidden
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsWindowHidden();
 
     /// <summary>
-    /// Check if window is currently minimized (only PLATFORM_DESKTOP)
+    /// Check if window is currently minimized
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsWindowMinimized();
 
     /// <summary>
-    /// Check if window is currently maximized (only PLATFORM_DESKTOP)
+    /// Check if window is currently maximized
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsWindowMaximized();
 
     /// <summary>
-    /// Check if window is currently focused (only PLATFORM_DESKTOP)
+    /// Check if window is currently focused
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
@@ -101,7 +101,7 @@ public static unsafe partial class Raylib
     public static partial NativeBool IsWindowState(ConfigFlags flag);
 
     /// <summary>
-    /// Set window configuration state using flags (only PLATFORM_DESKTOP)
+    /// Set window configuration state using flags
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
@@ -115,63 +115,63 @@ public static unsafe partial class Raylib
     public static partial void ClearWindowState(ConfigFlags flags);
 
     /// <summary>
-    /// Toggle window state: fullscreen/windowed [resizes monitor to match window resolution] (only PLATFORM_DESKTOP)
+    /// Toggle window state: fullscreen/windowed, resizes monitor to match window resolution
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void ToggleFullscreen();
 
     /// <summary>
-    /// Toggle window state: borderless windowed [resizes window to match monitor resolution] (only PLATFORM_DESKTOP)
+    /// Toggle window state: borderless windowed, resizes window to match monitor resolution
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void ToggleBorderlessWindowed();
 
     /// <summary>
-    /// Set window state: maximized, if resizable (only PLATFORM_DESKTOP)
+    /// Set window state: maximized, if resizable
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void MaximizeWindow();
 
     /// <summary>
-    /// Set window state: minimized, if resizable (only PLATFORM_DESKTOP)
+    /// Set window state: minimized, if resizable
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void MinimizeWindow();
 
     /// <summary>
-    /// Set window state: not minimized/maximized (only PLATFORM_DESKTOP)
+    /// Set window state: not minimized/maximized
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void RestoreWindow();
 
     /// <summary>
-    /// Set icon for window (single image, RGBA 32bit, only PLATFORM_DESKTOP)
+    /// Set icon for window (single image, RGBA 32bit)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void SetWindowIcon(Image image);
 
     /// <summary>
-    /// Set icon for window (multiple images, RGBA 32bit, only PLATFORM_DESKTOP)
+    /// Set icon for window (multiple images, RGBA 32bit)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void SetWindowIcons(Image* images, int count);
 
     /// <summary>
-    /// Set title for window (only PLATFORM_DESKTOP and PLATFORM_WEB)
+    /// Set title for window
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void SetWindowTitle(sbyte* title);
 
     /// <summary>
-    /// Set window position on screen (only PLATFORM_DESKTOP)
+    /// Set window position on screen
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
@@ -206,14 +206,14 @@ public static unsafe partial class Raylib
     public static partial void SetWindowSize(int width, int height);
 
     /// <summary>
-    /// Set window opacity [0.0f..1.0f] (only PLATFORM_DESKTOP)
+    /// Set window opacity [0.0f..1.0f]
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void SetWindowOpacity(float opacity);
 
     /// <summary>
-    /// Set window focused (only PLATFORM_DESKTOP)
+    /// Set window focused
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
@@ -1152,7 +1152,7 @@ public static unsafe partial class Raylib
     public static partial NativeBool IsKeyPressed(KeyboardKey key);
 
     /// <summary>
-    /// Check if a key has been pressed again (Only PLATFORM_DESKTOP)
+    /// Check if a key has been pressed again
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
