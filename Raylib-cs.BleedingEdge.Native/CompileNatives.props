@@ -1,12 +1,12 @@
 <Project InitialTargets="BuildLib">
     <!-- configure native build -->
     <PropertyGroup>
-        <!-- if you use git, you can add raylib submodule to your solution directory -->
+        <!-- if you use git you can add raylib submodule to your solution directory -->
         <LibSourcePath>../raylib</LibSourcePath>
         <LibBuildPath>$(BaseIntermediateOutputPath)native-$(RuntimeIdentifier)-$(Configuration)</LibBuildPath>
     </PropertyGroup>
-    
-    <!-- configure build arguments, that will be passed to cmake -->
+
+    <!-- configure build arguments that will be passed to cmake -->
     <ItemGroup>
         <!-- <LibBuildArgs Include="-D GRAPHICS=GRAPHICS_API_OPENGL_43"/> -->
     </ItemGroup>
@@ -17,7 +17,7 @@
 
     <!-- detect resulting runtime architecture, pass BuildArch property to specify it -->
     <Choose>
-        <When Condition="$(BuildArch) == ''">
+        <When Condition="'$(BuildArch)' == ''">
             <PropertyGroup>
                 <LibArch Condition="'$(LibProcArch)' == 'X86'">x86</LibArch>
                 <LibArch Condition="'$(LibProcArch)' == 'X64'">x64</LibArch>
@@ -33,21 +33,28 @@
 
     <!-- setup platform-specific parameters, like library extension and prefix -->
     <Choose>
-        <When Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+        <When Condition="'$(BuildPlatform)' == 'Web'">
+            <PropertyGroup>
+                <LibStaticExtension>a</LibStaticExtension>
+                <LibExtension>so</LibExtension>
+                <CompileShared>false</CompileShared>
+            </PropertyGroup>
+        </When>
+        <When Condition="$(RuntimeIdentifier.StartsWith('linux'))">
             <PropertyGroup>
                 <LibStaticExtension>a</LibStaticExtension>
                 <LibExtension>so</LibExtension>
                 <LibPrefix>lib</LibPrefix>
             </PropertyGroup>
         </When>
-        <When Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+        <When Condition="$(RuntimeIdentifier.StartsWith('osx'))">
             <PropertyGroup>
                 <LibStaticExtension>a</LibStaticExtension>
                 <LibExtension>dylib</LibExtension>
                 <LibPrefix>lib</LibPrefix>
             </PropertyGroup>
         </When>
-        <When Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+        <When Condition="$(RuntimeIdentifier.StartsWith('win'))">
             <PropertyGroup>
                 <LibStaticExtension>lib</LibStaticExtension>
                 <LibExtension>dll</LibExtension>
@@ -55,33 +62,17 @@
             </PropertyGroup>
         </When>
     </Choose>
-
-    <Choose>
-        <When Condition="$([MSBuild]::IsOSPlatform('OSX'))">
-            <ItemGroup>
-                <LibBuildArgs Include="-D CMAKE_OSX_ARCHITECTURES=$(LibArch)"/>
-            </ItemGroup>
-        </When>
-        <When Condition="$([MSBuild]::IsOSPlatform('Windows'))">
-            <ItemGroup>
-                <LibBuildArgs Include="-A $(LibArch)"/>
-            </ItemGroup>
-        </When>
-    </Choose>
+    
+    <ItemGroup>
+        <LibBuildArgs Include="-D CMAKE_OSX_ARCHITECTURES=$(LibArch)" Condition="$(RuntimeIdentifier.StartsWith('osx'))"/>
+        <LibBuildArgs Include="-A $(LibArch)" Condition="$(RuntimeIdentifier.StartsWith('win'))"/>
+    </ItemGroup>
 
     <!-- enable or disable shared library compilation -->
-    <Choose>
-        <When Condition="'$(CompileShared)' == 'false'">
-            <PropertyGroup>
-                <LibCompileShared>OFF</LibCompileShared>
-            </PropertyGroup>
-        </When>
-        <Otherwise>
-            <PropertyGroup>
-                <LibCompileShared>ON</LibCompileShared>
-            </PropertyGroup>
-        </Otherwise>
-    </Choose>
+    <PropertyGroup>
+        <LibCompileShared Condition="'$(CompileShared)' == 'false'">OFF</LibCompileShared>
+        <LibCompileShared Condition="'$(CompileShared)' != 'false'">ON</LibCompileShared>
+    </PropertyGroup>
 
     <!-- link library files to the project root, edit if you need different directory -->
     <ItemGroup>
@@ -89,19 +80,20 @@
                 Include="$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibExtension)"
                 Link="runtimes\$(RuntimeIdentifier)\native\%(Filename)%(Extension)"
                 CopyToOutputDirectory="PreserveNewest"
-                Condition="Exists('$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibExtension)')"/>
+                Condition="$(LibCompileShared) == 'ON' AND Exists('$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibExtension)')"/>
 
         <Content
                 Include="$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibStaticExtension)"
                 Link="runtimes\$(RuntimeIdentifier)\native\%(Filename)%(Extension)"
                 CopyToOutputDirectory="PreserveNewest"
-                Condition="Exists('$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibStaticExtension)')"/>
+                Condition="$(LibCompileShared) == 'OFF' AND Exists('$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibStaticExtension)')"/>
     </ItemGroup>
 
     <!-- configure build -->
     <ItemGroup>
-        <LibBuildArgs Include="-B $(LibBuildPath)"/>
-        <LibBuildArgs Include="-S $(LibSourcePath)"/>
+        <LibBuildArgs Include="-B &quot;$(LibBuildPath)&quot;"/>
+        <LibBuildArgs Include="-S &quot;$(LibSourcePath)&quot;"/>
+        <LibBuildArgs Include="-D PLATFORM=$(BuildPlatform)" Condition="'$(BuildPlatform)' != ''"/>
         <LibBuildArgs Include="-D BUILD_SHARED_LIBS=$(LibCompileShared)"/>
         <LibBuildArgs Include="-D CMAKE_BUILD_TYPE=$(Configuration)"/>
         <LibBuildArgs Include="-D BUILD_EXAMPLES=OFF"/>
@@ -109,7 +101,18 @@
 
     <!-- build -->
     <Target Name="BuildLib" Condition="$(SkipLocalBuild) != true">
+        <CallTarget Targets="BuildLibDesktop" Condition="'$(BuildPlatform)' != 'Web'"/>
+        <CallTarget Targets="BuildLibWeb" Condition="'$(BuildPlatform)' == 'Web'"/>
+    </Target>
+
+    <Target Name="BuildLibDesktop">
         <Exec Command="cmake @(LibBuildArgs, ' ')"/>
         <Exec Command="cmake --build $(LibBuildPath) --config $(Configuration)"/>
+    </Target>
+
+    <Target Name="BuildLibWeb">
+        <Exec Command="emcmake cmake @(LibBuildArgs, ' ')"/>
+        <Exec Command="cmake --build $(LibBuildPath) --config $(Configuration)"/>
+        <Copy SourceFiles="$(LibBuildPath)/raylib/libraylib.a" DestinationFiles="$(LibBuildPath)/raylib/raylib.a"/>
     </Target>
 </Project>

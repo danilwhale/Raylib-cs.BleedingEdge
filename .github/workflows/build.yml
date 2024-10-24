@@ -68,18 +68,27 @@ jobs:
           - name: 'linux-x64'
             os: 'ubuntu-latest'
             arch: 'x64'
+            platform: 'Desktop'
           - name: 'osx-x64'
             os: 'macos-latest'
             arch: 'x86_64'
+            platform: 'Desktop'
           - name: 'osx-arm64'
             os: 'macos-latest'
             arch: 'arm64'
+            platform: 'Desktop'
           - name: 'win-x64'
             os: 'windows-latest'
             arch: 'x64'
+            platform: 'Desktop'
           - name: 'win-x86'
             os: 'windows-latest'
             arch: 'win32'
+            platform: 'Desktop'
+          - name: 'browser-wasm'
+            os: 'ubuntu-latest'
+            arch: 'x64'
+            platform: 'Web'
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repository
@@ -108,10 +117,22 @@ jobs:
             libxinerama-dev \
             libwayland-dev \
             libxkbcommon-dev
+      
+      - name: Install wasm-tools workload
+        if: matrix.name == 'browser-wasm'
+        run: |
+          dotnet workload install wasm-tools
+
+      - name: Setup emsdk
+        if: matrix.name == 'browser-wasm'
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          actions-cache-folder: 'emsdk-cache'
 
       - name: Compile native
-        run: dotnet build Raylib-cs.BleedingEdge.Native -c Release -r ${{ matrix.name }} /p:BuildArch=${{ matrix.arch }}
-
+        run: |
+          dotnet build Raylib-cs.BleedingEdge.Native -c Release -r ${{ matrix.name }} /p:BuildArch=${{ matrix.arch }} /p:BuildPlatform=${{ matrix.platform }}
+      
       - name: Upload native
         uses: actions/upload-artifact@v4
         with:

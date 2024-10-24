@@ -1,8 +1,7 @@
-﻿<!-- most of code taken from https://github.com/chrisdill/raylib-cs/blob/master/Raylib-cs.Native/Raylib-cs.Native.csproj -->
-
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>Raylib_cs.BleedingEdge.Native</RootNamespace>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>

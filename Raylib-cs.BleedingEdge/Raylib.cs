@@ -20,7 +20,7 @@ public static unsafe partial class Raylib
     public const float Pi = 3.14159265358979323846f;
     public const float Deg2Rad = Pi / 180.0f;
     public const float Rad2Deg = 180.0f / Pi;
-
+    
     private const string LibName = "raylib";
 
     /// <summary>
