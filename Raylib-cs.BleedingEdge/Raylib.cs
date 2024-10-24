@@ -262,7 +262,7 @@ public static unsafe partial class Raylib
     public static partial int GetMonitorCount();
 
     /// <summary>
-    /// Get current connected monitor
+    /// Get current monitor where window is placed
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
