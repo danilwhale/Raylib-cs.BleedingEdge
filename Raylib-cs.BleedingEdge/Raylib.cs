@@ -3651,11 +3651,18 @@ public static unsafe partial class Raylib
     public static partial ModelAnimation* LoadModelAnimations(sbyte* fileName, int* animCount);
 
     /// <summary>
-    /// Update model animation pose
+    /// Update model animation pose (CPU)
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void UpdateModelAnimation(Model model, ModelAnimation anim, int frame);
+    
+    /// <summary>
+    /// Update model animation mesh bone matrices (GPU skinning)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial void UpdateModelAnimationBoneMatrices(Model model, ModelAnimation anim, int frame);
 
     /// <summary>
     /// Unload animation data
@@ -3677,13 +3684,6 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial NativeBool IsModelAnimationValid(Model model, ModelAnimation anim);
-    
-    /// <summary>
-    /// Update model animation mesh bone matrices (Note GPU skinning does not work on Mac)
-    /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName)]
-    public static partial void UpdateModelAnimationBoneMatrices(Model model, ModelAnimation anim, int frame);
 
     /// <summary>
     /// Check collision between two spheres
