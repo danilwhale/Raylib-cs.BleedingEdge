@@ -45,7 +45,7 @@ jobs:
           }
           else
           {
-            $prefix = $version
+            $prefix = '-dev-${{ version }}'
             $suffix = '${{ github.run_number }}'
           }
 
