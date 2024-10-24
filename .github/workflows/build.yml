@@ -85,10 +85,6 @@ jobs:
             os: 'windows-latest'
             arch: 'win32'
             platform: 'Desktop'
-          - name: 'browser-wasm'
-            os: 'ubuntu-latest'
-            arch: 'x64'
-            platform: 'Web'
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repository
@@ -117,17 +113,6 @@ jobs:
             libxinerama-dev \
             libwayland-dev \
             libxkbcommon-dev
-      
-      - name: Install wasm-tools workload
-        if: matrix.name == 'browser-wasm'
-        run: |
-          dotnet workload install wasm-tools
-
-      - name: Setup emsdk
-        if: matrix.name == 'browser-wasm'
-        uses: mymindstorm/setup-emsdk@v14
-        with:
-          actions-cache-folder: 'emsdk-cache'
 
       - name: Compile native
         run: |
