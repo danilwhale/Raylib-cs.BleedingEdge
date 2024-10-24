@@ -4,6 +4,7 @@
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <IncludeBuildOutput>false</IncludeBuildOutput>
         <IncludeSymbols>false</IncludeSymbols>
+        <IsAotCompatible>true</IsAotCompatible>
     </PropertyGroup>
 
     <PropertyGroup>
