@@ -3662,7 +3662,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void UpdateModelAnimationBoneMatrices(Model model, ModelAnimation anim, int frame);
+    public static partial void UpdateModelAnimationBones(Model model, ModelAnimation anim, int frame);
 
     /// <summary>
     /// Unload animation data
