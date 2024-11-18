@@ -4,6 +4,11 @@
         <!-- if you use git you can add raylib submodule to your solution directory -->
         <LibSourcePath>../raylib</LibSourcePath>
         <LibBuildPath>$(BaseIntermediateOutputPath)native-$(RuntimeIdentifier)-$(Configuration)</LibBuildPath>
+        
+        <!-- you can set custom link path for library (path where library file will be linked to) -->
+        <!-- <LibLinkPath>my-path-to-libs\</LibLinkPath> -->
+        <LibLinkPath Condition="'$(RuntimeIdentifier)' != ''">runtimes\$(RuntimeIdentifier)\native\</LibLinkPath>
+        <LibLinkPath Condition="'$(RuntimeIdentifier)' == ''">\</LibLinkPath>
     </PropertyGroup>
 
     <!-- configure build arguments that will be passed to cmake -->
@@ -33,28 +38,28 @@
 
     <!-- setup platform-specific parameters, like library extension and prefix -->
     <Choose>
-        <When Condition="'$(BuildPlatform)' == 'Web'">
+        <When Condition="$(RuntimeIdentifier.StartsWith('browser-wasm')) Or '$(BuildPlatform)' == 'Web'">
             <PropertyGroup>
                 <LibStaticExtension>a</LibStaticExtension>
                 <LibExtension>so</LibExtension>
                 <CompileShared>false</CompileShared>
             </PropertyGroup>
         </When>
-        <When Condition="$(RuntimeIdentifier.StartsWith('linux'))">
+        <When Condition="$([MSBuild]::IsOSPlatform('Linux')) Or $(RuntimeIdentifier.StartsWith('linux'))">
             <PropertyGroup>
                 <LibStaticExtension>a</LibStaticExtension>
                 <LibExtension>so</LibExtension>
                 <LibPrefix>lib</LibPrefix>
             </PropertyGroup>
         </When>
-        <When Condition="$(RuntimeIdentifier.StartsWith('osx'))">
+        <When Condition="$([MSBuild]::IsOSPlatform('OSX')) Or $(RuntimeIdentifier.StartsWith('osx'))">
             <PropertyGroup>
                 <LibStaticExtension>a</LibStaticExtension>
                 <LibExtension>dylib</LibExtension>
                 <LibPrefix>lib</LibPrefix>
             </PropertyGroup>
         </When>
-        <When Condition="$(RuntimeIdentifier.StartsWith('win'))">
+        <When Condition="$([MSBuild]::IsOSPlatform('Windows')) Or $(RuntimeIdentifier.StartsWith('win'))">
             <PropertyGroup>
                 <LibStaticExtension>lib</LibStaticExtension>
                 <LibExtension>dll</LibExtension>
@@ -78,13 +83,13 @@
     <ItemGroup>
         <Content
                 Include="$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibExtension)"
-                Link="runtimes\$(RuntimeIdentifier)\native\%(Filename)%(Extension)"
+                Link="$(LibLinkPath)%(Filename)%(Extension)"
                 CopyToOutputDirectory="PreserveNewest"
                 Condition="$(LibCompileShared) == 'ON' AND Exists('$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibExtension)')"/>
 
         <Content
                 Include="$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibStaticExtension)"
-                Link="runtimes\$(RuntimeIdentifier)\native\%(Filename)%(Extension)"
+                Link="$(LibLinkPath)%(Filename)%(Extension)"
                 CopyToOutputDirectory="PreserveNewest"
                 Condition="$(LibCompileShared) == 'OFF' AND Exists('$(LibBuildPath)/raylib/$(LibPrefix)raylib.$(LibStaticExtension)')"/>
     </ItemGroup>
