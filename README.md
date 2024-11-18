@@ -1,8 +1,8 @@
-![logo](https://raw.githubusercontent.com/danilwhale/Raylib-cs.BleedingEdge/main/Assets/Logo-96.png)
+![banner](https://raw.githubusercontent.com/danilwhale/Raylib-cs.BleedingEdge/main/Assets/Banner-450.png)
 
 ### Raylib-cs.BleedingEdge
 
-C# bindings for raylib, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
+Bleeding-edge C# bindings for raylib, a simple and easy-to-use library to learn videogames programming (www.raylib.com)
 
 [![NuGet Downloads](https://img.shields.io/nuget/dt/Raylib-cs.BleedingEdge?style=flat-square&logo=nuget)](https://www.nuget.org/packages/Raylib-cs.BleedingEdge)
 [![GitHub License](https://img.shields.io/github/license/danilwhale/Raylib-cs.BleedingEdge?style=flat-square)](https://github.com/danilwhale/Raylib-cs.BleedingEdge/blob/main/LICENSE)
@@ -14,9 +14,10 @@ C# bindings for raylib, a simple and easy-to-use library to learn videogames pro
 ---
 
 Raylib-cs.BleedingEdge targets .NET 8+ and
-uses [the master branch of raylib repo](https://github.com/raysan5/raylib/tree/master)
+uses [the master branch of raylib](https://github.com/raysan5/raylib/tree/master)
 
-> To see examples, you can reference the [Raylib-cs](https://github.com/chrisdill/raylib-cs) examples
+> To see examples, you can reference the [raylib-cs](https://github.com/chrisdill/raylib-cs/tree/master/Examples)
+> or [raylib](https://github.com/raysan5/raylib/tree/master/examples) examples
 > as this binding has mostly same function signatures (see [API differences](#api-differences))
 
 installation
@@ -34,10 +35,11 @@ add [CompileNatives.props](https://raw.githubusercontent.com/danilwhale/Raylib-c
 to your project and import it (add `<Import Project="CompileNatives.props"/>`)
 > [!NOTE]
 > (Requires custom native build!!)
-> 
+>
 > If you need to compile a static library: add `<CompileShared>false</CompileShared>` to your project's `PropertyGroup`
 
-You can download static library natives from [GitHub Actions](https://github.com/danilwhale/Raylib-cs.BleedingEdge/actions/workflows/build-static-natives.yaml)
+You can download static library natives
+from [GitHub Actions](https://github.com/danilwhale/Raylib-cs.BleedingEdge/actions/workflows/build-static-natives.yaml)
 > [!NOTE]
 > You will need GitHub account to download artifacts
 
@@ -66,12 +68,12 @@ while (!WindowShouldClose())
 CloseWindow();
 ```
 
-differences from [Raylib-cs](https://github.com/ChrisDill/Raylib-cs)
+differences from [raylib-cs](https://github.com/ChrisDill/Raylib-cs)
 ---
 
 ### main differences
 
-| [Raylib-cs](https://github.com/chrisdill/raylib-cs) | Raylib-cs.BleedingEdge  |
+| [raylib-cs](https://github.com/chrisdill/raylib-cs) | Raylib-cs.BleedingEdge  |
 |-----------------------------------------------------|-------------------------|
 | .NET 6.0+                                           | .NET 8.0+               |
 | Released 07-2018                                    | Released 08-2024        |
@@ -84,9 +86,9 @@ differences from [Raylib-cs](https://github.com/ChrisDill/Raylib-cs)
 > `KbMenu` instead of `KeyboardMenu`. Enum value names in this binding are same as in raylib,
 > but renamed to match PascalCase
 
-| [Raylib-cs](https://github.com/chrisdill/raylib-cs) | Raylib-cs.BleedingEdge                |
-|-----------------------------------------------------|---------------------------------------|
-| `using Raylib-cs`                                   | `using Raylib-cs.BleedingEdge`        |
-| `T[]` for functions with pointers                   | `Span<T>` for functions with pointers |
-| `int` argument for the length of array              | -, use `Span<T>.Slice` if necessary   |
-| `Utf8Buffer`                                        | `Utf8Handle`                          |
+| [raylib-cs](https://github.com/chrisdill/raylib-cs) | Raylib-cs.BleedingEdge                      |
+|-----------------------------------------------------|---------------------------------------------|
+| `using Raylib_cs`                                   | `using Raylib_cs.BleedingEdge`              |
+| `T[]` for functions with array pointers             | `Span<T>` for functions with array pointers |
+| `int` argument for the length of array              | -, use `Span<T>.Slice` if necessary         |
+| `Utf8Buffer`                                        | `Utf8Handle`                                |
