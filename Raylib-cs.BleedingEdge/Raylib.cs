@@ -603,14 +603,7 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void UnloadShader(Shader shader);
-
-    /// <summary>
-    /// Get a ray trace from screen position (i.e mouse)
-    /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName)]
-    public static partial void GetMouseRay(Vector2 position, Camera3D camera);
-
+    
     /// <summary>
     /// Get a ray trace from screen position (i.e mouse)
     /// </summary>
