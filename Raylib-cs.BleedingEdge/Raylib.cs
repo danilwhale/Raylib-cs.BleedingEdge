@@ -346,6 +346,13 @@ public static unsafe partial class Raylib
     public static partial sbyte* GetClipboardText();
 
     /// <summary>
+    /// Get clipboard image content
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial Image GetClipboardImage();
+
+    /// <summary>
     /// Enable waiting for events on EndDrawing(), no automatic event polling
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
