@@ -44,7 +44,7 @@ jobs:
           # 2: 6
           # 1: 0
           # 0: "6.0-dev"
-          $version = $matches[1] + '.' + $matches[2] + '.' + ([int] [Math]::Truncate($run_number / 100))
+          $version = $matches[1] + '.' + $matches[2] + '.' + ([int] [Math]::Truncate($run_number / 100) + 1)
           $prefix = $version
 
           # . seems to sort fine unlike - ("5.5.1-dev.14" > "5.5.1-dev.13")
