@@ -117,6 +117,13 @@ public static unsafe partial class Raymath
     public static partial float Vector2DotProduct(Vector2 v1, Vector2 v2);
 
     /// <summary>
+    /// Calculate two vectors cross product
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial float Vector2CrossProduct(Vector2 v1, Vector2 v2);
+
+    /// <summary>
     /// Calculate distance between two vectors
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
