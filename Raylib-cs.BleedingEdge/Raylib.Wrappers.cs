@@ -591,6 +591,14 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>
+    /// Get name of a QWERTY key on the current keyboard layout (eg returns string "q" for KEY_A on an AZERTY keyboard)
+    /// </summary>
+    public static string GetKeyNameString(KeyboardKey key)
+    {
+        return Marshal.PtrToStringUTF8((nint)GetKeyName(key)) ?? string.Empty;
+    }
+
+    /// <summary>
     /// Get gamepad internal name id
     /// </summary>
     public static string GetGamepadNameString(int gamepad)

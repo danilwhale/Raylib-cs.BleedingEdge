@@ -72,6 +72,14 @@ public static unsafe partial class Raylib
     }
     
     /// <summary>
+    /// Get name of a QWERTY key on the current keyboard layout (eg returns string "q" for KEY_A on an AZERTY keyboard)
+    /// </summary>
+    public static string GetKeyName_(KeyboardKey key)
+    {
+        return Marshal.PtrToStringUTF8((nint)GetKeyName(key)) ?? string.Empty;
+    }
+    
+    /// <summary>
     /// Attach audio stream processor to the entire audio pipeline
     /// </summary>
     public static void AttachAudioMixedProcessor(AudioCallback processor)
