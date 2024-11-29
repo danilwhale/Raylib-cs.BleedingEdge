@@ -78,6 +78,14 @@ public static unsafe partial class Raylib
     {
         return Marshal.PtrToStringUTF8((nint)GetKeyName(key)) ?? string.Empty;
     }
+
+    /// <summary>
+    /// Get gamepad internal name id
+    /// </summary>
+    public static string GetGamepadName_(int gamepad)
+    {
+        return Marshal.PtrToStringUTF8((nint)GetGamepadName(gamepad)) ?? string.Empty;
+    }
     
     /// <summary>
     /// Attach audio stream processor to the entire audio pipeline
@@ -111,9 +119,9 @@ public static unsafe partial class Raylib
     /// <remarks>
     /// Same as <code>model.Materials[materialIndex]</code>
     /// </remarks>
-    public static ref Material GetMaterial(ref Model model, int materialIndex)
+    public static Material GetMaterial(ref Model model, int materialIndex)
     {
-        return ref model.Materials[materialIndex];
+        return model.Materials[materialIndex];
     }
 
     /// <summary>
@@ -122,9 +130,9 @@ public static unsafe partial class Raylib
     /// <remarks>
     /// Same as <code>model.Materials[materialIndex].Maps[(int)mapIndex].Texture</code>
     /// </remarks>
-    public static ref Texture2D GetMaterialTexture(ref Model model, int materialIndex, MaterialMapIndex mapIndex)
+    public static Texture2D GetMaterialTexture(ref Model model, int materialIndex, MaterialMapIndex mapIndex)
     {
-        return ref model.Materials[materialIndex].Maps[(int)mapIndex].Texture;
+        return model.Materials[materialIndex].Maps[(int)mapIndex].Texture;
     }
 
     /// <summary>
