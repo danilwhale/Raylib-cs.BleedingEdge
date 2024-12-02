@@ -7,9 +7,6 @@ namespace Raylib_cs.BleedingEdge;
 
 public static unsafe partial class Rlgl
 {
-
-    private static GCHandle _activeRenderBatch;
-
     /// <summary>
     /// Multiply the current matrix by another matrix
     /// </summary>
@@ -27,22 +24,6 @@ public static unsafe partial class Rlgl
         {
             DrawRenderBatch(pBatch);
         }
-    }
-
-    /// <summary>
-    /// Set the active render batch for rlgl (NULL for default internal)
-    /// </summary>
-    public static void SetRenderBatchActive(ref RenderBatch batch)
-    {
-        if (_activeRenderBatch.IsAllocated)
-        {
-            _activeRenderBatch.Free();
-        }
-
-        // pin specified batch, so GC won't move it while rlgl using it
-        _activeRenderBatch = GCHandle.Alloc(batch, GCHandleType.Pinned);
-
-        SetRenderBatchActive((RenderBatch*)_activeRenderBatch.AddrOfPinnedObject());
     }
 
     /// <summary>

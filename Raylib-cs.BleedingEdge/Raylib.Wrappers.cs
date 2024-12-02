@@ -1,14 +1,11 @@
 using System.Numerics;
 using System.Runtime.InteropServices;
 using Raylib_cs.BleedingEdge.Interop;
-using Raylib_cs.BleedingEdge;
 
 namespace Raylib_cs.BleedingEdge;
 
 public static unsafe partial class Raylib
 {
-    private static GCHandle _automationEventListHandle;
-
     // all methods with native string (char*, or sbyte* in P/Invoke) parameters are using Marshal directly
     // instead of something like Utf8Buffer in Raylib-cs to reduce execution time and allocations
     // Utf8Handle is provided for user use
@@ -572,22 +569,6 @@ public static unsafe partial class Raylib
         var result = ExportAutomationEventList(list, (sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
-    }
-
-    /// <summary>
-    /// Set automation event list to record to
-    /// </summary>
-    public static void SetAutomationEventList(ref AutomationEventList list)
-    {
-        if (_automationEventListHandle.IsAllocated)
-        {
-            _automationEventListHandle.Free();
-        }
-
-        // pin specified AutomationEventList, so GC won't move it while raylib is recording data to it
-        _automationEventListHandle = GCHandle.Alloc(list, GCHandleType.Pinned);
-
-        SetAutomationEventList((AutomationEventList*)_automationEventListHandle.AddrOfPinnedObject());
     }
 
     /// <summary>
