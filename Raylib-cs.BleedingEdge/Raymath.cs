@@ -138,10 +138,11 @@ public static unsafe partial class Raymath
     public static partial float Vector2DistanceSqr(Vector2 v1, Vector2 v2);
 
     /// <summary>
-    /// Calculate angle between two vectors
+    /// Calculate the signed angle from v1 to v2, relative to the origin (0, 0).
     /// </summary>
     /// <remarks>
-    /// NOTE: Angle is calculated from origin point (0, 0)
+    /// NOTE: In Raylib's 2D coordinate system (positive X right, positive Y down),
+    /// positive angles appear clockwise, and negative angles appear counterclockwise.
     /// </remarks>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]

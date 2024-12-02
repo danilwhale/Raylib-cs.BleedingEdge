@@ -1192,6 +1192,13 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial int GetCharPressed();
+    
+    /// <summary>
+    /// Get name of a QWERTY key on the current keyboard layout (eg returns string 'q' for KEY_A on an AZERTY keyboard)
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
+    public static partial sbyte* GetKeyName(KeyboardKey key);
 
     /// <summary>
     /// Set a custom key to exit program (default is ESC)
@@ -1199,13 +1206,6 @@ public static unsafe partial class Raylib
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial void SetExitKey(KeyboardKey key);
-
-    /// <summary>
-    /// Get name of a QWERTY key on the current keyboard layout (eg returns string "q" for KEY_A on an AZERTY keyboard)
-    /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName)]
-    public static partial sbyte* GetKeyName(KeyboardKey key);
     
     /// <summary>
     /// Check if a gamepad is available
