@@ -72,7 +72,7 @@ public static unsafe partial class Raylib
     }
     
     /// <summary>
-    /// Get name of a QWERTY key on the current keyboard layout (eg returns string "q" for KEY_A on an AZERTY keyboard)
+    /// Get name of a QWERTY key on the current keyboard layout (eg returns string 'q' for KEY_A on an AZERTY keyboard)
     /// </summary>
     public static string GetKeyName_(KeyboardKey key)
     {

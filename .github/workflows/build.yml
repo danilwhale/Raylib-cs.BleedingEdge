@@ -3,13 +3,17 @@ on:
   push:
     branches: [ 'main' ]
     paths:
-      - 'Raylib-cs.BleedingEdge*/**'
+      - 'Raylib-cs.BleedingEdge/**'
+      - 'Raylib-cs.BleedingEdge.Runtimes/**'
+      - 'Raylib-cs.BleedingEdge.Native/**'
       - 'raylib'
       - '.github/workflows/**'
   pull_request:
     branches: [ '*' ]
     paths:
-      - 'Raylib-cs.BleedingEdge*/**'
+      - 'Raylib-cs.BleedingEdge/**'
+      - 'Raylib-cs.BleedingEdge.Runtimes/**'
+      - 'Raylib-cs.BleedingEdge.Native/**'
       - 'raylib'
       - '.github/workflows/**'
 jobs:
