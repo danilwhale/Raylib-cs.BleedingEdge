@@ -138,7 +138,7 @@ public enum ShaderLocationIndex
     /// <summary>
     /// Shader location: vertex attribute: boneIds
     /// </summary>
-    VertexBoneIDs,
+    VertexBoneIds,
     
     /// <summary>
     /// Shader location: vertex attribute: boneWeights

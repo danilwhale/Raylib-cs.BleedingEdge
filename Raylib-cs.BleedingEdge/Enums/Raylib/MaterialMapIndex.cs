@@ -49,6 +49,11 @@ public enum MaterialMapIndex
     /// Irradiance material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
     /// </summary>
     Irradiance,
+    
+    /// <summary>
+    /// Prefilter material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
+    /// </summary>
+    Prefilter,
 
     /// <summary>
     /// Brdf material

@@ -23,10 +23,10 @@ public enum CubemapLayout
     /// <summary>
     /// Layout is defined by a 3x4 cross with cubemap faces
     /// </summary>
-    ThreeByFour,
+    CrossThreeByFour,
 
     /// <summary>
     /// Layout is defined by a 4x3 cross with cubemap faces
     /// </summary>
-    FourByThree
+    CrossFourByThree
 }
