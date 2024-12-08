@@ -3301,6 +3301,13 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
+    public static partial void DrawSphereWires(Vector3 centerPos, float radius, int rings, int slices, Color color);
+
+    /// <summary>
+    /// Draw sphere wires
+    /// </summary>
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [LibraryImport(LibName)]
     public static partial void DrawCylinder(Vector3 position, float radiusTop, float radiusBottom, float height, int slices, Color color);
 
     /// <summary>
