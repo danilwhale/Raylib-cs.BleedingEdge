@@ -572,6 +572,17 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>
+    /// Set automation event list to record to
+    /// </summary>
+    public static void SetAutomationEventList(ref AutomationEventList list)
+    {
+        fixed (AutomationEventList* pList = &list)
+        {
+            SetAutomationEventList(pList);
+        }
+    }
+
+    /// <summary>
     /// Get name of a QWERTY key on the current keyboard layout (eg returns string 'q' for KEY_A on an AZERTY keyboard)
     /// </summary>
     public static string GetKeyNameString(KeyboardKey key)

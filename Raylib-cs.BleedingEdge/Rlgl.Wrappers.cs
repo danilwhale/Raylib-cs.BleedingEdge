@@ -27,6 +27,17 @@ public static unsafe partial class Rlgl
     }
 
     /// <summary>
+    /// Set the active render batch for rlgl (NULL for default internal)
+    /// </summary>
+    public static void SetRenderBatchActive(ref RenderBatch batch)
+    {
+        fixed (RenderBatch* pBatch = &batch)
+        {
+            SetRenderBatchActive(pBatch);
+        }
+    }
+
+    /// <summary>
     /// Load a vertex buffer object
     /// </summary>
     public static uint LoadVertexBuffer<T>(ReadOnlySpan<T> buffer, NativeBool dynamic)

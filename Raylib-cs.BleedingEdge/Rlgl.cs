@@ -12,8 +12,6 @@ public static unsafe partial class Rlgl
 {
     public const string Version = "5.0";
 
-    // TODO: maybe move constants to own enums?
-
     /// <summary>
     /// GL_TEXTURE_WRAP_S
     /// </summary>
