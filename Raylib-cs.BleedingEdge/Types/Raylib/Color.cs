@@ -161,20 +161,6 @@ public struct Color(byte r, byte g, byte b, byte a = 255) : IEquatable<Color>
     /// </summary>
     public byte A = a;
 
-    /// <summary>
-    /// Color, 4 components, R8G8B8A8 (32bit)
-    /// </summary>
-    public Color(float r, float g, float b, float a = 1.0f)
-        : this(
-            // clamp values between 0..1
-            (byte)((r < 0.0f ? 0.0f : r > 1.0f ? 1.0f : r) * 255.0f),
-            (byte)((g < 0.0f ? 0.0f : g > 1.0f ? 1.0f : g) * 255.0f),
-            (byte)((b < 0.0f ? 0.0f : b > 1.0f ? 1.0f : b) * 255.0f),
-            (byte)((a < 0.0f ? 0.0f : a > 1.0f ? 1.0f : a) * 255.0f)
-        )
-    {
-    }
-
     public bool Equals(Color other)
     {
         return R == other.R && G == other.G && B == other.B && A == other.A;
@@ -193,6 +179,16 @@ public struct Color(byte r, byte g, byte b, byte a = 255) : IEquatable<Color>
     public override string ToString()
     {
         return $"<{R} {G} {B} {A}>";
+    }
+
+    public static Color FromNormalized(float r, float g, float b, float a = 1.0f)
+    {
+        return new Color(
+            (byte)(r < 0.0f ? 0.0f : r > 1.0f ? 1.0f : r),
+            (byte)(g < 0.0f ? 0.0f : g > 1.0f ? 1.0f : g),
+            (byte)(b < 0.0f ? 0.0f : b > 1.0f ? 1.0f : b),
+            (byte)(a < 0.0f ? 0.0f : a > 1.0f ? 1.0f : a)
+        );
     }
 
     public static bool operator ==(Color left, Color right)
