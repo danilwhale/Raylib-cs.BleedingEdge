@@ -149,6 +149,11 @@ public enum ShaderLocationIndex
     /// Shader location: array of matrices uniform: boneMatrices
     /// </summary>
     BoneMatrices,
+    
+    /// <summary>
+    /// Shader location: vertex attribute: instanceTransform
+    /// </summary>
+    VertexInstanceTx,
 
     MapDiffuse = MapAlbedo,
     MapSpecular = MapMetalness
