@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <RootNamespace>Raylib_cs.BleedingEdge.Examples</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Raylib-cs.BleedingEdge.Native\Raylib-cs.BleedingEdge.Native.csproj" />
+      <ProjectReference Include="..\Raylib-cs.BleedingEdge\Raylib-cs.BleedingEdge.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="resources\**">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+</Project>

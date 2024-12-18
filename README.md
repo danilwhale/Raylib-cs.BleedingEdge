@@ -14,11 +14,11 @@ Bleeding-edge C# bindings for raylib, a simple and easy-to-use library to learn 
 ---
 
 Raylib-cs.BleedingEdge targets .NET 8+ and
-uses [the master branch of raylib](https://github.com/raysan5/raylib/tree/master)
+binds [raylib's master branch](https://github.com/raysan5/raylib/tree/master)
 
-> You can reference [raylib-cs](https://github.com/chrisdill/raylib-cs/tree/master/Examples)
-> and [raylib](https://github.com/raysan5/raylib/tree/master/examples) examples
-> as this binding has mostly same function signatures (see [API differences](#api-differences))
+> there are [WIP examples](https://github.com/danilwhale/Raylib-cs.BleedingEdge/tree/main/Raylib-cs.BleedingEdge.Examples). 
+> you can reference [raylib-cs](https://github.com/chrisdill/raylib-cs/tree/master/Examples)
+> or [raylib](https://github.com/raysan5/raylib/tree/master/examples) for missing examples
 
 installation
 ---
@@ -41,7 +41,7 @@ to your project and import it (add `<Import Project="CompileNatives.props"/>`). 
 
 - ... prebuilt static library: you can get it from [GitHub Actions](https://github.com/danilwhale/Raylib-cs.BleedingEdge/actions/workflows/build-static-natives.yaml). You need GitHub account to do this.
 
-basic example
+"hello, world!"
 ---
 
 ```csharp
@@ -65,27 +65,3 @@ while (!WindowShouldClose())
 
 CloseWindow();
 ```
-
-differences from [raylib-cs](https://github.com/ChrisDill/Raylib-cs)
----
-
-### main differences
-
-| [raylib-cs](https://github.com/chrisdill/raylib-cs) | Raylib-cs.BleedingEdge  |
-|-----------------------------------------------------|-------------------------|
-| .NET 6.0+                                           | .NET 8.0+               |
-| Released 07-2018                                    | Released 08-2024        |
-| raylib 5.0                                          | raylib 5.6-dev          |
-
-### API differences
-
-> [!NOTE]
-> There are minor name differences, such as `WindowHighDpi` instead of `HighDpiWindow`,
-> `KbMenu` instead of `KeyboardMenu`, etc.
-
-| [raylib-cs](https://github.com/chrisdill/raylib-cs) | Raylib-cs.BleedingEdge                      |
-|-----------------------------------------------------|---------------------------------------------|
-| `using Raylib_cs`                                   | `using Raylib_cs.BleedingEdge`              |
-| `T[]` for functions with array pointers             | `Span<T>` for functions with array pointers |
-| `int` argument for the length of array              | -, use `Span<T>.Slice` if necessary         |
-| `Utf8Buffer`                                        | `Utf8Handle`                                |
