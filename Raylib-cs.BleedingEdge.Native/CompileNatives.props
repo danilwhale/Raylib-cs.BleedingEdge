@@ -38,10 +38,10 @@
 
     <!-- setup platform-specific parameters, like library extension and prefix -->
     <Choose>
-        <When Condition="$(RuntimeIdentifier.StartsWith('browser-wasm')) Or '$(BuildPlatform)' == 'Web'">
+        <When Condition="'$(BuildPlatform)' == 'Web' Or $(RuntimeIdentifier.StartsWith('browser-wasm'))">
             <PropertyGroup>
-                <LibStaticExtension>a</LibStaticExtension>
-                <LibExtension>so</LibExtension>
+                <LibStaticExtension>web.a</LibStaticExtension>
+                <LibPrefix>lib</LibPrefix>
                 <CompileShared>false</CompileShared>
             </PropertyGroup>
         </When>
@@ -118,6 +118,5 @@
     <Target Name="BuildLibWeb">
         <Exec Command="emcmake cmake @(LibBuildArgs, ' ')"/>
         <Exec Command="cmake --build $(LibBuildPath) --config $(Configuration)"/>
-        <Copy SourceFiles="$(LibBuildPath)/raylib/libraylib.a" DestinationFiles="$(LibBuildPath)/raylib/raylib.a"/>
     </Target>
 </Project>
