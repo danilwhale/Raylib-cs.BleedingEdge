@@ -40,8 +40,7 @@
     <Choose>
         <When Condition="'$(BuildPlatform)' == 'Web' Or $(RuntimeIdentifier.StartsWith('browser-wasm'))">
             <PropertyGroup>
-                <LibStaticExtension>web.a</LibStaticExtension>
-                <LibPrefix>lib</LibPrefix>
+                <LibStaticExtension>a</LibStaticExtension>
                 <CompileShared>false</CompileShared>
             </PropertyGroup>
         </When>
@@ -118,5 +117,6 @@
     <Target Name="BuildLibWeb">
         <Exec Command="emcmake cmake @(LibBuildArgs, ' ')"/>
         <Exec Command="cmake --build $(LibBuildPath) --config $(Configuration)"/>
+        <Copy SourceFiles="$(LibBuildPath)/raylib/libraylib.a" DestinationFiles="$(LibBuildPath)/raylib/raylib.a"/>
     </Target>
 </Project>
