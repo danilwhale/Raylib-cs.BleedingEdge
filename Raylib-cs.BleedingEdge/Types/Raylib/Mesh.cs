@@ -190,7 +190,7 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     /// <summary>
     /// Get <see cref="TexCoords2"/> as <see cref="Span{T}"/> with specified type
     /// </summary>
-    public Span<T> TexCoordsAs2<T>()
+    public Span<T> TexCoords2As<T>()
         where T : unmanaged
     {
         return new Span<T>(TexCoords2, 2 * VertexCount * sizeof(float) / sizeof(T));
