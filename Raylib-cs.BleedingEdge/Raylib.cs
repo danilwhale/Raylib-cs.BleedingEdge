@@ -3206,14 +3206,14 @@ public static unsafe partial class Raylib
     public static partial sbyte* TextToCamel(sbyte* text);
 
     /// <summary>
-    /// Get integer value from text (negative values not supported)
+    /// Get integer value from text
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
     public static partial int TextToInteger(sbyte* text);
 
     /// <summary>
-    /// Get float value from text (negative values not supported)
+    /// Get float value from text
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
