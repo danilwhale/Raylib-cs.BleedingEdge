@@ -2684,7 +2684,7 @@ public static unsafe partial class Raylib
     /// </summary>
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     [LibraryImport(LibName)]
-    public static partial void GenTextureMipmaps(Texture2D texture);
+    public static partial void GenTextureMipmaps(Texture2D* texture);
 
     /// <summary>
     /// Set texture scaling filter mode

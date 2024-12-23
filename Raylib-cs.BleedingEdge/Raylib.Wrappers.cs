@@ -1615,6 +1615,17 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>
+    /// Generate GPU mipmaps for a texture
+    /// </summary>
+    public static void GenTextureMipmaps(ref Texture2D texture)
+    {
+        fixed (Texture2D* pTexture = &texture)
+        {
+            GenTextureMipmaps(pTexture);
+        }
+    }
+
+    /// <summary>
     /// Load font from file into GPU memory (VRAM)
     /// </summary>
     public static Font LoadFont(string fileName)
