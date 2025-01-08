@@ -302,1088 +302,932 @@ public static unsafe partial class Rlgl
     /// <summary>
     /// Choose the current matrix to be transformed
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlMatrixMode")]
-    public static partial void MatrixMode(MatrixMode mode);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlMatrixMode")]
+    public static extern void MatrixMode(MatrixMode mode);
 
     /// <summary>
     /// Push the current matrix to stack
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlPushMatrix")]
-    public static partial void PushMatrix();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlPushMatrix")]
+    public static extern void PushMatrix();
 
     /// <summary>
     /// Pop latest inserted matrix from stack
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlPopMatrix")]
-    public static partial void PopMatrix();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlPopMatrix")]
+    public static extern void PopMatrix();
 
     /// <summary>
     /// Reset current matrix to identity matrix
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlLoadIdentity")]
-    public static partial void LoadIdentity();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadIdentity")]
+    public static extern void LoadIdentity();
 
     /// <summary>
     /// Multiply the current matrix by a translation matrix
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlTranslatef")]
-    public static partial void Translatef(float x, float y, float z);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlTranslatef")]
+    public static extern void Translatef(float x, float y, float z);
 
     /// <summary>
     /// Multiply the current matrix by a rotation matrix
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlRotatef")]
-    public static partial void Rotatef(float angle, float x, float y, float z);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlRotatef")]
+    public static extern void Rotatef(float angle, float x, float y, float z);
 
     /// <summary>
     /// Multiply the current matrix by a scaling matrix
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlScalef")]
-    public static partial void Scalef(float x, float y, float z);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlScalef")]
+    public static extern void Scalef(float x, float y, float z);
 
     /// <summary>
     /// Multiply the current matrix by another matrix
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlMultMatrixf")]
-    public static partial void MultMatrixf(float* matf);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlMultMatrixf")]
+    public static extern void MultMatrixf(float* matf);
 
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlFrustum")]
-    public static partial void Frustum(double left, double right, double bottom, double top, double znear, double zfar);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlFrustum")]
+    public static extern void Frustum(double left, double right, double bottom, double top, double znear, double zfar);
 
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlOrtho")]
-    public static partial void Ortho(double left, double right, double bottom, double top, double znear, double zfar);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlOrtho")]
+    public static extern void Ortho(double left, double right, double bottom, double top, double znear, double zfar);
 
     /// <summary>
     /// Set the viewport area
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlViewport")]
-    public static partial void Viewport(int x, int y, int width, int height);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlViewport")]
+    public static extern void Viewport(int x, int y, int width, int height);
 
     /// <summary>
     /// Set clip planes distances
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetClipPlanes")]
-    public static partial void SetClipPlanes(double nearPlane, double farPlane);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetClipPlanes")]
+    public static extern void SetClipPlanes(double nearPlane, double farPlane);
 
     /// <summary>
     /// Get cull plane distance near
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetCullDistanceNear")]
-    public static partial double GetCullDistanceNear();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetCullDistanceNear")]
+    public static extern double GetCullDistanceNear();
 
     /// <summary>
     /// Get cull plane distance far
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetCullDistanceFar")]
-    public static partial double GetCullDistanceFar();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetCullDistanceFar")]
+    public static extern double GetCullDistanceFar();
 
     /// <summary>
     /// Initialize drawing mode (how to organize vertex)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlBegin")]
-    public static partial void Begin(DrawMode mode);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlBegin")]
+    public static extern void Begin(DrawMode mode);
 
     /// <summary>
     /// Finish vertex providing
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnd")]
-    public static partial void End();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnd")]
+    public static extern void End();
 
     /// <summary>
     /// Define one vertex (position) - 2 int
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlVertex2i")]
-    public static partial void Vertex2i(int x, int y);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlVertex2i")]
+    public static extern void Vertex2i(int x, int y);
 
     /// <summary>
     /// Define one vertex (position) - 2 float
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlVertex2f")]
-    public static partial void Vertex2f(float x, float y);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlVertex2f")]
+    public static extern void Vertex2f(float x, float y);
 
     /// <summary>
     /// Define one vertex (position) - 3 float
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlVertex3f")]
-    public static partial void Vertex3f(float x, float y, float z);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlVertex3f")]
+    public static extern void Vertex3f(float x, float y, float z);
 
     /// <summary>
     /// Define one vertex (texture coordinate) - 2 float
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlTexCoord2f")]
-    public static partial void TexCoord2f(float x, float y);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlTexCoord2f")]
+    public static extern void TexCoord2f(float x, float y);
 
     /// <summary>
     /// Define one vertex (normal) - 3 float
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlNormal3f")]
-    public static partial void Normal3f(float x, float y, float z);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlNormal3f")]
+    public static extern void Normal3f(float x, float y, float z);
 
     /// <summary>
     /// Define one vertex (color) - 4 byte
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlColor4ub")]
-    public static partial void Color4ub(byte r, byte g, byte b, byte a);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlColor4ub")]
+    public static extern void Color4ub(byte r, byte g, byte b, byte a);
 
     /// <summary>
     /// Define one vertex (color) - 3 float
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlColor3f")]
-    public static partial void Color3f(float x, float y, float z);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlColor3f")]
+    public static extern void Color3f(float x, float y, float z);
 
     /// <summary>
     /// Define one vertex (color) - 4 float
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlColor4f")]
-    public static partial void Color4f(float x, float y, float z, float w);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlColor4f")]
+    public static extern void Color4f(float x, float y, float z, float w);
 
     /// <summary>
     /// Enable vertex array (VAO, if supported)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnableVertexArray")]
-    public static partial NativeBool EnableVertexArray(uint vaoId);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableVertexArray")]
+    public static extern NativeBool EnableVertexArray(uint vaoId);
 
     /// <summary>
     /// Disable vertex array (VAO, if supported)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDisableVertexArray")]
-    public static partial void DisableVertexArray();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableVertexArray")]
+    public static extern void DisableVertexArray();
 
     /// <summary>
     /// Enable vertex buffer (VBO)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnableVertexBuffer")]
-    public static partial void EnableVertexBuffer(uint id);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableVertexBuffer")]
+    public static extern void EnableVertexBuffer(uint id);
 
     /// <summary>
     /// Disable vertex buffer (VBO)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDisableVertexBuffer")]
-    public static partial void DisableVertexBuffer();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableVertexBuffer")]
+    public static extern void DisableVertexBuffer();
 
     /// <summary>
     /// Enable vertex buffer element (VBO element)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnableVertexBufferElement")]
-    public static partial void EnableVertexBufferElement(uint id);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableVertexBufferElement")]
+    public static extern void EnableVertexBufferElement(uint id);
 
     /// <summary>
     /// Disable vertex buffer element (VBO element)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDisableVertexBufferElement")]
-    public static partial void DisableVertexBufferElement();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableVertexBufferElement")]
+    public static extern void DisableVertexBufferElement();
 
     /// <summary>
     /// Enable vertex attribute index
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnableVertexAttribute")]
-    public static partial void EnableVertexAttribute(uint index);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableVertexAttribute")]
+    public static extern void EnableVertexAttribute(uint index);
 
     /// <summary>
     /// Disable vertex attribute index
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDisableVertexAttribute")]
-    public static partial void DisableVertexAttribute(uint index);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableVertexAttribute")]
+    public static extern void DisableVertexAttribute(uint index);
 
     /// <summary>
     /// Enable attribute state pointer
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnableStatePointer")]
-    public static partial void EnableStatePointer(int vertexAttribType, void* buffer);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableStatePointer")]
+    public static extern void EnableStatePointer(int vertexAttribType, void* buffer);
 
     /// <summary>
     /// Disable attribute state pointer
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDisableStatePointer")]
-    public static partial void DisableStatePointer(int vertexAttribType);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableStatePointer")]
+    public static extern void DisableStatePointer(int vertexAttribType);
 
     /// <summary>
     /// Select and active a texture slot
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlActiveTextureSlot")]
-    public static partial void ActiveTextureSlot(int slot);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlActiveTextureSlot")]
+    public static extern void ActiveTextureSlot(int slot);
 
     /// <summary>
     /// Enable texture
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnableTexture")]
-    public static partial void EnableTexture(uint id);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableTexture")]
+    public static extern void EnableTexture(uint id);
 
     /// <summary>
     /// Disable texture
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDisableTexture")]
-    public static partial void DisableTexture();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableTexture")]
+    public static extern void DisableTexture();
 
     /// <summary>
     /// Enable texture cubemap
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnableTextureCubemap")]
-    public static partial void EnableTextureCubemap(uint id);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableTextureCubemap")]
+    public static extern void EnableTextureCubemap(uint id);
 
     /// <summary>
     /// Disable texture cubemap
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDisableTextureCubemap")]
-    public static partial void DisableTextureCubemap();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableTextureCubemap")]
+    public static extern void DisableTextureCubemap();
 
     /// <summary>
     /// Set texture parameters (filter, wrap)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlTextureParameters")]
-    public static partial void TextureParameters(uint id, int param, int value);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlTextureParameters")]
+    public static extern void TextureParameters(uint id, int param, int value);
 
     /// <summary>
     /// Set cubemap parameters (filter, wrap)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlCubemapParameters")]
-    public static partial void CubemapParameters(uint id, int param, int value);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlCubemapParameters")]
+    public static extern void CubemapParameters(uint id, int param, int value);
 
     /// <summary>
     /// Enable shader program
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnableShader")]
-    public static partial void EnableShader(uint id);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableShader")]
+    public static extern void EnableShader(uint id);
 
     /// <summary>
     /// Disable shader program
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDisableShader")]
-    public static partial void DisableShader();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableShader")]
+    public static extern void DisableShader();
 
     /// <summary>
     /// Enable render texture (fbo)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnableFramebuffer")]
-    public static partial void EnableFramebuffer(uint id);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableFramebuffer")]
+    public static extern void EnableFramebuffer(uint id);
 
     /// <summary>
     /// Disable render texture (fbo), return to default framebuffer
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDisableFramebuffer")]
-    public static partial void DisableFramebuffer();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableFramebuffer")]
+    public static extern void DisableFramebuffer();
 
     /// <summary>
     /// Get the currently active render texture (fbo), 0 for default framebuffer
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetActiveFramebuffer")]
-    public static partial uint GetActiveFramebuffer();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetActiveFramebuffer")]
+    public static extern uint GetActiveFramebuffer();
 
     /// <summary>
     /// Activate multiple draw color buffers
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlActiveDrawBuffers")]
-    public static partial void ActiveDrawBuffers(int count);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlActiveDrawBuffers")]
+    public static extern void ActiveDrawBuffers(int count);
 
     /// <summary>
     /// Blit active framebuffer to main framebuffer
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlBlitFramebuffer")]
-    public static partial void BlitFramebuffer(
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlBlitFramebuffer")]
+    public static extern void BlitFramebuffer(
         int srcX, int srcY, int srcHeight, int dstX, int dstY, int dstWidth, int dstHeight, int bufferMask);
 
     /// <summary>
     /// Bind framebuffer (FBO)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlBindFramebuffer")]
-    public static partial void BindFramebuffer(uint target, uint framebuffer);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlBindFramebuffer")]
+    public static extern void BindFramebuffer(uint target, uint framebuffer);
 
     /// <summary>
     /// Enable color blending
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnableColorBlend")]
-    public static partial void EnableColorBlend();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableColorBlend")]
+    public static extern void EnableColorBlend();
 
     /// <summary>
     /// Disable color blending
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDisableColorBlend")]
-    public static partial void DisableColorBlend();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableColorBlend")]
+    public static extern void DisableColorBlend();
 
     /// <summary>
     /// Enable depth test
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnableDepthTest")]
-    public static partial void EnableDepthTest();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableDepthTest")]
+    public static extern void EnableDepthTest();
 
     /// <summary>
     /// Disable depth test
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDisableDepthTest")]
-    public static partial void DisableDepthTest();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableDepthTest")]
+    public static extern void DisableDepthTest();
 
     /// <summary>
     /// Enable depth write
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnableDepthMask")]
-    public static partial void EnableDepthMask();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableDepthMask")]
+    public static extern void EnableDepthMask();
 
     /// <summary>
     /// Disable depth write
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDisableDepthMask")]
-    public static partial void DisableDepthMask();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableDepthMask")]
+    public static extern void DisableDepthMask();
 
     /// <summary>
     /// Enable backface culling
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnableBackfaceCulling")]
-    public static partial void EnableBackfaceCulling();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableBackfaceCulling")]
+    public static extern void EnableBackfaceCulling();
 
     /// <summary>
     /// Disable backface culling
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDisableBackfaceCulling")]
-    public static partial void DisableBackfaceCulling();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableBackfaceCulling")]
+    public static extern void DisableBackfaceCulling();
 
     /// <summary>
     /// Color mask control
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlColorMask")]
-    public static partial void ColorMask(NativeBool r, NativeBool g, NativeBool b, NativeBool a);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlColorMask")]
+    public static extern void ColorMask(NativeBool r, NativeBool g, NativeBool b, NativeBool a);
 
     /// <summary>
     /// Set face culling mode
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetCullFace")]
-    public static partial void SetCullFace(CullMode mode);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetCullFace")]
+    public static extern void SetCullFace(CullMode mode);
 
     /// <summary>
     /// Enable scissor test
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnableScissorTest")]
-    public static partial void EnableScissorTest();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableScissorTest")]
+    public static extern void EnableScissorTest();
 
     /// <summary>
     /// Disable scissor test
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDisableScissorTest")]
-    public static partial void DisableScissorTest();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableScissorTest")]
+    public static extern void DisableScissorTest();
 
     /// <summary>
     /// Scissor test
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlScissor")]
-    public static partial void Scissor(int x, int y, int width, int height);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlScissor")]
+    public static extern void Scissor(int x, int y, int width, int height);
 
     /// <summary>
     /// Enable wire mode
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnableWireMode")]
-    public static partial void EnableWireMode();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableWireMode")]
+    public static extern void EnableWireMode();
 
     /// <summary>
     /// Enable point mode
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnablePointMode")]
-    public static partial void EnablePointMode();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnablePointMode")]
+    public static extern void EnablePointMode();
 
     /// <summary>
     /// Disable wire mode ( and point ) maybe rename
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDisableWireMode")]
-    public static partial void DisableWireMode();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableWireMode")]
+    public static extern void DisableWireMode();
 
     /// <summary>
     /// Set the line drawing width
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetLineWidth")]
-    public static partial void SetLineWidth(float width);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetLineWidth")]
+    public static extern void SetLineWidth(float width);
 
     /// <summary>
     /// Get the line drawing width
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetLineWidth")]
-    public static partial float GetLineWidth();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetLineWidth")]
+    public static extern float GetLineWidth();
 
     /// <summary>
     /// Enable line aliasing
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnableSmoothLines")]
-    public static partial void EnableSmoothLines();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableSmoothLines")]
+    public static extern void EnableSmoothLines();
 
     /// <summary>
     /// Disable line aliasing
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDisableSmoothLines")]
-    public static partial void DisableSmoothLines();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableSmoothLines")]
+    public static extern void DisableSmoothLines();
 
     /// <summary>
     /// Enable stereo rendering
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlEnableStereoRender")]
-    public static partial void EnableStereoRender();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableStereoRender")]
+    public static extern void EnableStereoRender();
 
     /// <summary>
     /// Disable stereo rendering
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDisableStereoRender")]
-    public static partial void DisableStereoRender();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableStereoRender")]
+    public static extern void DisableStereoRender();
 
     /// <summary>
     /// Check if stereo render is enabled
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlIsStereoRenderEnabled")]
-    public static partial NativeBool IsStereoRenderEnabled();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlIsStereoRenderEnabled")]
+    public static extern NativeBool IsStereoRenderEnabled();
 
     /// <summary>
     /// Clear color buffer with color
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlClearColor")]
-    public static partial void ClearColor(byte r, byte g, byte b, byte a);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlClearColor")]
+    public static extern void ClearColor(byte r, byte g, byte b, byte a);
 
     /// <summary>
     /// Clear used screen buffers (color and depth)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlClearScreenBuffers")]
-    public static partial void ClearScreenBuffers();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlClearScreenBuffers")]
+    public static extern void ClearScreenBuffers();
 
     /// <summary>
     /// Check and log OpenGL error codes
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlCheckErrors")]
-    public static partial void CheckErrors();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlCheckErrors")]
+    public static extern void CheckErrors();
 
     /// <summary>
     /// Set blending mode
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetBlendMode")]
-    public static partial void SetBlendMode(BlendMode mode);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetBlendMode")]
+    public static extern void SetBlendMode(BlendMode mode);
 
     /// <summary>
     /// Set blending mode factor and equation (using OpenGL factors)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetBlendFactors")]
-    public static partial void SetBlendFactors(int glSrcFactor, int glDstFactor, int glEquation);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetBlendFactors")]
+    public static extern void SetBlendFactors(int glSrcFactor, int glDstFactor, int glEquation);
 
     /// <summary>
     /// Set blending mode factors and equations separately (using OpenGL factors)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetBlendFactorsSeparate")]
-    public static partial void SetBlendFactorsSeparate(int glSrcRGB, int glDstRGB, int glSrcAlpha, int glDstAlpha, int glEqRGB, int glEqAlpha);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetBlendFactorsSeparate")]
+    public static extern void SetBlendFactorsSeparate(int glSrcRGB, int glDstRGB, int glSrcAlpha, int glDstAlpha, int glEqRGB, int glEqAlpha);
 
     /// <summary>
     /// Initialize rlgl (buffers, shaders, textures, states)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlInit")]
-    public static partial void Init(int width, int height);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlInit")]
+    public static extern void Init(int width, int height);
 
     /// <summary>
     /// De-initialize rlgl (buffers, shaders, textures)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlClose")]
-    public static partial void Close();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlClose")]
+    public static extern void Close();
 
     /// <summary>
     /// Load OpenGL extensions (loader function required)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlLoadExtensions")]
-    public static partial void LoadExtensions(void* loader);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadExtensions")]
+    public static extern void LoadExtensions(void* loader);
 
     /// <summary>
     /// Get current OpenGL version
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetVersion")]
-    public static partial GlVersion GetVersion();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetVersion")]
+    public static extern GlVersion GetVersion();
 
     /// <summary>
     /// Set current framebuffer width
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetFramebufferWidth")]
-    public static partial void SetFramebufferWidth(int width);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetFramebufferWidth")]
+    public static extern void SetFramebufferWidth(int width);
 
     /// <summary>
     /// Get default framebuffer width
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetFramebufferWidth")]
-    public static partial int GetFramebufferWidth();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetFramebufferWidth")]
+    public static extern int GetFramebufferWidth();
 
     /// <summary>
     /// Set current framebuffer height
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetFramebufferHeight")]
-    public static partial void SetFramebufferHeight(int height);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetFramebufferHeight")]
+    public static extern void SetFramebufferHeight(int height);
 
     /// <summary>
     /// Get default framebuffer height
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetFramebufferHeight")]
-    public static partial int GetFramebufferHeight();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetFramebufferHeight")]
+    public static extern int GetFramebufferHeight();
 
     /// <summary>
     /// Get default texture id
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetTextureIdDefault")]
-    public static partial uint GetTextureIdDefault();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetTextureIdDefault")]
+    public static extern uint GetTextureIdDefault();
 
     /// <summary>
     /// Get default shader id
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetShaderIdDefault")]
-    public static partial uint GetShaderIdDefault();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetShaderIdDefault")]
+    public static extern uint GetShaderIdDefault();
 
     /// <summary>
     /// Get default shader locations
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetShaderLocsDefault")]
-    public static partial int* GetShaderLocsDefault();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetShaderLocsDefault")]
+    public static extern int* GetShaderLocsDefault();
 
     /// <summary>
     /// Load a render batch system
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlLoadRenderBatch")]
-    public static partial RenderBatch LoadRenderBatch(int numBuffers, int bufferElements);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadRenderBatch")]
+    public static extern RenderBatch LoadRenderBatch(int numBuffers, int bufferElements);
 
     /// <summary>
     /// Unload render batch system
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlUnloadRenderBatch")]
-    public static partial void UnloadRenderBatch(RenderBatch batch);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlUnloadRenderBatch")]
+    public static extern void UnloadRenderBatch(RenderBatch batch);
 
     /// <summary>
     /// Draw render batch data (Update->Draw->Reset)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDrawRenderBatch")]
-    public static partial void DrawRenderBatch(RenderBatch* batch);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDrawRenderBatch")]
+    public static extern void DrawRenderBatch(RenderBatch* batch);
 
     /// <summary>
     /// Set the active render batch for rlgl (NULL for default internal)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetRenderBatchActive")]
-    public static partial void SetRenderBatchActive(RenderBatch* batch);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetRenderBatchActive")]
+    public static extern void SetRenderBatchActive(RenderBatch* batch);
 
     /// <summary>
     /// Update and draw internal render batch
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDrawRenderBatchActive")]
-    public static partial void DrawRenderBatchActive();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDrawRenderBatchActive")]
+    public static extern void DrawRenderBatchActive();
 
     /// <summary>
     /// Check internal buffer overflow for a given number of vertex
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlCheckRenderBatchLimit")]
-    public static partial NativeBool CheckRenderBatchLimit(int vCount);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlCheckRenderBatchLimit")]
+    public static extern NativeBool CheckRenderBatchLimit(int vCount);
 
     /// <summary>
     /// Set current texture for render batch and check buffers limits
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetTexture")]
-    public static partial void SetTexture(uint id);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetTexture")]
+    public static extern void SetTexture(uint id);
 
     /// <summary>
     /// Load vertex array (vao) if supported
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlLoadVertexArray")]
-    public static partial uint LoadVertexArray();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadVertexArray")]
+    public static extern uint LoadVertexArray();
 
     /// <summary>
     /// Load a vertex buffer object
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlLoadVertexBuffer")]
-    public static partial uint LoadVertexBuffer(void* buffer, int size, NativeBool dynamic);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadVertexBuffer")]
+    public static extern uint LoadVertexBuffer(void* buffer, int size, NativeBool dynamic);
 
     /// <summary>
     /// Load vertex buffer elements object
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlLoadVertexBufferElement")]
-    public static partial uint LoadVertexBufferElement(void* buffer, int size, NativeBool dynamic);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadVertexBufferElement")]
+    public static extern uint LoadVertexBufferElement(void* buffer, int size, NativeBool dynamic);
 
     /// <summary>
     /// Update vertex buffer object data on GPU buffer
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlUpdateVertexBuffer")]
-    public static partial void UpdateVertexBuffer(uint bufferId, void* data, int dataSize, int offset);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlUpdateVertexBuffer")]
+    public static extern void UpdateVertexBuffer(uint bufferId, void* data, int dataSize, int offset);
 
     /// <summary>
     /// Update vertex buffer elements data on GPU buffer
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlUpdateVertexBufferElements")]
-    public static partial void UpdateVertexBufferElements(uint id, void* data, int dataSize, int offset);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlUpdateVertexBufferElements")]
+    public static extern void UpdateVertexBufferElements(uint id, void* data, int dataSize, int offset);
 
     /// <summary>
     /// Unload vertex array (vao)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlUnloadVertexArray")]
-    public static partial void UnloadVertexArray(uint vaoId);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlUnloadVertexArray")]
+    public static extern void UnloadVertexArray(uint vaoId);
 
     /// <summary>
     /// Unload vertex buffer object
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlUnloadVertexBuffer")]
-    public static partial void UnloadVertexBuffer(uint vboId);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlUnloadVertexBuffer")]
+    public static extern void UnloadVertexBuffer(uint vboId);
 
     /// <summary>
     /// Set vertex attribute data configuration
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetVertexAttribute")]
-    public static partial void SetVertexAttribute(uint index, int compSize, int type, NativeBool normalized, int stride, int offset);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetVertexAttribute")]
+    public static extern void SetVertexAttribute(uint index, int compSize, int type, NativeBool normalized, int stride, int offset);
 
     /// <summary>
     /// Set vertex attribute data divisor
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetVertexAttributeDivisor")]
-    public static partial void SetVertexAttributeDivisor(uint index, int divisor);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetVertexAttributeDivisor")]
+    public static extern void SetVertexAttributeDivisor(uint index, int divisor);
 
     /// <summary>
     /// Set vertex attribute default value, when attribute to provided
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetVertexAttributeDefault")]
-    public static partial void SetVertexAttributeDefault(int locIndex, void* value, ShaderAttributeDataType attribType, int count);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetVertexAttributeDefault")]
+    public static extern void SetVertexAttributeDefault(int locIndex, void* value, ShaderAttributeDataType attribType, int count);
 
     /// <summary>
     /// Draw vertex array (currently active vao)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDrawVertexArray")]
-    public static partial void DrawVertexArray(int offset, int count);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDrawVertexArray")]
+    public static extern void DrawVertexArray(int offset, int count);
 
     /// <summary>
     /// Draw vertex array elements
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDrawVertexArrayElements")]
-    public static partial void DrawVertexArrayElements(int offset, int count, void* buffer);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDrawVertexArrayElements")]
+    public static extern void DrawVertexArrayElements(int offset, int count, void* buffer);
 
     /// <summary>
     /// Draw vertex array (currently active vao) with instancing
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDrawVertexArrayInstanced")]
-    public static partial void DrawVertexArrayInstanced(int offset, int count, int instances);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDrawVertexArrayInstanced")]
+    public static extern void DrawVertexArrayInstanced(int offset, int count, int instances);
 
     /// <summary>
     /// Draw vertex array elements with instancing
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlDrawVertexArrayElementsInstanced")]
-    public static partial void DrawVertexArrayElementsInstanced(int offset, int count, void* buffer, int instances);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDrawVertexArrayElementsInstanced")]
+    public static extern void DrawVertexArrayElementsInstanced(int offset, int count, void* buffer, int instances);
 
     /// <summary>
     /// Load texture data
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlLoadTexture")]
-    public static partial uint LoadTexture(void* data, int width, int height, PixelFormat format, int mipmapCount);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadTexture")]
+    public static extern uint LoadTexture(void* data, int width, int height, PixelFormat format, int mipmapCount);
 
     /// <summary>
     /// Load depth texture/renderbuffer (to be attached to fbo)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlLoadTextureDepth")]
-    public static partial uint LoadTextureDepth(int width, int height, NativeBool useRenderBuffer);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadTextureDepth")]
+    public static extern uint LoadTextureDepth(int width, int height, NativeBool useRenderBuffer);
 
     /// <summary>
     /// Load texture cubemap data
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlLoadTextureCubemap")]
-    public static partial uint LoadTextureCubemap(void* data, int size, PixelFormat format);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadTextureCubemap")]
+    public static extern uint LoadTextureCubemap(void* data, int size, PixelFormat format);
 
     /// <summary>
     /// Update texture with new data on GPU
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlUpdateTexture")]
-    public static partial void UpdateTexture(uint id, int offsetX, int offsetY, int width, int height, PixelFormat format, void* data);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlUpdateTexture")]
+    public static extern void UpdateTexture(uint id, int offsetX, int offsetY, int width, int height, PixelFormat format, void* data);
 
     /// <summary>
     /// Get OpenGL internal formats
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetGlTextureFormats")]
-    public static partial void GetGlTextureFormats(PixelFormat format, uint* glInternalFormat, uint* glFormat, uint* glType);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetGlTextureFormats")]
+    public static extern void GetGlTextureFormats(PixelFormat format, uint* glInternalFormat, uint* glFormat, uint* glType);
 
     /// <summary>
     /// Get name string for pixel format
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetPixelFormatName")]
-    public static partial sbyte* GetPixelFormatName(PixelFormat format);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetPixelFormatName")]
+    public static extern sbyte* GetPixelFormatName(PixelFormat format);
 
     /// <summary>
     /// Unload texture from GPU memory
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlUnloadTexture")]
-    public static partial void UnloadTexture(uint id);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlUnloadTexture")]
+    public static extern void UnloadTexture(uint id);
 
     /// <summary>
     /// Generate mipmap data for selected texture
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGenTextureMipmaps")]
-    public static partial void GenTextureMipmaps(uint id, int width, int height, PixelFormat format, int* mipmaps);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGenTextureMipmaps")]
+    public static extern void GenTextureMipmaps(uint id, int width, int height, PixelFormat format, int* mipmaps);
 
     /// <summary>
     /// Read texture pixel data
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlReadTexturePixels")]
-    public static partial void* ReadTexturePixels(uint id, int width, int height, PixelFormat format);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlReadTexturePixels")]
+    public static extern void* ReadTexturePixels(uint id, int width, int height, PixelFormat format);
 
     /// <summary>
     /// Read screen pixel data (color buffer)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlReadScreenPixels")]
-    public static partial byte* ReadScreenPixels(int width, int height);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlReadScreenPixels")]
+    public static extern byte* ReadScreenPixels(int width, int height);
 
     /// <summary>
     /// Load an empty framebuffer
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlLoadFramebuffer")]
-    public static partial uint LoadFramebuffer();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadFramebuffer")]
+    public static extern uint LoadFramebuffer();
 
     /// <summary>
     /// Attach texture/renderbuffer to a framebuffer
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlFramebufferAttach")]
-    public static partial void FramebufferAttach(
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlFramebufferAttach")]
+    public static extern void FramebufferAttach(
         uint fboId, uint texId, FramebufferAttachType attachType, FramebufferAttachTextureType texType, int mipLevel);
 
     /// <summary>
     /// Verify framebuffer is complete
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlFramebufferComplete")]
-    public static partial void FramebufferComplete(uint id);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlFramebufferComplete")]
+    public static extern void FramebufferComplete(uint id);
 
     /// <summary>
     /// Delete framebuffer from GPU
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlUnloadFramebuffer")]
-    public static partial void UnloadFramebuffer(uint id);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlUnloadFramebuffer")]
+    public static extern void UnloadFramebuffer(uint id);
 
     /// <summary>
     /// Load shader from code strings
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlLoadShaderCode")]
-    public static partial uint LoadShaderCode(sbyte* vsCode, sbyte* fsCode);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadShaderCode")]
+    public static extern uint LoadShaderCode(sbyte* vsCode, sbyte* fsCode);
 
     /// <summary>
     /// Compile custom shader and return shader id (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlCompileShader")]
-    public static partial uint CompileShader(sbyte* shaderCode, ShaderType type);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlCompileShader")]
+    public static extern uint CompileShader(sbyte* shaderCode, ShaderType type);
 
     /// <summary>
     /// Load custom shader program
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlLoadShaderProgram")]
-    public static partial uint LoadShaderProgram(uint vShaderId, uint fShaderId);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadShaderProgram")]
+    public static extern uint LoadShaderProgram(uint vShaderId, uint fShaderId);
 
     /// <summary>
     /// Unload shader program
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlUnloadShaderProgram")]
-    public static partial void UnloadShaderProgram(uint id);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlUnloadShaderProgram")]
+    public static extern void UnloadShaderProgram(uint id);
 
     /// <summary>
     /// Get shader location uniform
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetLocationUniform")]
-    public static partial int GetLocationUniform(uint shaderId, sbyte* uniformName);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetLocationUniform")]
+    public static extern int GetLocationUniform(uint shaderId, sbyte* uniformName);
 
     /// <summary>
     /// Get shader location attribute
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetLocationAttrib")]
-    public static partial int GetLocationAttrib(uint shaderId, sbyte* attribName);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetLocationAttrib")]
+    public static extern int GetLocationAttrib(uint shaderId, sbyte* attribName);
 
     /// <summary>
     /// Set shader value uniform
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetUniform")]
-    public static partial void SetUniform(int locIndex, void* value, ShaderUniformDataType uniformType, int count);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetUniform")]
+    public static extern void SetUniform(int locIndex, void* value, ShaderUniformDataType uniformType, int count);
 
     /// <summary>
     /// Set shader value matrix
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetUniformMatrix")]
-    public static partial void SetUniformMatrix(int locIndex, Matrix4x4 mat);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetUniformMatrix")]
+    public static extern void SetUniformMatrix(int locIndex, Matrix4x4 mat);
     
     /// <summary>
     /// Set shader value matrices
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetUniformMatrices")]
-    public static partial void SetUniformMatrices(int locIndex, Matrix4x4* mat, int count);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetUniformMatrices")]
+    public static extern void SetUniformMatrices(int locIndex, Matrix4x4* mat, int count);
 
     /// <summary>
     /// Set shader value sampler
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetUniformSampler")]
-    public static partial void SetUniformSampler(int locIndex, uint textureId);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetUniformSampler")]
+    public static extern void SetUniformSampler(int locIndex, uint textureId);
 
     /// <summary>
     /// Set shader currently active (id and locations)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetShader")]
-    public static partial void SetShader(uint id, int* locs);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetShader")]
+    public static extern void SetShader(uint id, int* locs);
 
     /// <summary>
     /// Load compute shader program
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlLoadComputeShaderProgram")]
-    public static partial uint LoadComputeShaderProgram(uint shaderId);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadComputeShaderProgram")]
+    public static extern uint LoadComputeShaderProgram(uint shaderId);
 
     /// <summary>
     /// Dispatch compute shader (equivalent to *draw* for graphics pipeline)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlComputeShaderDispatch")]
-    public static partial void ComputeShaderDispatch(uint groupX, uint groupY, uint groupZ);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlComputeShaderDispatch")]
+    public static extern void ComputeShaderDispatch(uint groupX, uint groupY, uint groupZ);
 
     /// <summary>
     /// Load shader storage buffer object (SSBO)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlLoadShaderBuffer")]
-    public static partial uint LoadShaderBuffer(uint size, void* data, int usageHint);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadShaderBuffer")]
+    public static extern uint LoadShaderBuffer(uint size, void* data, int usageHint);
 
     /// <summary>
     /// Unload shader storage buffer object (SSBO)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlUnloadShaderBuffer")]
-    public static partial void UnloadShaderBuffer(uint ssboId);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlUnloadShaderBuffer")]
+    public static extern void UnloadShaderBuffer(uint ssboId);
 
     /// <summary>
     /// Update SSBO buffer data
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlUpdateShaderBuffer")]
-    public static partial void UpdateShaderBuffer(uint id, void* data, uint dataSize, uint offset);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlUpdateShaderBuffer")]
+    public static extern void UpdateShaderBuffer(uint id, void* data, uint dataSize, uint offset);
 
     /// <summary>
     /// Bind SSBO buffer
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlBindShaderBuffer")]
-    public static partial void BindShaderBuffer(uint id, uint index);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlBindShaderBuffer")]
+    public static extern void BindShaderBuffer(uint id, uint index);
 
     /// <summary>
     /// Read SSBO buffer data (GPU->CPU)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlReadShaderBuffer")]
-    public static partial void ReadShaderBuffer(uint id, void* dest, uint count, uint offset);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlReadShaderBuffer")]
+    public static extern void ReadShaderBuffer(uint id, void* dest, uint count, uint offset);
 
     /// <summary>
     /// Copy SSBO data between buffers
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlCopyShaderBuffer")]
-    public static partial void CopyShaderBuffer(uint destId, uint srcId, uint destOffset, uint srcOffset, uint count);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlCopyShaderBuffer")]
+    public static extern void CopyShaderBuffer(uint destId, uint srcId, uint destOffset, uint srcOffset, uint count);
 
     /// <summary>
     /// Get SSBO buffer size
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetShaderBufferSize")]
-    public static partial uint GetShaderBufferSize(uint id);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetShaderBufferSize")]
+    public static extern uint GetShaderBufferSize(uint id);
 
     /// <summary>
     /// Bind image texture
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlBindImageTexture")]
-    public static partial void BindImageTexture(uint id, uint index, PixelFormat format, NativeBool @readonly);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlBindImageTexture")]
+    public static extern void BindImageTexture(uint id, uint index, PixelFormat format, NativeBool @readonly);
 
     /// <summary>
     /// Get internal modelview matrix
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetMatrixModelview")]
-    public static partial Matrix4x4 GetMatrixModelview();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetMatrixModelview")]
+    public static extern Matrix4x4 GetMatrixModelview();
 
     /// <summary>
     /// Get internal projection matrix
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetMatrixProjection")]
-    public static partial Matrix4x4 GetMatrixProjection();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetMatrixProjection")]
+    public static extern Matrix4x4 GetMatrixProjection();
 
     /// <summary>
     /// Get internal accumulated transform matrix
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetMatrixTransform")]
-    public static partial Matrix4x4 GetMatrixTransform();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetMatrixTransform")]
+    public static extern Matrix4x4 GetMatrixTransform();
 
     /// <summary>
     /// Get internal projection matrix for stereo render (selected eye)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetMatrixProjectionStereo")]
-    public static partial Matrix4x4 GetMatrixProjectionStereo(int eye);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetMatrixProjectionStereo")]
+    public static extern Matrix4x4 GetMatrixProjectionStereo(int eye);
 
     /// <summary>
     /// Get internal view offset matrix for stereo render (selected eye)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlGetMatrixViewOffsetStereo")]
-    public static partial Matrix4x4 GetMatrixViewOffsetStereo(int eye);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetMatrixViewOffsetStereo")]
+    public static extern Matrix4x4 GetMatrixViewOffsetStereo(int eye);
 
     /// <summary>
     /// Set a custom projection matrix (replaces internal projection matrix)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetMatrixProjection")]
-    public static partial void SetMatrixProjection(Matrix4x4 proj);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetMatrixProjection")]
+    public static extern void SetMatrixProjection(Matrix4x4 proj);
 
     /// <summary>
     /// Set a custom modelview matrix (replaces internal modelview matrix)
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetMatrixModelview")]
-    public static partial void SetMatrixModelview(Matrix4x4 view);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetMatrixModelview")]
+    public static extern void SetMatrixModelview(Matrix4x4 view);
 
     /// <summary>
     /// Set eyes projection matrices for stereo rendering
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetMatrixProjectionStereo")]
-    public static partial void SetMatrixProjectionStereo(Matrix4x4 right, Matrix4x4 left);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetMatrixProjectionStereo")]
+    public static extern void SetMatrixProjectionStereo(Matrix4x4 right, Matrix4x4 left);
 
     /// <summary>
     /// Set eyes view offsets matrices for stereo rendering
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlSetMatrixViewOffsetStereo")]
-    public static partial void SetMatrixViewOffsetStereo(Matrix4x4 right, Matrix4x4 left);
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetMatrixViewOffsetStereo")]
+    public static extern void SetMatrixViewOffsetStereo(Matrix4x4 right, Matrix4x4 left);
 
     /// <summary>
     /// Load and draw a cube
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlLoadDrawCube")]
-    public static partial void LoadDrawCube();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadDrawCube")]
+    public static extern void LoadDrawCube();
 
     /// <summary>
     /// Load and draw a quad
     /// </summary>
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    [LibraryImport(LibName, EntryPoint = "rlLoadDrawQuad")]
-    public static partial void LoadDrawQuad();
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadDrawQuad")]
+    public static extern void LoadDrawQuad();
 }
