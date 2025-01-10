@@ -184,10 +184,10 @@ public struct Color(byte r, byte g, byte b, byte a = 255) : IEquatable<Color>
     public static Color FromNormalized(float r, float g, float b, float a = 1.0f)
     {
         return new Color(
-            (byte)(r < 0.0f ? 0.0f : r > 1.0f ? 1.0f : r),
-            (byte)(g < 0.0f ? 0.0f : g > 1.0f ? 1.0f : g),
-            (byte)(b < 0.0f ? 0.0f : b > 1.0f ? 1.0f : b),
-            (byte)(a < 0.0f ? 0.0f : a > 1.0f ? 1.0f : a)
+            (byte)((r < 0.0f ? 0.0f : r > 1.0f ? 1.0f : r) * 255),
+            (byte)((g < 0.0f ? 0.0f : g > 1.0f ? 1.0f : g) * 255),
+            (byte)((b < 0.0f ? 0.0f : b > 1.0f ? 1.0f : b) * 255),
+            (byte)((a < 0.0f ? 0.0f : a > 1.0f ? 1.0f : a) * 255)
         );
     }
 
