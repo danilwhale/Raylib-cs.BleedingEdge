@@ -514,7 +514,7 @@ public static unsafe partial class Raylib
     public static extern void SetShaderValueMatrix(Shader shader, int locIndex, Matrix4x4 mat);
 
     /// <summary>
-    /// Set shader uniform value for texture (sampler2d)
+    /// Set shader uniform value and bind the texture (sampler2d)
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetShaderValueTexture(Shader shader, int locIndex, Texture2D texture);

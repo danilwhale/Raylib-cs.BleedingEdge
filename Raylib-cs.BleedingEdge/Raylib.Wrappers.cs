@@ -145,7 +145,7 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>
-    /// Set shader uniform value for texture (sampler2d)
+    /// Set shader uniform value and bind the texture (sampler2d)
     /// </summary>
     public static void SetShaderValue(Shader shader, int locIndex, Texture2D texture)
     {
