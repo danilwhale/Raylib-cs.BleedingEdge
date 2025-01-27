@@ -16,6 +16,17 @@ public static unsafe partial class Rlgl
     }
 
     /// <summary>
+    /// Enable attribute state pointer
+    /// </summary>
+    public static void EnableStatePointer<T>(RlglEnum vertexAttribType, ReadOnlySpan<T> buffer) where T : unmanaged
+    {
+        fixed (T* pBuffer = buffer)
+        {
+            EnableStatePointer(vertexAttribType, pBuffer);
+        }
+    }
+
+    /// <summary>
     /// Draw render batch data (Update->Draw->Reset)
     /// </summary>
     public static void DrawRenderBatch(ref RenderBatch batch)
