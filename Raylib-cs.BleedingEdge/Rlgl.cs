@@ -12,293 +12,14 @@ public static unsafe partial class Rlgl
 {
     public const string Version = "5.0";
 
-    /// <summary>
-    /// GL_TEXTURE_WRAP_S
-    /// </summary>
-    public const int TextureWrapS = 0x2802;
-
-    /// <summary>
-    /// GL_TEXTURE_WRAP_T
-    /// </summary>
-    public const int TextureWrapT = 0x2803;
-
-    /// <summary>
-    /// GL_TEXTURE_MAG_FILTER
-    /// </summary>
-    public const int TextureMagFilter = 0x2800;
-
-    /// <summary>
-    /// GL_TEXTURE_MIN_FILTER
-    /// </summary>
-    public const int TextureMinFilter = 0x2801;
-
-    /// <summary>
-    /// GL_NEAREST
-    /// </summary>
-    public const int TextureFilterNearest = 0x2600;
-
-    /// <summary>
-    /// GL_LINEAR
-    /// </summary>
-    public const int TextureFilterLinear = 0x2601;
-
-    /// <summary>
-    /// GL_NEAREST_MIPMAP_NEAREST
-    /// </summary>
-    public const int TextureFilterMipNearest = 0x2700;
-
-    /// <summary>
-    /// GL_NEAREST_MIPMAP_LINEAR
-    /// </summary>
-    public const int TextureFilterNearestMipLinear = 0x2702;
-
-    /// <summary>
-    /// GL_LINEAR_MIPMAP_NEAREST
-    /// </summary>
-    public const int TextureFilterLinearMipNearest = 0x2701;
-
-    /// <summary>
-    /// GL_LINEAR_MIPMAP_LINEAR
-    /// </summary>
-    public const int TextureFilterMipLinear = 0x2703;
-
-    /// <summary>
-    /// Anisotropic filter (custom identifier)
-    /// </summary>
-    public const int TextureFilterAnisotropic = 0x3000;
-
-    /// <summary>
-    /// Texture mipmap bias, percentage ratio (custom identifier)
-    /// </summary>
-    public const int TextureMipmapBiasRatio = 0x4000;
-
-    /// <summary>
-    /// GL_REPEAT
-    /// </summary>
-    public const int TextureWrapRepeat = 0x2901;
-
-    /// <summary>
-    /// GL_CLAMP_TO_EDGE
-    /// </summary>
-    public const int TextureWrapClamp = 0x812F;
-
-    /// <summary>
-    /// GL_MIRRORED_REPEAT
-    /// </summary>
-    public const int TextureWrapMirrorRepeat = 0x8370;
-
-    /// <summary>
-    /// GL_MIRROR_CLAMP_EXT
-    /// </summary>
-    public const int TextureWrapMirrorClamp = 0x8742;
-
-    /// <summary>
-    /// GL_UNSIGNED_BYTE
-    /// </summary>
-    public const int UnsignedByte = 0x1401;
-
-    /// <summary>
-    /// GL_FLOAT
-    /// </summary>
-    public const int Float = 0x1406;
-
-    /// <summary>
-    /// GL_STREAM_DRAW
-    /// </summary>
-    public const int StreamDraw = 0x88E0;
-
-    /// <summary>
-    /// GL_STREAM_READ
-    /// </summary>
-    public const int StreamRead = 0x88E1;
-
-    /// <summary>
-    /// GL_STREAM_COPY
-    /// </summary>
-    public const int StreamCopy = 0x88E2;
-
-    /// <summary>
-    /// GL_STATIC_DRAW
-    /// </summary>
-    public const int StaticDraw = 0x88E4;
-
-    /// <summary>
-    /// GL_STATIC_READ
-    /// </summary>
-    public const int StaticRead = 0x88E5;
-
-    /// <summary>
-    /// GL_STATIC_COPY
-    /// </summary>
-    public const int StaticCopy = 0x88E6;
-
-    /// <summary>
-    /// GL_DYNAMIC_DRAW
-    /// </summary>
-    public const int DynamicDraw = 0x88E8;
-
-    /// <summary>
-    /// GL_DYNAMIC_READ
-    /// </summary>
-    public const int DynamicRead = 0x88E9;
-
-    /// <summary>
-    /// GL_DYNAMIC_COPY
-    /// </summary>
-    public const int DynamicCopy = 0x88EA;
-
-    /// <summary>
-    /// GL_ZERO
-    /// </summary>
-    public const int Zero = 0;
-
-    /// <summary>
-    /// GL_ONE
-    /// </summary>
-    public const int One = 1;
-
-    /// <summary>
-    /// GL_SRC_COLOR
-    /// </summary>
-    public const int SrcColor = 0x0300;
-
-    /// <summary>
-    /// GL_ONE_MINUS_SRC_COLOR
-    /// </summary>
-    public const int OneMinusSrcColor = 0x0301;
-
-    /// <summary>
-    /// GL_SRC_ALPHA
-    /// </summary>
-    public const int SrcAlpha = 0x0302;
-
-    /// <summary>
-    /// GL_ONE_MINUS_SRC_ALPHA
-    /// </summary>
-    public const int OneMinusSrcAlpha = 0x0303;
-
-    /// <summary>
-    /// GL_DST_ALPHA
-    /// </summary>
-    public const int DstAlpha = 0x0304;
-
-    /// <summary>
-    /// GL_ONE_MINUS_DST_ALPHA
-    /// </summary>
-    public const int OneMinusDstAlpha = 0x0305;
-
-    /// <summary>
-    /// GL_DST_COLOR
-    /// </summary>
-    public const int DstColor = 0x0306;
-
-    /// <summary>
-    /// GL_ONE_MINUS_DST_COLOR
-    /// </summary>
-    public const int OneMinusDstColor = 0x0307;
-
-    /// <summary>
-    /// GL_SRC_ALPHA_SATURATE
-    /// </summary>
-    public const int SrcAlphaSaturate = 0x0308;
-
-    /// <summary>
-    /// GL_CONSTANT_COLOR
-    /// </summary>
-    public const int ConstantColor = 0x8001;
-
-    /// <summary>
-    /// GL_ONE_MINUS_CONSTANT_COLOR
-    /// </summary>
-    public const int OneMinusConstantColor = 0x8002;
-
-    /// <summary>
-    /// GL_CONSTANT_ALPHA
-    /// </summary>
-    public const int ConstantAlpha = 0x8003;
-
-    /// <summary>
-    /// GL_ONE_MINUS_CONSTANT_ALPHA
-    /// </summary>
-    public const int OneMinusConstantAlpha = 0x8004;
-
-    /// <summary>
-    /// GL_FUNC_ADD
-    /// </summary>
-    public const int FuncAdd = 0x8006;
-
-    /// <summary>
-    /// GL_MIN
-    /// </summary>
-    public const int Min = 0x8007;
-
-    /// <summary>
-    /// GL_MAX
-    /// </summary>
-    public const int Max = 0x8008;
-
-    /// <summary>
-    /// GL_FUNC_SUBTRACT
-    /// </summary>
-    public const int FuncSubtract = 0x800A;
-
-    /// <summary>
-    /// GL_FUNC_REVERSE_SUBTRACT
-    /// </summary>
-    public const int FuncReverseSubtract = 0x800B;
-
-    /// <summary>
-    /// GL_BLEND_EQUATION
-    /// </summary>
-    public const int BlendEquation = 0x8009;
-
-    /// <summary>
-    /// GL_BLEND_EQUATION_RGB (Same as BLEND_EQUATION)
-    /// </summary>
-    public const int BlendEquationRgb = 0x8009;
-
-    /// <summary>
-    /// GL_BLEND_EQUATION_ALPHA
-    /// </summary>
-    public const int BlendEquationAlpha = 0x883D;
-
-    /// <summary>
-    /// GL_BLEND_DST_RGB
-    /// </summary>
-    public const int BlendDstRgb = 0x80C8;
-
-    /// <summary>
-    /// GL_BLEND_SRC_RGB
-    /// </summary>
-    public const int BlendSrcRgb = 0x80C9;
-
-    /// <summary>
-    /// GL_BLEND_DST_ALPHA
-    /// </summary>
-    public const int BlendDstAlpha = 0x80CA;
-
-    /// <summary>
-    /// GL_BLEND_SRC_ALPHA
-    /// </summary>
-    public const int BlendSrcAlpha = 0x80CB;
-
-    /// <summary>
-    /// GL_BLEND_COLOR
-    /// </summary>
-    public const int BlendColor = 0x8005;
-
-    /// <summary>
-    /// GL_READ_FRAMEBUFFER
-    /// </summary>
-    public const int ReadFramebuffer = 0x8CA8;
-
-    /// <summary>
-    /// GL_DRAW_FRAMEBUFFER
-    /// </summary>
-    public const int DrawFramebuffer = 0x8CA9;
-
     private const string LibName = "raylib";
 
+    /// <summary>
+    /// Choose the current matrix to be transformed
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlMatrixMode")]
+    public static extern void MatrixMode(RlglEnum mode);
+    
     /// <summary>
     /// Choose the current matrix to be transformed
     /// </summary>
@@ -381,8 +102,14 @@ public static unsafe partial class Rlgl
     /// Initialize drawing mode (how to organize vertex)
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlBegin")]
-    public static extern void Begin(DrawMode mode);
+    public static extern void Begin(RlglEnum mode);
 
+    /// <summary>
+    /// Initialize drawing mode (how to organize vertex)
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlBegin")]
+    public static extern void Begin(DrawMode mode);
+    
     /// <summary>
     /// Finish vertex providing
     /// </summary>
@@ -489,13 +216,13 @@ public static unsafe partial class Rlgl
     /// Enable attribute state pointer
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableStatePointer")]
-    public static extern void EnableStatePointer(int vertexAttribType, void* buffer);
+    public static extern void EnableStatePointer(RlglEnum vertexAttribType, void* buffer);
 
     /// <summary>
     /// Disable attribute state pointer
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableStatePointer")]
-    public static extern void DisableStatePointer(int vertexAttribType);
+    public static extern void DisableStatePointer(RlglEnum vertexAttribType);
 
     /// <summary>
     /// Select and active a texture slot
@@ -531,13 +258,13 @@ public static unsafe partial class Rlgl
     /// Set texture parameters (filter, wrap)
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlTextureParameters")]
-    public static extern void TextureParameters(uint id, int param, int value);
+    public static extern void TextureParameters(uint id, RlglEnum param, int value);
 
     /// <summary>
     /// Set cubemap parameters (filter, wrap)
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlCubemapParameters")]
-    public static extern void CubemapParameters(uint id, int param, int value);
+    public static extern void CubemapParameters(uint id, RlglEnum param, int value);
 
     /// <summary>
     /// Enable shader program
@@ -586,7 +313,7 @@ public static unsafe partial class Rlgl
     /// Bind framebuffer (FBO)
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlBindFramebuffer")]
-    public static extern void BindFramebuffer(uint target, uint framebuffer);
+    public static extern void BindFramebuffer(RlglEnum target, uint framebuffer);
 
     /// <summary>
     /// Enable color blending
@@ -760,14 +487,14 @@ public static unsafe partial class Rlgl
     /// Set blending mode factor and equation (using OpenGL factors)
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetBlendFactors")]
-    public static extern void SetBlendFactors(int glSrcFactor, int glDstFactor, int glEquation);
+    public static extern void SetBlendFactors(RlglEnum glSrcFactor, RlglEnum glDstFactor, RlglEnum glEquation);
 
     /// <summary>
     /// Set blending mode factors and equations separately (using OpenGL factors)
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetBlendFactorsSeparate")]
-    public static extern void SetBlendFactorsSeparate(int glSrcRGB, int glDstRGB, int glSrcAlpha, int glDstAlpha, int glEqRGB, int glEqAlpha);
-
+    public static extern void SetBlendFactorsSeparate(RlglEnum glSrcRGB, RlglEnum glDstRGB, RlglEnum glSrcAlpha, RlglEnum glDstAlpha, RlglEnum glEqRGB, RlglEnum glEqAlpha);
+    
     /// <summary>
     /// Initialize rlgl (buffers, shaders, textures, states)
     /// </summary>
@@ -922,7 +649,7 @@ public static unsafe partial class Rlgl
     /// Set vertex attribute data configuration
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlSetVertexAttribute")]
-    public static extern void SetVertexAttribute(uint index, int compSize, int type, NativeBool normalized, int stride, int offset);
+    public static extern void SetVertexAttribute(uint index, int compSize, RlglEnum type, NativeBool normalized, int stride, int offset);
 
     /// <summary>
     /// Set vertex attribute data divisor
@@ -1050,6 +777,12 @@ public static unsafe partial class Rlgl
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadShaderCode")]
     public static extern uint LoadShaderCode(sbyte* vsCode, sbyte* fsCode);
+    
+    /// <summary>
+    /// Compile custom shader and return shader id (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlCompileShader")]
+    public static extern uint CompileShader(sbyte* shaderCode, RlglEnum type);
 
     /// <summary>
     /// Compile custom shader and return shader id (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)
@@ -1127,7 +860,7 @@ public static unsafe partial class Rlgl
     /// Load shader storage buffer object (SSBO)
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadShaderBuffer")]
-    public static extern uint LoadShaderBuffer(uint size, void* data, int usageHint);
+    public static extern uint LoadShaderBuffer(uint size, void* data, RlglEnum usageHint);
 
     /// <summary>
     /// Unload shader storage buffer object (SSBO)
