@@ -19,12 +19,6 @@ public static unsafe partial class Rlgl
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlMatrixMode")]
     public static extern void MatrixMode(RlglEnum mode);
-    
-    /// <summary>
-    /// Choose the current matrix to be transformed
-    /// </summary>
-    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlMatrixMode")]
-    public static extern void MatrixMode(MatrixMode mode);
 
     /// <summary>
     /// Push the current matrix to stack
@@ -103,12 +97,6 @@ public static unsafe partial class Rlgl
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlBegin")]
     public static extern void Begin(RlglEnum mode);
-
-    /// <summary>
-    /// Initialize drawing mode (how to organize vertex)
-    /// </summary>
-    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlBegin")]
-    public static extern void Begin(DrawMode mode);
     
     /// <summary>
     /// Finish vertex providing
@@ -783,12 +771,6 @@ public static unsafe partial class Rlgl
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlCompileShader")]
     public static extern uint CompileShader(sbyte* shaderCode, RlglEnum type);
-
-    /// <summary>
-    /// Compile custom shader and return shader id (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)
-    /// </summary>
-    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlCompileShader")]
-    public static extern uint CompileShader(sbyte* shaderCode, ShaderType type);
 
     /// <summary>
     /// Load custom shader program

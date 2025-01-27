@@ -203,7 +203,7 @@ public static unsafe partial class Rlgl
     /// <summary>
     /// Compile custom shader and return shader id (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)
     /// </summary>
-    public static uint CompileShader(string shaderCode, ShaderType type)
+    public static uint CompileShader(string shaderCode, RlglEnum type)
     {
         var pShaderCode = Marshal.StringToCoTaskMemUTF8(shaderCode);
         var result = CompileShader((sbyte*)pShaderCode, type);
@@ -292,7 +292,7 @@ public static unsafe partial class Rlgl
     /// <summary>
     /// Load shader storage buffer object (SSBO)
     /// </summary>
-    public static uint LoadShaderBuffer<T>(ReadOnlySpan<T> data, int usageHint)
+    public static uint LoadShaderBuffer<T>(ReadOnlySpan<T> data, RlglEnum usageHint)
         where T : unmanaged
     {
         fixed (T* pData = data)
@@ -304,7 +304,7 @@ public static unsafe partial class Rlgl
     /// <summary>
     /// Load shader storage buffer object (SSBO)
     /// </summary>
-    public static uint LoadShaderBuffer(uint size, int usageHint)
+    public static uint LoadShaderBuffer(uint size, RlglEnum usageHint)
     {
         return LoadShaderBuffer(size, null, usageHint);
     }
