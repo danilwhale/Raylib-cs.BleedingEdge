@@ -667,19 +667,25 @@ public static unsafe partial class Rlgl
     public static extern void Scissor(int x, int y, int width, int height);
 
     /// <summary>
+    /// Enable point mode
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnablePointMode")]
+    public static extern void EnablePointMode();
+    
+    /// <summary>
+    /// Disable wire mode
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisablePointMode")]
+    public static extern void DisablePointMode();
+    
+    /// <summary>
     /// Enable wire mode
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableWireMode")]
     public static extern void EnableWireMode();
 
     /// <summary>
-    /// Enable point mode
-    /// </summary>
-    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnablePointMode")]
-    public static extern void EnablePointMode();
-
-    /// <summary>
-    /// Disable wire mode ( and point ) maybe rename
+    /// Disable wire mode
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableWireMode")]
     public static extern void DisableWireMode();
