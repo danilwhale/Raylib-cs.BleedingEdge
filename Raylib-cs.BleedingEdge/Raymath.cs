@@ -123,7 +123,7 @@ public static unsafe partial class Raymath
     /// Calculate the signed angle from v1 to v2, relative to the origin (0, 0).
     /// </summary>
     /// <remarks>
-    /// NOTE: In Raylib's 2D coordinate system (positive X right, positive Y down),
+    /// NOTE: Coordinate system convention: positive X right, positive Y down,
     /// positive angles appear clockwise, and negative angles appear counterclockwise.
     /// </remarks>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
