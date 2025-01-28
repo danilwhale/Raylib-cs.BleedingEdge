@@ -9,9 +9,9 @@
 
     <PropertyGroup>
         <Authors>danilwhale</Authors>
-        <Copyright>2024 danilwhale</Copyright>
+        <Copyright>2025 danilwhale</Copyright>
         <!-- version is set in .github/workflows/build.yml -->
-        <Description>Bleeding-edge C# binding for raylib, a simple and easy-to-use library to learn videogames programming</Description>
+        <Description>Bleeding-edge C# bindings for raylib, a simple and easy-to-use library to learn videogames programming</Description>
 
         <PackageProjectUrl>https://github.com/danilwhale/Raylib-cs.BleedingEdge</PackageProjectUrl>
         <RepositoryUrl>https://github.com/danilwhale/Raylib-cs.BleedingEdge</RepositoryUrl>
