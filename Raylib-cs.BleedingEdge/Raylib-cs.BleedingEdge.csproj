@@ -9,6 +9,7 @@
         
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <IsAotCompatible>true</IsAotCompatible>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <NoWarn>$(NoWarn);1591</NoWarn>

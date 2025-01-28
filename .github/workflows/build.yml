@@ -145,10 +145,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      
-      - name: debug
-        shell: bash
-        run: tree -if --noreport Raylib-cs.BleedingEdge.Runtimes
 
       - name: Create NuGet package
         run: dotnet pack Raylib-cs.BleedingEdge.Runtimes /p:VersionPrefix=${{ needs.prepare-package-info.outputs.prefix }} --version-suffix ${{ needs.prepare-package-info.outputs.suffix }} -o nuget
