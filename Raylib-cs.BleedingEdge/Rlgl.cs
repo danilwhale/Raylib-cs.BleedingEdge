@@ -204,13 +204,13 @@ public static unsafe partial class Rlgl
     /// Enable attribute state pointer
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlEnableStatePointer")]
-    public static extern void EnableStatePointer(RlglEnum vertexAttribType, void* buffer);
+    public static extern void EnableStatePointer(int vertexAttribType, void* buffer);
 
     /// <summary>
     /// Disable attribute state pointer
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlDisableStatePointer")]
-    public static extern void DisableStatePointer(RlglEnum vertexAttribType);
+    public static extern void DisableStatePointer(int vertexAttribType);
 
     /// <summary>
     /// Select and active a texture slot

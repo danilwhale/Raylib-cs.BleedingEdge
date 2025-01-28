@@ -18,7 +18,7 @@ public static unsafe partial class Rlgl
     /// <summary>
     /// Enable attribute state pointer
     /// </summary>
-    public static void EnableStatePointer<T>(RlglEnum vertexAttribType, ReadOnlySpan<T> buffer) where T : unmanaged
+    public static void EnableStatePointer<T>(int vertexAttribType, ReadOnlySpan<T> buffer) where T : unmanaged
     {
         fixed (T* pBuffer = buffer)
         {
