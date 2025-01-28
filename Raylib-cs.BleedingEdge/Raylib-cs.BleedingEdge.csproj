@@ -6,7 +6,33 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <IncludeSymbols>true</IncludeSymbols>
+        <IsAotCompatible>true</IsAotCompatible>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <NoWarn>$(NoWarn);1591</NoWarn>
     </PropertyGroup>
+
+    <PropertyGroup>
+        <Authors>danilwhale</Authors>
+        <Copyright>2024 danilwhale</Copyright>
+        <!-- version is set in .github/workflows/build.yml -->
+        <Description>Bleeding-edge C# binding for raylib, a simple and easy-to-use library to learn videogames programming</Description>
+
+        <PackageProjectUrl>https://github.com/danilwhale/Raylib-cs.BleedingEdge</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/danilwhale/Raylib-cs.BleedingEdge</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+
+        <PackageIcon>Logo-256.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\Assets\Logo-256.png" Pack="true" PackagePath="\"/>
+        <None Include="..\README.md" Pack="true" PackagePath="\"/>
+        <None Include="..\LICENSE" Pack="true" PackagePath="\"/>
+    </ItemGroup>
 
 </Project>

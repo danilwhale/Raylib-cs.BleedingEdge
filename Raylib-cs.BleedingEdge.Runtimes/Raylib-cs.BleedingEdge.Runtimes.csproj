@@ -1,7 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <IncludeBuildOutput>false</IncludeBuildOutput>
+        <IncludeSymbols>false</IncludeSymbols>
+        <IsAotCompatible>true</IsAotCompatible>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Authors>danilwhale</Authors>
+        <Copyright>2024 danilwhale</Copyright>
+        <!-- version is set in .github/workflows/build.yml -->
+        <Description>Bleeding-edge C# binding for raylib, a simple and easy-to-use library to learn videogames programming</Description>
+
+        <PackageProjectUrl>https://github.com/danilwhale/Raylib-cs.BleedingEdge</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/danilwhale/Raylib-cs.BleedingEdge</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+
+        <PackageIcon>Logo-256.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -10,5 +28,9 @@
             <Pack>true</Pack>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+
+        <None Include="..\Assets\Logo-256.png" Pack="true" PackagePath="\"/>
+        <None Include="..\README.md" Pack="true" PackagePath="\"/>
+        <None Include="..\LICENSE" Pack="true" PackagePath="\"/>
     </ItemGroup>
 </Project>
