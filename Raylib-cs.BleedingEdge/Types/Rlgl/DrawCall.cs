@@ -17,7 +17,7 @@ public struct DrawCall
     /// <summary>
     /// Drawing mode: LINES, TRIANGLES, QUADS
     /// </summary>
-    public DrawMode Mode;
+    public RlglEnum Mode;
 
     /// <summary>
     /// Number of vertex of the draw
