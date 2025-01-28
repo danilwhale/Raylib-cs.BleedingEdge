@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Content Include="runtimes/**">
+        <Content Include="runtimes\**">
             <PackagePath>runtimes</PackagePath>
             <Pack>true</Pack>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
