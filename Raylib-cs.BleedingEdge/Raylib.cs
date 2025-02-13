@@ -3599,7 +3599,7 @@ public static unsafe partial class Raylib
     public static extern void SetAudioStreamCallback(AudioStream stream, delegate* unmanaged[Cdecl]<void*, uint, void> callback);
 
     /// <summary>
-    /// Attach audio stream processor to stream, receives the samples as 'float'
+    /// Attach audio stream processor to stream, receives frames x 2 samples as 'float' (stereo)
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void AttachAudioStreamProcessor(AudioStream stream, delegate* unmanaged[Cdecl]<void*, uint, void> processor);
@@ -3611,7 +3611,7 @@ public static unsafe partial class Raylib
     public static extern void DetachAudioStreamProcessor(AudioStream stream, delegate* unmanaged[Cdecl]<void*, uint, void> processor);
 
     /// <summary>
-    /// Attach audio stream processor to the entire audio pipeline, receives the samples as 'float'
+    /// Attach audio stream processor to the entire audio pipeline, receives frames x 2 samples as 'float' (stereo)
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void AttachAudioMixedProcessor(delegate* unmanaged[Cdecl]<void*, uint, void> processor);
