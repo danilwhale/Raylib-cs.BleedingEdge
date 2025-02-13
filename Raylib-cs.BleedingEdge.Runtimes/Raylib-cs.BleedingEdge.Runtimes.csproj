@@ -9,7 +9,7 @@
 
     <PropertyGroup>
         <Authors>danilwhale</Authors>
-        <Copyright>2025 danilwhale</Copyright>
+        <Copyright>2024-2025 danilwhale</Copyright>
         <!-- version is set in .github/workflows/build.yml -->
         <Description>Bleeding-edge C# bindings for raylib, a simple and easy-to-use library to learn videogames programming</Description>
 
