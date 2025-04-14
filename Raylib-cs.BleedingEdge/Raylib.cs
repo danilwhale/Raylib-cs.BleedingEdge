@@ -124,7 +124,7 @@ public static unsafe partial class Raylib
     public static extern void MinimizeWindow();
 
     /// <summary>
-    /// Set window state: not minimized/maximized
+    /// Restore window from being minimized/maximized
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void RestoreWindow();
