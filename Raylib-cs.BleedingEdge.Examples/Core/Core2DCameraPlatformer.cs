@@ -1,17 +1,19 @@
 /*******************************************************************************************
-*
-*   raylib [core] example - 2D Camera platformer
-*
-*   Example originally created with raylib 2.5, last time updated with raylib 3.0
-*
-*   Example contributed by arvyy (@arvyy) and reviewed by Ramon Santamaria (@raysan5)
-*
-*   Example licensed under an unmodified zlib/libpng license, which is an OSI-certified,
-*   BSD-like license that allows static linking with closed source software
-*
-*   Copyright (c) 2019-2024 arvyy (@arvyy)
-*
-********************************************************************************************/
+ *
+ *   raylib [core] example - 2D Camera platformer
+ *
+ *   Example complexity rating: [★★★☆] 3/4
+ *
+ *   Example originally created with raylib 2.5, last time updated with raylib 3.0
+ *
+ *   Example contributed by arvyy (@arvyy) and reviewed by Ramon Santamaria (@raysan5)
+ *
+ *   Example licensed under an unmodified zlib/libpng license, which is an OSI-certified,
+ *   BSD-like license that allows static linking with closed source software
+ *
+ *   Copyright (c) 2019-2025 arvyy (@arvyy)
+ *
+ ********************************************************************************************/
 
 using System.Numerics;
 using Raylib_cs.BleedingEdge;
@@ -39,7 +41,8 @@ public class Core2DCameraPlatformer
         public Color Color;
     }
 
-    private delegate void CameraUpdater(ref Camera2D camera, ref Player player, Span<EnvItem> envItems, float delta, int width, int height);
+    private delegate void CameraUpdater(ref Camera2D camera, ref Player player, Span<EnvItem> envItems, float delta,
+        int width, int height);
 
     //------------------------------------------------------------------------------------
     // Program main entry point
@@ -300,8 +303,10 @@ public class Core2DCameraPlatformer
         const float bboxX = 0.2f;
         const float bboxY = 0.2f;
 
-        var bboxWorldMin = GetScreenToWorld2D(new Vector2((1 - bboxX) * 0.5f * width, (1 - bboxY) * 0.5f * height), camera);
-        var bboxWorldMax = GetScreenToWorld2D(new Vector2((1 + bboxX) * 0.5f * width, (1 + bboxY) * 0.5f * height), camera);
+        var bboxWorldMin =
+            GetScreenToWorld2D(new Vector2((1 - bboxX) * 0.5f * width, (1 - bboxY) * 0.5f * height), camera);
+        var bboxWorldMax =
+            GetScreenToWorld2D(new Vector2((1 + bboxX) * 0.5f * width, (1 + bboxY) * 0.5f * height), camera);
         camera.Offset = new Vector2((1 - bboxX) * 0.5f * width, (1 - bboxY) * 0.5f * height);
 
         if (player.Position.X < bboxWorldMin.X) camera.Target.X = player.Position.X;

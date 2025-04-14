@@ -1,13 +1,15 @@
 /*******************************************************************************************
 *
 *   raylib [core] example - 2D Camera system
+ *
+ *  Example complexity rating: [★★☆☆] 2/4
 *
 *   Example originally created with raylib 1.5, last time updated with raylib 3.0
 *
 *   Example licensed under an unmodified zlib/libpng license, which is an OSI-certified,
 *   BSD-like license that allows static linking with closed source software
 *
-*   Copyright (c) 2016-2024 Ramon Santamaria (@raysan5)
+*   Copyright (c) 2016-2025 Ramon Santamaria (@raysan5)
 *
 ********************************************************************************************/
 
@@ -84,7 +86,8 @@ public class Core2DCamera
             else if (camera.Rotation < -40) camera.Rotation = -40;
 
             // Camera zoom controls
-            camera.Zoom += GetMouseWheelMove() * 0.05f;
+            // Uses log scaling to provide consistent zoom speed
+            camera.Zoom = MathF.Exp(MathF.Log(camera.Zoom) + GetMouseWheelMove() * 0.1f);
 
             if (camera.Zoom > 3.0f) camera.Zoom = 3.0f;
             else if (camera.Zoom < 0.1f) camera.Zoom = 0.1f;

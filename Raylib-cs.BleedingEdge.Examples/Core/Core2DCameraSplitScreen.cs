@@ -1,20 +1,22 @@
 /*******************************************************************************************
-*
-*   raylib [core] example - 2d camera split screen
-*
-*   Addapted from the core_3d_camera_split_screen example: 
-*       https://github.com/raysan5/raylib/blob/master/examples/core/core_3d_camera_split_screen.c
-*
-*   Example originally created with raylib 4.5, last time updated with raylib 4.5
-*
-*   Example contributed by Gabriel dos Santos Sanches (@gabrielssanches) and reviewed by Ramon Santamaria (@raysan5)
-*
-*   Example licensed under an unmodified zlib/libpng license, which is an OSI-certified,
-*   BSD-like license that allows static linking with closed source software
-*
-*   Copyright (c) 2023 Gabriel dos Santos Sanches (@gabrielssanches)
-*
-********************************************************************************************/
+ *
+ *   raylib [core] example - 2d camera split screen
+ *
+ *   Example complexity rating: [★★★★] 4/4
+ *
+ *   Addapted from the core_3d_camera_split_screen example:
+ *       https://github.com/raysan5/raylib/blob/master/examples/core/core_3d_camera_split_screen.c
+ *
+ *   Example originally created with raylib 4.5, last time updated with raylib 4.5
+ *
+ *   Example contributed by Gabriel dos Santos Sanches (@gabrielssanches) and reviewed by Ramon Santamaria (@raysan5)
+ *
+ *   Example licensed under an unmodified zlib/libpng license, which is an OSI-certified,
+ *   BSD-like license that allows static linking with closed source software
+ *
+ *   Copyright (c) 2023-2025 Gabriel dos Santos Sanches (@gabrielssanches)
+ *
+ ********************************************************************************************/
 
 using System.Numerics;
 using Raylib_cs.BleedingEdge;
@@ -48,7 +50,7 @@ public class Core2DCameraSplitScreen
             Rotation = 0.0f,
             Zoom = 1.0f
         };
-        
+
         var camera2 = new Camera2D
         {
             Target = new Vector2(player2.X, player2.Y),
@@ -95,12 +97,14 @@ public class Core2DCameraSplitScreen
             // Draw full scene with first camera
             for (var i = 0; i < screenWidth / PlayerSize + 1; i++)
             {
-                DrawLineV(new Vector2((float)PlayerSize * i, 0), new Vector2((float)PlayerSize * i, screenHeight), Color.LightGray);
+                DrawLineV(new Vector2((float)PlayerSize * i, 0), new Vector2((float)PlayerSize * i, screenHeight),
+                    Color.LightGray);
             }
 
             for (var i = 0; i < screenHeight / PlayerSize + 1; i++)
             {
-                DrawLineV(new Vector2(0, (float)PlayerSize * i), new Vector2(screenWidth, (float)PlayerSize * i), Color.LightGray);
+                DrawLineV(new Vector2(0, (float)PlayerSize * i), new Vector2(screenWidth, (float)PlayerSize * i),
+                    Color.LightGray);
             }
 
             for (var i = 0; i < screenWidth / PlayerSize; i++)
@@ -128,12 +132,14 @@ public class Core2DCameraSplitScreen
             // Draw full scene with second camera
             for (var i = 0; i < screenWidth / PlayerSize + 1; i++)
             {
-                DrawLineV(new Vector2((float)PlayerSize * i, 0), new Vector2((float)PlayerSize * i, screenHeight), Color.LightGray);
+                DrawLineV(new Vector2((float)PlayerSize * i, 0), new Vector2((float)PlayerSize * i, screenHeight),
+                    Color.LightGray);
             }
 
             for (var i = 0; i < screenHeight / PlayerSize + 1; i++)
             {
-                DrawLineV(new Vector2(0, (float)PlayerSize * i), new Vector2(screenWidth, (float)PlayerSize * i), Color.LightGray);
+                DrawLineV(new Vector2(0, (float)PlayerSize * i), new Vector2(screenWidth, (float)PlayerSize * i),
+                    Color.LightGray);
             }
 
             for (var i = 0; i < screenWidth / PlayerSize; i++)

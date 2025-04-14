@@ -1,15 +1,19 @@
 /*******************************************************************************************
-*
-*   raylib [core] example - 2d camera mouse zoom
-*
-*   Example originally created with raylib 4.2, last time updated with raylib 4.2
-*
-*   Example licensed under an unmodified zlib/libpng license, which is an OSI-certified,
-*   BSD-like license that allows static linking with closed source software
-*
-*   Copyright (c) 2022-2024 Jeffery Myers (@JeffM2501)
-*
-********************************************************************************************/
+ *
+ *   raylib [core] example - 2d camera mouse zoom
+ *
+ *   Example complexity rating: [★★☆☆] 2/4
+ *
+ *   Example originally created with raylib 4.2, last time updated with raylib 4.2
+ *
+ *   Example contributed by Jeffery Myers (@JeffM2501) and reviewed by Ramon Santamaria (@raysan5)
+ *
+ *   Example licensed under an unmodified zlib/libpng license, which is an OSI-certified,
+ *   BSD-like license that allows static linking with closed source software
+ *
+ *   Copyright (c) 2022-2025 Jeffery Myers (@JeffM2501)
+ *
+ ********************************************************************************************/
 
 using System.Numerics;
 using Raylib_cs.BleedingEdge;
@@ -74,9 +78,8 @@ public class Core2DCameraMouseZoom
                     camera.Target = mouseWorldPos;
 
                     // Zoom increment
-                    var scaleFactor = 1.0f + 0.25f * Math.Abs(wheel);
-                    if (wheel < 0) scaleFactor = 1.0f / scaleFactor;
-                    camera.Zoom = Math.Clamp(camera.Zoom * scaleFactor, 0.125f, 64.0f);
+                    float scale = 0.2f * wheel;
+                    camera.Zoom = Math.Clamp(MathF.Exp(MathF.Log(camera.Zoom) + scale), 0.125f, 64.0f);
                 }
             }
             else
@@ -99,9 +102,8 @@ public class Core2DCameraMouseZoom
                 {
                     // Zoom increment
                     var deltaX = GetMouseDelta().X;
-                    var scaleFactor = 1.0f + 0.01f * Math.Abs(deltaX);
-                    if (deltaX < 0) scaleFactor = 1.0f / scaleFactor;
-                    camera.Zoom = Math.Clamp(camera.Zoom * scaleFactor, 0.125f, 64.0f);
+                    float scale = 0.005f * deltaX;
+                    camera.Zoom = Math.Clamp(MathF.Exp(MathF.Log(camera.Zoom) + scale), 0.125f, 64.0f);
                 }
             }
             //----------------------------------------------------------------------------------
@@ -133,7 +135,8 @@ public class Core2DCameraMouseZoom
                 GetMousePosition() + new Vector2(-44, -24), 20, 2, Color.Black);
 
             DrawText("[1][2] Select mouse zoom mode (Wheel or Move)", 20, 20, 20, Color.DarkGray);
-            if (zoomMode == 0) DrawText("Mouse left button drag to move, mouse wheel to zoom", 20, 50, 20, Color.DarkGray);
+            if (zoomMode == 0)
+                DrawText("Mouse left button drag to move, mouse wheel to zoom", 20, 50, 20, Color.DarkGray);
             else DrawText("Mouse left button drag to move, mouse press and move to zoom", 20, 50, 20, Color.DarkGray);
 
             EndDrawing();

@@ -2,6 +2,8 @@
  *
  *   raylib [core] example - custom frame control
  *
+ *   Example complexity rating: [★★★★] 4/4
+ *
  *   NOTE: WARNING: This is an example for advanced users willing to have full control over
  *   the frame processes. By default, EndDrawing() calls the following processes:
  *       1. Draw remaining batch data: rlDrawRenderBatchActive()
@@ -22,7 +24,7 @@
  *   Example licensed under an unmodified zlib/libpng license, which is an OSI-certified,
  *   BSD-like license that allows static linking with closed source software
  *
- *   Copyright (c) 2021-2024 Ramon Santamaria (@raysan5)
+ *   Copyright (c) 2021-2025 Ramon Santamaria (@raysan5)
  *
  ********************************************************************************************/
 
@@ -98,8 +100,11 @@ public class CoreCustomFrameControl
             DrawText("PRESS SPACE to PAUSE MOVEMENT", 10, GetScreenHeight() - 60, 20, Color.Gray);
             DrawText("PRESS UP | DOWN to CHANGE TARGET FPS", 10, GetScreenHeight() - 30, 20, Color.Gray);
             DrawText($"TARGET FPS: {targetFPS}", GetScreenWidth() - 220, 10, 20, Color.Lime);
-            DrawText($"CURRENT FPS: {(int)(1.0f / deltaTime)}", GetScreenWidth() - 220, 40, 20, Color.Green);
-
+            if (deltaTime != 0)
+            {
+                DrawText($"CURRENT FPS: {(int)(1.0f / deltaTime)}", GetScreenWidth() - 220, 40, 20, Color.Green);
+            }
+            
             // EndDrawing();
             Rlgl.DrawRenderBatchActive();
             

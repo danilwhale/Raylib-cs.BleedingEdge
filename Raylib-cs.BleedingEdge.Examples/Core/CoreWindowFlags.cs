@@ -2,12 +2,14 @@
  *
  *   raylib [core] example - window flags
  *
+ *   Example complexity rating: [★★★☆] 3/4
+ *
  *   Example originally created with raylib 3.5, last time updated with raylib 3.5
  *
  *   Example licensed under an unmodified zlib/libpng license, which is an OSI-certified,
  *   BSD-like license that allows static linking with closed source software
  *
- *   Copyright (c) 2020-2024 Ramon Santamaria (@raysan5)
+ *   Copyright (c) 2020-2025 Ramon Santamaria (@raysan5)
  *
  ********************************************************************************************/
 
@@ -56,7 +58,7 @@ public class CoreWindowFlags
 
         var framesCounter = 0;
 
-        //SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
         //----------------------------------------------------------
 
         // Main game loop
@@ -88,7 +90,11 @@ public class CoreWindowFlags
             if (IsWindowState(ConfigFlags.WindowHidden))
             {
                 framesCounter++;
-                if (framesCounter >= 240) ClearWindowState(ConfigFlags.WindowHidden); // Show window after 3 seconds
+                if (framesCounter >= 240)
+                {
+                    ClearWindowState(ConfigFlags.WindowHidden); // Show window after 3 seconds}
+                    framesCounter = 0;
+                }
             }
 
             if (IsKeyPressed(KeyboardKey.N))
@@ -101,7 +107,11 @@ public class CoreWindowFlags
             if (IsWindowState(ConfigFlags.WindowMinimized))
             {
                 framesCounter++;
-                if (framesCounter >= 240) RestoreWindow(); // Restore window after 3 seconds
+                if (framesCounter >= 240)
+                {
+                    RestoreWindow(); // Restore window after 3 seconds
+                    framesCounter = 0;
+                }
             }
 
             if (IsKeyPressed(KeyboardKey.M))
@@ -134,6 +144,8 @@ public class CoreWindowFlags
                 if (IsWindowState(ConfigFlags.VSyncHint)) ClearWindowState(ConfigFlags.VSyncHint);
                 else SetWindowState(ConfigFlags.VSyncHint);
             }
+            
+            if (IsKeyPressed(KeyboardKey.B)) ToggleBorderlessWindowed();
 
             // Bouncing ball logic
             ballPosition.X += ballSpeed.X;
@@ -167,9 +179,9 @@ public class CoreWindowFlags
             if (IsWindowState(ConfigFlags.WindowUndecorated)) DrawText("[D] ConfigFlags.WindowUndecorated: on", 10, 120, 10, Color.Lime);
             else DrawText("[D] ConfigFlags.WindowUndecorated: off", 10, 120, 10, Color.Maroon);
             if (IsWindowState(ConfigFlags.WindowHidden)) DrawText("[H] ConfigFlags.WindowHidden: on", 10, 140, 10, Color.Lime);
-            else DrawText("[H] ConfigFlags.WindowHidden: off", 10, 140, 10, Color.Maroon);
+            else DrawText("[H] ConfigFlags.WindowHidden: off (hides for 3 seconds)", 10, 140, 10, Color.Maroon);
             if (IsWindowState(ConfigFlags.WindowMinimized)) DrawText("[N] ConfigFlags.WindowMinimized: on", 10, 160, 10, Color.Lime);
-            else DrawText("[N] ConfigFlags.WindowMinimized: off", 10, 160, 10, Color.Maroon);
+            else DrawText("[N] ConfigFlags.WindowMinimized: off (restores after 3 seconds)", 10, 160, 10, Color.Maroon);
             if (IsWindowState(ConfigFlags.WindowMaximized)) DrawText("[M] ConfigFlags.WindowMaximized: on", 10, 180, 10, Color.Lime);
             else DrawText("[M] ConfigFlags.WindowMaximized: off", 10, 180, 10, Color.Maroon);
             if (IsWindowState(ConfigFlags.WindowUnfocused)) DrawText("[G] ConfigFlags.WindowUnfocused: on", 10, 200, 10, Color.Lime);
@@ -180,6 +192,8 @@ public class CoreWindowFlags
             else DrawText("[A] ConfigFlags.WindowAlwaysRun: off", 10, 240, 10, Color.Maroon);
             if (IsWindowState(ConfigFlags.VSyncHint)) DrawText("[V] ConfigFlags.VSyncHint: on", 10, 260, 10, Color.Lime);
             else DrawText("[V] ConfigFlags.VSyncHint: off", 10, 260, 10, Color.Maroon);
+            if (IsWindowState(ConfigFlags.BorderlessWindowedMode)) DrawText("[B] ConfigFlags.BorderlessWindowedMode: on", 10, 280, 10, Color.Lime);
+            else DrawText("[B] ConfigFlags.BorderlessWindowedMode: off", 10, 280, 10, Color.Maroon);
 
             DrawText("Following flags can only be set before window creation:", 10, 300, 10, Color.Gray);
             if (IsWindowState(ConfigFlags.WindowHighDpi)) DrawText("ConfigFlags.WindowHighDpi: on", 10, 320, 10, Color.Lime);
