@@ -574,12 +574,34 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Set automation event list to record to
     /// </summary>
+    /// <remarks>
+    /// Use <see cref="SetAutomationEventList(NativeHandle{T})"/>
+    /// for instance fields instead:
+    /// <code>
+    /// private NativeHandle&lt;AutomationEventList&gt; _list;
+    /// </code>
+    /// </remarks>
     public static void SetAutomationEventList(ref AutomationEventList list)
     {
         fixed (AutomationEventList* pList = &list)
         {
             SetAutomationEventList(pList);
         }
+    }
+    
+    /// <summary>
+    /// Set automation event list to record to
+    /// </summary>
+    /// <remarks>
+    /// Use <see cref="SetAutomationEventList(ref Raylib_cs.BleedingEdge.AutomationEventList)"/>
+    /// for local variables instead:
+    /// <code>
+    /// AutomationEventList list;
+    /// </code>
+    /// </remarks>
+    public static void SetAutomationEventList(NativeHandle<AutomationEventList> list)
+    {
+        SetAutomationEventList((AutomationEventList*)list.Address);
     }
 
     /// <summary>

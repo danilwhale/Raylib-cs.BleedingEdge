@@ -81,8 +81,15 @@ public unsafe class CoreAutomationEvents
         };
 
         // Automation events
+        
+        // If you decide to store automation event list inside the field:
+        // using var nativeAelist = new NativeHandle<AutomationEventList>(LoadAutomationEventList((string)null));
+        // ref var aelist = ref nativeAelist.Value;
+        // SetAutomationEventList(nativeAelist);
+        // if you decide to store automation event list inside the local variable:
         var aelist = LoadAutomationEventList((string)null); // Initialize list of automation events to record new events
         SetAutomationEventList(ref aelist);
+        
         var eventRecording = false;
         var eventPlaying = false;
 
