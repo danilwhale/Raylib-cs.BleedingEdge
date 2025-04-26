@@ -1,7 +1,6 @@
 using System.Numerics;
 using System.Runtime.InteropServices;
 using Raylib_cs.BleedingEdge.Interop;
-using Raylib_cs.BleedingEdge;
 
 namespace Raylib_cs.BleedingEdge;
 
@@ -203,9 +202,9 @@ public static unsafe partial class Rlgl
     /// </summary>
     public static uint LoadShaderCode(string vsCode, string fsCode)
     {
-        var pVsCode = Marshal.StringToCoTaskMemUTF8(vsCode);
-        var pFsCode = Marshal.StringToCoTaskMemUTF8(fsCode);
-        var result = LoadShaderCode((sbyte*)pVsCode, (sbyte*)pFsCode);
+        nint pVsCode = Marshal.StringToCoTaskMemUTF8(vsCode);
+        nint pFsCode = Marshal.StringToCoTaskMemUTF8(fsCode);
+        uint result = LoadShaderCode((sbyte*)pVsCode, (sbyte*)pFsCode);
         Marshal.FreeCoTaskMem(pFsCode);
         Marshal.FreeCoTaskMem(pVsCode);
         return result;
@@ -216,8 +215,8 @@ public static unsafe partial class Rlgl
     /// </summary>
     public static uint CompileShader(string shaderCode, RlglEnum type)
     {
-        var pShaderCode = Marshal.StringToCoTaskMemUTF8(shaderCode);
-        var result = CompileShader((sbyte*)pShaderCode, type);
+        nint pShaderCode = Marshal.StringToCoTaskMemUTF8(shaderCode);
+        uint result = CompileShader((sbyte*)pShaderCode, type);
         Marshal.FreeCoTaskMem(pShaderCode);
         return result;
     }
@@ -227,8 +226,8 @@ public static unsafe partial class Rlgl
     /// </summary>
     public static int GetLocationUniform(uint shaderId, string uniformName)
     {
-        var pUniformName = Marshal.StringToCoTaskMemUTF8(uniformName);
-        var result = GetLocationUniform(shaderId, (sbyte*)pUniformName);
+        nint pUniformName = Marshal.StringToCoTaskMemUTF8(uniformName);
+        int result = GetLocationUniform(shaderId, (sbyte*)pUniformName);
         Marshal.FreeCoTaskMem(pUniformName);
         return result;
     }
@@ -238,8 +237,8 @@ public static unsafe partial class Rlgl
     /// </summary>
     public static int GetLocationAttrib(uint shaderId, string attribName)
     {
-        var pAttribName = Marshal.StringToCoTaskMemUTF8(attribName);
-        var result = GetLocationAttrib(shaderId, (sbyte*)pAttribName);
+        nint pAttribName = Marshal.StringToCoTaskMemUTF8(attribName);
+        int result = GetLocationAttrib(shaderId, (sbyte*)pAttribName);
         Marshal.FreeCoTaskMem(pAttribName);
         return result;
     }

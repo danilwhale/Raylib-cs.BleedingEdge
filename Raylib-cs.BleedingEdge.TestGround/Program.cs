@@ -1,5 +1,4 @@
 ﻿using System.Numerics;
-using Raylib_cs.BleedingEdge;
 
 namespace Raylib_cs.BleedingEdge.TestGround;
 
@@ -23,16 +22,16 @@ internal class Program
     {
         Raylib.InitWindow(ScreenWidth, ScreenHeight, "bunnymark");
         
-        var texBunny = Raylib.LoadTexture("wabbit_alpha.png");
+        Texture2D texBunny = Raylib.LoadTexture("wabbit_alpha.png");
 
         Span<Bunny> bunnies = stackalloc Bunny[MaxBunnies];
-        var bunniesCount = 0;
+        int bunniesCount = 0;
 
         while (!Raylib.WindowShouldClose())
         {
             if (Raylib.IsMouseButtonDown(MouseButton.Left))
             {
-                for (var i = 0; i < 100; i++)
+                for (int i = 0; i < 100; i++)
                 {
                     if (bunniesCount < MaxBunnies)
                     {
@@ -45,7 +44,7 @@ internal class Program
                 }
             }
 
-            for (var i = 0; i < bunniesCount; i++)
+            for (int i = 0; i < bunniesCount; i++)
             {
                 bunnies[i].Position.X += bunnies[i].Speed.X;
                 bunnies[i].Position.Y += bunnies[i].Speed.Y;
@@ -66,7 +65,7 @@ internal class Program
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.RayWhite);
 
-            for (var i = 0; i < bunniesCount; i++)
+            for (int i = 0; i < bunniesCount; i++)
             {
                 Raylib.DrawTexture(texBunny, (int)bunnies[i].Position.X, (int)bunnies[i].Position.Y, bunnies[i].Color);
             }

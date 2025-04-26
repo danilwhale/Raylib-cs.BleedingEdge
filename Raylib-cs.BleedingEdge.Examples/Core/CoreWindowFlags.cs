@@ -52,11 +52,11 @@ public class CoreWindowFlags
         //SetConfigFlags(ConfigFlags.VSyncHint | ConfigFlags.Msaa4XHint | ConfigFlags.WindowHighDpi);
         InitWindow(screenWidth, screenHeight, "raylib [core] example - window flags");
 
-        var ballPosition = new Vector2(GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f);
-        var ballSpeed = new Vector2(5.0f, 4.0f);
+        Vector2 ballPosition = new Vector2(GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f);
+        Vector2 ballSpeed = new Vector2(5.0f, 4.0f);
         float ballRadius = 20;
 
-        var framesCounter = 0;
+        int framesCounter = 0;
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
         //----------------------------------------------------------

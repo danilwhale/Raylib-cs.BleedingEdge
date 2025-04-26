@@ -266,8 +266,8 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
 
     public override string ToString()
     {
-        var vboIdBuilder = new StringBuilder();
-        for (var i = 0; i < MaxVertexBuffers - 1; i++)
+        StringBuilder vboIdBuilder = new StringBuilder();
+        for (int i = 0; i < MaxVertexBuffers - 1; i++)
         {
             vboIdBuilder.Append($"{VboId[i]}, ");
         }

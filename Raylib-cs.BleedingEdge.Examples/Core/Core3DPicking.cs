@@ -34,7 +34,7 @@ public class Core3DPicking
         InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d picking");
 
         // Define the camera to look into our 3d world
-        var camera = new Camera3D
+        Camera3D camera = new Camera3D
         {
             Position = new Vector3(10.0f, 10.0f, 10.0f), // Camera position
             Target = new Vector3(0.0f, 0.0f, 0.0f), // Camera looking at point
@@ -43,11 +43,11 @@ public class Core3DPicking
             Projection = CameraProjection.Perspective // Camera projection type
         };
 
-        var cubePosition = new Vector3(0.0f, 1.0f, 0.0f);
-        var cubeSize = new Vector3(2.0f, 2.0f, 2.0f);
+        Vector3 cubePosition = new Vector3(0.0f, 1.0f, 0.0f);
+        Vector3 cubeSize = new Vector3(2.0f, 2.0f, 2.0f);
 
-        var ray = new Ray(); // Picking line ray
-        var collision = new RayCollision(); // Ray collision hit info
+        Ray ray = new Ray(); // Picking line ray
+        RayCollision collision = new RayCollision(); // Ray collision hit info
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------

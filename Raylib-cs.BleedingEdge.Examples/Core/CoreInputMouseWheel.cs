@@ -32,8 +32,8 @@ public class CoreInputMouseWheel
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - input mouse wheel");
 
-        var boxPositionY = screenHeight / 2 - 40;
-        var scrollSpeed = 4; // Scrolling speed in pixels
+        int boxPositionY = screenHeight / 2 - 40;
+        int scrollSpeed = 4; // Scrolling speed in pixels
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------

@@ -35,15 +35,15 @@ public class Core2DCamera
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - 2d camera");
 
-        var player = new Rectangle(400.0f, 280.0f, 40.0f, 40.0f);
-        var buildings = new Rectangle[MaxBuildings];
-        var buildColors = new Color[MaxBuildings];
+        Rectangle player = new Rectangle(400.0f, 280.0f, 40.0f, 40.0f);
+        Rectangle[] buildings = new Rectangle[MaxBuildings];
+        Color[] buildColors = new Color[MaxBuildings];
 
-        var spacing = 0;
+        int spacing = 0;
 
-        for (var i = 0; i < MaxBuildings; i++)
+        for (int i = 0; i < MaxBuildings; i++)
         {
-            ref var building = ref buildings[i];
+            ref Rectangle building = ref buildings[i];
             building.Width = GetRandomValue(50, 200);
             building.Height = GetRandomValue(100, 800);
             building.Y = screenHeight - 130.0f - building.Height;
@@ -54,7 +54,7 @@ public class Core2DCamera
             buildColors[i] = new Color((byte)GetRandomValue(200, 240), (byte)GetRandomValue(200, 240), (byte)GetRandomValue(200, 250));
         }
 
-        var camera = new Camera2D
+        Camera2D camera = new Camera2D
         {
             Target = new Vector2(player.X + 20.0f, player.Y + 20.0f),
             Offset = new Vector2(screenWidth / 2.0f, screenHeight / 2.0f),
@@ -110,7 +110,7 @@ public class Core2DCamera
 
             DrawRectangle(-6000, 320, 13000, 8000, Color.DarkGray);
 
-            for (var i = 0; i < MaxBuildings; i++) DrawRectangleRec(buildings[i], buildColors[i]);
+            for (int i = 0; i < MaxBuildings; i++) DrawRectangleRec(buildings[i], buildColors[i]);
 
             DrawRectangleRec(player, Color.Red);
 

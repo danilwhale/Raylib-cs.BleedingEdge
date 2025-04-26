@@ -44,9 +44,9 @@ public class CoreLoadingThread
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - loading thread");
 
-        var state = State.Waiting;
-        var thread = new Thread(LoadDataThread);
-        var framesCounter = 0;
+        State state = State.Waiting;
+        Thread thread = new Thread(LoadDataThread);
+        int framesCounter = 0;
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
@@ -142,13 +142,13 @@ public class CoreLoadingThread
     // Loading data thread function definition
     private static void LoadDataThread()
     {
-        var timeCounter = 0; // Time counted in ms
-        var prevTime = DateTime.UtcNow; // Previous time
+        int timeCounter = 0; // Time counted in ms
+        DateTime prevTime = DateTime.UtcNow; // Previous time
 
         // We simulate data loading with a time counter for 5 seconds
         while (timeCounter < 5000)
         {
-            var currentTime = DateTime.UtcNow - prevTime;
+            TimeSpan currentTime = DateTime.UtcNow - prevTime;
             timeCounter = (int)currentTime.TotalMilliseconds;
 
             // We accumulate time over a global variable to be used in

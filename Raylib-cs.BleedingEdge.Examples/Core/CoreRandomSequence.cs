@@ -40,9 +40,9 @@ public unsafe class CoreRandomSequence
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - Generates a random sequence");
 
-        var rectCount = 20;
-        var rectSize = (float)screenWidth / rectCount;
-        var rectangles = GenerateRandomColorRectSequence(rectCount, rectSize, screenWidth, 0.75f * screenHeight);
+        int rectCount = 20;
+        float rectSize = (float)screenWidth / rectCount;
+        ColorRect[] rectangles = GenerateRandomColorRectSequence(rectCount, rectSize, screenWidth, 0.75f * screenHeight);
 
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------
@@ -81,8 +81,8 @@ public unsafe class CoreRandomSequence
 
             ClearBackground(Color.RayWhite);
 
-            var fontSize = 20;
-            for (var x = 0; x < rectCount; x++)
+            int fontSize = 20;
+            for (int x = 0; x < rectCount; x++)
             {
                 DrawRectangleRec(rectangles[x].R, rectangles[x].C);
                 DrawTextCenterKeyHelp("SPACE", "to shuffle the sequence.", 10, screenHeight - 96, fontSize, Color.Black);
@@ -90,8 +90,8 @@ public unsafe class CoreRandomSequence
                 DrawTextCenterKeyHelp("DOWN", "to remove a rectangle and generate a new sequence.", 10, screenHeight - 32, fontSize, Color.Black);
             }
 
-            var rectCountText = $"{rectCount} rectangles";
-            var rectCountTextSize = MeasureText(rectCountText, fontSize);
+            string rectCountText = $"{rectCount} rectangles";
+            int rectCountTextSize = MeasureText(rectCountText, fontSize);
             DrawText(rectCountText, screenWidth - rectCountTextSize - 10, 10, fontSize, Color.Black);
 
             DrawFPS(10, 10);
@@ -118,16 +118,16 @@ public unsafe class CoreRandomSequence
 
     private static ColorRect[] GenerateRandomColorRectSequence(int rectCount, float rectWidth, float screenWidth, float screenHeight)
     {
-        var seq = LoadRandomSequence((uint)rectCount, 0, rectCount - 1);
+        int* seq = LoadRandomSequence((uint)rectCount, 0, rectCount - 1);
 
-        var rectangles = new ColorRect[rectCount];
+        ColorRect[] rectangles = new ColorRect[rectCount];
 
-        var rectSeqWidth = rectCount * rectWidth;
-        var startX = (screenWidth - rectSeqWidth) * 0.5f;
+        float rectSeqWidth = rectCount * rectWidth;
+        float startX = (screenWidth - rectSeqWidth) * 0.5f;
 
-        for (var x = 0; x < rectCount; x++)
+        for (int x = 0; x < rectCount; x++)
         {
-            var rectHeight = (int)Raymath.Remap(seq[x], 0, rectCount - 1, 0, screenHeight);
+            int rectHeight = (int)Raymath.Remap(seq[x], 0, rectCount - 1, 0, screenHeight);
             rectangles[x] = new ColorRect
             {
                 C = GenerateRandomColor(),
@@ -142,15 +142,15 @@ public unsafe class CoreRandomSequence
 
     private static void ShuffleColorRectSequence(ColorRect[] rectangles)
     {
-        var seq = LoadRandomSequence((uint)rectangles.Length, 0, rectangles.Length - 1);
+        int* seq = LoadRandomSequence((uint)rectangles.Length, 0, rectangles.Length - 1);
 
-        for (var i = 0; i < rectangles.Length; i++)
+        for (int i = 0; i < rectangles.Length; i++)
         {
-            ref var r1 = ref rectangles[i];
-            ref var r2 = ref rectangles[seq[i]];
+            ref ColorRect r1 = ref rectangles[i];
+            ref ColorRect r2 = ref rectangles[seq[i]];
 
             // swap only the color and height
-            var tmp = r1;
+            ColorRect tmp = r1;
             (r1.C, r1.R.Y, r1.R.Height) = (r2.C, r2.R.Y, r2.R.Height);
             (r2.C, r2.R.Y, r2.R.Height) = (tmp.C, tmp.R.Y, tmp.R.Height);
         }
@@ -160,10 +160,10 @@ public unsafe class CoreRandomSequence
 
     private static void DrawTextCenterKeyHelp(string key, string text, int posX, int posY, int fontSize, Color color)
     {
-        var spaceSize = MeasureText(" ", fontSize);
-        var pressSize = MeasureText("Press", fontSize);
-        var keySize = MeasureText(key, fontSize);
-        var textSizeCurrent = 0;
+        int spaceSize = MeasureText(" ", fontSize);
+        int pressSize = MeasureText("Press", fontSize);
+        int keySize = MeasureText(key, fontSize);
+        int textSizeCurrent = 0;
 
         DrawText("Press", posX, posY, fontSize, color);
         textSizeCurrent += pressSize + 2 * spaceSize;

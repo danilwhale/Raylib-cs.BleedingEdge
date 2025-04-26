@@ -34,9 +34,9 @@ public class CoreRandomValues
 
         // SetRandomSeed(0xaabbccff);   // Set a custom random seed if desired, by default: "time(NULL)"
 
-        var randValue = GetRandomValue(-8, 5); // Get a random integer number between -8 and 5 (both included)
+        int randValue = GetRandomValue(-8, 5); // Get a random integer number between -8 and 5 (both included)
 
-        var framesCounter = 0; // Variable used to count frames
+        int framesCounter = 0; // Variable used to count frames
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------

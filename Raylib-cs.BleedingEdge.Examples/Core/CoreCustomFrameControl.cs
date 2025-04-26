@@ -48,17 +48,17 @@ public class CoreCustomFrameControl
         InitWindow(screenWidth, screenHeight, "raylib [core] example - custom frame control");
 
         // Custom timming variables
-        var previousTime = GetTime(); // Previous time measure
-        var currentTime = 0.0; // Current time measure
-        var updateDrawTime = 0.0; // Update + Draw time
-        var waitTime = 0.0; // Wait time (if target fps required)
-        var deltaTime = 0.0f; // Frame time (Update + Draw + Wait time)
+        double previousTime = GetTime(); // Previous time measure
+        double currentTime = 0.0; // Current time measure
+        double updateDrawTime = 0.0; // Update + Draw time
+        double waitTime = 0.0; // Wait time (if target fps required)
+        float deltaTime = 0.0f; // Frame time (Update + Draw + Wait time)
 
-        var timeCounter = 0.0f; // Accumulative time counter (seconds)
-        var position = 0.0f; // Circle position
-        var pause = false; // Pause control flag
+        float timeCounter = 0.0f; // Accumulative time counter (seconds)
+        float position = 0.0f; // Circle position
+        bool pause = false; // Pause control flag
 
-        var targetFPS = 60; // Our initial target fps
+        int targetFPS = 60; // Our initial target fps
         //--------------------------------------------------------------------------------------
 
         // Main game loop
@@ -89,7 +89,7 @@ public class CoreCustomFrameControl
 
             ClearBackground(Color.RayWhite);
 
-            for (var i = 0; i < GetScreenWidth() / 200; i++) DrawRectangle(200 * i, 0, 1, GetScreenHeight(), Color.SkyBlue);
+            for (int i = 0; i < GetScreenWidth() / 200; i++) DrawRectangle(200 * i, 0, 1, GetScreenHeight(), Color.SkyBlue);
 
             DrawCircle((int)position, GetScreenHeight() / 2 - 25, 50, Color.Red);
 

@@ -45,11 +45,11 @@ public class CoreBasicScreenManager
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - basic screen manager");
 
-        var currentScreen = GameScreen.Logo;
+        GameScreen currentScreen = GameScreen.Logo;
 
         // TODO: Initialize all required variables and load all required data here!
 
-        var framesCounter = 0; // Useful to count frames
+        int framesCounter = 0; // Useful to count frames
 
         SetTargetFPS(60); // Set desired framerate (frames-per-second)
         //--------------------------------------------------------------------------------------

@@ -34,8 +34,8 @@ public class CoreScissorTest
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - scissor test");
 
-        var scissorArea = new Rectangle(0, 0, 300, 300);
-        var scissorMode = true;
+        Rectangle scissorArea = new Rectangle(0, 0, 300, 300);
+        bool scissorMode = true;
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------

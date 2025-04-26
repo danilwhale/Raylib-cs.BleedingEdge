@@ -34,8 +34,8 @@ public class CoreWindowShouldClose
 
         SetExitKey(KeyboardKey.Null); // Disable KEY_ESCAPE to close window, X-button still works
 
-        var exitWindowRequested = false; // Flag to request window to exit
-        var exitWindow = false; // Flag to set window to exit
+        bool exitWindowRequested = false; // Flag to request window to exit
+        bool exitWindow = false; // Flag to set window to exit
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------

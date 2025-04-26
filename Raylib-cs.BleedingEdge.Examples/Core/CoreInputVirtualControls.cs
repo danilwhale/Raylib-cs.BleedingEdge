@@ -48,10 +48,10 @@ public class CoreInputVirtualControls
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - input virtual controls");
 
-        var padPosition = new Vector2(100, 350);
-        var buttonRadius = 30.0f;
+        Vector2 padPosition = new Vector2(100, 350);
+        float buttonRadius = 30.0f;
 
-        var buttonPositions = new[]
+        Vector2[] buttonPositions = new[]
         {
             new Vector2(padPosition.X, padPosition.Y - buttonRadius * 1.5f), // Up
             new Vector2(padPosition.X - buttonRadius * 1.5f, padPosition.Y), // Left
@@ -59,7 +59,7 @@ public class CoreInputVirtualControls
             new Vector2(padPosition.X, padPosition.Y + buttonRadius * 1.5f) // Down
         };
 
-        var buttonLabels = new[]
+        string[] buttonLabels = new[]
         {
             "Y", // Up
             "X", // Left
@@ -67,7 +67,7 @@ public class CoreInputVirtualControls
             "A" // Down
         };
 
-        var buttonLabelColors = new[]
+        Color[] buttonLabelColors = new[]
         {
             Color.Yellow, // Up
             Color.Blue, // Left
@@ -75,11 +75,11 @@ public class CoreInputVirtualControls
             Color.Green, // Down
         };
 
-        var pressedButton = PadButton.None;
-        var inputPosition = new Vector2(0, 0);
+        PadButton pressedButton = PadButton.None;
+        Vector2 inputPosition = new Vector2(0, 0);
 
-        var playerPosition = new Vector2((float)screenWidth / 2, (float)screenHeight / 2);
-        var playerSpeed = 75.0f;
+        Vector2 playerPosition = new Vector2((float)screenWidth / 2, (float)screenHeight / 2);
+        float playerSpeed = 75.0f;
 
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------
@@ -107,10 +107,10 @@ public class CoreInputVirtualControls
             if (GetTouchPointCount() > 0 || GetTouchPointCount() == 0 && IsMouseButtonDown(MouseButton.Left))
             {
                 // Find nearest D-Pad button to the input position
-                for (var i = 0; i < (int)PadButton.Max; i++)
+                for (int i = 0; i < (int)PadButton.Max; i++)
                 {
-                    var distX = Math.Abs(buttonPositions[i].X - inputPosition.X);
-                    var distY = Math.Abs(buttonPositions[i].Y - inputPosition.Y);
+                    float distX = Math.Abs(buttonPositions[i].X - inputPosition.X);
+                    float distY = Math.Abs(buttonPositions[i].Y - inputPosition.Y);
 
                     if (distX + distY < buttonRadius)
                     {
@@ -157,7 +157,7 @@ public class CoreInputVirtualControls
             DrawCircleV(playerPosition, 50, Color.Maroon);
 
             // Draw GUI
-            for (var i = 0; i < (int)PadButton.Max; i++)
+            for (int i = 0; i < (int)PadButton.Max; i++)
             {
                 DrawCircleV(buttonPositions[i], buttonRadius, i == (int)pressedButton ? Color.DarkGray : Color.Black);
 

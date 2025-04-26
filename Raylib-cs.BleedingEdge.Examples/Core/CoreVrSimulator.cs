@@ -37,7 +37,7 @@ public unsafe class CoreVrSimulator
         InitWindow(screenWidth, screenHeight, "raylib [core] example - vr simulator");
 
         // VR device parameters definition
-        var device = new VrDeviceInfo
+        VrDeviceInfo device = new VrDeviceInfo
         {
             // Oculus Rift CV1 parameters for simulator
             HResolution = 2160, // Horizontal resolution in pixels
@@ -61,10 +61,10 @@ public unsafe class CoreVrSimulator
         device.ChromaAbCorrection[3] = 0.0f; // Chromatic aberration correction parameter 3
 
         // Load VR stereo config for VR device parameteres (Oculus Rift CV1 parameters)
-        var config = LoadVrStereoConfig(device);
+        VrStereoConfig config = LoadVrStereoConfig(device);
 
         // Distortion shader (uses device lens distortion and chroma)
-        var distortion = LoadShader(null, $"resources/distortion{GlslVersion}.fs");
+        Shader distortion = LoadShader(null, $"resources/distortion{GlslVersion}.fs");
 
         // Update distortion shader with lens and distortion-scale parameters
         SetShaderValue(distortion, GetShaderLocation(distortion, "leftLensCenter"),
@@ -87,14 +87,14 @@ public unsafe class CoreVrSimulator
 
         // Initialize framebuffer for stereo rendering
         // NOTE: Screen size should match HMD aspect ratio
-        var target = LoadRenderTexture(device.HResolution, device.VResolution);
+        RenderTexture2D target = LoadRenderTexture(device.HResolution, device.VResolution);
 
         // The target's height is flipped (in the source Rectangle), due to OpenGL reasons
-        var sourceRec = new Rectangle(0.0f, 0.0f, target.Texture.Width, -(float)target.Texture.Height);
-        var destRec = new Rectangle(0.0f, 0.0f, GetScreenWidth(), GetScreenHeight());
+        Rectangle sourceRec = new Rectangle(0.0f, 0.0f, target.Texture.Width, -(float)target.Texture.Height);
+        Rectangle destRec = new Rectangle(0.0f, 0.0f, GetScreenWidth(), GetScreenHeight());
 
         // Define the camera to look into our 3d world
-        var camera = new Camera3D
+        Camera3D camera = new Camera3D
         {
             Position = new Vector3(5.0f, 2.0f, 5.0f), // Camera position
             Target = new Vector3(0.0f, 2.0f, 0.0f), // Camera looking at point
@@ -103,7 +103,7 @@ public unsafe class CoreVrSimulator
             Projection = CameraProjection.Perspective // Camera projection type
         };
 
-        var cubePosition = new Vector3(0.0f, 0.0f, 0.0f);
+        Vector3 cubePosition = new Vector3(0.0f, 0.0f, 0.0f);
 
         DisableCursor(); // Limit cursor to relative movement inside the window
 

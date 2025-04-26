@@ -15,7 +15,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static void InitWindow(int width, int height, string title)
     {
-        var pTitle = Marshal.StringToCoTaskMemUTF8(title);
+        nint pTitle = Marshal.StringToCoTaskMemUTF8(title);
         InitWindow(width, height, (sbyte*)pTitle);
         Marshal.FreeCoTaskMem(pTitle);
     }
@@ -36,7 +36,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static void SetWindowTitle(string title)
     {
-        var pTitle = Marshal.StringToCoTaskMemUTF8(title);
+        nint pTitle = Marshal.StringToCoTaskMemUTF8(title);
         SetWindowTitle((sbyte*)pTitle);
         Marshal.FreeCoTaskMem(pTitle);
     }
@@ -46,7 +46,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static string GetMonitorNameString(int monitor)
     {
-        return Marshal.PtrToStringUTF8((IntPtr)GetMonitorName(monitor)) ?? string.Empty;
+        return Marshal.PtrToStringUTF8((nint)GetMonitorName(monitor)) ?? string.Empty;
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static void SetClipboardText(string text)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
         SetClipboardText((sbyte*)pText);
         Marshal.FreeCoTaskMem(pText);
     }
@@ -72,9 +72,9 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Shader LoadShader(string vsFileName, string fsFileName)
     {
-        var pVsFileName = Marshal.StringToCoTaskMemUTF8(vsFileName);
-        var pFsFileName = Marshal.StringToCoTaskMemUTF8(fsFileName);
-        var result = LoadShader((sbyte*)pVsFileName, (sbyte*)pFsFileName);
+        nint pVsFileName = Marshal.StringToCoTaskMemUTF8(vsFileName);
+        nint pFsFileName = Marshal.StringToCoTaskMemUTF8(fsFileName);
+        Shader result = LoadShader((sbyte*)pVsFileName, (sbyte*)pFsFileName);
         Marshal.FreeCoTaskMem(pFsFileName);
         Marshal.FreeCoTaskMem(pVsFileName);
         return result;
@@ -85,9 +85,9 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Shader LoadShaderFromMemory(string vsCode, string fsCode)
     {
-        var pVsCode = Marshal.StringToCoTaskMemUTF8(vsCode);
-        var pFsCode = Marshal.StringToCoTaskMemUTF8(fsCode);
-        var result = LoadShaderFromMemory((sbyte*)pVsCode, (sbyte*)pFsCode);
+        nint pVsCode = Marshal.StringToCoTaskMemUTF8(vsCode);
+        nint pFsCode = Marshal.StringToCoTaskMemUTF8(fsCode);
+        Shader result = LoadShaderFromMemory((sbyte*)pVsCode, (sbyte*)pFsCode);
         Marshal.FreeCoTaskMem(pFsCode);
         Marshal.FreeCoTaskMem(pVsCode);
         return result;
@@ -98,8 +98,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static int GetShaderLocation(Shader shader, string uniformName)
     {
-        var pUniformName = Marshal.StringToCoTaskMemUTF8(uniformName);
-        var result = GetShaderLocation(shader, (sbyte*)pUniformName);
+        nint pUniformName = Marshal.StringToCoTaskMemUTF8(uniformName);
+        int result = GetShaderLocation(shader, (sbyte*)pUniformName);
         Marshal.FreeCoTaskMem(pUniformName);
         return result;
     }
@@ -109,8 +109,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static int GetShaderLocationAttrib(Shader shader, string attribName)
     {
-        var pAttribName = Marshal.StringToCoTaskMemUTF8(attribName);
-        var result = GetShaderLocationAttrib(shader, (sbyte*)pAttribName);
+        nint pAttribName = Marshal.StringToCoTaskMemUTF8(attribName);
+        int result = GetShaderLocationAttrib(shader, (sbyte*)pAttribName);
         Marshal.FreeCoTaskMem(pAttribName);
         return result;
     }
@@ -157,7 +157,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static void TakeScreenshot(string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
         TakeScreenshot((sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
     }
@@ -167,7 +167,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static void OpenURL(string url)
     {
-        var pUrl = Marshal.StringToCoTaskMemUTF8(url);
+        nint pUrl = Marshal.StringToCoTaskMemUTF8(url);
         OpenURL((sbyte*)pUrl);
         Marshal.FreeCoTaskMem(pUrl);
     }
@@ -177,7 +177,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static void TraceLog(TraceLogLevel logLevel, string text)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
         TraceLog(logLevel, (sbyte*)pText);
         Marshal.FreeCoTaskMem(pText);
     }
@@ -205,7 +205,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static byte* LoadFileData(string fileName, out int dataSize)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
         byte* result;
         fixed (int* pDataSize = &dataSize)
         {
@@ -222,7 +222,7 @@ public static unsafe partial class Raylib
     public static NativeBool SaveFileData<T>(string fileName, ReadOnlySpan<T> data)
         where T : unmanaged
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
         NativeBool result;
         fixed (T* pData = data)
         {
@@ -238,7 +238,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static NativeBool ExportDataAsCode(ReadOnlySpan<byte> data, string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
         NativeBool result;
         fixed (byte* pData = data)
         {
@@ -254,8 +254,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static sbyte* LoadFileText(string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = LoadFileText((sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        sbyte* result = LoadFileText((sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -265,9 +265,9 @@ public static unsafe partial class Raylib
     /// </summary>
     public static NativeBool SaveFileText(string fileName, string text)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
-        var result = SaveFileText((sbyte*)pFileName, (sbyte*)pText);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
+        NativeBool result = SaveFileText((sbyte*)pFileName, (sbyte*)pText);
         Marshal.FreeCoTaskMem(pText);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
@@ -278,8 +278,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static NativeBool FileExists(string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = FileExists((sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        NativeBool result = FileExists((sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -289,8 +289,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static NativeBool DirectoryExists(string dirName)
     {
-        var pDirName = Marshal.StringToCoTaskMemUTF8(dirName);
-        var result = DirectoryExists((sbyte*)pDirName);
+        nint pDirName = Marshal.StringToCoTaskMemUTF8(dirName);
+        NativeBool result = DirectoryExists((sbyte*)pDirName);
         Marshal.FreeCoTaskMem(pDirName);
         return result;
     }
@@ -300,9 +300,9 @@ public static unsafe partial class Raylib
     /// </summary>
     public static NativeBool IsFileExtension(string fileName, string ext)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var pExt = Marshal.StringToCoTaskMemUTF8(ext);
-        var result = IsFileExtension((sbyte*)pFileName, (sbyte*)pExt);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        nint pExt = Marshal.StringToCoTaskMemUTF8(ext);
+        NativeBool result = IsFileExtension((sbyte*)pFileName, (sbyte*)pExt);
         Marshal.FreeCoTaskMem(pExt);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
@@ -313,8 +313,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static int GetFileLength(string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = GetFileLength((sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        int result = GetFileLength((sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -324,8 +324,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static string GetFileExtension(string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = GetFileExtension((sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        sbyte* result = GetFileExtension((sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
     }
@@ -335,8 +335,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static string GetFileName(string filePath)
     {
-        var pFilePath = Marshal.StringToCoTaskMemUTF8(filePath);
-        var result = GetFileName((sbyte*)pFilePath);
+        nint pFilePath = Marshal.StringToCoTaskMemUTF8(filePath);
+        sbyte* result = GetFileName((sbyte*)pFilePath);
         Marshal.FreeCoTaskMem(pFilePath);
         return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
     }
@@ -346,8 +346,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static string GetFileNameWithoutExt(string filePath)
     {
-        var pFilePath = Marshal.StringToCoTaskMemUTF8(filePath);
-        var result = GetFileNameWithoutExt((sbyte*)pFilePath);
+        nint pFilePath = Marshal.StringToCoTaskMemUTF8(filePath);
+        sbyte* result = GetFileNameWithoutExt((sbyte*)pFilePath);
         Marshal.FreeCoTaskMem(pFilePath);
         return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
     }
@@ -357,8 +357,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static string GetDirectoryPath(string filePath)
     {
-        var pFilePath = Marshal.StringToCoTaskMemUTF8(filePath);
-        var result = GetDirectoryPath((sbyte*)pFilePath);
+        nint pFilePath = Marshal.StringToCoTaskMemUTF8(filePath);
+        sbyte* result = GetDirectoryPath((sbyte*)pFilePath);
         Marshal.FreeCoTaskMem(pFilePath);
         return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
     }
@@ -368,8 +368,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static string GetPrevDirectoryPath(string dirPath)
     {
-        var pDirPath = Marshal.StringToCoTaskMemUTF8(dirPath);
-        var result = GetPrevDirectoryPath((sbyte*)pDirPath);
+        nint pDirPath = Marshal.StringToCoTaskMemUTF8(dirPath);
+        sbyte* result = GetPrevDirectoryPath((sbyte*)pDirPath);
         Marshal.FreeCoTaskMem(pDirPath);
         return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
     }
@@ -395,8 +395,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static int MakeDirectory(string dirPath)
     {
-        var pDirPath = Marshal.StringToCoTaskMemUTF8(dirPath);
-        var result = MakeDirectory((sbyte*)pDirPath);
+        nint pDirPath = Marshal.StringToCoTaskMemUTF8(dirPath);
+        int result = MakeDirectory((sbyte*)pDirPath);
         Marshal.FreeCoTaskMem(pDirPath);
         return result;
     }
@@ -406,8 +406,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static NativeBool ChangeDirectory(string dir)
     {
-        var pDir = Marshal.StringToCoTaskMemUTF8(dir);
-        var result = ChangeDirectory((sbyte*)pDir);
+        nint pDir = Marshal.StringToCoTaskMemUTF8(dir);
+        NativeBool result = ChangeDirectory((sbyte*)pDir);
         Marshal.FreeCoTaskMem(pDir);
         return result;
     }
@@ -417,8 +417,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static NativeBool IsPathFile(string path)
     {
-        var pPath = Marshal.StringToCoTaskMemUTF8(path);
-        var result = IsPathFile((sbyte*)pPath);
+        nint pPath = Marshal.StringToCoTaskMemUTF8(path);
+        NativeBool result = IsPathFile((sbyte*)pPath);
         Marshal.FreeCoTaskMem(pPath);
         return result;
     }
@@ -428,8 +428,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static NativeBool IsFileNameValid(string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = IsFileNameValid((sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        NativeBool result = IsFileNameValid((sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -439,8 +439,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static FilePathList LoadDirectoryFiles(string dirPath)
     {
-        var pDirPath = Marshal.StringToCoTaskMemUTF8(dirPath);
-        var result = LoadDirectoryFiles((sbyte*)pDirPath);
+        nint pDirPath = Marshal.StringToCoTaskMemUTF8(dirPath);
+        FilePathList result = LoadDirectoryFiles((sbyte*)pDirPath);
         Marshal.FreeCoTaskMem(pDirPath);
         return result;
     }
@@ -450,9 +450,9 @@ public static unsafe partial class Raylib
     /// </summary>
     public static FilePathList LoadDirectoryFilesEx(string basePath, string filter, NativeBool scanSubdirs)
     {
-        var pBasePath = Marshal.StringToCoTaskMemUTF8(basePath);
-        var pFilter = Marshal.StringToCoTaskMemUTF8(filter);
-        var result = LoadDirectoryFilesEx((sbyte*)pBasePath, (sbyte*)pFilter, scanSubdirs);
+        nint pBasePath = Marshal.StringToCoTaskMemUTF8(basePath);
+        nint pFilter = Marshal.StringToCoTaskMemUTF8(filter);
+        FilePathList result = LoadDirectoryFilesEx((sbyte*)pBasePath, (sbyte*)pFilter, scanSubdirs);
         Marshal.FreeCoTaskMem(pFilter);
         Marshal.FreeCoTaskMem(pBasePath);
         return result;
@@ -554,8 +554,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static AutomationEventList LoadAutomationEventList(string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = LoadAutomationEventList((sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        AutomationEventList result = LoadAutomationEventList((sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -565,8 +565,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static NativeBool ExportAutomationEventList(AutomationEventList list, string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = ExportAutomationEventList(list, (sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        NativeBool result = ExportAutomationEventList(list, (sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -625,8 +625,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static int SetGamepadMappings(string mappings)
     {
-        var pMappings = Marshal.StringToCoTaskMemUTF8(mappings);
-        var result = SetGamepadMappings((sbyte*)pMappings);
+        nint pMappings = Marshal.StringToCoTaskMemUTF8(mappings);
+        int result = SetGamepadMappings((sbyte*)pMappings);
         Marshal.FreeCoTaskMem(pMappings);
         return result;
     }
@@ -919,8 +919,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Image LoadImage(string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = LoadImage((sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        Image result = LoadImage((sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -930,8 +930,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Image LoadImageRaw(string fileName, int width, int height, PixelFormat format, int headerSize)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = LoadImageRaw((sbyte*)pFileName, width, height, format, headerSize);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        Image result = LoadImageRaw((sbyte*)pFileName, width, height, format, headerSize);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -941,7 +941,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Image LoadImageAnim(string fileName, out int frames)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
         Image result;
         fixed (int* pFrames = &frames)
         {
@@ -957,7 +957,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Image LoadImageAnimFromMemory(string fileType, ReadOnlySpan<byte> fileData, out int frames)
     {
-        var pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
+        nint pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
         Image result;
         fixed (byte* pFileData = fileData)
         {
@@ -976,7 +976,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Image LoadImageFromMemory(string fileType, ReadOnlySpan<byte> fileData)
     {
-        var pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
+        nint pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
         Image result;
         fixed (byte* pFileData = fileData)
         {
@@ -992,8 +992,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static NativeBool ExportImage(Image image, string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = ExportImage(image, (sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        NativeBool result = ExportImage(image, (sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -1003,7 +1003,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static byte* ExportImageToMemory(Image image, string fileType, out int fileSize)
     {
-        var pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
+        nint pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
         byte* result;
         fixed (int* pFileSize = &fileSize)
         {
@@ -1019,8 +1019,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static NativeBool ExportImageAsCode(Image image, string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = ExportImageAsCode(image, (sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        NativeBool result = ExportImageAsCode(image, (sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -1030,8 +1030,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Image GenImageText(int width, int height, string text)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
-        var result = GenImageText(width, height, (sbyte*)pText);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
+        Image result = GenImageText(width, height, (sbyte*)pText);
         Marshal.FreeCoTaskMem(pText);
         return result;
     }
@@ -1041,8 +1041,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Image ImageText(string text, int fontSize, Color color)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
-        var result = ImageText((sbyte*)pText, fontSize, color);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
+        Image result = ImageText((sbyte*)pText, fontSize, color);
         Marshal.FreeCoTaskMem(pText);
         return result;
     }
@@ -1052,8 +1052,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Image ImageTextEx(Font font, string text, float fontSize, float spacing, Color tint)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
-        var result = ImageTextEx(font, (sbyte*)pText, fontSize, spacing, tint);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
+        Image result = ImageTextEx(font, (sbyte*)pText, fontSize, spacing, tint);
         Marshal.FreeCoTaskMem(pText);
         return result;
     }
@@ -1578,7 +1578,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static void ImageDrawText(ref Image dst, string text, int posX, int posY, int fontSize, Color color)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
         fixed (Image* pDst = &dst)
         {
             ImageDrawText(pDst, (sbyte*)pText, posX, posY, fontSize, color);
@@ -1592,7 +1592,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static void ImageDrawTextEx(ref Image dst, Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
         fixed (Image* pDst = &dst)
         {
             ImageDrawTextEx(pDst, font, (sbyte*)pText, position, fontSize, spacing, tint);
@@ -1606,8 +1606,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Texture2D LoadTexture(string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = LoadTexture((sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        Texture2D result = LoadTexture((sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -1652,8 +1652,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Font LoadFont(string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = LoadFont((sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        Font result = LoadFont((sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -1664,7 +1664,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Font LoadFontEx(string fileName, int fontSize, ReadOnlySpan<int> codepoints)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
         Font result;
         fixed (int* pCodepoints = codepoints)
         {
@@ -1681,8 +1681,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Font LoadFontEx(string fileName, int fontSize, int codepointCount)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = LoadFontEx((sbyte*)pFileName, fontSize, null, codepointCount);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        Font result = LoadFontEx((sbyte*)pFileName, fontSize, null, codepointCount);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -1692,7 +1692,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Font LoadFontFromMemory(string fileType, ReadOnlySpan<byte> fileData, int fontSize, ReadOnlySpan<int> codepoints)
     {
-        var pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
+        nint pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
         Font result;
         fixed (byte* pFileData = fileData)
         {
@@ -1712,7 +1712,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Font LoadFontFromMemory(string fileType, ReadOnlySpan<byte> fileData, int fontSize, int codepointCount)
     {
-        var pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
+        nint pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
         Font result;
         fixed (byte* pFileData = fileData)
         {
@@ -1765,7 +1765,7 @@ public static unsafe partial class Raylib
             glyphRecs = new Rectangle[glyphs.Length];
             fixed (Rectangle* pGlyphRecs = glyphRecs)
             {
-                var size = glyphs.Length * sizeof(GlyphInfo);
+                int size = glyphs.Length * sizeof(GlyphInfo);
                 Buffer.MemoryCopy(nativeGlyphRecs, pGlyphRecs, size, size);
             }
 
@@ -1780,8 +1780,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static NativeBool ExportFontAsCode(Font font, string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = ExportFontAsCode(font, (sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        NativeBool result = ExportFontAsCode(font, (sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -1791,7 +1791,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static void DrawText(string text, int posX, int posY, int fontSize, Color color)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
         DrawText((sbyte*)pText, posX, posY, fontSize, color);
         Marshal.FreeCoTaskMem(pText);
     }
@@ -1801,7 +1801,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static void DrawTextEx(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
         DrawTextEx(font, (sbyte*)pText, position, fontSize, spacing, tint);
         Marshal.FreeCoTaskMem(pText);
     }
@@ -1812,7 +1812,7 @@ public static unsafe partial class Raylib
     public static void DrawTextPro(
         Font font, string text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
         DrawTextPro(font, (sbyte*)pText, position, origin, rotation, fontSize, spacing, tint);
         Marshal.FreeCoTaskMem(pText);
     }
@@ -1833,8 +1833,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static int MeasureText(string text, int fontSize)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
-        var result = MeasureText((sbyte*)pText, fontSize);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
+        int result = MeasureText((sbyte*)pText, fontSize);
         Marshal.FreeCoTaskMem(pText);
         return result;
     }
@@ -1844,8 +1844,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Vector2 MeasureTextEx(Font font, string text, float fontSize, float spacing)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
-        var result = MeasureTextEx(font, (sbyte*)pText, fontSize, spacing);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
+        Vector2 result = MeasureTextEx(font, (sbyte*)pText, fontSize, spacing);
         Marshal.FreeCoTaskMem(pText);
         return result;
     }
@@ -1866,7 +1866,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static int* LoadCodepoints(string text, out int count)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
         int* result;
         fixed (int* pCount = &count)
         {
@@ -1882,8 +1882,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static int GetCodepointCount(string text)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
-        var result = GetCodepointCount((sbyte*)pText);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
+        int result = GetCodepointCount((sbyte*)pText);
         Marshal.FreeCoTaskMem(pText);
         return result;
     }
@@ -1893,7 +1893,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static int GetCodepoint(string text, out int codepointSize)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
         int result;
         fixed (int* pCodepointSize = &codepointSize)
         {
@@ -1909,7 +1909,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static int GetCodepointNext(string text, out int codepointSize)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
         int result;
         fixed (int* pCodepointSize = &codepointSize)
         {
@@ -1925,7 +1925,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static int GetCodepointPrevious(string text, out int codepointSize)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
         int result;
         fixed (int* pCodepointSize = &codepointSize)
         {
@@ -1950,8 +1950,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static string TextToPascal(string text)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
-        var result = TextToPascal((sbyte*)pText);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
+        sbyte* result = TextToPascal((sbyte*)pText);
         Marshal.FreeCoTaskMem(pText);
         return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
     }
@@ -1961,8 +1961,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static string TextToSnake(string text)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
-        var result = TextToSnake((sbyte*)pText);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
+        sbyte* result = TextToSnake((sbyte*)pText);
         Marshal.FreeCoTaskMem(pText);
         return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
     }
@@ -1972,8 +1972,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static string TextToCamel(string text)
     {
-        var pText = Marshal.StringToCoTaskMemUTF8(text);
-        var result = TextToCamel((sbyte*)pText);
+        nint pText = Marshal.StringToCoTaskMemUTF8(text);
+        sbyte* result = TextToCamel((sbyte*)pText);
         Marshal.FreeCoTaskMem(pText);
         return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
     }
@@ -1994,8 +1994,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Model LoadModel(string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = LoadModel((sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        Model result = LoadModel((sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -2050,8 +2050,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static NativeBool ExportMesh(Mesh mesh, string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = ExportMesh(mesh, (sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        NativeBool result = ExportMesh(mesh, (sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -2061,8 +2061,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static NativeBool ExportMeshAsCode(Mesh mesh, string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = ExportMeshAsCode(mesh, (sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        NativeBool result = ExportMeshAsCode(mesh, (sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -2072,7 +2072,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Material* LoadMaterials(string fileName, out int materialCount)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
         Material* result;
         fixed (int* pMaterialCount = &materialCount)
         {
@@ -2111,7 +2111,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static ModelAnimation* LoadModelAnimations(string fileName, out int animCount)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
         ModelAnimation* result;
         fixed (int* pAnimCount = &animCount)
         {
@@ -2127,8 +2127,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Wave LoadWave(string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = LoadWave((sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        Wave result = LoadWave((sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -2138,7 +2138,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Wave LoadWaveFromMemory(string fileType, ReadOnlySpan<byte> fileData)
     {
-        var pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
+        nint pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
         Wave result;
         fixed (byte* pFileData = fileData)
         {
@@ -2154,8 +2154,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Sound LoadSound(string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = LoadSound((sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        Sound result = LoadSound((sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -2177,8 +2177,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static NativeBool ExportWave(Wave wave, string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = ExportWave(wave, (sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        NativeBool result = ExportWave(wave, (sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -2188,8 +2188,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static NativeBool ExportWaveAsCode(Wave wave, string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = ExportWaveAsCode(wave, (sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        NativeBool result = ExportWaveAsCode(wave, (sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -2221,8 +2221,8 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Music LoadMusicStream(string fileName)
     {
-        var pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        var result = LoadMusicStream((sbyte*)pFileName);
+        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
+        Music result = LoadMusicStream((sbyte*)pFileName);
         Marshal.FreeCoTaskMem(pFileName);
         return result;
     }
@@ -2232,7 +2232,7 @@ public static unsafe partial class Raylib
     /// </summary>
     public static Music LoadMusicStreamFromMemory(string fileType, ReadOnlySpan<byte> data)
     {
-        var pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
+        nint pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
         Music result;
         fixed (byte* pData = data)
         {

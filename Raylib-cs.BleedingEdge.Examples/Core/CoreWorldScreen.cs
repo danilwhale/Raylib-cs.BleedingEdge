@@ -34,7 +34,7 @@ public class CoreWorldScreen
         InitWindow(screenWidth, screenHeight, "raylib [core] example - core world screen");
 
         // Define the camera to look into our 3d world
-        var camera = new Camera3D
+        Camera3D camera = new Camera3D
         {
             Position = new Vector3(10.0f, 10.0f, 10.0f), // Camera position
             Target = new Vector3(0.0f, 0.0f, 0.0f), // Camera looking at point
@@ -43,8 +43,8 @@ public class CoreWorldScreen
             Projection = CameraProjection.Perspective // Camera projection type
         };
 
-        var cubePosition = new Vector3(0.0f, 0.0f, 0.0f);
-        var cubeScreenPosition = new Vector2(0.0f, 0.0f);
+        Vector3 cubePosition = new Vector3(0.0f, 0.0f, 0.0f);
+        Vector2 cubeScreenPosition = new Vector2(0.0f, 0.0f);
 
         DisableCursor(); // Limit cursor to relative movement inside the window
 

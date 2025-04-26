@@ -33,14 +33,14 @@ public class CoreInputGestures
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - input gestures");
 
-        var touchPosition = new Vector2(0.0f, 0.0f);
-        var touchArea = new Rectangle(220, 10, screenWidth - 230.0f, screenHeight - 20.0f);
+        Vector2 touchPosition = new Vector2(0.0f, 0.0f);
+        Rectangle touchArea = new Rectangle(220, 10, screenWidth - 230.0f, screenHeight - 20.0f);
 
-        var gesturesCount = 0;
-        var gestureStrings = new string[20];
+        int gesturesCount = 0;
+        string[] gestureStrings = new string[20];
 
-        var currentGesture = Gesture.None;
-        var lastGesture = Gesture.None;
+        Gesture currentGesture = Gesture.None;
+        Gesture lastGesture = Gesture.None;
 
         //SetGesturesEnabled(0b0000000000001001);   // Enable only some gestures to be detected
 
@@ -80,7 +80,7 @@ public class CoreInputGestures
                     // Reset gestures strings
                     if (gesturesCount >= gestureStrings.Length)
                     {
-                        for (var i = 0; i < gestureStrings.Length; i++) gestureStrings[i] = string.Empty;
+                        for (int i = 0; i < gestureStrings.Length; i++) gestureStrings[i] = string.Empty;
 
                         gesturesCount = 0;
                     }
@@ -99,7 +99,7 @@ public class CoreInputGestures
 
             DrawText("GESTURES TEST AREA", screenWidth - 270, screenHeight - 40, 20, ColorAlpha(Color.Gray, 0.5f));
 
-            for (var i = 0; i < gesturesCount; i++)
+            for (int i = 0; i < gesturesCount; i++)
             {
                 if (i % 2 == 0) DrawRectangle(10, 30 + 20 * i, 200, 20, ColorAlpha(Color.LightGray, 0.5f));
                 else DrawRectangle(10, 30 + 20 * i, 200, 20, ColorAlpha(Color.LightGray, 0.3f));

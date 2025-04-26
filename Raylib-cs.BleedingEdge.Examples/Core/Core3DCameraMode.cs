@@ -34,7 +34,7 @@ public class Core3DCameraMode
         InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d camera mode");
 
         // Define the camera to look into our 3d world
-        var camera = new Camera3D
+        Camera3D camera = new Camera3D
         {
             Position = new Vector3(0.0f, 10.0f, 10.0f), // Camera position
             Target = new Vector3(0.0f, 0.0f, 0.0f), // Camera looking at point
@@ -43,7 +43,7 @@ public class Core3DCameraMode
             Projection = CameraProjection.Perspective // Camera mode type
         };
 
-        var cubePosition = new Vector3(0.0f, 0.0f, 0.0f);
+        Vector3 cubePosition = new Vector3(0.0f, 0.0f, 0.0f);
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------

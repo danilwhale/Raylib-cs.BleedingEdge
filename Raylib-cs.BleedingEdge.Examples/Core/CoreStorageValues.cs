@@ -41,9 +41,9 @@ public class CoreStorageValues
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - storage save/load values");
 
-        var score = 0;
-        var hiscore = 0;
-        var framesCounter = 0;
+        int score = 0;
+        int hiscore = 0;
+        int framesCounter = 0;
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
@@ -143,13 +143,13 @@ public class CoreStorageValues
     // NOTE: If requested position could not be found, value 0 is returned
     private static int LoadStorageValue(StoragePosition position)
     {
-        var value = 0;
+        int value = 0;
 
         if (!File.Exists(StorageDataFile)) return value;
 
         try
         {
-            var fileData = File.ReadAllBytes(StorageDataFile);
+            byte[] fileData = File.ReadAllBytes(StorageDataFile);
             if (fileData.Length < (int)position * sizeof(int))
             {
                 TraceLog(TraceLogLevel.Warning, $"FILEIO: [{StorageDataFile}] Failed to find storage position: {(int)position}");

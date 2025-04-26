@@ -34,8 +34,8 @@ public class CoreDropFiles
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - drop files");
 
-        var filePathCounter = 0;
-        var filePaths = new string[4096]; // We will register a maximum of filepaths
+        int filePathCounter = 0;
+        string[] filePaths = new string[4096]; // We will register a maximum of filepaths
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ public class CoreDropFiles
             //----------------------------------------------------------------------------------
             if (IsFileDropped())
             {
-                var droppedFiles = LoadDroppedFiles();
+                FilePathList droppedFiles = LoadDroppedFiles();
 
                 for (int i = 0, offset = filePathCounter; i < (int)droppedFiles.Count; i++)
                 {
@@ -73,7 +73,7 @@ public class CoreDropFiles
             {
                 DrawText("Dropped files:", 100, 40, 20, Color.DarkGray);
 
-                for (var i = 0; i < filePathCounter; i++)
+                for (int i = 0; i < filePathCounter; i++)
                 {
                     if (i % 2 == 0) DrawRectangle(0, 85 + 40 * i, screenWidth, 40, ColorAlpha(Color.LightGray, 0.5f));
                     else DrawRectangle(0, 85 + 40 * i, screenWidth, 40, ColorAlpha(Color.LightGray, 0.3f));

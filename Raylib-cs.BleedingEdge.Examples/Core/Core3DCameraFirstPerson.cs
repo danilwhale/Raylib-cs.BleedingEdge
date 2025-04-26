@@ -36,7 +36,7 @@ public class Core3DCameraFirstPerson
         InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d camera first person");
 
         // Define the camera to look into our 3d world (position, target, up vector)
-        var camera = new Camera3D
+        Camera3D camera = new Camera3D
         {
             Position = new Vector3(0.0f, 2.0f, 4.0f), // Camera position
             Target = new Vector3(0.0f, 2.0f, 0.0f), // Camera looking at point
@@ -45,14 +45,14 @@ public class Core3DCameraFirstPerson
             Projection = CameraProjection.Perspective // Camera projection type
         };
 
-        var cameraMode = CameraMode.FirstPerson;
+        CameraMode cameraMode = CameraMode.FirstPerson;
 
         // Generates some random columns
-        var heights = new float[MaxColumns];
-        var positions = new Vector3[MaxColumns];
-        var colors = new Color[MaxColumns];
+        float[] heights = new float[MaxColumns];
+        Vector3[] positions = new Vector3[MaxColumns];
+        Color[] colors = new Color[MaxColumns];
 
-        for (var i = 0; i < MaxColumns; i++)
+        for (int i = 0; i < MaxColumns; i++)
         {
             heights[i] = GetRandomValue(1, 12);
             positions[i] = new Vector3(GetRandomValue(-15, 15), heights[i] / 2.0f, GetRandomValue(-15, 15));
@@ -162,7 +162,7 @@ public class Core3DCameraFirstPerson
             DrawCube(new Vector3(0.0f, 2.5f, 16.0f), 32.0f, 5.0f, 1.0f, Color.Gold); // Draw a yellow wall
 
             // Draw some cubes around
-            for (var i = 0; i < MaxColumns; i++)
+            for (int i = 0; i < MaxColumns; i++)
             {
                 DrawCube(positions[i], 2.0f, heights[i], 2.0f, colors[i]);
                 DrawCubeWires(positions[i], 2.0f, heights[i], 2.0f, Color.Maroon);

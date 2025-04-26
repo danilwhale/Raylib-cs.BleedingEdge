@@ -33,7 +33,7 @@ public class CoreInputKeys
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - keyboard input");
 
-        var ballPosition = new Vector2((float)screenWidth / 2, (float)screenHeight / 2);
+        Vector2 ballPosition = new Vector2((float)screenWidth / 2, (float)screenHeight / 2);
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------

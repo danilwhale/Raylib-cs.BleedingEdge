@@ -35,7 +35,7 @@ public class CoreInputMultitouch
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - input multitouch");
 
-        var touchPositions = new Vector2[10];
+        Vector2[] touchPositions = new Vector2[10];
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //---------------------------------------------------------------------------------------
@@ -46,11 +46,11 @@ public class CoreInputMultitouch
             // Update
             //----------------------------------------------------------------------------------
             // Get the touch point count ( how many fingers are touching the screen )
-            var tCount = GetTouchPointCount();
+            int tCount = GetTouchPointCount();
             // Clamp touch points available ( set the maximum touch points allowed )
             if (tCount > touchPositions.Length) tCount = touchPositions.Length;
             // Get touch points positions
-            for (var i = 0; i < tCount; ++i) touchPositions[i] = GetTouchPosition(i);
+            for (int i = 0; i < tCount; ++i) touchPositions[i] = GetTouchPosition(i);
             //----------------------------------------------------------------------------------
 
             // Draw
@@ -59,7 +59,7 @@ public class CoreInputMultitouch
 
             ClearBackground(Color.RayWhite);
 
-            for (var i = 0; i < tCount; ++i)
+            for (int i = 0; i < tCount; ++i)
             {
                 // Make sure point is not (0, 0) as this means there is no touch for it
                 if (touchPositions[i].X > 0 && touchPositions[i].Y > 0)

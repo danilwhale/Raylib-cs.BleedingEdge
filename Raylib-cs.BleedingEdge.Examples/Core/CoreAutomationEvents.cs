@@ -54,7 +54,7 @@ public unsafe class CoreAutomationEvents
         InitWindow(screenWidth, screenHeight, "raylib [core] example - automation events");
 
         // Define player
-        var player = new Player
+        Player player = new Player
         {
             Position = new Vector2(400, 280),
             Speed = 0.0f,
@@ -62,7 +62,7 @@ public unsafe class CoreAutomationEvents
         };
 
         // Define environment elements (platforms)
-        var envElements = new EnvElement[]
+        EnvElement[] envElements = new EnvElement[]
         {
             new() { Rect = new Rectangle(0, 0, 1000, 400), Blocking = false, Color = Color.LightGray },
             new() { Rect = new Rectangle(0, 400, 1000, 200), Blocking = true, Color = Color.Gray },
@@ -72,7 +72,7 @@ public unsafe class CoreAutomationEvents
         };
 
         // Define camera
-        var camera = new Camera2D
+        Camera2D camera = new Camera2D
         {
             Target = player.Position,
             Offset = new Vector2(screenWidth / 2.0f, screenHeight / 2.0f),
@@ -87,15 +87,15 @@ public unsafe class CoreAutomationEvents
         // ref var aelist = ref nativeAelist.Value;
         // SetAutomationEventList(nativeAelist);
         // if you decide to store automation event list inside the local variable:
-        var aelist = LoadAutomationEventList((string)null); // Initialize list of automation events to record new events
+        AutomationEventList aelist = LoadAutomationEventList((string)null); // Initialize list of automation events to record new events
         SetAutomationEventList(ref aelist);
         
-        var eventRecording = false;
-        var eventPlaying = false;
+        bool eventRecording = false;
+        bool eventPlaying = false;
 
-        var frameCounter = 0u;
-        var playFrameCounter = 0u;
-        var currentPlayFrame = 0u;
+        uint frameCounter = 0u;
+        uint playFrameCounter = 0u;
+        uint currentPlayFrame = 0u;
 
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------
@@ -105,13 +105,13 @@ public unsafe class CoreAutomationEvents
         {
             // Update
             //----------------------------------------------------------------------------------
-            var deltaTime = 0.015f; //GetFrameTime();
+            float deltaTime = 0.015f; //GetFrameTime();
 
             // Dropped files logic
             //----------------------------------------------------------------------------------
             if (IsFileDropped())
             {
-                var droppedFiles = LoadDroppedFiles();
+                FilePathList droppedFiles = LoadDroppedFiles();
 
                 // Supports loading .rgs style files (text or binary) and .png style palette images
                 if (IsFileExtension(droppedFiles.PathsArray[0], ".txt;.rae"))
@@ -150,11 +150,11 @@ public unsafe class CoreAutomationEvents
                 player.CanJump = false;
             }
 
-            var hitObstacle = false;
-            for (var i = 0; i < envElements.Length; i++)
+            bool hitObstacle = false;
+            for (int i = 0; i < envElements.Length; i++)
             {
-                ref var element = ref envElements[i];
-                ref var p = ref player.Position;
+                ref EnvElement element = ref envElements[i];
+                ref Vector2 p = ref player.Position;
                 if (element.Blocking &&
                     element.Rect.X <= p.X &&
                     element.Rect.X + element.Rect.Width >= p.X &&
@@ -227,17 +227,17 @@ public unsafe class CoreAutomationEvents
             if (camera.Zoom > 3.0f) camera.Zoom = 3.0f;
             else if (camera.Zoom < 0.25f) camera.Zoom = 0.25f;
 
-            for (var i = 0; i < envElements.Length; i++)
+            for (int i = 0; i < envElements.Length; i++)
             {
-                ref var element = ref envElements[i];
+                ref EnvElement element = ref envElements[i];
                 minX = Math.Min(element.Rect.X, minX);
                 maxX = Math.Max(element.Rect.X + element.Rect.Width, maxX);
                 minY = Math.Min(element.Rect.Y, minY);
                 maxY = Math.Max(element.Rect.Y + element.Rect.Height, maxY);
             }
 
-            var max = GetWorldToScreen2D(new Vector2(maxX, maxY), camera);
-            var min = GetWorldToScreen2D(new Vector2(minX, minY), camera);
+            Vector2 max = GetWorldToScreen2D(new Vector2(maxX, maxY), camera);
+            Vector2 min = GetWorldToScreen2D(new Vector2(minX, minY), camera);
 
             if (max.X < screenWidth) camera.Offset.X = screenWidth - (max.X - screenWidth / 2);
             if (max.Y < screenHeight) camera.Offset.Y = screenHeight - (max.Y - screenHeight / 2);
@@ -300,7 +300,7 @@ public unsafe class CoreAutomationEvents
             BeginMode2D(camera);
 
             // Draw environment elements
-            for (var i = 0; i < envElements.Length; i++)
+            for (int i = 0; i < envElements.Length; i++)
             {
                 DrawRectangleRec(envElements[i].Rect, envElements[i].Color);
             }

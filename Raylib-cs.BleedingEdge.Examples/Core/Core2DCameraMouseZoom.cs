@@ -35,12 +35,12 @@ public class Core2DCameraMouseZoom
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - 2d camera mouse zoom");
 
-        var camera = new Camera2D
+        Camera2D camera = new Camera2D
         {
             Zoom = 1.0f
         };
 
-        var zoomMode = 0; // 0-Mouse Wheel, 1-Mouse Move
+        int zoomMode = 0; // 0-Mouse Wheel, 1-Mouse Move
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
@@ -56,7 +56,7 @@ public class Core2DCameraMouseZoom
             // Translate based on mouse right click
             if (IsMouseButtonDown(MouseButton.Left))
             {
-                var delta = GetMouseDelta();
+                Vector2 delta = GetMouseDelta();
                 delta *= -1.0f / camera.Zoom;
                 camera.Target += delta;
             }
@@ -64,11 +64,11 @@ public class Core2DCameraMouseZoom
             if (zoomMode == 0)
             {
                 // Zoom based on mouse wheel
-                var wheel = GetMouseWheelMove();
+                float wheel = GetMouseWheelMove();
                 if (wheel != 0)
                 {
                     // Get the world point that is under the mouse
-                    var mouseWorldPos = GetScreenToWorld2D(GetMousePosition(), camera);
+                    Vector2 mouseWorldPos = GetScreenToWorld2D(GetMousePosition(), camera);
 
                     // Set the offset to where the mouse is
                     camera.Offset = GetMousePosition();
@@ -88,7 +88,7 @@ public class Core2DCameraMouseZoom
                 if (IsMouseButtonPressed(MouseButton.Right))
                 {
                     // Get the world point that is under the mouse
-                    var mouseWorldPos = GetScreenToWorld2D(GetMousePosition(), camera);
+                    Vector2 mouseWorldPos = GetScreenToWorld2D(GetMousePosition(), camera);
 
                     // Set the offset to where the mouse is
                     camera.Offset = GetMousePosition();
@@ -101,7 +101,7 @@ public class Core2DCameraMouseZoom
                 if (IsMouseButtonDown(MouseButton.Right))
                 {
                     // Zoom increment
-                    var deltaX = GetMouseDelta().X;
+                    float deltaX = GetMouseDelta().X;
                     float scale = 0.005f * deltaX;
                     camera.Zoom = Math.Clamp(MathF.Exp(MathF.Log(camera.Zoom) + scale), 0.125f, 64.0f);
                 }

@@ -15,7 +15,7 @@ public static unsafe partial class Raylib
     /// </remarks>
     public static string GetMonitorName_(int monitor)
     {
-        return Marshal.PtrToStringUTF8((IntPtr)GetMonitorName(monitor)) ?? string.Empty;
+        return Marshal.PtrToStringUTF8((nint)GetMonitorName(monitor)) ?? string.Empty;
     }
 
     /// <summary>
@@ -59,10 +59,10 @@ public static unsafe partial class Raylib
     /// </remarks>
     public static string[] GetDroppedFiles()
     {
-        var files = LoadDroppedFiles();
-        var result = new string[files.Count];
+        FilePathList files = LoadDroppedFiles();
+        string[] result = new string[files.Count];
 
-        for (var i = 0; i < files.Count; i++)
+        for (int i = 0; i < files.Count; i++)
         {
             result[i] = files.PathsArray[i];
         }

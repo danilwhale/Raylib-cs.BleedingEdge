@@ -56,14 +56,14 @@ public class Core2DCameraPlatformer
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - 2d camera");
 
-        var player = new Player
+        Player player = new Player
         {
             Position = new Vector2(400, 280),
             Speed = 0,
             CanJump = false
         };
 
-        var envItems = new EnvItem[]
+        EnvItem[] envItems = new EnvItem[]
         {
             new() { Rect = new Rectangle(0, 0, 1000, 400), Blocking = false, Color = Color.LightGray },
             new() { Rect = new Rectangle(0, 400, 1000, 200), Blocking = true, Color = Color.Gray },
@@ -72,7 +72,7 @@ public class Core2DCameraPlatformer
             new() { Rect = new Rectangle(650, 300, 100, 10), Blocking = true, Color = Color.Gray }
         };
 
-        var camera = new Camera2D
+        Camera2D camera = new Camera2D
         {
             Target = player.Position,
             Offset = new Vector2(screenWidth / 2.0f, screenHeight / 2.0f),
@@ -81,7 +81,7 @@ public class Core2DCameraPlatformer
         };
 
         // Store pointers to the multiple update camera functions
-        var cameraUpdaters = new CameraUpdater[]
+        CameraUpdater[] cameraUpdaters = new CameraUpdater[]
         {
             UpdateCameraCenter,
             UpdateCameraCenterInsideMap,
@@ -90,9 +90,9 @@ public class Core2DCameraPlatformer
             UpdateCameraPlayerBoundsPush
         };
 
-        var cameraOption = 0;
+        int cameraOption = 0;
 
-        var cameraDescriptions = new[]
+        string[] cameraDescriptions = new[]
         {
             "Follow player center",
             "Follow player center, but clamp to map edges",
@@ -109,7 +109,7 @@ public class Core2DCameraPlatformer
         {
             // Update
             //----------------------------------------------------------------------------------
-            var deltaTime = GetFrameTime();
+            float deltaTime = GetFrameTime();
 
             UpdatePlayer(ref player, envItems, deltaTime);
 
@@ -138,9 +138,9 @@ public class Core2DCameraPlatformer
 
             BeginMode2D(camera);
 
-            for (var i = 0; i < envItems.Length; i++) DrawRectangleRec(envItems[i].Rect, envItems[i].Color);
+            for (int i = 0; i < envItems.Length; i++) DrawRectangleRec(envItems[i].Rect, envItems[i].Color);
 
-            var playerRect = new Rectangle(player.Position.X - 20, player.Position.Y - 40, 40.0f, 40.0f);
+            Rectangle playerRect = new Rectangle(player.Position.X - 20, player.Position.Y - 40, 40.0f, 40.0f);
             DrawRectangleRec(playerRect, Color.Red);
 
             DrawCircleV(player.Position, 5.0f, Color.Gold);
@@ -175,11 +175,11 @@ public class Core2DCameraPlatformer
             player.CanJump = false;
         }
 
-        var hitObstacle = false;
-        for (var i = 0; i < envItems.Length; i++)
+        bool hitObstacle = false;
+        for (int i = 0; i < envItems.Length; i++)
         {
-            ref var ei = ref envItems[i];
-            ref var p = ref player.Position;
+            ref EnvItem ei = ref envItems[i];
+            ref Vector2 p = ref player.Position;
 
             if (ei.Blocking &&
                 ei.Rect.X <= p.X &&
@@ -217,17 +217,17 @@ public class Core2DCameraPlatformer
         camera.Offset = new Vector2(width / 2.0f, height / 2.0f);
         float minX = 1000, minY = 1000, maxX = -1000, maxY = -1000;
 
-        for (var i = 0; i < envItems.Length; i++)
+        for (int i = 0; i < envItems.Length; i++)
         {
-            ref var ei = ref envItems[i];
+            ref EnvItem ei = ref envItems[i];
             minX = Math.Min(ei.Rect.X, minX);
             maxX = Math.Max(ei.Rect.X + ei.Rect.Width, maxX);
             minY = Math.Min(ei.Rect.Y, minY);
             maxY = Math.Max(ei.Rect.Y + ei.Rect.Height, maxY);
         }
 
-        var max = GetWorldToScreen2D(new Vector2(maxX, maxY), camera);
-        var min = GetWorldToScreen2D(new Vector2(minX, minY), camera);
+        Vector2 max = GetWorldToScreen2D(new Vector2(maxX, maxY), camera);
+        Vector2 min = GetWorldToScreen2D(new Vector2(minX, minY), camera);
 
         if (max.X < width) camera.Offset.X = width - (max.X - width / 2);
         if (max.Y < height) camera.Offset.Y = height - (max.Y - height / 2);
@@ -243,12 +243,12 @@ public class Core2DCameraPlatformer
         const float fractionSpeed = 0.8f;
 
         camera.Offset = new Vector2(width / 2.0f, height / 2.0f);
-        var diff = player.Position - camera.Target;
-        var length = diff.Length();
+        Vector2 diff = player.Position - camera.Target;
+        float length = diff.Length();
 
         if (length > minEffectLength)
         {
-            var speed = Math.Max(fractionSpeed * length, minSpeed);
+            float speed = Math.Max(fractionSpeed * length, minSpeed);
             camera.Target += diff * speed * delta / length;
         }
     }
@@ -303,9 +303,9 @@ public class Core2DCameraPlatformer
         const float bboxX = 0.2f;
         const float bboxY = 0.2f;
 
-        var bboxWorldMin =
+        Vector2 bboxWorldMin =
             GetScreenToWorld2D(new Vector2((1 - bboxX) * 0.5f * width, (1 - bboxY) * 0.5f * height), camera);
-        var bboxWorldMax =
+        Vector2 bboxWorldMax =
             GetScreenToWorld2D(new Vector2((1 + bboxX) * 0.5f * width, (1 + bboxY) * 0.5f * height), camera);
         camera.Offset = new Vector2((1 - bboxX) * 0.5f * width, (1 - bboxY) * 0.5f * height);
 

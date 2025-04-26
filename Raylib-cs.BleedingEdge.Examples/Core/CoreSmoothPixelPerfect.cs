@@ -41,32 +41,32 @@ public class CoreSmoothPixelPerfect
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - smooth pixel-perfect camera");
 
-        var worldSpaceCamera = new Camera2D
+        Camera2D worldSpaceCamera = new Camera2D
         {
             Zoom = 1.0f
         }; // Game world camera
 
-        var screenSpaceCamera = new Camera2D
+        Camera2D screenSpaceCamera = new Camera2D
         {
             Zoom = 1.0f
         }; // Smoothing camera
 
-        var target = LoadRenderTexture(virtualScreenWidth, virtualScreenHeight); // This is where we'll draw all our objects.
+        RenderTexture2D target = LoadRenderTexture(virtualScreenWidth, virtualScreenHeight); // This is where we'll draw all our objects.
 
-        var rec01 = new Rectangle(70.0f, 35.0f, 20.0f, 20.0f);
-        var rec02 = new Rectangle(90.0f, 55.0f, 30.0f, 10.0f);
-        var rec03 = new Rectangle(80.0f, 65.0f, 15.0f, 25.0f);
+        Rectangle rec01 = new Rectangle(70.0f, 35.0f, 20.0f, 20.0f);
+        Rectangle rec02 = new Rectangle(90.0f, 55.0f, 30.0f, 10.0f);
+        Rectangle rec03 = new Rectangle(80.0f, 65.0f, 15.0f, 25.0f);
 
         // The Target's height is flipped (in the source Rectangle), due to OpenGL reasons
-        var sourceRec = new Rectangle(0.0f, 0.0f, target.Texture.Width, -(float)target.Texture.Height);
-        var destRec = new Rectangle(-virtualRatio, -virtualRatio, screenWidth + virtualRatio * 2, screenHeight + virtualRatio * 2);
+        Rectangle sourceRec = new Rectangle(0.0f, 0.0f, target.Texture.Width, -(float)target.Texture.Height);
+        Rectangle destRec = new Rectangle(-virtualRatio, -virtualRatio, screenWidth + virtualRatio * 2, screenHeight + virtualRatio * 2);
 
-        var origin = new Vector2(0.0f, 0.0f);
+        Vector2 origin = new Vector2(0.0f, 0.0f);
 
-        var rotation = 0.0f;
+        float rotation = 0.0f;
 
-        var cameraX = 0.0f;
-        var cameraY = 0.0f;
+        float cameraX = 0.0f;
+        float cameraY = 0.0f;
 
         SetTargetFPS(60);
         //--------------------------------------------------------------------------------------

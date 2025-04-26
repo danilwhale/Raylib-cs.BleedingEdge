@@ -33,8 +33,8 @@ public class CoreInputMouse
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - mouse input");
 
-        var ballPosition = new Vector2(-100.0f, -100.0f);
-        var ballColor = Color.DarkBlue;
+        Vector2 ballPosition = new Vector2(-100.0f, -100.0f);
+        Color ballColor = Color.DarkBlue;
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //---------------------------------------------------------------------------------------

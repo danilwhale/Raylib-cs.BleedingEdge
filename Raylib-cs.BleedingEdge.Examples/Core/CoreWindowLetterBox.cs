@@ -36,15 +36,15 @@ public class CoreWindowLetterBox
         InitWindow(windowWidth, windowHeight, "raylib [core] example - window scale letterbox");
         SetWindowMinSize(320, 240);
 
-        var gameScreenWidth = 640;
-        var gameScreenHeight = 480;
+        int gameScreenWidth = 640;
+        int gameScreenHeight = 480;
 
         // Render texture initialization, used to hold the rendering result so we can easily resize it
-        var target = LoadRenderTexture(gameScreenWidth, gameScreenHeight);
+        RenderTexture2D target = LoadRenderTexture(gameScreenWidth, gameScreenHeight);
         SetTextureFilter(target.Texture, TextureFilter.Bilinear); // Texture scale filter to use
 
-        var colors = new Color[10];
-        for (var i = 0; i < 10; i++)
+        Color[] colors = new Color[10];
+        for (int i = 0; i < 10; i++)
             colors[i] = new Color((byte)GetRandomValue(100, 250), (byte)GetRandomValue(50, 150), (byte)GetRandomValue(10, 100));
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
@@ -56,18 +56,18 @@ public class CoreWindowLetterBox
             // Update
             //----------------------------------------------------------------------------------
             // Compute required framebuffer scaling
-            var scale = Math.Min((float)GetScreenWidth() / gameScreenWidth, (float)GetScreenHeight() / gameScreenHeight);
+            float scale = Math.Min((float)GetScreenWidth() / gameScreenWidth, (float)GetScreenHeight() / gameScreenHeight);
 
             if (IsKeyPressed(KeyboardKey.Space))
             {
                 // Recalculate random colors for the bars
-                for (var i = 0; i < 10; i++)
+                for (int i = 0; i < 10; i++)
                     colors[i] = new Color((byte)GetRandomValue(100, 250), (byte)GetRandomValue(50, 150), (byte)GetRandomValue(10, 100));
             }
 
             // Update virtual mouse (clamped mouse value behind game screen)
-            var mouse = GetMousePosition();
-            var virtualMouse = new Vector2
+            Vector2 mouse = GetMousePosition();
+            Vector2 virtualMouse = new Vector2
             {
                 X = (mouse.X - (GetScreenWidth() - gameScreenWidth * scale) * 0.5f) / scale,
                 Y = (mouse.Y - (GetScreenHeight() - gameScreenHeight * scale) * 0.5f) / scale
@@ -85,7 +85,7 @@ public class CoreWindowLetterBox
             BeginTextureMode(target);
             ClearBackground(Color.RayWhite); // Clear render texture background color
 
-            for (var i = 0; i < 10; i++) DrawRectangle(0, gameScreenHeight / 10 * i, gameScreenWidth, gameScreenHeight / 10, colors[i]);
+            for (int i = 0; i < 10; i++) DrawRectangle(0, gameScreenHeight / 10 * i, gameScreenWidth, gameScreenHeight / 10, colors[i]);
 
             DrawText("If executed inside a window,\nyou can resize the window,\nand see the screen scaling!", 10, 25, 20, Color.White);
             DrawText($"Default Mouse: [{(int)mouse.X} , {(int)mouse.Y}]", 350, 25, 20, Color.Green);

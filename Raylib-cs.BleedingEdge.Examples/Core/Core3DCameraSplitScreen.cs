@@ -36,7 +36,7 @@ public class Core3DCameraSplitScreen
         InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d camera split screen");
 
         // Setup player 1 camera and screen
-        var cameraPlayer1 = new Camera3D
+        Camera3D cameraPlayer1 = new Camera3D
         {
             FovY = 45.0f,
             Up = Vector3.UnitY,
@@ -44,10 +44,10 @@ public class Core3DCameraSplitScreen
             Position = new Vector3(0.0f, 1.0f, -3.0f)
         };
 
-        var screenPlayer1 = LoadRenderTexture(screenWidth / 2, screenHeight);
+        RenderTexture2D screenPlayer1 = LoadRenderTexture(screenWidth / 2, screenHeight);
 
         // Setup player two camera and screen
-        var cameraPlayer2 = new Camera3D
+        Camera3D cameraPlayer2 = new Camera3D
         {
             FovY = 45.0f,
             Up = Vector3.UnitY,
@@ -55,14 +55,14 @@ public class Core3DCameraSplitScreen
             Position = new Vector3(0.0f, 3.0f, -3.0f)
         };
 
-        var screenPlayer2 = LoadRenderTexture(screenWidth / 2, screenHeight);
+        RenderTexture2D screenPlayer2 = LoadRenderTexture(screenWidth / 2, screenHeight);
 
         // Build a flipped rectangle the size of the split view to use for drawing later
-        var splitScreenRect = new Rectangle(0.0f, 0.0f, screenPlayer1.Texture.Width, -screenPlayer1.Texture.Height);
+        Rectangle splitScreenRect = new Rectangle(0.0f, 0.0f, screenPlayer1.Texture.Width, -screenPlayer1.Texture.Height);
 
         // Grid data
-        var count = 5;
-        var spacing = 4.0f;
+        int count = 5;
+        float spacing = 4.0f;
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
@@ -74,7 +74,7 @@ public class Core3DCameraSplitScreen
             //----------------------------------------------------------------------------------
             // If anyone moves this frame, how far will they move based on the time since the last frame
             // this moves thigns at 10 world units per second, regardless of the actual FPS
-            var offsetThisFrame = 10.0f * GetFrameTime();
+            float offsetThisFrame = 10.0f * GetFrameTime();
 
             // Move Player1 forward and backwards (no turning)
             if (IsKeyDown(KeyboardKey.W))
@@ -112,9 +112,9 @@ public class Core3DCameraSplitScreen
             // Draw scene: grid of cube trees on a plane to make a "world"
             DrawPlane(new Vector3(0, 0, 0), new Vector2(50, 50), Color.Beige); // Simple world plane
 
-            for (var x = -count * spacing; x <= count * spacing; x += spacing)
+            for (float x = -count * spacing; x <= count * spacing; x += spacing)
             {
-                for (var z = -count * spacing; z <= count * spacing; z += spacing)
+                for (float z = -count * spacing; z <= count * spacing; z += spacing)
                 {
                     DrawCube(new Vector3(x, 1.5f, z), 1, 1, 1, Color.Lime);
                     DrawCube(new Vector3(x, 0.5f, z), 0.25f, 1, 0.25f, Color.Brown);
@@ -141,9 +141,9 @@ public class Core3DCameraSplitScreen
             // Draw scene: grid of cube trees on a plane to make a "world"
             DrawPlane(new Vector3(0, 0, 0), new Vector2(50, 50), Color.Beige); // Simple world plane
 
-            for (var x = -count * spacing; x <= count * spacing; x += spacing)
+            for (float x = -count * spacing; x <= count * spacing; x += spacing)
             {
-                for (var z = -count * spacing; z <= count * spacing; z += spacing)
+                for (float z = -count * spacing; z <= count * spacing; z += spacing)
                 {
                     DrawCube(new Vector3(x, 1.5f, z), 1, 1, 1, Color.Lime);
                     DrawCube(new Vector3(x, 0.5f, z), 0.25f, 1, 0.25f, Color.Brown);

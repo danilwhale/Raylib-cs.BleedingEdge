@@ -17,13 +17,13 @@ public static partial class NativeStringFormatter
             return FormatLinuxX64(format, args);
         }
 
-        var argsByteLength = VsnPrintf(nint.Zero, nuint.Zero, format, args) + 1;
+        int argsByteLength = VsnPrintf(nint.Zero, nuint.Zero, format, args) + 1;
         if (argsByteLength <= 1) return string.Empty;
 
-        var utf8Buffer = Marshal.AllocHGlobal(argsByteLength);
+        nint utf8Buffer = Marshal.AllocHGlobal(argsByteLength);
         VsPrintf(utf8Buffer, format, args);
 
-        var result = Marshal.PtrToStringUTF8(utf8Buffer);
+        string? result = Marshal.PtrToStringUTF8(utf8Buffer);
 
         Marshal.FreeHGlobal(utf8Buffer);
 
@@ -32,11 +32,11 @@ public static partial class NativeStringFormatter
 
     private static string FormatMacOs(nint format, nint args)
     {
-        var buffer = nint.Zero;
+        nint buffer = nint.Zero;
 
         try
         {
-            var count = Native.MacOs.vasprintf(ref buffer, format, args);
+            int count = Native.MacOs.vasprintf(ref buffer, format, args);
             if (count == -1) return string.Empty;
             return Marshal.PtrToStringUTF8(buffer) ?? string.Empty;
         }
@@ -48,16 +48,16 @@ public static partial class NativeStringFormatter
 
     private static unsafe string FormatLinuxX64(nint format, nint args)
     {
-        var valistStruct = *(Native.Linux.VaListLinuxX64*)args;
+        Native.Linux.VaListLinuxX64 valistStruct = *(Native.Linux.VaListLinuxX64*)args;
 
-        var valistPtr = Marshal.AllocHGlobal(Marshal.SizeOf(valistStruct));
+        nint valistPtr = Marshal.AllocHGlobal(Marshal.SizeOf(valistStruct));
         *(Native.Linux.VaListLinuxX64*)valistPtr = valistStruct;
-        var argsByteLength = Native.Linux.vsnprintf(nint.Zero, nuint.Zero, format, valistPtr) + 1;
+        int argsByteLength = Native.Linux.vsnprintf(nint.Zero, nuint.Zero, format, valistPtr) + 1;
         *(Native.Linux.VaListLinuxX64*)valistPtr = valistStruct;
-        var utf8Buffer = Marshal.AllocHGlobal(argsByteLength);
+        nint utf8Buffer = Marshal.AllocHGlobal(argsByteLength);
         _ = Native.Linux.vsprintf(utf8Buffer, format, valistPtr);
 
-        var result = Marshal.PtrToStringUTF8(utf8Buffer);
+        string? result = Marshal.PtrToStringUTF8(utf8Buffer);
 
         Marshal.FreeHGlobal(valistPtr);
         Marshal.FreeHGlobal(utf8Buffer);
