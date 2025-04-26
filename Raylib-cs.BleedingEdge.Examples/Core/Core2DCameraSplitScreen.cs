@@ -24,7 +24,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class Core2DCameraSplitScreen
+public class Core2DCameraSplitScreen : IExample
 {
     private const int PlayerSize = 40;
 

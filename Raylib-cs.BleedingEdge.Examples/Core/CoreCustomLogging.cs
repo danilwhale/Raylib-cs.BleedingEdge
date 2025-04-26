@@ -23,7 +23,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public unsafe class CoreCustomLogging
+public unsafe class CoreCustomLogging : IExample
 {
     // Custom logging function
     // (binding note): it's important for method to be marked with UnmanagedCallersOnly attribute

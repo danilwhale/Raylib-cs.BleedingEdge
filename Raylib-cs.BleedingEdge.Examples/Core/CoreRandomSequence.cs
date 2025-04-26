@@ -20,7 +20,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public unsafe class CoreRandomSequence
+public unsafe class CoreRandomSequence : IExample
 {
     private struct ColorRect
     {

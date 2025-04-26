@@ -19,7 +19,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class Core3DCameraMode
+public class Core3DCameraMode : IExample
 {
     //------------------------------------------------------------------------------------
     // Program main entry point

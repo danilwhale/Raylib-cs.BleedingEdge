@@ -19,7 +19,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class Core3DCameraFree
+public class Core3DCameraFree : IExample
 {
     public static void Main()
     {

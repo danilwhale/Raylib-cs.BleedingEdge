@@ -21,7 +21,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class Core3DCameraSplitScreen
+public class Core3DCameraSplitScreen : IExample
 {
     //------------------------------------------------------------------------------------
     // Program main entry point

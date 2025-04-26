@@ -19,7 +19,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class Core2DCamera
+public class Core2DCamera : IExample
 {
     private const int MaxBuildings = 100;
 

@@ -18,7 +18,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class CoreInputMouseWheel
+public class CoreInputMouseWheel : IExample
 {
     //------------------------------------------------------------------------------------
     // Program main entry point

@@ -33,7 +33,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class CoreCustomFrameControl
+public class CoreCustomFrameControl : IExample
 {
     //------------------------------------------------------------------------------------
     // Program main entry point

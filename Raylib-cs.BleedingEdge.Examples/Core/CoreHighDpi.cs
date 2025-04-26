@@ -17,7 +17,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class CoreHighDpi
+public class CoreHighDpi : IExample
 {
     private static void DrawTextCenter(string text, int x, int y, int fontSize, Color color)
     {

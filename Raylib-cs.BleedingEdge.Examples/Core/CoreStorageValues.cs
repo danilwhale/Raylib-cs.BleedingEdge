@@ -18,7 +18,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class CoreStorageValues
+public class CoreStorageValues : IExample
 {
     private const string StorageDataFile = "storage.data"; // Storage file
 

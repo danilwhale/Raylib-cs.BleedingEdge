@@ -20,7 +20,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class CoreBasicScreenManager
+public class CoreBasicScreenManager : IExample
 {
     //------------------------------------------------------------------------------------------
     // Types and Structures Definition

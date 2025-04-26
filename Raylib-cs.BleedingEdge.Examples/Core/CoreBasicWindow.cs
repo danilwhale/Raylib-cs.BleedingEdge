@@ -31,7 +31,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class CoreBasicWindow
+public class CoreBasicWindow : IExample
 {
     //------------------------------------------------------------------------------------
     // Program main entry point

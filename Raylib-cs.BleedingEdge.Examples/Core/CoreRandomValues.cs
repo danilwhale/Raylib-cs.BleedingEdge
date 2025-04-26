@@ -18,7 +18,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class CoreRandomValues
+public class CoreRandomValues : IExample
 {
     //------------------------------------------------------------------------------------
     // Program main entry point

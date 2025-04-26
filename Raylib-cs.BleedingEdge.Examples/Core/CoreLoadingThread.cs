@@ -20,7 +20,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class CoreLoadingThread
+public class CoreLoadingThread : IExample
 {
     private enum State
     {

@@ -19,7 +19,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public unsafe class CoreVrSimulator
+public unsafe class CoreVrSimulator : IExample
 {
     private static readonly string GlslVersion = OperatingSystem.IsAndroid() || OperatingSystem.IsBrowser() ? "100" : "330";
 

@@ -21,7 +21,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class Core2DCameraPlatformer
+public class Core2DCameraPlatformer : IExample
 {
     private const float G = 400;
     private const float PlayerJumpSpd = 350.0f;

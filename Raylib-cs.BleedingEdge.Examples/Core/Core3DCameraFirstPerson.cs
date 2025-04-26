@@ -19,7 +19,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class Core3DCameraFirstPerson
+public class Core3DCameraFirstPerson : IExample
 {
     private const int MaxColumns = 20;
 

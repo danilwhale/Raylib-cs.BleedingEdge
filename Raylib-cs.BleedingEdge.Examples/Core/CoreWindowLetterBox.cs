@@ -21,7 +21,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class CoreWindowLetterBox
+public class CoreWindowLetterBox : IExample
 {
     //------------------------------------------------------------------------------------
     // Program main entry point

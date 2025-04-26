@@ -19,7 +19,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class CoreWindowFlags
+public class CoreWindowFlags : IExample
 {
     //------------------------------------------------------------------------------------
     // Program main entry point

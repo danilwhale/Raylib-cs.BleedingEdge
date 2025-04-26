@@ -21,7 +21,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public unsafe class CoreAutomationEvents
+public unsafe class CoreAutomationEvents : IExample
 {
     public const float Gravity = 400;
     public const float PlayerJumpSpd = 350.0f;
@@ -82,11 +82,8 @@ public unsafe class CoreAutomationEvents
 
         // Automation events
         
-        // If you decide to store automation event list inside the field:
-        // using var nativeAelist = new NativeHandle<AutomationEventList>(LoadAutomationEventList((string)null));
-        // ref var aelist = ref nativeAelist.Value;
-        // SetAutomationEventList(nativeAelist);
-        // if you decide to store automation event list inside the local variable:
+        // If you decide to store automation event list inside the field, use NativeHandle<AutomationEventList> as its type
+        // otherwise, use this:
         AutomationEventList aelist = LoadAutomationEventList((string)null); // Initialize list of automation events to record new events
         SetAutomationEventList(ref aelist);
         

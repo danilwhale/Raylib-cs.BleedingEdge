@@ -24,7 +24,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class CoreInputVirtualControls
+public class CoreInputVirtualControls : IExample
 {
     private enum PadButton
     {

@@ -25,12 +25,12 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class CoreInputGamepad
+public class CoreInputGamepad : IExample
 {
     // NOTE: Gamepad name ID depends on drivers and OS
-    private const string XBOX_ALIAS_1 = "xbox";
-    private const string XBOX_ALIAS_2 = "x-box";
-    private const string PS_ALIAS = "playstation";
+    private const string XboxAlias1 = "xbox";
+    private const string XboxAlias2 = "x-box";
+    private const string PsAlias = "playstation";
 
     //------------------------------------------------------------------------------------
     // Program main entry point
@@ -99,8 +99,8 @@ public class CoreInputGamepad
                 if (leftTrigger < leftTriggerDeadzone) leftTrigger = -1.0f;
                 if (rightTrigger < rightTriggerDeadzone) rightTrigger = -1.0f;
 
-                if (GetGamepadNameString(gamepad).Contains(XBOX_ALIAS_1, StringComparison.InvariantCultureIgnoreCase) ||
-                    GetGamepadNameString(gamepad).Contains(XBOX_ALIAS_2, StringComparison.InvariantCultureIgnoreCase))
+                if (GetGamepadNameString(gamepad).Contains(XboxAlias1, StringComparison.InvariantCultureIgnoreCase) ||
+                    GetGamepadNameString(gamepad).Contains(XboxAlias2, StringComparison.InvariantCultureIgnoreCase))
                 {
                     DrawTexture(texXboxPad, 0, 0, Color.DarkGray);
 
@@ -152,7 +152,7 @@ public class CoreInputGamepad
                     //DrawText(TextFormat("Xbox axis LT: %02.02f", GetGamepadAxisMovement(gamepad, GAMEPAD_AXIS_LEFT_TRIGGER)), 10, 40, 10, Color.Black);
                     //DrawText(TextFormat("Xbox axis RT: %02.02f", GetGamepadAxisMovement(gamepad, GAMEPAD_AXIS_RIGHT_TRIGGER)), 10, 60, 10, Color.Black);
                 }
-                else if (GetGamepadNameString(gamepad).Contains(PS_ALIAS, StringComparison.InvariantCultureIgnoreCase))
+                else if (GetGamepadNameString(gamepad).Contains(PsAlias, StringComparison.InvariantCultureIgnoreCase))
                 {
                     DrawTexture(texPs3Pad, 0, 0, Color.DarkGray);
 

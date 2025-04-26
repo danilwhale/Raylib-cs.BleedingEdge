@@ -22,7 +22,7 @@ using static Raylib_cs.BleedingEdge.Raylib;
 
 namespace Raylib_cs.BleedingEdge.Examples.Core;
 
-public class CoreSmoothPixelPerfect
+public class CoreSmoothPixelPerfect : IExample
 {
     //------------------------------------------------------------------------------------
     // Program main entry point
