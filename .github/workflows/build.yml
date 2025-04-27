@@ -40,19 +40,16 @@ jobs:
             exit 1
           }
 
-          $run_number = ${{ github.run_number }}
-          $rel_run_number = $run_number % 100
-
           # $matches (with "6.0-dev" as example):
           # 3: -dev
           # 2: 6
           # 1: 0
           # 0: "6.0-dev"
-          $version = $matches[1] + '.' + $matches[2] + '.' + ([int] [Math]::Truncate($run_number / 100) + 1)
+          $version = $matches[1] + '.' + $matches[2] + '.' + 2
           $prefix = $version
 
           # . seems to sort fine unlike - ("5.5.1-dev.14" > "5.5.1-dev.13")
-          $suffix = 'dev' + ".$rel_run_number"
+          $suffix = 'dev.${{ github.run_number }}'
 
           echo $prefix
           echo $suffix
