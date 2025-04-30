@@ -5,6 +5,7 @@ namespace Raylib_cs.BleedingEdge;
 /// <summary>
 /// Audio buffer struct
 /// </summary>
+[StructLayout(LayoutKind.Sequential)]
 public unsafe struct AudioBuffer
 {
     /// <summary>
