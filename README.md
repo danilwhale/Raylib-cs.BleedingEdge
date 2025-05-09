@@ -39,7 +39,7 @@ to your project and import it (add `<Import Project="CompileNatives.props"/>`). 
 
 - ... to compile a static library: add `<CompileShared>false</CompileShared>` to your project's `PropertyGroup`. Note that you need custom native build setup for this (read above).
 
-- ... prebuilt static library: you can get it from [GitHub Actions](https://github.com/danilwhale/Raylib-cs.BleedingEdge/actions/workflows/build-static-natives.yaml). You need GitHub account to do this.
+- ... prebuilt static library: you can get it from [GitHub Actions](https://github.com/danilwhale/Raylib-cs.BleedingEdge/actions/workflows/build-static-natives.yaml). if you don't have a GitHub account, use [nightly.link](https://nightly.link/danilwhale/Raylib-cs.BleedingEdge/workflows/build-static-natives.yaml/main)
 
 "hello, world!"
 ---
