@@ -912,7 +912,7 @@ public static unsafe partial class Raylib
     /// Decode Base64 string data, memory must be MemFree()
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* DecodeDataBase64(byte* data, int* outputSize);
+    public static extern byte* DecodeDataBase64(sbyte* data, int* outputSize);
 
     /// <summary>
     /// Compute CRC32 hash code

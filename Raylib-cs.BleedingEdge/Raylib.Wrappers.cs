@@ -503,15 +503,16 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Decode Base64 string data, memory must be MemFree()
     /// </summary>
-    public static byte* DecodeDataBase64(ReadOnlySpan<byte> data, out int outputSize)
+    public static byte* DecodeDataBase64(string data, out int outputSize)
     {
-        fixed (byte* pData = data)
+        nint pData = Marshal.StringToCoTaskMemUTF8(data);
+        byte* result;
+        fixed (int* pOutputSize = &outputSize) 
         {
-            fixed (int* pOutputSize = &outputSize)
-            {
-                return DecodeDataBase64(pData, pOutputSize);
-            }
+            result = DecodeDataBase64((sbyte*)pData, pOutputSize);
         }
+        Marshal.FreeCoTaskMem(pData);
+        return result;
     }
 
     /// <summary>
