@@ -6,7 +6,7 @@ namespace Raylib_cs.BleedingEdge;
 /// GlyphInfo, font characters glyphs info
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct GlyphInfo
+public struct GlyphInfo : IEquatable<GlyphInfo>
 {
     /// <summary>
     /// Character value (Unicode)
@@ -36,5 +36,34 @@ public struct GlyphInfo
     public override string ToString()
     {
         return $"<Value:{Value} OffsetX:{OffsetX} OffsetY:{OffsetY} AdvanceX:{AdvanceX} Image:{Image}";
+    }
+
+    public bool Equals(GlyphInfo other)
+    {
+        return Value == other.Value && 
+               OffsetX == other.OffsetX && 
+               OffsetY == other.OffsetY && 
+               AdvanceX == other.AdvanceX &&
+               Image.Equals(other.Image);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is GlyphInfo other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Value, OffsetX, OffsetY, AdvanceX, Image);
+    }
+
+    public static bool operator ==(GlyphInfo left, GlyphInfo right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(GlyphInfo left, GlyphInfo right)
+    {
+        return !left.Equals(right);
     }
 }

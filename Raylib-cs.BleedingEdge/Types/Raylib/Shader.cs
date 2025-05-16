@@ -6,7 +6,7 @@ namespace Raylib_cs.BleedingEdge;
 /// Shader
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct Shader
+public unsafe struct Shader : IEquatable<Shader>
 {
     /// <summary>
     /// Shader program id
@@ -16,10 +16,35 @@ public struct Shader
     /// <summary>
     /// Shader locations array (RL_MAX_SHADER_LOCATIONS)
     /// </summary>
-    public unsafe int* Locs;
+    public int* Locs;
 
     public override string ToString()
     {
         return $"<Id:{Id}>";
+    }
+
+    public bool Equals(Shader other)
+    {
+        return Id == other.Id && Locs == other.Locs;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Shader other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Id, (nint)Locs);
+    }
+
+    public static bool operator ==(Shader left, Shader right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(Shader left, Shader right)
+    {
+        return !left.Equals(right);
     }
 }

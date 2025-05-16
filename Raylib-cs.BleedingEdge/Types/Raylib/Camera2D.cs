@@ -7,7 +7,7 @@ namespace Raylib_cs.BleedingEdge;
 /// Camera2D, defines position/orientation in 2d space
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct Camera2D(Vector2 offset, Vector2 target, float rotation, float zoom = 1.0f)
+public struct Camera2D(Vector2 offset, Vector2 target, float rotation, float zoom = 1.0f) : IEquatable<Camera2D>
 {
     /// <summary>
     /// Camera offset (displacement from target)
@@ -32,5 +32,33 @@ public struct Camera2D(Vector2 offset, Vector2 target, float rotation, float zoo
     public override string ToString()
     {
         return $"<Offset:{Offset} Target:{Target} Rotation:{Rotation} Zoom:{Zoom}>";
+    }
+
+    public bool Equals(Camera2D other)
+    {
+        return Offset.Equals(other.Offset) &&
+               Target.Equals(other.Target) && 
+               Rotation.Equals(other.Rotation) &&
+               Zoom.Equals(other.Zoom);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Camera2D other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Offset, Target, Rotation, Zoom);
+    }
+
+    public static bool operator ==(Camera2D left, Camera2D right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(Camera2D left, Camera2D right)
+    {
+        return !left.Equals(right);
     }
 }

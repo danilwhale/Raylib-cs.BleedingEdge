@@ -6,7 +6,7 @@ namespace Raylib_cs.BleedingEdge;
 /// AudioStream, custom audio stream
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public unsafe struct AudioStream
+public unsafe struct AudioStream : IEquatable<AudioStream>
 {
     /// <summary>
     /// Pointer to internal data used by the audio system
@@ -36,5 +36,39 @@ public unsafe struct AudioStream
     public override string ToString()
     {
         return $"<SampleRate:{SampleRate} SampleSize:{SampleSize} Channels:{Channels}>";
+    }
+
+    public bool Equals(AudioStream other)
+    {
+        return Buffer == other.Buffer && 
+               Processor == other.Processor &&
+               SampleRate == other.SampleRate &&
+               SampleSize == other.SampleSize && 
+               Channels == other.Channels;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is AudioStream other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(
+            (nint)Buffer, 
+            (nint)Processor,
+            SampleRate,
+            SampleSize,
+            Channels);
+    }
+
+    public static bool operator ==(AudioStream left, AudioStream right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(AudioStream left, AudioStream right)
+    {
+        return !left.Equals(right);
     }
 }

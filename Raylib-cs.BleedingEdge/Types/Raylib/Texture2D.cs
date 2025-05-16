@@ -6,7 +6,7 @@ namespace Raylib_cs.BleedingEdge;
 /// Texture, tex data stored in GPU memory (VRAM)
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct Texture2D
+public struct Texture2D : IEquatable<Texture2D>
 {
     /// <summary>
     /// OpenGL texture id
@@ -36,5 +36,34 @@ public struct Texture2D
     public override string ToString()
     {
         return $"<Id:{Id} Width:{Width} Height:{Height} Mipmaps:{Mipmaps} Format:{Format}>";
+    }
+
+    public bool Equals(Texture2D other)
+    {
+        return Id == other.Id &&
+               Width == other.Width &&
+               Height == other.Height && 
+               Mipmaps == other.Mipmaps && 
+               Format == other.Format;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Texture2D other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Id, Width, Height, Mipmaps, Format);
+    }
+
+    public static bool operator ==(Texture2D left, Texture2D right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(Texture2D left, Texture2D right)
+    {
+        return !left.Equals(right);
     }
 }

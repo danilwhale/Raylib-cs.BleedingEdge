@@ -6,7 +6,7 @@ namespace Raylib_cs.BleedingEdge;
 /// RenderTexture, fbo for texture rendering
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct RenderTexture2D
+public struct RenderTexture2D : IEquatable<RenderTexture2D>
 {
     /// <summary>
     /// OpenGL framebuffer object id
@@ -26,5 +26,32 @@ public struct RenderTexture2D
     public override string ToString()
     {
         return $"<Id:{Id} Texture:{Texture} Depth:{Depth}>";
+    }
+
+    public bool Equals(RenderTexture2D other)
+    {
+        return Id == other.Id && 
+               Texture.Equals(other.Texture) && 
+               Depth.Equals(other.Depth);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is RenderTexture2D other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Id, Texture, Depth);
+    }
+
+    public static bool operator ==(RenderTexture2D left, RenderTexture2D right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(RenderTexture2D left, RenderTexture2D right)
+    {
+        return !left.Equals(right);
     }
 }

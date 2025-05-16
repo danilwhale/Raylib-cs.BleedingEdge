@@ -6,7 +6,7 @@ namespace Raylib_cs.BleedingEdge;
 /// NPatchInfo, n-patch layout info
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct NPatchInfo
+public struct NPatchInfo : IEquatable<NPatchInfo>
 {
     /// <summary>
     /// Texture source rectangle
@@ -41,5 +41,35 @@ public struct NPatchInfo
     public override string ToString()
     {
         return $"<Source:{Source} Left:{Left} Top:{Top} Right:{Right} Bottom:{Bottom} Layout:{Layout}";
+    }
+
+    public bool Equals(NPatchInfo other)
+    {
+        return Source.Equals(other.Source) &&
+               Left == other.Left && 
+               Top == other.Top && 
+               Right == other.Right &&
+               Bottom == other.Bottom && 
+               Layout == other.Layout;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is NPatchInfo other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Source, Left, Top, Right, Bottom, Layout);
+    }
+
+    public static bool operator ==(NPatchInfo left, NPatchInfo right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(NPatchInfo left, NPatchInfo right)
+    {
+        return !left.Equals(right);
     }
 }

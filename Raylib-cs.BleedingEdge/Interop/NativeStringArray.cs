@@ -3,13 +3,13 @@ using System.Runtime.InteropServices;
 
 namespace Raylib_cs.BleedingEdge.Interop;
 
-public readonly unsafe struct NativeStringArray(uint length, sbyte** arr) : IEnumerable<string>
+public readonly unsafe struct NativeStringArray(uint length, sbyte** address) : IEnumerable<string>, IEquatable<NativeStringArray>
 {
-    private readonly uint _length = length;
-    public uint Length => _length;
+    public readonly uint Length = length;
+    public readonly sbyte** Address = address;
 
-    public string this[int index] => Marshal.PtrToStringUTF8((nint)arr[index]) ?? string.Empty;
-    public string this[uint index] => Marshal.PtrToStringUTF8((nint)arr[index]) ?? string.Empty;
+    public string this[int index] => Marshal.PtrToStringUTF8((nint)Address[index]) ?? string.Empty;
+    public string this[uint index] => Marshal.PtrToStringUTF8((nint)Address[index]) ?? string.Empty;
 
     public IEnumerator<string> GetEnumerator()
     {
@@ -21,6 +21,31 @@ public readonly unsafe struct NativeStringArray(uint length, sbyte** arr) : IEnu
         return GetEnumerator();
     }
 
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Length, (nint)Address);
+    }
+    
+    public bool Equals(NativeStringArray other)
+    {
+        return Length == other.Length && Address == other.Address;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is NativeStringArray other && Equals(other);
+    }
+
+    public static bool operator ==(NativeStringArray left, NativeStringArray right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(NativeStringArray left, NativeStringArray right)
+    {
+        return !left.Equals(right);
+    }
+
     private struct Enumerator(NativeStringArray array) : IEnumerator<string>
     {
         private uint _index;
@@ -28,7 +53,7 @@ public readonly unsafe struct NativeStringArray(uint length, sbyte** arr) : IEnu
         public bool MoveNext()
         {
             _index++;
-            return _index < array._length;
+            return _index < array.Length;
         }
 
         public void Reset()

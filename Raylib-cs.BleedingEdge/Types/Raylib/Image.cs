@@ -7,7 +7,7 @@ namespace Raylib_cs.BleedingEdge;
 /// Image, pixel data stored in CPU memory (RAM)
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public unsafe struct Image
+public unsafe struct Image : IEquatable<Image>
 {
     /// <summary>
     /// Image raw data
@@ -37,5 +37,34 @@ public unsafe struct Image
     public override string ToString()
     {
         return $"<Width:{Width} Height:{Height} Mipmaps:{Mipmaps} Format:{Format}>";
+    }
+
+    public bool Equals(Image other)
+    {
+        return Data == other.Data &&
+               Width == other.Width &&
+               Height == other.Height && 
+               Mipmaps == other.Mipmaps &&
+               Format == other.Format;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Image other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine((nint)Data, Width, Height, Mipmaps, Format);
+    }
+
+    public static bool operator ==(Image left, Image right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(Image left, Image right)
+    {
+        return !left.Equals(right);
     }
 }

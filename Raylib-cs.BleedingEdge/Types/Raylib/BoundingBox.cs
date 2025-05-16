@@ -7,7 +7,7 @@ namespace Raylib_cs.BleedingEdge;
 /// BoundingBox
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct BoundingBox(Vector3 min, Vector3 max)
+public struct BoundingBox(Vector3 min, Vector3 max) : IEquatable<BoundingBox>
 {
     /// <summary>
     /// Minimum vertex box-corner
@@ -22,5 +22,30 @@ public struct BoundingBox(Vector3 min, Vector3 max)
     public override string ToString()
     {
         return $"<Min:{Min} Max:{Max}>";
+    }
+
+    public bool Equals(BoundingBox other)
+    {
+        return Min.Equals(other.Min) && Max.Equals(other.Max);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is BoundingBox other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Min, Max);
+    }
+
+    public static bool operator ==(BoundingBox left, BoundingBox right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(BoundingBox left, BoundingBox right)
+    {
+        return !left.Equals(right);
     }
 }

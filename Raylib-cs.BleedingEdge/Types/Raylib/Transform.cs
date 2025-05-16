@@ -7,7 +7,7 @@ namespace Raylib_cs.BleedingEdge;
 /// Transform, vertex transformation data
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct Transform(Vector3 translation, Quaternion rotation, Vector3 scale)
+public struct Transform(Vector3 translation, Quaternion rotation, Vector3 scale) : IEquatable<Transform>
 {
     /// <summary>
     /// Translation
@@ -27,5 +27,30 @@ public struct Transform(Vector3 translation, Quaternion rotation, Vector3 scale)
     public override string ToString()
     {
         return $"<Translation:{Translation} Rotation:{Rotation} Scale:{Scale}>";
+    }
+
+    public bool Equals(Transform other)
+    {
+        return Translation.Equals(other.Translation) && Rotation.Equals(other.Rotation) && Scale.Equals(other.Scale);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Transform other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Translation, Rotation, Scale);
+    }
+
+    public static bool operator ==(Transform left, Transform right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(Transform left, Transform right)
+    {
+        return !left.Equals(right);
     }
 }

@@ -7,7 +7,7 @@ namespace Raylib_cs.BleedingEdge;
 /// Rectangle, 4 components
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct Rectangle(float x, float y, float width, float height)
+public struct Rectangle(float x, float y, float width, float height) : IEquatable<Rectangle>
 {
     /// <summary>
     /// Rectangle top-left corner position x
@@ -74,5 +74,30 @@ public struct Rectangle(float x, float y, float width, float height)
     public override string ToString()
     {
         return $"<Position:{Position} Size:{Size}>";
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(X, Y, Width, Height);
+    }
+
+    public bool Equals(Rectangle other)
+    {
+        return X.Equals(other.X) && Y.Equals(other.Y) && Width.Equals(other.Width) && Height.Equals(other.Height);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Rectangle other && Equals(other);
+    }
+
+    public static bool operator ==(Rectangle left, Rectangle right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(Rectangle left, Rectangle right)
+    {
+        return !left.Equals(right);
     }
 }

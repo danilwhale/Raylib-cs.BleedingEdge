@@ -3,7 +3,7 @@ namespace Raylib_cs.BleedingEdge;
 /// <summary>
 /// Font, font texture and GlyphInfo array data
 /// </summary>
-public unsafe struct Font
+public unsafe struct Font : IEquatable<Font>
 {
     /// <summary>
     /// Base size (default chars height)
@@ -38,5 +38,42 @@ public unsafe struct Font
     public override string ToString()
     {
         return $"<BaseSize:{BaseSize} GlyphCount:{GlyphCount} GlyphPadding:{GlyphPadding} Texture:{Texture}>";
+    }
+
+    public bool Equals(Font other)
+    {
+        return BaseSize == other.BaseSize &&
+               GlyphCount == other.GlyphCount && 
+               GlyphPadding == other.GlyphPadding && 
+               Texture.Equals(other.Texture) &&
+               Recs == other.Recs &&
+               Glyphs == other.Glyphs;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Font other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(
+            BaseSize, 
+            GlyphCount, 
+            GlyphPadding, 
+            Texture, 
+            (nint)Recs,
+            (nint)Glyphs
+        );
+    }
+
+    public static bool operator ==(Font left, Font right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(Font left, Font right)
+    {
+        return !left.Equals(right);
     }
 }

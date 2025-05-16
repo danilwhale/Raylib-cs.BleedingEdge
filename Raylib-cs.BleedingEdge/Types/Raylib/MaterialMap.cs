@@ -6,7 +6,7 @@ namespace Raylib_cs.BleedingEdge;
 /// MaterialMap
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct MaterialMap
+public struct MaterialMap : IEquatable<MaterialMap>
 {
     /// <summary>
     /// Material map texture
@@ -26,5 +26,32 @@ public struct MaterialMap
     public override string ToString()
     {
         return $"<Texture:{Texture} Color:{Color} Value:{Value}>";
+    }
+
+    public bool Equals(MaterialMap other)
+    {
+        return Texture.Equals(other.Texture) && 
+               Color.Equals(other.Color) && 
+               Value.Equals(other.Value);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is MaterialMap other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Texture, Color, Value);
+    }
+
+    public static bool operator ==(MaterialMap left, MaterialMap right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(MaterialMap left, MaterialMap right)
+    {
+        return !left.Equals(right);
     }
 }

@@ -7,7 +7,7 @@ namespace Raylib_cs.BleedingEdge;
 /// Music, audio stream, anything longer than ~10 seconds should be streamed
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct Music
+public unsafe struct Music : IEquatable<Music>
 {
     /// <summary>
     /// Audio stream
@@ -32,10 +32,39 @@ public struct Music
     /// <summary>
     /// Audio context data, depends on type
     /// </summary>
-    public unsafe void* CtxData;
+    public void* CtxData;
 
     public override string ToString()
     {
         return $"<Stream:{Stream} FrameCount:{FrameCount} Looping:{Looping} CtxType:{CtxType}>";
+    }
+
+    public bool Equals(Music other)
+    {
+        return Stream.Equals(other.Stream) &&
+               FrameCount == other.FrameCount && 
+               Looping.Equals(other.Looping) && 
+               CtxType == other.CtxType &&
+               CtxData == other.CtxData;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Music other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Stream, FrameCount, Looping, CtxType, (nint)CtxData);
+    }
+
+    public static bool operator ==(Music left, Music right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(Music left, Music right)
+    {
+        return !left.Equals(right);
     }
 }

@@ -6,7 +6,7 @@ namespace Raylib_cs.BleedingEdge;
 /// Automation event list
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public unsafe struct AutomationEventList
+public unsafe struct AutomationEventList : IEquatable<AutomationEventList>
 {
     /// <summary>
     /// Events max entries (MAX_AUTOMATION_EVENTS)
@@ -26,5 +26,30 @@ public unsafe struct AutomationEventList
     public override string ToString()
     {
         return $"<Capacity:{Capacity} Count:{Count}>";
+    }
+
+    public bool Equals(AutomationEventList other)
+    {
+        return Capacity == other.Capacity && Count == other.Count && Events == other.Events;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is AutomationEventList other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Capacity, Count, (nint)Events);
+    }
+
+    public static bool operator ==(AutomationEventList left, AutomationEventList right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(AutomationEventList left, AutomationEventList right)
+    {
+        return !left.Equals(right);
     }
 }
