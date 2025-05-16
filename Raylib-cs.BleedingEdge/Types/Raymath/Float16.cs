@@ -1,9 +1,11 @@
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace Raylib_cs.BleedingEdge;
 
 // column-major
+[StructLayout(LayoutKind.Sequential)]
 public struct Float16 : IEquatable<Float16>
 {
     public Vector4 X; // first column
