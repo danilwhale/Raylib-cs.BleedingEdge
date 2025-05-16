@@ -23,12 +23,12 @@ public unsafe struct AutomationEvent : IEquatable<AutomationEvent>
     /// </summary>
     public fixed int Params[4];
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<Frame:{Frame} Type:{Type} Params:<{Params[0]} {Params[1]} {Params[2]} {Params[3]}>>";
     }
 
-    public bool Equals(AutomationEvent other)
+    public readonly bool Equals(AutomationEvent other)
     {
         return Frame == other.Frame &&
                Type == other.Type &&
@@ -38,12 +38,12 @@ public unsafe struct AutomationEvent : IEquatable<AutomationEvent>
                Params[3] == other.Params[3];
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is AutomationEvent other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(Frame, Type, Params[0], Params[1], Params[2], Params[3]);
     }

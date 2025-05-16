@@ -18,7 +18,7 @@ public unsafe struct BoneInfo
     /// </summary>
     public int Parent;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         fixed (sbyte* pName = Name)
         {

@@ -47,7 +47,7 @@ public struct Camera3D(Vector3 position, Vector3 target, Vector3 up, float fovY,
         return $"<Position:{Position} Target:{Target} Up:{Up} FovY:{FovY} Projection:{Projection}>";
     }
 
-    public bool Equals(Camera3D other)
+    public readonly bool Equals(Camera3D other)
     {
         return Position.Equals(other.Position) && 
                Target.Equals(other.Target) && 
@@ -56,12 +56,12 @@ public struct Camera3D(Vector3 position, Vector3 target, Vector3 up, float fovY,
                Projection == other.Projection;
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is Camera3D other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(Position, Target, Up, FovY, (int)Projection);
     }

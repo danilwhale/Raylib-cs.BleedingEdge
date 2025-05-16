@@ -19,22 +19,22 @@ public struct Ray(Vector3 position, Vector3 direction) : IEquatable<Ray>
     /// </summary>
     public Vector3 Direction = direction;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<Position:{Position} Direction:{Direction}>";
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(Position, Direction);
     }
 
-    public bool Equals(Ray other)
+    public readonly bool Equals(Ray other)
     {
         return Position.Equals(other.Position) && Direction.Equals(other.Direction);
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is Ray other && Equals(other);
     }

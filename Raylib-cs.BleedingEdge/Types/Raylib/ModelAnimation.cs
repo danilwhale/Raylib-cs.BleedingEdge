@@ -33,7 +33,7 @@ public unsafe struct ModelAnimation
     /// </summary>
     public fixed sbyte Name[32];
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         fixed (sbyte* pName = Name)
         {

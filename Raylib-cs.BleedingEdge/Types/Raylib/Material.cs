@@ -23,7 +23,7 @@ public unsafe struct Material : IEquatable<Material>
     /// </summary>
     public fixed float Params[4];
 
-    public bool Equals(Material other)
+    public readonly bool Equals(Material other)
     {
         return Shader.Equals(other.Shader) &&
                Maps == other.Maps &&
@@ -33,12 +33,12 @@ public unsafe struct Material : IEquatable<Material>
                Params[3].Equals(other.Params[3]);
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is Material other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(Shader, (nint)Maps, Params[0], Params[1], Params[2], Params[3]);
     }

@@ -18,22 +18,22 @@ public unsafe struct Shader : IEquatable<Shader>
     /// </summary>
     public int* Locs;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<Id:{Id}>";
     }
 
-    public bool Equals(Shader other)
+    public readonly bool Equals(Shader other)
     {
         return Id == other.Id && Locs == other.Locs;
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is Shader other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(Id, (nint)Locs);
     }

@@ -13,19 +13,19 @@ public struct Float3 : IEquatable<Float3>
     public float Z;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public Vector128<float> AsVector128()
+    public readonly Vector128<float> AsVector128()
     {
         return new Vector4(X, Y, Z, 0.0f).AsVector128();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public Vector3 AsVector3()
+    public readonly Vector3 AsVector3()
     {
         return new Vector3(X, Y, Z);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public bool Equals(Float3 other)
+    public readonly bool Equals(Float3 other)
     {
         if (Vector128.IsHardwareAccelerated)
         {
@@ -38,13 +38,13 @@ public struct Float3 : IEquatable<Float3>
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is Float3 other && Equals(other);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(X, Y, Z);
     }

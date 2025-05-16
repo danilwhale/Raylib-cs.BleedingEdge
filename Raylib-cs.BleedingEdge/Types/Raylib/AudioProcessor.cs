@@ -26,17 +26,17 @@ public unsafe struct AudioProcessor : IEquatable<AudioProcessor>
     /// </summary>
     public AudioProcessor* Previous;
 
-    public bool Equals(AudioProcessor other)
+    public readonly bool Equals(AudioProcessor other)
     {
         return Process == other.Process && Next == other.Next && Previous == other.Previous;
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is AudioProcessor other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine((nint)Process, (nint)Next, (nint)Previous);
     }

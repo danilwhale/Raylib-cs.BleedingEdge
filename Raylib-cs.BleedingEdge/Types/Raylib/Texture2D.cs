@@ -33,12 +33,12 @@ public struct Texture2D : IEquatable<Texture2D>
     /// </summary>
     public PixelFormat Format;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<Id:{Id} Width:{Width} Height:{Height} Mipmaps:{Mipmaps} Format:{Format}>";
     }
 
-    public bool Equals(Texture2D other)
+    public readonly bool Equals(Texture2D other)
     {
         return Id == other.Id &&
                Width == other.Width &&
@@ -47,12 +47,12 @@ public struct Texture2D : IEquatable<Texture2D>
                Format == other.Format;
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is Texture2D other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(Id, Width, Height, Mipmaps, Format);
     }

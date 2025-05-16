@@ -27,26 +27,26 @@ public unsafe struct FilePathList : IEquatable<FilePathList>
     /// <summary>
     /// Filepaths entries
     /// </summary>
-    public NativeStringArray PathsArray => new(Count, Paths);
+    public readonly NativeStringArray PathsArray => new(Count, Paths);
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<Capacity:{Capacity} Count:{Count}>";
     }
 
-    public bool Equals(FilePathList other)
+    public readonly bool Equals(FilePathList other)
     {
         return Capacity == other.Capacity &&
                Count == other.Count &&
                Paths == other.Paths;
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is FilePathList other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(Capacity, Count, (nint)Paths);
     }

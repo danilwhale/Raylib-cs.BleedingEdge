@@ -29,12 +29,12 @@ public struct Camera2D(Vector2 offset, Vector2 target, float rotation, float zoo
     /// </summary>
     public float Zoom = zoom;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<Offset:{Offset} Target:{Target} Rotation:{Rotation} Zoom:{Zoom}>";
     }
 
-    public bool Equals(Camera2D other)
+    public readonly bool Equals(Camera2D other)
     {
         return Offset.Equals(other.Offset) &&
                Target.Equals(other.Target) && 
@@ -42,12 +42,12 @@ public struct Camera2D(Vector2 offset, Vector2 target, float rotation, float zoo
                Zoom.Equals(other.Zoom);
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is Camera2D other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(Offset, Target, Rotation, Zoom);
     }

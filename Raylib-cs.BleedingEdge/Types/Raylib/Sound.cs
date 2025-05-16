@@ -18,23 +18,23 @@ public struct Sound : IEquatable<Sound>
     /// </summary>
     public uint FrameCount;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<Stream:{Stream} FrameCount:{FrameCount}>";
     }
 
-    public bool Equals(Sound other)
+    public readonly bool Equals(Sound other)
     {
         return Stream.Equals(other.Stream) &&
                FrameCount == other.FrameCount;
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is Sound other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(Stream, FrameCount);
     }

@@ -34,12 +34,12 @@ public unsafe struct Music : IEquatable<Music>
     /// </summary>
     public void* CtxData;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<Stream:{Stream} FrameCount:{FrameCount} Looping:{Looping} CtxType:{CtxType}>";
     }
 
-    public bool Equals(Music other)
+    public readonly bool Equals(Music other)
     {
         return Stream.Equals(other.Stream) &&
                FrameCount == other.FrameCount && 
@@ -48,12 +48,12 @@ public unsafe struct Music : IEquatable<Music>
                CtxData == other.CtxData;
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is Music other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(Stream, FrameCount, Looping, CtxType, (nint)CtxData);
     }

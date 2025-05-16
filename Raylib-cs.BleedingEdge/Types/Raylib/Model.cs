@@ -54,7 +54,7 @@ public unsafe struct Model
     /// </summary>
     public Transform* BindPose;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<Transform:{Transform} MeshCount:{MeshCount} MaterialCount:{MaterialCount} BoneCount:{BoneCount}>";
     }

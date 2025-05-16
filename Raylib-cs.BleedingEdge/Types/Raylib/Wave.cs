@@ -33,12 +33,12 @@ public unsafe struct Wave : IEquatable<Wave>
     /// </summary>
     public void* Data;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<FrameCount:{FrameCount} SampleRate:{SampleRate} SampleSize:{SampleSize} Channels:{Channels}>";
     }
 
-    public bool Equals(Wave other)
+    public readonly bool Equals(Wave other)
     {
         return FrameCount == other.FrameCount &&
                SampleRate == other.SampleRate && 
@@ -47,12 +47,12 @@ public unsafe struct Wave : IEquatable<Wave>
                Data == other.Data;
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is Wave other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(FrameCount, SampleRate, SampleSize, Channels, (nint)Data);
     }

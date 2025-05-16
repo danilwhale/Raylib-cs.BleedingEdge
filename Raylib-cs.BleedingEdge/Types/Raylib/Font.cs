@@ -35,12 +35,12 @@ public unsafe struct Font : IEquatable<Font>
     /// </summary>
     public GlyphInfo* Glyphs;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<BaseSize:{BaseSize} GlyphCount:{GlyphCount} GlyphPadding:{GlyphPadding} Texture:{Texture}>";
     }
 
-    public bool Equals(Font other)
+    public readonly bool Equals(Font other)
     {
         return BaseSize == other.BaseSize &&
                GlyphCount == other.GlyphCount && 
@@ -50,12 +50,12 @@ public unsafe struct Font : IEquatable<Font>
                Glyphs == other.Glyphs;
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is Font other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(
             BaseSize, 

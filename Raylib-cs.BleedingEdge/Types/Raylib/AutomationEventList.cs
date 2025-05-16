@@ -23,22 +23,22 @@ public unsafe struct AutomationEventList : IEquatable<AutomationEventList>
     /// </summary>
     public AutomationEvent* Events;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<Capacity:{Capacity} Count:{Count}>";
     }
 
-    public bool Equals(AutomationEventList other)
+    public readonly bool Equals(AutomationEventList other)
     {
         return Capacity == other.Capacity && Count == other.Count && Events == other.Events;
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is AutomationEventList other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(Capacity, Count, (nint)Events);
     }

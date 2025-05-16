@@ -71,7 +71,7 @@ public struct Rectangle(float x, float y, float width, float height) : IEquatabl
     {
     }
 
-    public void Deconstruct(out float x, out float y, out float width, out float height)
+    public readonly void Deconstruct(out float x, out float y, out float width, out float height)
     {
         x = X;
         y = Y;
@@ -79,22 +79,22 @@ public struct Rectangle(float x, float y, float width, float height) : IEquatabl
         height = Height;
     }
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<Position:{Position} Size:{Size}>";
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(X, Y, Width, Height);
     }
 
-    public bool Equals(Rectangle other)
+    public readonly bool Equals(Rectangle other)
     {
         return X.Equals(other.X) && Y.Equals(other.Y) && Width.Equals(other.Width) && Height.Equals(other.Height);
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is Rectangle other && Equals(other);
     }

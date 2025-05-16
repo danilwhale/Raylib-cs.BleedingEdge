@@ -156,7 +156,7 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     /// <summary>
     /// Get <see cref="Vertices"/> as <see cref="Span{T}"/> with specified type
     /// </summary>
-    public Span<T> VerticesAs<T>()
+    public readonly Span<T> VerticesAs<T>()
         where T : unmanaged
     {
         return new Span<T>(Vertices, 3 * VertexCount * sizeof(float) / sizeof(T));
@@ -173,7 +173,7 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     /// <summary>
     /// Get <see cref="TexCoords"/> as <see cref="Span{T}"/> with specified type
     /// </summary>
-    public Span<T> TexCoordsAs<T>()
+    public readonly Span<T> TexCoordsAs<T>()
         where T : unmanaged
     {
         return new Span<T>(TexCoords, 2 * VertexCount * sizeof(float) / sizeof(T));
@@ -190,7 +190,7 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     /// <summary>
     /// Get <see cref="TexCoords2"/> as <see cref="Span{T}"/> with specified type
     /// </summary>
-    public Span<T> TexCoords2As<T>()
+    public readonly Span<T> TexCoords2As<T>()
         where T : unmanaged
     {
         return new Span<T>(TexCoords2, 2 * VertexCount * sizeof(float) / sizeof(T));
@@ -207,7 +207,7 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     /// <summary>
     /// Get <see cref="Normals"/> as <see cref="Span{T}"/> with specified type
     /// </summary>
-    public Span<T> NormalsAs<T>()
+    public readonly Span<T> NormalsAs<T>()
         where T : unmanaged
     {
         return new Span<T>(Normals, 3 * VertexCount * sizeof(float) / sizeof(T));
@@ -224,7 +224,7 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     /// <summary>
     /// Get <see cref="Tangents"/> as <see cref="Span{T}"/> with specified type
     /// </summary>
-    public Span<T> TangentsAs<T>()
+    public readonly Span<T> TangentsAs<T>()
         where T : unmanaged
     {
         return new Span<T>(Tangents, 4 * VertexCount * sizeof(float) / sizeof(T));
@@ -241,7 +241,7 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     /// <summary>
     /// Get <see cref="Colors"/> as <see cref="Span{T}"/> with specified type
     /// </summary>
-    public Span<T> ColorsAs<T>()
+    public readonly Span<T> ColorsAs<T>()
         where T : unmanaged
     {
         return new Span<T>(Colors, 4 * VertexCount * sizeof(byte) / sizeof(T));
@@ -258,13 +258,13 @@ public unsafe struct Mesh(int vertexCount, int triangleCount)
     /// <summary>
     /// Get <see cref="Indices"/> as <see cref="Span{T}"/> with specified type
     /// </summary>
-    public Span<T> IndicesAs<T>()
+    public readonly Span<T> IndicesAs<T>()
         where T : unmanaged
     {
         return new Span<T>(Indices, 3 * TriangleCount * sizeof(ushort) / sizeof(T));
     }
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         StringBuilder vboIdBuilder = new StringBuilder();
         for (int i = 0; i < MaxVertexBuffers - 1; i++)

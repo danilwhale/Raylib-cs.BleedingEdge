@@ -19,7 +19,7 @@ public struct Float16 : IEquatable<Float16>
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public bool Equals(Float16 other)
+    public readonly bool Equals(Float16 other)
     {
         return X.Equals(other.X) &&
                Y.Equals(other.Y) &&
@@ -28,13 +28,13 @@ public struct Float16 : IEquatable<Float16>
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is Float16 other && Equals(other);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(X, Y, Z, W);
     }

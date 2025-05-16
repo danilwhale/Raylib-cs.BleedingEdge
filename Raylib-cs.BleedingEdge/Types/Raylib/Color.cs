@@ -161,7 +161,7 @@ public struct Color(byte r, byte g, byte b, byte a = 255) : IEquatable<Color>
     /// </summary>
     public byte A = a;
 
-    public void Deconstruct(out byte r, out byte g, out byte b, out byte a)
+    public readonly void Deconstruct(out byte r, out byte g, out byte b, out byte a)
     {
         r = R;
         g = G;
@@ -169,22 +169,22 @@ public struct Color(byte r, byte g, byte b, byte a = 255) : IEquatable<Color>
         a = A;
     }
 
-    public bool Equals(Color other)
+    public readonly bool Equals(Color other)
     {
         return R == other.R && G == other.G && B == other.B && A == other.A;
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is Color other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(R, G, B, A);
     }
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<{R} {G} {B} {A}>";
     }

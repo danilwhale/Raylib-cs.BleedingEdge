@@ -48,7 +48,7 @@ public unsafe struct VertexBuffer
     /// </summary>
     public fixed uint VboId[5];
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<ElementCount:{ElementCount} VaoId:{VaoId} VboId:<{VboId[0]}, {VboId[1]}, {VboId[2]}, {VboId[3]}, {VboId[4]}>>";
     }

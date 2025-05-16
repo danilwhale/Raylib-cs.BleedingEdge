@@ -23,24 +23,24 @@ public struct MaterialMap : IEquatable<MaterialMap>
     /// </summary>
     public float Value;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<Texture:{Texture} Color:{Color} Value:{Value}>";
     }
 
-    public bool Equals(MaterialMap other)
+    public readonly bool Equals(MaterialMap other)
     {
         return Texture.Equals(other.Texture) && 
                Color.Equals(other.Color) && 
                Value.Equals(other.Value);
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is MaterialMap other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(Texture, Color, Value);
     }

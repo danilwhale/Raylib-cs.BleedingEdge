@@ -38,12 +38,12 @@ public struct NPatchInfo : IEquatable<NPatchInfo>
     /// </summary>
     public NPatchLayout Layout;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<Source:{Source} Left:{Left} Top:{Top} Right:{Right} Bottom:{Bottom} Layout:{Layout}";
     }
 
-    public bool Equals(NPatchInfo other)
+    public readonly bool Equals(NPatchInfo other)
     {
         return Source.Equals(other.Source) &&
                Left == other.Left && 
@@ -53,12 +53,12 @@ public struct NPatchInfo : IEquatable<NPatchInfo>
                Layout == other.Layout;
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is NPatchInfo other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(Source, Left, Top, Right, Bottom, Layout);
     }

@@ -34,12 +34,12 @@ public unsafe struct Image : IEquatable<Image>
     /// </summary>
     public PixelFormat Format;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<Width:{Width} Height:{Height} Mipmaps:{Mipmaps} Format:{Format}>";
     }
 
-    public bool Equals(Image other)
+    public readonly bool Equals(Image other)
     {
         return Data == other.Data &&
                Width == other.Width &&
@@ -48,12 +48,12 @@ public unsafe struct Image : IEquatable<Image>
                Format == other.Format;
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is Image other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine((nint)Data, Width, Height, Mipmaps, Format);
     }

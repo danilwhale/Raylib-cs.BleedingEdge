@@ -24,17 +24,17 @@ public struct BoundingBox(Vector3 min, Vector3 max) : IEquatable<BoundingBox>
         return $"<Min:{Min} Max:{Max}>";
     }
 
-    public bool Equals(BoundingBox other)
+    public readonly bool Equals(BoundingBox other)
     {
         return Min.Equals(other.Min) && Max.Equals(other.Max);
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is BoundingBox other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(Min, Max);
     }

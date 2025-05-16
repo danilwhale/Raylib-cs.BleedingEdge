@@ -33,12 +33,12 @@ public struct GlyphInfo : IEquatable<GlyphInfo>
     /// </summary>
     public Image Image;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<Value:{Value} OffsetX:{OffsetX} OffsetY:{OffsetY} AdvanceX:{AdvanceX} Image:{Image}";
     }
 
-    public bool Equals(GlyphInfo other)
+    public readonly bool Equals(GlyphInfo other)
     {
         return Value == other.Value && 
                OffsetX == other.OffsetX && 
@@ -47,12 +47,12 @@ public struct GlyphInfo : IEquatable<GlyphInfo>
                Image.Equals(other.Image);
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is GlyphInfo other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(Value, OffsetX, OffsetY, AdvanceX, Image);
     }

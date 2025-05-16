@@ -24,22 +24,22 @@ public struct Transform(Vector3 translation, Quaternion rotation, Vector3 scale)
     /// </summary>
     public Vector3 Scale = scale;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<Translation:{Translation} Rotation:{Rotation} Scale:{Scale}>";
     }
 
-    public bool Equals(Transform other)
+    public readonly bool Equals(Transform other)
     {
         return Translation.Equals(other.Translation) && Rotation.Equals(other.Rotation) && Scale.Equals(other.Scale);
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is Transform other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(Translation, Rotation, Scale);
     }

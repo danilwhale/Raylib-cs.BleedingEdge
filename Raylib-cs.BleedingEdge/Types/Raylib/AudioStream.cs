@@ -33,12 +33,12 @@ public unsafe struct AudioStream : IEquatable<AudioStream>
     /// </summary>
     public uint Channels;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<SampleRate:{SampleRate} SampleSize:{SampleSize} Channels:{Channels}>";
     }
 
-    public bool Equals(AudioStream other)
+    public readonly bool Equals(AudioStream other)
     {
         return Buffer == other.Buffer && 
                Processor == other.Processor &&
@@ -47,12 +47,12 @@ public unsafe struct AudioStream : IEquatable<AudioStream>
                Channels == other.Channels;
     }
 
-    public override bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         return obj is AudioStream other && Equals(other);
     }
 
-    public override int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return HashCode.Combine(
             (nint)Buffer, 

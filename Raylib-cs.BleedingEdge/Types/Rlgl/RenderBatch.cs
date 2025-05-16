@@ -38,7 +38,7 @@ public struct RenderBatch
     /// </summary>
     public float CurrentDepth;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<BufferCount:{BufferCount} CurrentBuffer:{CurrentBuffer} DrawCounter:{DrawCounter} CurrentDepth:{CurrentDepth}>";
     }

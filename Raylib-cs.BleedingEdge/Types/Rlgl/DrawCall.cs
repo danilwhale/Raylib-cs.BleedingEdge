@@ -33,7 +33,7 @@ public struct DrawCall
     /// </summary>
     public uint TextureId;
 
-    public override string ToString()
+    public readonly override string ToString()
     {
         return $"<Mode:{Mode} VertexCount:{VertexCount} VertexAlignment:{VertexAlignment} TextureId:{TextureId}>";
     }
