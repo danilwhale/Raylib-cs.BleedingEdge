@@ -161,6 +161,14 @@ public struct Color(byte r, byte g, byte b, byte a = 255) : IEquatable<Color>
     /// </summary>
     public byte A = a;
 
+    public void Deconstruct(out byte r, out byte g, out byte b, out byte a)
+    {
+        r = R;
+        g = G;
+        b = B;
+        a = A;
+    }
+
     public bool Equals(Color other)
     {
         return R == other.R && G == other.G && B == other.B && A == other.A;

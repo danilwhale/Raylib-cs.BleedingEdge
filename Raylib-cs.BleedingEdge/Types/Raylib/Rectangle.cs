@@ -71,6 +71,14 @@ public struct Rectangle(float x, float y, float width, float height) : IEquatabl
     {
     }
 
+    public void Deconstruct(out float x, out float y, out float width, out float height)
+    {
+        x = X;
+        y = Y;
+        width = Width;
+        height = Height;
+    }
+
     public override string ToString()
     {
         return $"<Position:{Position} Size:{Size}>";
