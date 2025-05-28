@@ -903,16 +903,16 @@ public static unsafe partial class Raylib
     public static extern byte* DecompressData(byte* compData, int compDataSize, int* dataSize);
 
     /// <summary>
-    /// Encode data to Base64 string, memory must be MemFree()
+    /// Encode data to Base64 string (includes NULL terminator), memory must be MemFree()
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern sbyte* EncodeDataBase64(byte* data, int dataSize, int* outputSize);
 
     /// <summary>
-    /// Decode Base64 string data, memory must be MemFree()
+    /// Decode Base64 string data (expected NULL terminated), memory must be MemFree()
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* DecodeDataBase64(sbyte* data, int* outputSize);
+    public static extern byte* DecodeDataBase64(sbyte* text, int* outputSize);
 
     /// <summary>
     /// Compute CRC32 hash code

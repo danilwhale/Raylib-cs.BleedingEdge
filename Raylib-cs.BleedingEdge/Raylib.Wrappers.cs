@@ -487,7 +487,7 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>
-    /// Encode data to Base64 string, memory must be MemFree()
+    /// Encode data to Base64 string (includes NULL terminator), memory must be MemFree()
     /// </summary>
     public static sbyte* EncodeDataBase64(ReadOnlySpan<byte> data, out int outputSize)
     {
@@ -503,9 +503,9 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Decode Base64 string data, memory must be MemFree()
     /// </summary>
-    public static byte* DecodeDataBase64(string data, out int outputSize)
+    public static byte* DecodeDataBase64(string text, out int outputSize)
     {
-        nint pData = Marshal.StringToCoTaskMemUTF8(data);
+        nint pData = Marshal.StringToCoTaskMemUTF8(text);
         byte* result;
         fixed (int* pOutputSize = &outputSize) 
         {
