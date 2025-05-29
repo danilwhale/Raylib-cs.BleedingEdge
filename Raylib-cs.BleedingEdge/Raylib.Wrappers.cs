@@ -1755,6 +1755,10 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Generate image font atlas using chars info
     /// </summary>
+    /// <remarks>
+    /// Allocates managed array to return glyph rectangles, use <see cref="GenImageFontAtlas(System.ReadOnlySpan{Raylib_cs.BleedingEdge.GlyphInfo},out Raylib_cs.BleedingEdge.Rectangle*,int,int,int)"/>
+    /// to avoid allocating extra memory
+    /// </remarks>
     public static Image GenImageFontAtlas(ReadOnlySpan<GlyphInfo> glyphs, out Rectangle[] glyphRecs, int fontSize, int padding, int packMethod)
     {
         Image result;
@@ -1771,6 +1775,21 @@ public static unsafe partial class Raylib
             }
 
             MemFree(nativeGlyphRecs);
+        }
+
+        return result;
+    }
+    
+    /// <summary>
+    /// Generate image font atlas using chars info
+    /// </summary>
+    public static Image GenImageFontAtlas(ReadOnlySpan<GlyphInfo> glyphs, out Rectangle* glyphRecs, int fontSize, int padding, int packMethod)
+    {
+        Image result;
+        fixed (GlyphInfo* pGlyphs = glyphs)
+        fixed (Rectangle** pGlyphRecs = &glyphRecs)
+        {
+            result = GenImageFontAtlas(pGlyphs, pGlyphRecs, glyphs.Length, fontSize, padding, packMethod);
         }
 
         return result;
