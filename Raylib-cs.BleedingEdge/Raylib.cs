@@ -1077,13 +1077,13 @@ public static unsafe partial class Raylib
     public static extern GamepadButton GetGamepadButtonPressed();
 
     /// <summary>
-    /// Get gamepad axis count for a gamepad
+    /// Get axis count for a gamepad
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern int GetGamepadAxisCount(int gamepad);
 
     /// <summary>
-    /// Get axis movement value for a gamepad axis
+    /// Get movement value for a gamepad axis
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern float GetGamepadAxisMovement(int gamepad, GamepadAxis axis);
@@ -1475,10 +1475,22 @@ public static unsafe partial class Raylib
     public static extern void DrawEllipse(int centerX, int centerY, float radiusH, float radiusV, Color color);
 
     /// <summary>
+    /// Draw ellipse (Vector version)
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void DrawEllipseV(Vector2 center, float radiusH, float radiusV, Color color);
+    
+    /// <summary>
     /// Draw ellipse outline
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void DrawEllipseLines(int centerX, int centerY, float radiusH, float radiusV, Color color);
+
+    /// <summary>
+    /// Draw ellipse outline (Vector version)
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void DrawEllipseLinesV(Vector2 center, float radiusH, float radiusV, Color color);
 
     /// <summary>
     /// Draw ring

@@ -1,7 +1,7 @@
 namespace Raylib_cs.BleedingEdge;
 
 /// <summary>
-/// Gamepad axis
+/// Gamepad axes
 /// </summary>
 public enum GamepadAxis
 {
