@@ -1546,7 +1546,7 @@ public static unsafe partial class Raylib
     /// Draw a gradient-filled rectangle with custom vertex colors
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern void DrawRectangleGradientEx(Rectangle rec, Color topLeft, Color bottomLeft, Color topRight, Color bottomRight);
+    public static extern void DrawRectangleGradientEx(Rectangle rec, Color topLeft, Color bottomLeft, Color bottomRight, Color topRight);
 
     /// <summary>
     /// Draw rectangle outline
