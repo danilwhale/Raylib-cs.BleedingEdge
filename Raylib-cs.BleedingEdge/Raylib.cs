@@ -1,4 +1,6 @@
 ﻿using System.Numerics;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
 using Raylib_cs.BleedingEdge.Interop;
@@ -18,6 +20,25 @@ public static unsafe partial class Raylib
     public const float Rad2Deg = 180.0f / Pi;
     
     private const string LibName = "raylib";
+
+    [ModuleInitializer]
+    internal static void InitializeBindings()
+    {
+        // setup simple message to display when user is missing 'raylib' in their directory
+        // this should cause less confusion when they're getting started
+        NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), (name, assembly, path) =>
+        {
+            if (name != LibName) return nint.Zero;
+
+            if (!NativeLibrary.TryLoad(name, assembly, path, out _))
+            {
+                throw new DllNotFoundException(
+                    $"Failed to find '{LibName}' library. Did you forget to install 'Raylib-cs.BleedingEdge.Runtimes' package?");
+            }
+
+            return nint.Zero;
+        });
+    }
 
     /// <summary>
     /// Initialize window and OpenGL context
