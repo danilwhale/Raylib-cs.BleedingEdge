@@ -2321,13 +2321,13 @@ public static unsafe partial class Raylib
     public static extern void UnloadRenderTexture(RenderTexture2D target);
 
     /// <summary>
-    /// Update GPU texture with new data
+    /// Update GPU texture with new data (pixels should be able to fill texture)
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void UpdateTexture(Texture2D texture, void* pixels);
 
     /// <summary>
-    /// Update GPU texture rectangle with new data
+    /// Update GPU texture rectangle with new data (pixels and rec should fit in texture)
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void UpdateTextureRec(Texture2D texture, Rectangle rec, void* pixels);
@@ -3330,7 +3330,7 @@ public static unsafe partial class Raylib
     public static extern NativeBool IsSoundValid(Sound sound);
 
     /// <summary>
-    /// Update sound buffer with new data
+    /// Update sound buffer with new data (data and frame count should fit in sound)
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void UpdateSound(Sound sound, void* data, int sampleCount);

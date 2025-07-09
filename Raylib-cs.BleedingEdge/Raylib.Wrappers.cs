@@ -1614,7 +1614,7 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>
-    /// Update GPU texture with new data
+    /// Update GPU texture with new data (pixels should be able to fill texture)
     /// </summary>
     public static void UpdateTexture<T>(Texture2D texture, ReadOnlySpan<T> pixels)
         where T : unmanaged
@@ -1626,7 +1626,7 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>
-    /// Update GPU texture rectangle with new data
+    /// Update GPU texture rectangle with new data (pixels and rec should fit in texture)
     /// </summary>
     public static void UpdateTextureRec<T>(Texture2D texture, Rectangle rec, ReadOnlySpan<T> pixels)
         where T : unmanaged
@@ -2181,7 +2181,7 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>
-    /// Update sound buffer with new data
+    /// Update sound buffer with new data (data and frame count should fit in sound)
     /// </summary>
     public static void UpdateSound<T>(Sound sound, ReadOnlySpan<T> data, int sampleCount)
         where T : unmanaged
