@@ -500,6 +500,12 @@ public static unsafe partial class Rlgl
     public static extern void LoadExtensions(void* loader);
 
     /// <summary>
+    /// Get OpenGL procedure address
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetProcAddress")]
+    public static extern void* GetProcAddress(sbyte* procName);
+
+    /// <summary>
     /// Get current OpenGL version
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetVersion")]

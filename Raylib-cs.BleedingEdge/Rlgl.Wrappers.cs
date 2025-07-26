@@ -26,6 +26,20 @@ public static unsafe partial class Rlgl
     }
 
     /// <summary>
+    /// Get OpenGL procedure address
+    /// </summary>
+    /// <remarks>
+    /// void* replaced with <see cref="nint"/> for compatability with OpenGL bindings
+    /// </remarks>
+    public static nint GetProcAddress(string procName)
+    {
+        nint pProcName = Marshal.StringToCoTaskMemUTF8(procName);
+        void* result = GetProcAddress((sbyte*)pProcName);
+        Marshal.FreeCoTaskMem(pProcName);
+        return (nint)result;
+    }
+
+    /// <summary>
     /// Draw render batch data (Update->Draw->Reset)
     /// </summary>
     public static void DrawRenderBatch(ref RenderBatch batch)
