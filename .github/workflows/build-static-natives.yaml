@@ -51,6 +51,7 @@ jobs:
             arch: 'x64'
             platform: 'Web'
           - name: 'win-arm64'
+            os: 'ubuntu-24.04-arm'
             arch: 'arm64'
             platform: 'Desktop'
     runs-on: ${{ matrix.os }}
@@ -66,7 +67,7 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Setup compile dependencies
-        if: matrix.os == 'ubuntu-latest'
+        if: startsWith(matrix.name, 'linux')
         shell: bash
         run: |
           sudo apt-get update

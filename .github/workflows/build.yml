@@ -106,7 +106,7 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Setup compile dependencies
-        if: matrix.os == 'ubuntu-latest'
+        if: startsWith(matrix.name, 'linux')
         shell: bash
         run: |
           sudo apt-get update
