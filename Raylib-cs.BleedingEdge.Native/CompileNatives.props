@@ -4,7 +4,7 @@
         <!-- if you use git you can add raylib submodule to your solution directory -->
         <LibSourcePath>../raylib</LibSourcePath>
         <LibBuildPath>$(BaseIntermediateOutputPath)native-$(RuntimeIdentifier)-$(Configuration)</LibBuildPath>
-        
+
         <!-- you can set custom link path for library (path where library file will be linked to) -->
         <!-- <LibLinkPath>my-path-to-libs\</LibLinkPath> -->
         <LibLinkPath Condition="'$(RuntimeIdentifier)' != ''">runtimes\$(RuntimeIdentifier)\native\</LibLinkPath>
@@ -66,7 +66,7 @@
             </PropertyGroup>
         </When>
     </Choose>
-    
+
     <ItemGroup>
         <LibBuildArgs Include="-D CMAKE_OSX_ARCHITECTURES=$(LibArch)" Condition="$(RuntimeIdentifier.StartsWith('osx'))"/>
         <LibBuildArgs Include="-A $(LibArch)" Condition="$(RuntimeIdentifier.StartsWith('win'))"/>
@@ -101,6 +101,7 @@
         <LibBuildArgs Include="-D BUILD_SHARED_LIBS=$(LibCompileShared)"/>
         <LibBuildArgs Include="-D CMAKE_BUILD_TYPE=$(Configuration)"/>
         <LibBuildArgs Include="-D BUILD_EXAMPLES=OFF"/>
+        <LibBuildArgs Include="-D CUSTOM_CFLAGS=&quot;-m32&quot;" Condition="'$(LibArch)' == 'x86' AND '$(LibExtension)' == 'so'"/>
     </ItemGroup>
 
     <!-- build -->
