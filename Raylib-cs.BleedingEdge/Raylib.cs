@@ -2738,7 +2738,7 @@ public static unsafe partial class Raylib
     public static extern sbyte* TextJoin(sbyte** textList, int count, sbyte* delimiter);
 
     /// <summary>
-    /// Split text into multiple strings
+    /// Split text into multiple strings, using MAX_TEXTSPLIT_COUNT static strings
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern sbyte** TextSplit(sbyte* text, sbyte delimeter, int* count);
