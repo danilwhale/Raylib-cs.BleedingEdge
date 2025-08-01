@@ -90,6 +90,7 @@ jobs:
             arch: 'win32'
             platform: 'Desktop'
           - name: 'win-arm64'
+            os: 'windows-latest'
             arch: 'arm64'
             platform: 'Desktop'
     runs-on: ${{ matrix.os }}
