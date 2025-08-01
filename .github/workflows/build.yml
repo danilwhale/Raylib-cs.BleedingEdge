@@ -70,7 +70,7 @@ jobs:
             os: 'ubuntu-latest'
             arch: 'i386'
           - name: 'linux-arm64'
-            os: 'ubuntu-latest-arm'
+            os: 'ubuntu-24.04-arm'
             arch: 'aarch64'
             platform: 'Desktop'
           - name: 'osx-x64'
@@ -90,7 +90,7 @@ jobs:
             arch: 'win32'
             platform: 'Desktop'
           - name: 'win-arm64'
-            os: 'windows-latest-arm'
+            os: 'windows-11-arm'
             arch: 'arm64'
             platform: 'Desktop'
     runs-on: ${{ matrix.os }}
