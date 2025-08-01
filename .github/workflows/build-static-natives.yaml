@@ -17,7 +17,7 @@ jobs:
   natives:
     strategy:
       matrix:
-        name: [ 'linux-x64', 'osx-x64', 'osx-arm64', 'win-x64', 'win-x86' ]
+        name: [ 'linux-x64', 'linux-x86', 'linux-arm64', 'osx-x64', 'osx-arm64', 'win-x64', 'win-x86', 'win-arm64' ]
         include:
           - name: 'linux-x64'
             os: 'ubuntu-latest'
@@ -27,7 +27,7 @@ jobs:
             os: 'ubuntu-latest'
             arch: 'i386'
           - name: 'linux-arm64'
-            os: 'ubuntu-24.04-arm'
+            os: 'ubuntu-latest-arm'
             arch: 'aarch64'
             platform: 'Desktop'
           - name: 'osx-x64'
@@ -51,7 +51,7 @@ jobs:
             arch: 'x64'
             platform: 'Web'
           - name: 'win-arm64'
-            os: 'ubuntu-24.04-arm'
+            os: 'windows-latest-arm'
             arch: 'arm64'
             platform: 'Desktop'
     runs-on: ${{ matrix.os }}
