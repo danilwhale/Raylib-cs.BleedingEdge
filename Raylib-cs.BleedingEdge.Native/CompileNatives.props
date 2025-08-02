@@ -101,7 +101,6 @@
         <LibBuildArgs Include="-D BUILD_SHARED_LIBS=$(LibCompileShared)"/>
         <LibBuildArgs Include="-D CMAKE_BUILD_TYPE=$(Configuration)"/>
         <LibBuildArgs Include="-D BUILD_EXAMPLES=OFF"/>
-        <LibBuildArgs Include="-D CUSTOM_CFLAGS=&quot;-m32&quot;" Condition="'$(LibArch)' == 'x86' AND '$(LibExtension)' == 'so'"/>
     </ItemGroup>
 
     <!-- build -->

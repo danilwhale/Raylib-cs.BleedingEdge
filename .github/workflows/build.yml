@@ -60,15 +60,12 @@ jobs:
   natives:
     strategy:
       matrix:
-        name: [ 'linux-x64', 'linux-x86', 'linux-arm64', 'osx-x64', 'osx-arm64', 'win-x64', 'win-x86', 'win-arm64' ]
+        name: [ 'linux-x64', 'linux-arm64', 'osx-x64', 'osx-arm64', 'win-x64', 'win-x86', 'win-arm64' ]
         include:
           - name: 'linux-x64'
             os: 'ubuntu-latest'
             arch: 'x64'
             platform: 'Desktop'
-          - name: 'linux-x86'
-            os: 'ubuntu-latest'
-            arch: 'i386'
           - name: 'linux-arm64'
             os: 'ubuntu-24.04-arm'
             arch: 'aarch64'
@@ -121,12 +118,6 @@ jobs:
             libxinerama-dev \
             libwayland-dev \
             libxkbcommon-dev
-
-      - name: Setup compile dependencies for x86_32
-        if: matrix.name == 'linux-x86'
-        shell: bash
-        run: |
-          sudo apt-get install gcc-multilib
 
       - name: Compile native
         run: |
