@@ -2750,7 +2750,7 @@ public static unsafe partial class Raylib
     public static extern void TextAppend(sbyte* text, sbyte* append, int* position);
 
     /// <summary>
-    /// Find first text occurrence within a string
+    /// Find first text occurrence within a string, -1 if not found
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern int TextFindIndex(sbyte* text, sbyte* find);
