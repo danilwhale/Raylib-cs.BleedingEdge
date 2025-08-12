@@ -296,7 +296,7 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>
-    /// Check file extension (including point: .png, .wav)
+    /// Check file extension (recommended include point: .png, .wav)
     /// </summary>
     public static NativeBool IsFileExtension(string fileName, string ext)
     {

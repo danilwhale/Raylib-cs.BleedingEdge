@@ -791,7 +791,7 @@ public static unsafe partial class Raylib
     public static extern NativeBool DirectoryExists(sbyte* dirPath);
 
     /// <summary>
-    /// Check file extension (including point: .png, .wav)
+    /// Check file extension (recommended include point: .png, .wav)
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern NativeBool IsFileExtension(sbyte* fileName, sbyte* ext);
