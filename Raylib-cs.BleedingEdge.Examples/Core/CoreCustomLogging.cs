@@ -30,7 +30,7 @@ public unsafe class CoreCustomLogging : IExample
     //                 as GC won't move it around and native code will still be able to call it,
     //                 and you can take address of the method, which is required to set log callback
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-    private static void CustomLog(TraceLogLevel msgType, sbyte* text, nint args)
+    private static void CustomLog(TraceLogLevel msgType, byte* text, nint args)
     {
         Console.Write($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] ");
         Console.Write($"[{msgType}] : ");

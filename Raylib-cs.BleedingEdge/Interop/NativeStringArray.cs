@@ -3,13 +3,13 @@ using System.Runtime.InteropServices;
 
 namespace Raylib_cs.BleedingEdge.Interop;
 
-public readonly unsafe struct NativeStringArray(uint length, sbyte** address) : IEnumerable<string>, IEquatable<NativeStringArray>
+public readonly unsafe struct NativeStringArray(uint length, byte** address) : IEnumerable<string?>, IEquatable<NativeStringArray>
 {
     public readonly uint Length = length;
-    public readonly sbyte** Address = address;
+    public readonly byte** Address = address;
 
-    public string this[int index] => Marshal.PtrToStringUTF8((nint)Address[index]) ?? string.Empty;
-    public string this[uint index] => Marshal.PtrToStringUTF8((nint)Address[index]) ?? string.Empty;
+    public string? this[int index] => Marshal.PtrToStringUTF8((nint)Address[index]);
+    public string? this[uint index] => Marshal.PtrToStringUTF8((nint)Address[index]);
 
     public IEnumerator<string> GetEnumerator()
     {
@@ -25,7 +25,7 @@ public readonly unsafe struct NativeStringArray(uint length, sbyte** address) : 
     {
         return HashCode.Combine(Length, (nint)Address);
     }
-    
+
     public bool Equals(NativeStringArray other)
     {
         return Length == other.Length && Address == other.Address;
@@ -46,10 +46,10 @@ public readonly unsafe struct NativeStringArray(uint length, sbyte** address) : 
         return !left.Equals(right);
     }
 
-    private struct Enumerator(NativeStringArray array) : IEnumerator<string>
+    private struct Enumerator(NativeStringArray array) : IEnumerator<string?>
     {
         private uint _index;
-        
+
         public bool MoveNext()
         {
             _index++;
@@ -61,9 +61,11 @@ public readonly unsafe struct NativeStringArray(uint length, sbyte** address) : 
             _index = 0;
         }
 
-        public string Current => array[_index];
+        public string? Current => array[_index];
 
+#nullable disable
         object IEnumerator.Current => Current;
+#nullable restore
 
         public void Dispose()
         {

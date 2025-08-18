@@ -503,7 +503,7 @@ public static unsafe partial class Rlgl
     /// Get OpenGL procedure address
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetProcAddress")]
-    public static extern void* GetProcAddress(sbyte* procName);
+    public static extern void* GetProcAddress(byte* procName);
 
     /// <summary>
     /// Get current OpenGL version
@@ -713,7 +713,7 @@ public static unsafe partial class Rlgl
     /// Get name string for pixel format
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetPixelFormatName")]
-    public static extern sbyte* GetPixelFormatName(PixelFormat format);
+    public static extern byte* GetPixelFormatName(PixelFormat format);
 
     /// <summary>
     /// Unload texture from GPU memory
@@ -768,13 +768,13 @@ public static unsafe partial class Rlgl
     /// Load shader from code strings
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlLoadShaderCode")]
-    public static extern uint LoadShaderCode(sbyte* vsCode, sbyte* fsCode);
+    public static extern uint LoadShaderCode(byte* vsCode, byte* fsCode);
     
     /// <summary>
     /// Compile custom shader and return shader id (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlCompileShader")]
-    public static extern uint CompileShader(sbyte* shaderCode, RlglEnum type);
+    public static extern uint CompileShader(byte* shaderCode, RlglEnum type);
 
     /// <summary>
     /// Load custom shader program
@@ -792,13 +792,13 @@ public static unsafe partial class Rlgl
     /// Get shader location uniform
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetLocationUniform")]
-    public static extern int GetLocationUniform(uint shaderId, sbyte* uniformName);
+    public static extern int GetLocationUniform(uint shaderId, byte* uniformName);
 
     /// <summary>
     /// Get shader location attribute
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "rlGetLocationAttrib")]
-    public static extern int GetLocationAttrib(uint shaderId, sbyte* attribName);
+    public static extern int GetLocationAttrib(uint shaderId, byte* attribName);
 
     /// <summary>
     /// Set shader value uniform

@@ -22,7 +22,7 @@ public unsafe struct FilePathList : IEquatable<FilePathList>
     /// <summary>
     /// Filepaths entries
     /// </summary>
-    public sbyte** Paths;
+    public byte** Paths;
 
     /// <summary>
     /// Filepaths entries

@@ -31,12 +31,9 @@ public static unsafe partial class Rlgl
     /// <remarks>
     /// void* replaced with <see cref="nint"/> for compatability with OpenGL bindings
     /// </remarks>
-    public static nint GetProcAddress(string procName)
+    public static nint GetProcAddress(Utf8String procName)
     {
-        nint pProcName = Marshal.StringToCoTaskMemUTF8(procName);
-        void* result = GetProcAddress((sbyte*)pProcName);
-        Marshal.FreeCoTaskMem(pProcName);
-        return (nint)result;
+        fixed (byte* pProcName = procName) return (nint)GetProcAddress(pProcName);
     }
 
     /// <summary>
@@ -195,9 +192,9 @@ public static unsafe partial class Rlgl
     /// <summary>
     /// Get name string for pixel format
     /// </summary>
-    public static string GetPixelFormatNameString(PixelFormat format)
+    public static string? GetPixelFormatNameString(PixelFormat format)
     {
-        return Marshal.PtrToStringUTF8((nint)GetPixelFormatName(format)) ?? string.Empty;
+        return Marshal.PtrToStringUTF8((nint)GetPixelFormatName(format));
     }
 
     /// <summary>
@@ -214,47 +211,35 @@ public static unsafe partial class Rlgl
     /// <summary>
     /// Load shader from code strings
     /// </summary>
-    public static uint LoadShaderCode(string vsCode, string fsCode)
+    public static uint LoadShaderCode(Utf8String vsCode, Utf8String fsCode)
     {
-        nint pVsCode = Marshal.StringToCoTaskMemUTF8(vsCode);
-        nint pFsCode = Marshal.StringToCoTaskMemUTF8(fsCode);
-        uint result = LoadShaderCode((sbyte*)pVsCode, (sbyte*)pFsCode);
-        Marshal.FreeCoTaskMem(pFsCode);
-        Marshal.FreeCoTaskMem(pVsCode);
-        return result;
+        fixed (byte* pVsCode = vsCode)
+        fixed (byte* pFsCode = fsCode)
+            return LoadShaderCode(pVsCode, pFsCode);
     }
 
     /// <summary>
     /// Compile custom shader and return shader id (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)
     /// </summary>
-    public static uint CompileShader(string shaderCode, RlglEnum type)
+    public static uint CompileShader(Utf8String shaderCode, RlglEnum type)
     {
-        nint pShaderCode = Marshal.StringToCoTaskMemUTF8(shaderCode);
-        uint result = CompileShader((sbyte*)pShaderCode, type);
-        Marshal.FreeCoTaskMem(pShaderCode);
-        return result;
+        fixed (byte* pShaderCode = shaderCode) return CompileShader(pShaderCode, type);
     }
 
     /// <summary>
     /// Get shader location uniform
     /// </summary>
-    public static int GetLocationUniform(uint shaderId, string uniformName)
+    public static int GetLocationUniform(uint shaderId, Utf8String uniformName)
     {
-        nint pUniformName = Marshal.StringToCoTaskMemUTF8(uniformName);
-        int result = GetLocationUniform(shaderId, (sbyte*)pUniformName);
-        Marshal.FreeCoTaskMem(pUniformName);
-        return result;
+        fixed (byte* pUniformName = uniformName) return GetLocationUniform(shaderId, pUniformName);
     }
 
     /// <summary>
     /// Get shader location attribute
     /// </summary>
-    public static int GetLocationAttrib(uint shaderId, string attribName)
+    public static int GetLocationAttrib(uint shaderId, Utf8String attribName)
     {
-        nint pAttribName = Marshal.StringToCoTaskMemUTF8(attribName);
-        int result = GetLocationAttrib(shaderId, (sbyte*)pAttribName);
-        Marshal.FreeCoTaskMem(pAttribName);
-        return result;
+        fixed (byte* pAttribName = attribName) return GetLocationAttrib(shaderId, pAttribName);
     }
 
     /// <summary>

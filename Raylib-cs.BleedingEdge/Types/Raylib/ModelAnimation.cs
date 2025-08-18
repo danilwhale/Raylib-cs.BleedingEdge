@@ -31,11 +31,11 @@ public unsafe struct ModelAnimation
     /// <summary>
     /// Animation name
     /// </summary>
-    public fixed sbyte Name[32];
+    public fixed byte Name[32];
 
     public readonly override string ToString()
     {
-        fixed (sbyte* pName = Name)
+        fixed (byte* pName = Name)
         {
             return $"<BoneCount:{BoneCount} FrameCount:{FrameCount} Name:{Marshal.PtrToStringUTF8((nint)pName)}>";
         }

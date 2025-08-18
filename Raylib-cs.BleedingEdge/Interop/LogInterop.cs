@@ -6,7 +6,7 @@ namespace Raylib_cs.BleedingEdge.Interop;
 public static class LogInterop
 {
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-    public static unsafe void DefaultCallback(TraceLogLevel logLevel, sbyte* text, nint args)
+    public static unsafe void DefaultCallback(TraceLogLevel logLevel, byte* text, nint args)
     {
         string message = NativeStringFormatter.Format((nint)text, args);
         Console.WriteLine(message);

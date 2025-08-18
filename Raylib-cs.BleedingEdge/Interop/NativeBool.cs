@@ -3,9 +3,9 @@ using System.Runtime.InteropServices;
 namespace Raylib_cs.BleedingEdge.Interop;
 
 [StructLayout(LayoutKind.Sequential)]
-public readonly struct NativeBool(sbyte value) : IEquatable<NativeBool>
+public readonly struct NativeBool(byte value) : IEquatable<NativeBool>
 {
-    private readonly sbyte _value = value;
+    private readonly byte _value = value;
 
     public override string ToString()
     {
@@ -39,12 +39,12 @@ public readonly struct NativeBool(sbyte value) : IEquatable<NativeBool>
 
     public static NativeBool operator +(NativeBool left, NativeBool right)
     {
-        return new NativeBool((sbyte)(left._value + right._value));
+        return new NativeBool((byte)(left._value + right._value));
     }
 
     public static NativeBool operator -(NativeBool left, NativeBool right)
     {
-        return new NativeBool((sbyte)(left._value - right._value));
+        return new NativeBool((byte)(left._value - right._value));
     }
 
     public static implicit operator bool(NativeBool nbool)
@@ -54,15 +54,15 @@ public readonly struct NativeBool(sbyte value) : IEquatable<NativeBool>
 
     public static implicit operator NativeBool(bool value)
     {
-        return new NativeBool((sbyte)(value ? 1 : 0));
+        return new NativeBool((byte)(value ? 1 : 0));
     }
 
-    public static implicit operator sbyte(NativeBool nbool)
+    public static implicit operator byte(NativeBool nbool)
     {
         return nbool._value;
     }
 
-    public static implicit operator NativeBool(sbyte value)
+    public static implicit operator NativeBool(byte value)
     {
         return new NativeBool(value);
     }

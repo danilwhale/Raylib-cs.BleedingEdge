@@ -6,18 +6,12 @@ namespace Raylib_cs.BleedingEdge;
 
 public static unsafe partial class Raylib
 {
-    // all methods with native string (char*, or sbyte* in P/Invoke) parameters are using Marshal directly
-    // instead of something like Utf8Buffer in Raylib-cs to reduce execution time and allocations
-    // Utf8Handle is provided for user use
-
     /// <summary>
     /// Initialize window and OpenGL context
     /// </summary>
-    public static void InitWindow(int width, int height, string title)
+    public static void InitWindow(int width, int height, Utf8String title)
     {
-        nint pTitle = Marshal.StringToCoTaskMemUTF8(title);
-        InitWindow(width, height, (sbyte*)pTitle);
-        Marshal.FreeCoTaskMem(pTitle);
+        fixed (byte* pTitle = title) InitWindow(width, height, pTitle);
     }
 
     /// <summary>
@@ -34,17 +28,15 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Set title for window (only PLATFORM_DESKTOP and PLATFORM_WEB)
     /// </summary>
-    public static void SetWindowTitle(string title)
+    public static void SetWindowTitle(Utf8String title)
     {
-        nint pTitle = Marshal.StringToCoTaskMemUTF8(title);
-        SetWindowTitle((sbyte*)pTitle);
-        Marshal.FreeCoTaskMem(pTitle);
+        fixed (byte* pTitle = title) SetWindowTitle(pTitle);
     }
 
     /// <summary>
     /// Get the human-readable, UTF-8 encoded name of the specified monitor
     /// </summary>
-    public static string GetMonitorNameString(int monitor)
+    public static Utf8String GetMonitorNameString(int monitor)
     {
         return Marshal.PtrToStringUTF8((nint)GetMonitorName(monitor)) ?? string.Empty;
     }
@@ -52,67 +44,53 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Set clipboard text content
     /// </summary>
-    public static void SetClipboardText(string text)
+    public static void SetClipboardText(Utf8String text)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        SetClipboardText((sbyte*)pText);
-        Marshal.FreeCoTaskMem(pText);
+        fixed (byte* pText = text) SetClipboardText(pText);
     }
 
     /// <summary>
     /// Get clipboard text content
     /// </summary>
-    public static string GetClipboardTextString()
+    public static string? GetClipboardTextString()
     {
-        return Marshal.PtrToStringUTF8((nint)GetClipboardText()) ?? string.Empty;
+        return Marshal.PtrToStringUTF8((nint)GetClipboardText());
     }
 
     /// <summary>
     /// Load shader from files and bind default locations
     /// </summary>
-    public static Shader LoadShader(string vsFileName, string fsFileName)
+    public static Shader LoadShader(Utf8String vsFileName, Utf8String fsFileName)
     {
-        nint pVsFileName = Marshal.StringToCoTaskMemUTF8(vsFileName);
-        nint pFsFileName = Marshal.StringToCoTaskMemUTF8(fsFileName);
-        Shader result = LoadShader((sbyte*)pVsFileName, (sbyte*)pFsFileName);
-        Marshal.FreeCoTaskMem(pFsFileName);
-        Marshal.FreeCoTaskMem(pVsFileName);
-        return result;
+        fixed (byte* pVsFileName = vsFileName)
+        fixed (byte* pFsFileName = fsFileName)
+            return LoadShader(pVsFileName, pFsFileName);
     }
 
     /// <summary>
     /// Load shader from code strings and bind default locations
     /// </summary>
-    public static Shader LoadShaderFromMemory(string vsCode, string fsCode)
+    public static Shader LoadShaderFromMemory(Utf8String vsCode, Utf8String fsCode)
     {
-        nint pVsCode = Marshal.StringToCoTaskMemUTF8(vsCode);
-        nint pFsCode = Marshal.StringToCoTaskMemUTF8(fsCode);
-        Shader result = LoadShaderFromMemory((sbyte*)pVsCode, (sbyte*)pFsCode);
-        Marshal.FreeCoTaskMem(pFsCode);
-        Marshal.FreeCoTaskMem(pVsCode);
-        return result;
+        fixed (byte* pVsCode = vsCode)
+        fixed (byte* pFsCode = fsCode)
+            return LoadShaderFromMemory(pVsCode, pFsCode);
     }
 
     /// <summary>
     /// Get shader uniform location
     /// </summary>
-    public static int GetShaderLocation(Shader shader, string uniformName)
+    public static int GetShaderLocation(Shader shader, Utf8String uniformName)
     {
-        nint pUniformName = Marshal.StringToCoTaskMemUTF8(uniformName);
-        int result = GetShaderLocation(shader, (sbyte*)pUniformName);
-        Marshal.FreeCoTaskMem(pUniformName);
-        return result;
+        fixed (byte* pUniformName = uniformName) return GetShaderLocation(shader, pUniformName);
     }
 
     /// <summary>
     /// Get shader attribute location
     /// </summary>
-    public static int GetShaderLocationAttrib(Shader shader, string attribName)
+    public static int GetShaderLocationAttrib(Shader shader, Utf8String attribName)
     {
-        nint pAttribName = Marshal.StringToCoTaskMemUTF8(attribName);
-        int result = GetShaderLocationAttrib(shader, (sbyte*)pAttribName);
-        Marshal.FreeCoTaskMem(pAttribName);
-        return result;
+        fixed (byte* pAttribName = attribName) return GetShaderLocationAttrib(shader, pAttribName);
     }
 
     /// <summary>
@@ -155,31 +133,25 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Takes a screenshot of current screen (filename extension defines format)
     /// </summary>
-    public static void TakeScreenshot(string fileName)
+    public static void TakeScreenshot(Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        TakeScreenshot((sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
+        fixed (byte* pFileName = fileName) TakeScreenshot(pFileName);
     }
 
     /// <summary>
     /// Open URL with default system browser (if available)
     /// </summary>
-    public static void OpenURL(string url)
+    public static void OpenURL(Utf8String url)
     {
-        nint pUrl = Marshal.StringToCoTaskMemUTF8(url);
-        OpenURL((sbyte*)pUrl);
-        Marshal.FreeCoTaskMem(pUrl);
+        fixed (byte* pUrl = url) OpenURL(pUrl);
     }
 
     /// <summary>
     /// Show trace log messages (TraceLogLevel.Debug, TraceLogLevel.Info, TraceLogLevel.Warning, TraceLogLevel.Error...)
     /// </summary>
-    public static void TraceLog(TraceLogLevel logLevel, string text)
+    public static void TraceLog(TraceLogLevel logLevel, Utf8String text)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        TraceLog(logLevel, (sbyte*)pText);
-        Marshal.FreeCoTaskMem(pText);
+        fixed (byte* pText = text) TraceLog(logLevel, pText);
     }
 
     /// <summary>
@@ -203,259 +175,196 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Load file data as byte array (read)
     /// </summary>
-    public static byte* LoadFileData(string fileName, out int dataSize)
+    public static byte* LoadFileData(Utf8String fileName, out int dataSize)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        byte* result;
+        fixed (byte* pFileName = fileName)
         fixed (int* pDataSize = &dataSize)
         {
-            result = LoadFileData((sbyte*)pFileName, pDataSize);
+            return LoadFileData(pFileName, pDataSize);
         }
-
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
     }
 
     /// <summary>
     /// Save data to file from byte array (write), returns true on success
     /// </summary>
-    public static NativeBool SaveFileData<T>(string fileName, ReadOnlySpan<T> data)
+    public static NativeBool SaveFileData<T>(Utf8String fileName, ReadOnlySpan<T> data)
         where T : unmanaged
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        NativeBool result;
+        fixed (byte* pFileName = fileName)
         fixed (T* pData = data)
         {
-            result = SaveFileData((sbyte*)pFileName, pData, data.Length * sizeof(T));
+            return SaveFileData(pFileName, pData, data.Length * sizeof(T));
         }
-
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
     }
 
     /// <summary>
     /// Export data to code (.h), returns true on success
     /// </summary>
-    public static NativeBool ExportDataAsCode(ReadOnlySpan<byte> data, string fileName)
+    public static NativeBool ExportDataAsCode(ReadOnlySpan<byte> data, Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        NativeBool result;
+        fixed (byte* pFileName = fileName)
         fixed (byte* pData = data)
         {
-            result = ExportDataAsCode(pData, data.Length, (sbyte*)pFileName);
+            return ExportDataAsCode(pData, data.Length, pFileName);
         }
-
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
     }
 
     /// <summary>
     /// Load text data from file (read), returns a '\0' terminated string
     /// </summary>
-    public static sbyte* LoadFileText(string fileName)
+    public static byte* LoadFileText(Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        sbyte* result = LoadFileText((sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return LoadFileText(pFileName);
     }
 
     /// <summary>
-    /// Save text data to file (write), string must be '\0' terminated, returns true on success
+    /// Save text data to file (write), Utf8String must be '\0' terminated, returns true on success
     /// </summary>
-    public static NativeBool SaveFileText(string fileName, string text)
+    public static NativeBool SaveFileText(Utf8String fileName, Utf8String text)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        NativeBool result = SaveFileText((sbyte*)pFileName, (sbyte*)pText);
-        Marshal.FreeCoTaskMem(pText);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName)
+        fixed (byte* pText = text)
+            return SaveFileText(pFileName, pText);
     }
 
     /// <summary>
     /// Check if file exists
     /// </summary>
-    public static NativeBool FileExists(string fileName)
+    public static NativeBool FileExists(Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        NativeBool result = FileExists((sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return FileExists(pFileName);
     }
 
     /// <summary>
     /// Check if a directory path exists
     /// </summary>
-    public static NativeBool DirectoryExists(string dirName)
+    public static NativeBool DirectoryExists(Utf8String dirName)
     {
-        nint pDirName = Marshal.StringToCoTaskMemUTF8(dirName);
-        NativeBool result = DirectoryExists((sbyte*)pDirName);
-        Marshal.FreeCoTaskMem(pDirName);
-        return result;
+        fixed (byte* pDirName = dirName) return DirectoryExists(pDirName);
     }
 
     /// <summary>
     /// Check file extension (recommended include point: .png, .wav)
     /// </summary>
-    public static NativeBool IsFileExtension(string fileName, string ext)
+    public static NativeBool IsFileExtension(Utf8String fileName, Utf8String ext)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        nint pExt = Marshal.StringToCoTaskMemUTF8(ext);
-        NativeBool result = IsFileExtension((sbyte*)pFileName, (sbyte*)pExt);
-        Marshal.FreeCoTaskMem(pExt);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName)
+        fixed (byte* pExt = ext)
+            return IsFileExtension(pFileName, pExt);
     }
 
     /// <summary>
     /// Get file length in bytes (NOTE: GetFileSize() conflicts with windows.h)
     /// </summary>
-    public static int GetFileLength(string fileName)
+    public static int GetFileLength(Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        int result = GetFileLength((sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return GetFileLength(pFileName);
     }
 
     /// <summary>
     /// Get pointer to extension for a filename string (includes dot: '.png')
     /// </summary>
-    public static string GetFileExtension(string fileName)
+    public static string? GetFileExtension(Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        sbyte* result = GetFileExtension((sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
+        fixed (byte* pFileName = fileName) return Marshal.PtrToStringUTF8((nint)GetFileExtension(pFileName));
     }
 
     /// <summary>
     /// Get pointer to filename for a path string
     /// </summary>
-    public static string GetFileName(string filePath)
+    public static string? GetFileName(Utf8String filePath)
     {
-        nint pFilePath = Marshal.StringToCoTaskMemUTF8(filePath);
-        sbyte* result = GetFileName((sbyte*)pFilePath);
-        Marshal.FreeCoTaskMem(pFilePath);
-        return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
+        fixed (byte* pFilePath = filePath) return Marshal.PtrToStringUTF8((nint)GetFileName(pFilePath));
     }
 
     /// <summary>
-    /// Get filename string without extension (uses static string)
+    /// Get filename Utf8String without extension (uses static string)
     /// </summary>
-    public static string GetFileNameWithoutExt(string filePath)
+    public static string? GetFileNameWithoutExt(Utf8String filePath)
     {
-        nint pFilePath = Marshal.StringToCoTaskMemUTF8(filePath);
-        sbyte* result = GetFileNameWithoutExt((sbyte*)pFilePath);
-        Marshal.FreeCoTaskMem(pFilePath);
-        return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
+        fixed (byte* pFilePath = filePath) return Marshal.PtrToStringUTF8((nint)GetFileNameWithoutExt(pFilePath));
     }
 
     /// <summary>
     /// Get full path for a given fileName with path (uses static string)
     /// </summary>
-    public static string GetDirectoryPath(string filePath)
+    public static string? GetDirectoryPath(Utf8String filePath)
     {
-        nint pFilePath = Marshal.StringToCoTaskMemUTF8(filePath);
-        sbyte* result = GetDirectoryPath((sbyte*)pFilePath);
-        Marshal.FreeCoTaskMem(pFilePath);
-        return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
+        fixed (byte* pFilePath = filePath) return Marshal.PtrToStringUTF8((nint)GetDirectoryPath(pFilePath));
     }
 
     /// <summary>
     /// Get previous directory path for a given path (uses static string)
     /// </summary>
-    public static string GetPrevDirectoryPath(string dirPath)
+    public static string? GetPrevDirectoryPath(Utf8String dirPath)
     {
-        nint pDirPath = Marshal.StringToCoTaskMemUTF8(dirPath);
-        sbyte* result = GetPrevDirectoryPath((sbyte*)pDirPath);
-        Marshal.FreeCoTaskMem(pDirPath);
-        return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
+        fixed (byte* pDirPath = dirPath) return Marshal.PtrToStringUTF8((nint)GetPrevDirectoryPath(pDirPath));
     }
 
     /// <summary>
     /// Get current working directory (uses static string)
     /// </summary>
-    public static string GetWorkingDirectoryString()
+    public static string? GetWorkingDirectoryString()
     {
-        return Marshal.PtrToStringUTF8((nint)GetWorkingDirectory()) ?? string.Empty;
+        return Marshal.PtrToStringUTF8((nint)GetWorkingDirectory());
     }
 
     /// <summary>
     /// Get the directory of the running application (uses static string)
     /// </summary>
-    public static string GetApplicationDirectoryString()
+    public static string? GetApplicationDirectoryString()
     {
-        return Marshal.PtrToStringUTF8((nint)GetApplicationDirectory()) ?? string.Empty;
+        return Marshal.PtrToStringUTF8((nint)GetApplicationDirectory());
     }
 
     /// <summary>
     /// Create directories (including full path requested), returns 0 on success
     /// </summary>
-    public static int MakeDirectory(string dirPath)
+    public static int MakeDirectory(Utf8String dirPath)
     {
-        nint pDirPath = Marshal.StringToCoTaskMemUTF8(dirPath);
-        int result = MakeDirectory((sbyte*)pDirPath);
-        Marshal.FreeCoTaskMem(pDirPath);
-        return result;
+        fixed (byte* pDirPath = dirPath) return MakeDirectory(pDirPath);
     }
 
     /// <summary>
     /// Change working directory, return true on success
     /// </summary>
-    public static NativeBool ChangeDirectory(string dir)
+    public static NativeBool ChangeDirectory(Utf8String dir)
     {
-        nint pDir = Marshal.StringToCoTaskMemUTF8(dir);
-        NativeBool result = ChangeDirectory((sbyte*)pDir);
-        Marshal.FreeCoTaskMem(pDir);
-        return result;
+        fixed (byte* pDir = dir) return ChangeDirectory(pDir);
     }
 
     /// <summary>
     /// Check if a given path is a file or a directory
     /// </summary>
-    public static NativeBool IsPathFile(string path)
+    public static NativeBool IsPathFile(Utf8String path)
     {
-        nint pPath = Marshal.StringToCoTaskMemUTF8(path);
-        NativeBool result = IsPathFile((sbyte*)pPath);
-        Marshal.FreeCoTaskMem(pPath);
-        return result;
+        fixed (byte* pPath = path) return IsPathFile(pPath);
     }
 
     /// <summary>
     /// Check if fileName is valid for the platform/OS
     /// </summary>
-    public static NativeBool IsFileNameValid(string fileName)
+    public static NativeBool IsFileNameValid(Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        NativeBool result = IsFileNameValid((sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return IsFileNameValid(pFileName);
     }
 
     /// <summary>
     /// Load directory filepaths
     /// </summary>
-    public static FilePathList LoadDirectoryFiles(string dirPath)
+    public static FilePathList LoadDirectoryFiles(Utf8String dirPath)
     {
-        nint pDirPath = Marshal.StringToCoTaskMemUTF8(dirPath);
-        FilePathList result = LoadDirectoryFiles((sbyte*)pDirPath);
-        Marshal.FreeCoTaskMem(pDirPath);
-        return result;
+        fixed (byte* pDirPath = dirPath) return LoadDirectoryFiles(pDirPath);
     }
 
     /// <summary>
     /// Load directory filepaths with extension filtering and recursive directory scan
     /// </summary>
-    public static FilePathList LoadDirectoryFilesEx(string basePath, string filter, NativeBool scanSubdirs)
+    public static FilePathList LoadDirectoryFilesEx(Utf8String basePath, Utf8String filter, NativeBool scanSubdirs)
     {
-        nint pBasePath = Marshal.StringToCoTaskMemUTF8(basePath);
-        nint pFilter = Marshal.StringToCoTaskMemUTF8(filter);
-        FilePathList result = LoadDirectoryFilesEx((sbyte*)pBasePath, (sbyte*)pFilter, scanSubdirs);
-        Marshal.FreeCoTaskMem(pFilter);
-        Marshal.FreeCoTaskMem(pBasePath);
-        return result;
+        fixed (byte* pBasePath = basePath)
+        fixed (byte* pFilter = filter)
+            return LoadDirectoryFilesEx(pBasePath, pFilter, scanSubdirs);
     }
 
     /// <summary>
@@ -489,7 +398,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Encode data to Base64 string (includes NULL terminator), memory must be MemFree()
     /// </summary>
-    public static sbyte* EncodeDataBase64(ReadOnlySpan<byte> data, out int outputSize)
+    public static byte* EncodeDataBase64(ReadOnlySpan<byte> data, out int outputSize)
     {
         fixed (byte* pData = data)
         {
@@ -501,18 +410,15 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>
-    /// Decode Base64 string data, memory must be MemFree()
+    /// Decode Base64 Utf8String data, memory must be MemFree()
     /// </summary>
-    public static byte* DecodeDataBase64(string text, out int outputSize)
+    public static byte* DecodeDataBase64(Utf8String text, out int outputSize)
     {
-        nint pData = Marshal.StringToCoTaskMemUTF8(text);
-        byte* result;
+        fixed (byte* pText = text)
         fixed (int* pOutputSize = &outputSize) 
         {
-            result = DecodeDataBase64((sbyte*)pData, pOutputSize);
+            return DecodeDataBase64(pText, pOutputSize);
         }
-        Marshal.FreeCoTaskMem(pData);
-        return result;
     }
 
     /// <summary>
@@ -526,7 +432,7 @@ public static unsafe partial class Raylib
         }
     }
 
-    // ComputeMD5 and ComputeSHA1 don't allocate memory using MemAlloc, so we can use Span for it
+    // ComputeMD5 and ComputeSHA1 don't allocate memory using MemAlloc, so we can use Span for them
 
     /// <summary>
     /// Compute MD5 hash code, returns static int[4] (16 bytes)
@@ -553,30 +459,24 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS
     /// </summary>
-    public static AutomationEventList LoadAutomationEventList(string fileName)
+    public static AutomationEventList LoadAutomationEventList(Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        AutomationEventList result = LoadAutomationEventList((sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return LoadAutomationEventList(pFileName);
     }
 
     /// <summary>
     /// Export automation events list as text file
     /// </summary>
-    public static NativeBool ExportAutomationEventList(AutomationEventList list, string fileName)
+    public static NativeBool ExportAutomationEventList(AutomationEventList list, Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        NativeBool result = ExportAutomationEventList(list, (sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return ExportAutomationEventList(list, pFileName);
     }
 
     /// <summary>
     /// Set automation event list to record to
     /// </summary>
     /// <remarks>
-    /// Use <see cref="SetAutomationEventList(NativeHandle{T})"/>
+    /// Use <see cref="SetAutomationEventList(NativeHandle{AutomationEventList})"/>
     /// for instance fields instead:
     /// <code>
     /// private NativeHandle&lt;AutomationEventList&gt; _list;
@@ -608,28 +508,25 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Get name of a QWERTY key on the current keyboard layout (eg returns string 'q' for KEY_A on an AZERTY keyboard)
     /// </summary>
-    public static string GetKeyNameString(KeyboardKey key)
+    public static string? GetKeyNameString(KeyboardKey key)
     {
-        return Marshal.PtrToStringUTF8((nint)GetKeyName(key)) ?? string.Empty;
+        return Marshal.PtrToStringUTF8((nint)GetKeyName(key));
     }
 
     /// <summary>
     /// Get gamepad internal name id
     /// </summary>
-    public static string GetGamepadNameString(int gamepad)
+    public static string? GetGamepadNameString(int gamepad)
     {
-        return Marshal.PtrToStringUTF8((nint)GetGamepadName(gamepad)) ?? string.Empty;
+        return Marshal.PtrToStringUTF8((nint)GetGamepadName(gamepad));
     }
 
     /// <summary>
     /// Set internal gamepad mappings (SDL_GameControllerDB)
     /// </summary>
-    public static int SetGamepadMappings(string mappings)
+    public static int SetGamepadMappings(Utf8String mappings)
     {
-        nint pMappings = Marshal.StringToCoTaskMemUTF8(mappings);
-        int result = SetGamepadMappings((sbyte*)pMappings);
-        Marshal.FreeCoTaskMem(pMappings);
-        return result;
+        fixed (byte* pMappings = mappings) return SetGamepadMappings(pMappings);
     }
 
     /// <summary>
@@ -918,145 +815,104 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Load image from file into CPU memory (RAM)
     /// </summary>
-    public static Image LoadImage(string fileName)
+    public static Image LoadImage(Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        Image result = LoadImage((sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return LoadImage(pFileName);
     }
 
     /// <summary>
     /// Load image from RAW file data
     /// </summary>
-    public static Image LoadImageRaw(string fileName, int width, int height, PixelFormat format, int headerSize)
+    public static Image LoadImageRaw(Utf8String fileName, int width, int height, PixelFormat format, int headerSize)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        Image result = LoadImageRaw((sbyte*)pFileName, width, height, format, headerSize);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return LoadImageRaw(pFileName, width, height, format, headerSize);
     }
 
     /// <summary>
     /// Load image sequence from file (frames appended to image.data)
     /// </summary>
-    public static Image LoadImageAnim(string fileName, out int frames)
+    public static Image LoadImageAnim(Utf8String fileName, out int frames)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        Image result;
+        fixed (byte* pFileName = fileName)
         fixed (int* pFrames = &frames)
-        {
-            result = LoadImageAnim((sbyte*)pFileName, pFrames);
-        }
-
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+            return LoadImageAnim(pFileName, pFrames);
     }
 
     /// <summary>
     /// Load image sequence from memory buffer
     /// </summary>
-    public static Image LoadImageAnimFromMemory(string fileType, ReadOnlySpan<byte> fileData, out int frames)
+    public static Image LoadImageAnimFromMemory(Utf8String fileType, ReadOnlySpan<byte> fileData, out int frames)
     {
-        nint pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
-        Image result;
+        fixed (byte* pFileType = fileType)
         fixed (byte* pFileData = fileData)
+        fixed (int* pFrames = &frames)
         {
-            fixed (int* pFrames = &frames)
-            {
-                result = LoadImageAnimFromMemory((sbyte*)pFileData, pFileData, fileData.Length, pFrames);
-            }
+            return LoadImageAnimFromMemory(pFileType, pFileData, fileData.Length, pFrames);
         }
-
-        Marshal.FreeCoTaskMem(pFileType);
-        return result;
     }
 
     /// <summary>
     /// Load image from memory buffer, fileType refers to extension: i.e. '.png'
     /// </summary>
-    public static Image LoadImageFromMemory(string fileType, ReadOnlySpan<byte> fileData)
+    public static Image LoadImageFromMemory(Utf8String fileType, ReadOnlySpan<byte> fileData)
     {
-        nint pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
-        Image result;
+        fixed (byte* pFileType = fileType)
         fixed (byte* pFileData = fileData)
         {
-            result = LoadImageFromMemory((sbyte*)pFileType, pFileData, fileData.Length);
+            return LoadImageFromMemory(pFileType, pFileData, fileData.Length);
         }
-
-        Marshal.FreeCoTaskMem(pFileType);
-        return result;
     }
 
     /// <summary>
     /// Export image data to file, returns true on success
     /// </summary>
-    public static NativeBool ExportImage(Image image, string fileName)
+    public static NativeBool ExportImage(Image image, Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        NativeBool result = ExportImage(image, (sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return ExportImage(image, pFileName);
     }
 
     /// <summary>
     /// Export image to memory buffer
     /// </summary>
-    public static byte* ExportImageToMemory(Image image, string fileType, out int fileSize)
+    public static byte* ExportImageToMemory(Image image, Utf8String fileType, out int fileSize)
     {
-        nint pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
-        byte* result;
+        fixed (byte* pFileType = fileType)
         fixed (int* pFileSize = &fileSize)
         {
-            result = ExportImageToMemory(image, (sbyte*)pFileSize, pFileSize);
+            return ExportImageToMemory(image, pFileType, pFileSize);
         }
-
-        Marshal.FreeCoTaskMem(pFileType);
-        return result;
     }
 
     /// <summary>
     /// Export image as code file defining an array of bytes, returns true on success
     /// </summary>
-    public static NativeBool ExportImageAsCode(Image image, string fileName)
+    public static NativeBool ExportImageAsCode(Image image, Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        NativeBool result = ExportImageAsCode(image, (sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return ExportImageAsCode(image, pFileName);
     }
 
     /// <summary>
     /// Generate image: grayscale image from text data
     /// </summary>
-    public static Image GenImageText(int width, int height, string text)
+    public static Image GenImageText(int width, int height, Utf8String text)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        Image result = GenImageText(width, height, (sbyte*)pText);
-        Marshal.FreeCoTaskMem(pText);
-        return result;
+        fixed (byte* pText = text) return GenImageText(width, height, pText);
     }
 
     /// <summary>
     /// Create an image from text (default font)
     /// </summary>
-    public static Image ImageText(string text, int fontSize, Color color)
+    public static Image ImageText(Utf8String text, int fontSize, Color color)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        Image result = ImageText((sbyte*)pText, fontSize, color);
-        Marshal.FreeCoTaskMem(pText);
-        return result;
+        fixed (byte* pText = text) return ImageText(pText, fontSize, color);
     }
 
     /// <summary>
     /// Create an image from text (custom sprite font)
     /// </summary>
-    public static Image ImageTextEx(Font font, string text, float fontSize, float spacing, Color tint)
+    public static Image ImageTextEx(Font font, Utf8String text, float fontSize, float spacing, Color tint)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        Image result = ImageTextEx(font, (sbyte*)pText, fontSize, spacing, tint);
-        Marshal.FreeCoTaskMem(pText);
-        return result;
+        fixed (byte* pText = text) return ImageTextEx(font, pText, fontSize, spacing, tint);
     }
 
     /// <summary>
@@ -1577,40 +1433,33 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Draw text (using default font) within an image (destination)
     /// </summary>
-    public static void ImageDrawText(ref Image dst, string text, int posX, int posY, int fontSize, Color color)
+    public static void ImageDrawText(ref Image dst, Utf8String text, int posX, int posY, int fontSize, Color color)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
         fixed (Image* pDst = &dst)
+        fixed (byte* pText = text)
         {
-            ImageDrawText(pDst, (sbyte*)pText, posX, posY, fontSize, color);
+            ImageDrawText(pDst, pText, posX, posY, fontSize, color);
         }
-
-        Marshal.FreeCoTaskMem(pText);
     }
 
     /// <summary>
     /// Draw text (custom sprite font) within an image (destination)
     /// </summary>
-    public static void ImageDrawTextEx(ref Image dst, Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
+    public static void ImageDrawTextEx(ref Image dst, Font font, Utf8String text, Vector2 position, float fontSize, float spacing, Color tint)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
         fixed (Image* pDst = &dst)
+        fixed (byte* pText = text)
         {
-            ImageDrawTextEx(pDst, font, (sbyte*)pText, position, fontSize, spacing, tint);
+            ImageDrawTextEx(pDst, font, pText, position, fontSize, spacing, tint);
         }
-
-        Marshal.FreeCoTaskMem(pText);
     }
 
     /// <summary>
     /// Load texture from file into GPU memory (VRAM)
     /// </summary>
-    public static Texture2D LoadTexture(string fileName)
+    public static Texture2D LoadTexture(Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        Texture2D result = LoadTexture((sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return LoadTexture(pFileName);
     }
 
     /// <summary>
@@ -1651,77 +1500,56 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Load font from file into GPU memory (VRAM)
     /// </summary>
-    public static Font LoadFont(string fileName)
+    public static Font LoadFont(Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        Font result = LoadFont((sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return LoadFont(pFileName);
     }
 
     /// <summary>
     /// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default
     /// character set, font size is provided in pixels height
     /// </summary>
-    public static Font LoadFontEx(string fileName, int fontSize, ReadOnlySpan<int> codepoints)
+    public static Font LoadFontEx(Utf8String fileName, int fontSize, ReadOnlySpan<int> codepoints)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        Font result;
+        fixed (byte* pFileName = fileName)
         fixed (int* pCodepoints = codepoints)
         {
-            result = LoadFontEx((sbyte*)pFileName, fontSize, pCodepoints, codepoints.Length);
+            return LoadFontEx(pFileName, fontSize, pCodepoints, codepoints.Length);
         }
-
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
     }
 
     /// <summary>
     /// Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default
     /// character set, font size is provided in pixels height
     /// </summary>
-    public static Font LoadFontEx(string fileName, int fontSize, int codepointCount)
+    public static Font LoadFontEx(Utf8String fileName, int fontSize, int codepointCount)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        Font result = LoadFontEx((sbyte*)pFileName, fontSize, null, codepointCount);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return LoadFontEx(pFileName, fontSize, null, codepointCount);
     }
 
     /// <summary>
     /// Load font from memory buffer, fileType refers to extension: i.e. '.ttf'
     /// </summary>
-    public static Font LoadFontFromMemory(string fileType, ReadOnlySpan<byte> fileData, int fontSize, ReadOnlySpan<int> codepoints)
+    public static Font LoadFontFromMemory(Utf8String fileType, ReadOnlySpan<byte> fileData, int fontSize, ReadOnlySpan<int> codepoints)
     {
-        nint pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
-        Font result;
+        fixed (byte* pFileType = fileType)
         fixed (byte* pFileData = fileData)
-        {
             fixed (int* pCodepoints = codepoints)
             {
-                result = LoadFontFromMemory((sbyte*)pFileType, pFileData, fileData.Length, fontSize, pCodepoints, codepoints.Length);
+                return LoadFontFromMemory(pFileType, pFileData, fileData.Length, fontSize, pCodepoints, codepoints.Length);
             }
-
-        }
-
-        Marshal.FreeCoTaskMem(pFileType);
-        return result;
     }
 
     /// <summary>
     /// Load font from memory buffer, fileType refers to extension: i.e. '.ttf'
     /// </summary>
-    public static Font LoadFontFromMemory(string fileType, ReadOnlySpan<byte> fileData, int fontSize, int codepointCount)
+    public static Font LoadFontFromMemory(Utf8String fileType, ReadOnlySpan<byte> fileData, int fontSize, int codepointCount)
     {
-        nint pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
-        Font result;
+        fixed (byte* pFileType = fileType)
         fixed (byte* pFileData = fileData)
         {
-            result = LoadFontFromMemory((sbyte*)pFileType, pFileData, fileData.Length, fontSize, null, codepointCount);
+            return LoadFontFromMemory(pFileType, pFileData, fileData.Length, fontSize, null, codepointCount);
         }
-
-        Marshal.FreeCoTaskMem(pFileType);
-        return result;
     }
 
     /// <summary>
@@ -1798,43 +1626,34 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Export font as code file, returns true on success
     /// </summary>
-    public static NativeBool ExportFontAsCode(Font font, string fileName)
+    public static NativeBool ExportFontAsCode(Font font, Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        NativeBool result = ExportFontAsCode(font, (sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return ExportFontAsCode(font, pFileName);
     }
 
     /// <summary>
     /// Draw text (using default font)
     /// </summary>
-    public static void DrawText(string text, int posX, int posY, int fontSize, Color color)
+    public static void DrawText(Utf8String text, int posX, int posY, int fontSize, Color color)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        DrawText((sbyte*)pText, posX, posY, fontSize, color);
-        Marshal.FreeCoTaskMem(pText);
+        fixed (byte* pText = text) DrawText(pText, posX, posY, fontSize, color);
     }
 
     /// <summary>
     /// Draw text using font and additional parameters
     /// </summary>
-    public static void DrawTextEx(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
+    public static void DrawTextEx(Font font, Utf8String text, Vector2 position, float fontSize, float spacing, Color tint)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        DrawTextEx(font, (sbyte*)pText, position, fontSize, spacing, tint);
-        Marshal.FreeCoTaskMem(pText);
+        fixed (byte* pText = text) DrawTextEx(font, pText, position, fontSize, spacing, tint);
     }
 
     /// <summary>
     /// Draw text using Font and pro parameters (rotation)
     /// </summary>
     public static void DrawTextPro(
-        Font font, string text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint)
+        Font font, Utf8String text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        DrawTextPro(font, (sbyte*)pText, position, origin, rotation, fontSize, spacing, tint);
-        Marshal.FreeCoTaskMem(pText);
+        fixed (byte* pText = text) DrawTextPro(font, pText, position, origin, rotation, fontSize, spacing, tint);
     }
 
     /// <summary>
@@ -1849,31 +1668,25 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>
-    /// Measure string width for default font
+    /// Measure Utf8String width for default font
     /// </summary>
-    public static int MeasureText(string text, int fontSize)
+    public static int MeasureText(Utf8String text, int fontSize)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        int result = MeasureText((sbyte*)pText, fontSize);
-        Marshal.FreeCoTaskMem(pText);
-        return result;
+        fixed (byte* pText = text) return MeasureText(pText, fontSize);
     }
 
     /// <summary>
-    /// Measure string size for Font
+    /// Measure Utf8String size for Font
     /// </summary>
-    public static Vector2 MeasureTextEx(Font font, string text, float fontSize, float spacing)
+    public static Vector2 MeasureTextEx(Font font, Utf8String text, float fontSize, float spacing)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        Vector2 result = MeasureTextEx(font, (sbyte*)pText, fontSize, spacing);
-        Marshal.FreeCoTaskMem(pText);
-        return result;
+        fixed (byte* pText = text) return MeasureTextEx(font, pText, fontSize, spacing);
     }
 
     /// <summary>
     /// Load UTF-8 text encoded from codepoints array
     /// </summary>
-    public static sbyte* LoadUTF8(ReadOnlySpan<int> codepoints)
+    public static byte* LoadUTF8(ReadOnlySpan<int> codepoints)
     {
         fixed (int* pCodepoints = codepoints)
         {
@@ -1884,76 +1697,57 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Load all codepoints from a UTF-8 text string, codepoints count returned by parameter
     /// </summary>
-    public static int* LoadCodepoints(string text, out int count)
+    public static int* LoadCodepoints(Utf8String text, out int count)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        int* result;
+        fixed (byte* pText = text)
         fixed (int* pCount = &count)
         {
-            result = LoadCodepoints((sbyte*)pText, pCount);
+            return LoadCodepoints(pText, pCount);
         }
-
-        Marshal.FreeCoTaskMem(pText);
-        return result;
     }
 
     /// <summary>
     /// Get total number of codepoints in a UTF-8 encoded string
     /// </summary>
-    public static int GetCodepointCount(string text)
+    public static int GetCodepointCount(Utf8String text)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        int result = GetCodepointCount((sbyte*)pText);
-        Marshal.FreeCoTaskMem(pText);
-        return result;
+        fixed (byte* pText = text) return GetCodepointCount(pText);
     }
 
     /// <summary>
     /// Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
     /// </summary>
-    public static int GetCodepoint(string text, out int codepointSize)
+    public static int GetCodepoint(Utf8String text, out int codepointSize)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        int result;
+        fixed (byte* pText = text)
         fixed (int* pCodepointSize = &codepointSize)
         {
-            result = GetCodepoint((sbyte*)pText, pCodepointSize);
+            return GetCodepoint(pText, pCodepointSize);
         }
-
-        Marshal.FreeCoTaskMem(pText);
-        return result;
     }
 
     /// <summary>
     /// Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
     /// </summary>
-    public static int GetCodepointNext(string text, out int codepointSize)
+    public static int GetCodepointNext(Utf8String text, out int codepointSize)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        int result;
+        fixed (byte* pText = text)
         fixed (int* pCodepointSize = &codepointSize)
         {
-            result = GetCodepointNext((sbyte*)pText, pCodepointSize);
+            return GetCodepointNext(pText, pCodepointSize);
         }
-
-        Marshal.FreeCoTaskMem(pText);
-        return result;
     }
 
     /// <summary>
     /// Get previous codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
     /// </summary>
-    public static int GetCodepointPrevious(string text, out int codepointSize)
+    public static int GetCodepointPrevious(Utf8String text, out int codepointSize)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        int result;
+        fixed (byte* pText = text)
         fixed (int* pCodepointSize = &codepointSize)
         {
-            result = GetCodepointPrevious((sbyte*)pText, pCodepointSize);
+            return GetCodepointPrevious(pText, pCodepointSize);
         }
-
-        Marshal.FreeCoTaskMem(pText);
-        return result;
     }
 
     /// <summary>
@@ -1968,34 +1762,25 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Get Pascal case notation version of provided string
     /// </summary>
-    public static string TextToPascal(string text)
+    public static string? TextToPascal(Utf8String text)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        sbyte* result = TextToPascal((sbyte*)pText);
-        Marshal.FreeCoTaskMem(pText);
-        return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
+        fixed (byte* pText = text) return Marshal.PtrToStringUTF8((nint)TextToPascal(pText));
     }
 
     /// <summary>
     /// Get Snake case notation version of provided string
     /// </summary>
-    public static string TextToSnake(string text)
+    public static string? TextToSnake(Utf8String text)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        sbyte* result = TextToSnake((sbyte*)pText);
-        Marshal.FreeCoTaskMem(pText);
-        return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
+        fixed (byte* pText = text) return Marshal.PtrToStringUTF8((nint)TextToSnake(pText));
     }
 
     /// <summary>
     /// Get Camel case notation version of provided string
     /// </summary>
-    public static string TextToCamel(string text)
+    public static string? TextToCamel(Utf8String text)
     {
-        nint pText = Marshal.StringToCoTaskMemUTF8(text);
-        sbyte* result = TextToCamel((sbyte*)pText);
-        Marshal.FreeCoTaskMem(pText);
-        return Marshal.PtrToStringUTF8((nint)result) ?? string.Empty;
+        fixed (byte* pText = text) return Marshal.PtrToStringUTF8((nint)TextToCamel(pText));
     }
 
     /// <summary>
@@ -2012,12 +1797,9 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Load model from files (meshes and materials)
     /// </summary>
-    public static Model LoadModel(string fileName)
+    public static Model LoadModel(Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        Model result = LoadModel((sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return LoadModel(pFileName);
     }
 
     /// <summary>
@@ -2068,40 +1850,29 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Export mesh data to file, returns true on success
     /// </summary>
-    public static NativeBool ExportMesh(Mesh mesh, string fileName)
+    public static NativeBool ExportMesh(Mesh mesh, Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        NativeBool result = ExportMesh(mesh, (sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return ExportMesh(mesh, pFileName);
     }
 
     /// <summary>
     /// Export mesh as code file (.h) defining multiple arrays of vertex attributes
     /// </summary>
-    public static NativeBool ExportMeshAsCode(Mesh mesh, string fileName)
+    public static NativeBool ExportMeshAsCode(Mesh mesh, Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        NativeBool result = ExportMeshAsCode(mesh, (sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return ExportMeshAsCode(mesh, pFileName);
     }
 
     /// <summary>
     /// Load materials from model file
     /// </summary>
-    public static Material* LoadMaterials(string fileName, out int materialCount)
+    public static Material* LoadMaterials(Utf8String fileName, out int materialCount)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        Material* result;
+        fixed (byte* pFileName = fileName)
         fixed (int* pMaterialCount = &materialCount)
         {
-            result = LoadMaterials((sbyte*)pFileName, pMaterialCount);
+            return LoadMaterials(pFileName, pMaterialCount);
         }
-
-        Marshal.FreeCoTaskMem(pFileName);
-
-        return result;
     }
 
     /// <summary>
@@ -2129,55 +1900,41 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Load model animations from file
     /// </summary>
-    public static ModelAnimation* LoadModelAnimations(string fileName, out int animCount)
+    public static ModelAnimation* LoadModelAnimations(Utf8String fileName, out int animCount)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        ModelAnimation* result;
+        fixed (byte* pFileName = fileName)
         fixed (int* pAnimCount = &animCount)
         {
-            result = LoadModelAnimations((sbyte*)pFileName, pAnimCount);
+            return LoadModelAnimations(pFileName, pAnimCount);
         }
-
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
     }
 
     /// <summary>
     /// Load wave data from file
     /// </summary>
-    public static Wave LoadWave(string fileName)
+    public static Wave LoadWave(Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        Wave result = LoadWave((sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return LoadWave(pFileName);
     }
 
     /// <summary>
     /// Load wave from memory buffer, fileType refers to extension: i.e. '.wav'
     /// </summary>
-    public static Wave LoadWaveFromMemory(string fileType, ReadOnlySpan<byte> fileData)
+    public static Wave LoadWaveFromMemory(Utf8String fileType, ReadOnlySpan<byte> fileData)
     {
-        nint pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
-        Wave result;
+        fixed (byte* pFileType = fileType)
         fixed (byte* pFileData = fileData)
         {
-            result = LoadWaveFromMemory((sbyte*)pFileType, pFileData, fileData.Length);
+            return LoadWaveFromMemory(pFileType, pFileData, fileData.Length);
         }
-
-        Marshal.FreeCoTaskMem(pFileType);
-        return result;
     }
 
     /// <summary>
     /// Load sound from file
     /// </summary>
-    public static Sound LoadSound(string fileName)
+    public static Sound LoadSound(Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        Sound result = LoadSound((sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return LoadSound(pFileName);
     }
 
     /// <summary>
@@ -2195,23 +1952,17 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Export wave data to file, returns true on success
     /// </summary>
-    public static NativeBool ExportWave(Wave wave, string fileName)
+    public static NativeBool ExportWave(Wave wave, Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        NativeBool result = ExportWave(wave, (sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return ExportWave(wave, pFileName);
     }
 
     /// <summary>
     /// Export wave sample data to code (.h), returns true on success
     /// </summary>
-    public static NativeBool ExportWaveAsCode(Wave wave, string fileName)
+    public static NativeBool ExportWaveAsCode(Wave wave, Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        NativeBool result = ExportWaveAsCode(wave, (sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return ExportWaveAsCode(wave, pFileName);
     }
 
     /// <summary>
@@ -2239,28 +1990,21 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Load music stream from file
     /// </summary>
-    public static Music LoadMusicStream(string fileName)
+    public static Music LoadMusicStream(Utf8String fileName)
     {
-        nint pFileName = Marshal.StringToCoTaskMemUTF8(fileName);
-        Music result = LoadMusicStream((sbyte*)pFileName);
-        Marshal.FreeCoTaskMem(pFileName);
-        return result;
+        fixed (byte* pFileName = fileName) return LoadMusicStream(pFileName);
     }
 
     /// <summary>
     /// Load music stream from data
     /// </summary>
-    public static Music LoadMusicStreamFromMemory(string fileType, ReadOnlySpan<byte> data)
+    public static Music LoadMusicStreamFromMemory(Utf8String fileType, ReadOnlySpan<byte> data)
     {
-        nint pFileType = Marshal.StringToCoTaskMemUTF8(fileType);
-        Music result;
+        fixed (byte* pFileType = fileType)
         fixed (byte* pData = data)
         {
-            result = LoadMusicStreamFromMemory((sbyte*)pFileType, pData, data.Length);
+            return LoadMusicStreamFromMemory(pFileType, pData, data.Length);
         }
-
-        Marshal.FreeCoTaskMem(pFileType);
-        return result;
     }
 
     /// <summary>
