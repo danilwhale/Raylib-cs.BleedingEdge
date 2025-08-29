@@ -2687,6 +2687,18 @@ public static unsafe partial class Raylib
     public static extern byte* CodepointToUTF8(int codepoint, int* utf8Size);
 
     /// <summary>
+    /// Load text as separate lines ('\n')
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern byte** LoadTextLines(byte* text, int* count);
+
+    /// <summary>
+    /// Unload text lines
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern byte* UnloadTextLines(byte** text);
+
+    /// <summary>
     /// Copy one string to another, returns bytes copied
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
