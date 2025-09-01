@@ -1555,7 +1555,7 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Load font data for further use
     /// </summary>
-    public static GlyphInfo* LoadFontData(ReadOnlySpan<byte> fileData, int fontSize, ReadOnlySpan<int> codepoints, FontType type)
+    public static GlyphInfo* LoadFontData(ReadOnlySpan<byte> fileData, int fontSize, Span<int> codepoints, FontType type)
     {
         fixed (byte* pFileData = fileData)
         {
