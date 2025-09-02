@@ -2531,7 +2531,7 @@ public static unsafe partial class Raylib
     /// Load font data for further use
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern GlyphInfo* LoadFontData(byte* fileData, int dataSize, int fontSize, int* codepoints, int codepointCount, FontType type);
+    public static extern GlyphInfo* LoadFontData(byte* fileData, int dataSize, int fontSize, int* codepoints, int codepointCount, FontType type, int* glyphCount);
 
     /// <summary>
     /// Generate image font atlas using chars info

@@ -1555,25 +1555,25 @@ public static unsafe partial class Raylib
     /// <summary>
     /// Load font data for further use
     /// </summary>
-    public static GlyphInfo* LoadFontData(ReadOnlySpan<byte> fileData, int fontSize, Span<int> codepoints, FontType type)
+    public static GlyphInfo* LoadFontData(ReadOnlySpan<byte> fileData, int fontSize, Span<int> codepoints, FontType type, out int glyphCount)
     {
         fixed (byte* pFileData = fileData)
+        fixed (int* pCodepoints = codepoints)
+        fixed (int* pGlyphCount = &glyphCount)
         {
-            fixed (int* pCodepoints = codepoints)
-            {
-                return LoadFontData(pFileData, fileData.Length, fontSize, pCodepoints, codepoints.Length, type);
-            }
+            return LoadFontData(pFileData, fileData.Length, fontSize, pCodepoints, codepoints.Length, type, pGlyphCount);
         }
     }
 
     /// <summary>
     /// Load font data for further use
     /// </summary>
-    public static GlyphInfo* LoadFontData(ReadOnlySpan<byte> fileData, int fontSize, int codepointCount, FontType type)
+    public static GlyphInfo* LoadFontData(ReadOnlySpan<byte> fileData, int fontSize, int codepointCount, FontType type, out int glyphCount)
     {
         fixed (byte* pFileData = fileData)
+        fixed (int* pGlyphCount = &glyphCount)
         {
-            return LoadFontData(pFileData, fileData.Length, fontSize, null, codepointCount, type);
+            return LoadFontData(pFileData, fileData.Length, fontSize, null, codepointCount, type, pGlyphCount);
         }
     }
 
