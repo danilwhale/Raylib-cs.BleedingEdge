@@ -2696,7 +2696,7 @@ public static unsafe partial class Raylib
     /// Unload text lines
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* UnloadTextLines(byte** text);
+    public static extern byte* UnloadTextLines(byte** text, int lineCount);
 
     /// <summary>
     /// Copy one string to another, returns bytes copied
