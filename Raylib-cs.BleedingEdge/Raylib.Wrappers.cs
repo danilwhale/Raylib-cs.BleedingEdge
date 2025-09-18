@@ -228,6 +228,66 @@ public static unsafe partial class Raylib
     }
 
     /// <summary>
+    /// Rename file (if exists)
+    /// </summary>
+    public static int FileRename(Utf8String fileName, Utf8String fileRename)
+    {
+        fixed (byte* pFileName = fileName)
+        fixed (byte* pFileRename = fileRename)
+            return FileRename(pFileName, pFileRename);
+    }
+
+    /// <summary>
+    /// Remove file (if exists)
+    /// </summary>
+    public static int FileRemove(Utf8String fileName)
+    {
+        fixed (byte* pFileName = fileName)
+            return FileRemove(pFileName);
+    }
+
+    /// <summary>
+    /// Copy file from one path to another, dstPath created if it doesn't exist
+    /// </summary>
+    public static int FileCopy(Utf8String srcPath, Utf8String dstPath)
+    {
+        fixed (byte* pSrcPath = srcPath)
+        fixed (byte* pDstPath = dstPath)
+            return FileCopy(pSrcPath, pDstPath);
+    }
+
+    /// <summary>
+    /// Move file from one directory to another, dstPath created if it doesn't exist
+    /// </summary>
+    public static int FileMove(Utf8String srcPath, Utf8String dstPath)
+    {
+        fixed (byte* pSrcPath = srcPath)
+        fixed (byte* pDstPath = dstPath)
+            return FileMove(pSrcPath, pDstPath);
+    }
+
+    /// <summary>
+    /// Replace text in an existing file
+    /// </summary>
+    public static int FileTextReplace(Utf8String fileName, Utf8String search, Utf8String replacement)
+    {
+        fixed (byte* pFileName = fileName)
+        fixed (byte* pSearch = search)
+        fixed (byte* pReplacement = replacement)
+            return FileTextReplace(pFileName, pSearch, pReplacement);
+    }
+
+    /// <summary>
+    /// Find text in existing file
+    /// </summary>
+    public static int FileTextFindIndex(Utf8String fileName, Utf8String find)
+    {
+        fixed (byte* pFileName = fileName)
+        fixed (byte* pFind = find)
+            return FileTextFindIndex(pFileName, pFind);
+    }
+
+    /// <summary>
     /// Check if file exists
     /// </summary>
     public static NativeBool FileExists(Utf8String fileName)
