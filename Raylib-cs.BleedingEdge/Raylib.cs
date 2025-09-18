@@ -779,6 +779,42 @@ public static unsafe partial class Raylib
     public static extern NativeBool SaveFileText(byte* fileName, byte* text);
 
     /// <summary>
+    /// Rename file (if exists)
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern int FileRename(byte* fileName, byte* fileRename);
+
+    /// <summary>
+    /// Remove file (if exists)
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern int FileRemove(byte* fileName);
+
+    /// <summary>
+    /// Copy file from one path to another, dstPath created if it doesn't exist
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern int FileCopy(byte* srcPath, byte* dstPath);
+
+    /// <summary>
+    /// Move file from one directory to another, dstPath created if it doesn't exist
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern int FileMove(byte* srcPath, byte* dstPath);
+
+    /// <summary>
+    /// Replace text in an existing file
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern int FileTextReplace(byte* fileName, byte* search, byte* replacement);
+
+    /// <summary>
+    /// Find text in existing file
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern int FileTextFindIndex(byte* fileName, byte* search);
+
+    /// <summary>
     /// Check if file exists
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
@@ -2732,10 +2768,28 @@ public static unsafe partial class Raylib
     public static extern byte* TextSubtext(byte* text, int position, int length);
 
     /// <summary>
+    /// Remove text spaces, concat words
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern byte* TextRemoveSpaces(byte* text);
+
+    /// <summary>
+    /// Get text between two strings
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern byte* GetTextBetween(byte* text, byte* begin, byte* end);
+
+    /// <summary>
     /// Replace text string (WARNING: memory must be freed!)
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* TextReplace(byte* text, byte* replace, byte* by);
+    public static extern byte* TextReplace(byte* text, byte* search, byte* replacement);
+
+    /// <summary>
+    /// Replace text between two specific strings (WARNING: memory must be freed!)
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern byte* TextReplaceBetween(byte* text, byte* begin, byte* end, byte* replacement);
 
     /// <summary>
     /// Insert text in a position (WARNING: memory must be freed!)
@@ -2756,7 +2810,7 @@ public static unsafe partial class Raylib
     public static extern byte** TextSplit(byte* text, byte delimeter, int* count);
 
     /// <summary>
-    /// Append text at specific position and move cursor!
+    /// Append text at specific position and move cursor
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void TextAppend(byte* text, byte* append, int* position);
@@ -2765,7 +2819,7 @@ public static unsafe partial class Raylib
     /// Find first text occurrence within a string, -1 if not found
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
-    public static extern int TextFindIndex(byte* text, byte* find);
+    public static extern int TextFindIndex(byte* text, byte* search);
 
     /// <summary>
     /// Get upper case version of provided string
