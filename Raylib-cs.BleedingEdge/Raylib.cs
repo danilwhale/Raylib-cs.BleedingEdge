@@ -1464,6 +1464,12 @@ public static unsafe partial class Raylib
     /// </summary>
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern void DrawLineV(Vector2 startPos, Vector2 endPos, Color color);
+    
+    /// <summary>
+    /// Draw a dashed line
+    /// </summary>
+    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void DrawLineDashed(Vector2 startPos, Vector2 endPos, int dashSize, int whiteSpaceSize, Color color);
 
     /// <summary>
     /// Draw a line (using triangles/quads)
